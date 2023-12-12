@@ -19,9 +19,11 @@ namespace Business
             // services.AddScoped<IUserService, UserManager>();
 
             services.AddScoped<IUserService, UserManager>();
+           
             //services.AddScoped<CategoryBusinessRules>();
-            
 
+            services.AddScoped<IAddressService, AddressManager>();
+            services.AddScoped<ILanguageService, LanguageManager>();
             //services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
