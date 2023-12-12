@@ -17,10 +17,11 @@ namespace Business
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserManager>();
-           
-            //services.AddScoped<CategoryBusinessRules>();
-            
 
+            //services.AddScoped<CategoryBusinessRules>();
+
+            services.AddScoped<IAddressService, AddressManager>();
+            services.AddScoped<ILanguageService, LanguageManager>();
             //services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
