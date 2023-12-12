@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract;
 
-public interface IUserService 
+public interface IUserService
 {
 
     Task Add(User user); 

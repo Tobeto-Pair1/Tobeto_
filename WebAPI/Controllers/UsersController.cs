@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Core.DTOs;
+using Business.DTOs.Request;
 using Entities.Concretes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,28 +11,22 @@ namespace WebAPI.Controllers;
 public class UsersController : ControllerBase
 {
 
-   private readonly IUserService userService;
-
-
+    private readonly IUserService _userService;
 
     public UsersController(IUserService userService)
     {
-        this.userService = userService;
-       
-        
+        _userService = userService;
     }
 
-
-
     [HttpPost]
-    public async Task<IActionResult> Register( [FromBody] User user)
+    public IActionResult Add(CreateUserRequest user)
     {
 
-        var response = await userService.Add(user);
+     //  var response =  userService.Add(user);
 
 
 
-        return Ok(response);
+        return Ok();
     }
 
 
