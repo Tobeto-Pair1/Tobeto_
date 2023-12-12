@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccess.Abstract;
+using DataAccess.Concrete;
 
 namespace DataAccess;
 
@@ -15,11 +17,13 @@ public static class DataAccessServiceRegistration
 {
     public static IServiceCollection AddDataAccessServices(this IServiceCollection services, IConfiguration configuration)
     {
-        //services.AddDbContext<NorthwindContext>(options => options.UseInMemoryDatabase("nArchitecture"));
 
-        services.AddDbContext<NorthwindContext>(options=>options.UseSqlServer(configuration.GetConnectionString("ETradeC")));
+        //Data Source=DESKTOP-3O4V1S5;Initial Catalog=Tobeto;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False
+        services.AddDbContext<TobetoDbContext>(options => options.UseInMemoryDatabase("TobetoDbContext"));
 
-        //services.AddScoped<IProductDal, EfProductDal>();
+        services.AddDbContext<TobetoDbContext>(options=>options.UseSqlServer(configuration.GetConnectionString("Data Source=DESKTOP-3O4V1S5;Initial Catalog=Tobeto;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")));
+
+        services.AddScoped<IUserDal, EfUserDal>();
         //services.AddScoped<ICategoryDal, EfCategoryDal>();
 
         return services;

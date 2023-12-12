@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Business.Abstract;
+using Business.Concrete;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,9 +16,8 @@ namespace Business
     {
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
-            //services.AddScoped<IProductService, ProductManager>();
-            //services.AddScoped<ICategoryService, CategoryManager>();
-
+            services.AddScoped<IUserService, UserManager>();
+           
             //services.AddScoped<CategoryBusinessRules>();
             
 
