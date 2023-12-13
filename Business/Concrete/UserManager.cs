@@ -22,19 +22,13 @@ public class UserManager : IUserService
 
     }
 
-
-
-    public void Add(User user)
+    public Task Add(User user)
     {
-
-         _userDal.Add(user);
+        throw new NotImplementedException();
     }
 
     public void Delete(User user)
     {
-
-        _userDal.Delete(user);  
-
-
+        throw new NotImplementedException();
     }
 }

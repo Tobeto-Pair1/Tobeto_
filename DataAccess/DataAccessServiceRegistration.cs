@@ -24,7 +24,10 @@ public static class DataAccessServiceRegistration
         services.AddDbContext<TobetoDbContext>(options=>options.UseSqlServer(configuration.GetConnectionString("Data Source=DESKTOP-3O4V1S5;Initial Catalog=Tobeto;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")));
 
         services.AddScoped<IUserDal, EfUserDal>();
-        //services.AddScoped<ICategoryDal, EfCategoryDal>();
+        services.AddScoped<IEducationDal, EfEducationDal>();
+        services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
+
+   
 
         return services;
     }

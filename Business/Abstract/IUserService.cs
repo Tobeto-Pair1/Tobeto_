@@ -12,10 +12,4 @@ public interface IUserService
 
     Task Add(User user); 
     void Delete(User user); 
-
-
-
-
-
-
 }

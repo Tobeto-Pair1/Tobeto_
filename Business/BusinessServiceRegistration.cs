@@ -19,6 +19,8 @@ namespace Business
             services.AddScoped<IUserService, UserManager>();
 
             //services.AddScoped<CategoryBusinessRules>();
+            services.AddScoped<ISocialMediaService, SocialMediaManager>();
+            services.AddScoped<IEducationService, EducationManager>();
 
             services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ILanguageService, LanguageManager>();
