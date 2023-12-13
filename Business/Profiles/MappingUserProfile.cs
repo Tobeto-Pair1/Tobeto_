@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Business.DTOs.Request;
+using Business.DTOs.Response;
+using Entities.Concrete;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -11,13 +13,11 @@ namespace Business.Profiles
 {
     public class MappingUserProfile : Profile
     {
-        protected MappingUserProfile()
+        public MappingUserProfile()
         {
 
-            CreateMap<User, CreateUserRequest>().ReverseMap();
-
-
-
+            CreateMap<User, CreatedUserResponse>().ReverseMap();
+            CreateMap<CreateUserRequest, User>().ReverseMap();
 
         }
     }

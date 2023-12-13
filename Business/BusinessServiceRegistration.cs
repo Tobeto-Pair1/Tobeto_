@@ -24,7 +24,8 @@ namespace Business
 
             services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ILanguageService, LanguageManager>();
-            //services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddScoped<IUserService, UserManager>();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
         }
