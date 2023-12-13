@@ -3,7 +3,7 @@ using Business.DTOs.Request;
 using Business.DTOs.Response;
 using Entities.Concrete;
 
-namespace Business.DTOs.Profiles
+namespace Business.Profiles
 {
     public class MappingLanguageProfile : Profile
     {

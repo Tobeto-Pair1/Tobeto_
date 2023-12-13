@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class EfAddressDal: EfRepositoryBase<Address, int, NorthwindContext>, IAddressDal
+    public class EfAddressDal: EfRepositoryBase<Address, int, TobetoDbContext>, IAddressDal
     {
-        public EfAddressDal(NorthwindContext context) : base(context)
+        public EfAddressDal(TobetoDbContext context) : base(context)
         {
         }
     }

@@ -18,8 +18,8 @@ namespace Business.Concrete
 {
     public class LanguageManager : ILanguageService
     {
-        ILanguageDal _languageDal;
-        IMapper _mapper;
+        private readonly ILanguageDal _languageDal;
+        private readonly IMapper _mapper;
         
         public LanguageManager(ILanguageDal languageDal, IMapper mapper)
         {

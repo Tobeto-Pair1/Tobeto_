@@ -18,7 +18,7 @@ namespace Business
         {
             // services.AddScoped<IUserService, UserManager>();
 
-            services.AddScoped<IUserService, UserManager>();
+           
            
             //services.AddScoped<CategoryBusinessRules>();
 

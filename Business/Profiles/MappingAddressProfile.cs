@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Profiles
+namespace Business.Profiles
 {
-    public class MappingAddressProfile:Profile
+    public class MappingAddressProfile : Profile
     {
         public MappingAddressProfile()
         {
