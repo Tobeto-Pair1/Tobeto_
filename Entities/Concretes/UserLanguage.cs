@@ -7,10 +7,14 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Skill : Entity<int>
+public class UserLanguage : Entity<int>
 {
 
-    public string Name { get; set; }
+    public int LanguageId { get; set; }
+    public int UserId { get; set; }
+    public int LevelId { get; set; }
+
+
 
 
 }

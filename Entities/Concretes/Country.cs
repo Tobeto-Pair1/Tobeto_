@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Skill : Entity<int>
+public class Country : Entity<int>
 {
-
     public string Name { get; set; }
+
 
 
 }

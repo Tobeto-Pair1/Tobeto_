@@ -8,7 +8,6 @@ namespace Entities.Concretes
 		public DateTime StartTime { get; set; }
 		public DateTime EndTime { get; set; }
 		public DateTime EstimatedTime { get; set; }
-		public int CategoryId { get; set; }
 		public int ContentId { get; set; }
 		public int ManufacturerId { get; set; }
 	}

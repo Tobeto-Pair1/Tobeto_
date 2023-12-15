@@ -8,7 +8,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails;
+namespace Core.CrossCuttingConcrens.Exceptions.HttpProblemDetails;
 
 internal class ValidationProblemDetails : ProblemDetails
 {

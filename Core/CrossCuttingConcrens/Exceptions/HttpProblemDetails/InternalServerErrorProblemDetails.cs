@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails;
+namespace Core.CrossCuttingConcrens.Exceptions.HttpProblemDetails;
 
 public class InternalServerErrorProblemDetails : ProblemDetails
 {
