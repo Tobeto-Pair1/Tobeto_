@@ -10,7 +10,7 @@ namespace Entities.Concretes;
 public class Content : Entity<int>
 {
 
-    public int Name { get; set; }
+    public string Name { get; set; }
 
 
 }

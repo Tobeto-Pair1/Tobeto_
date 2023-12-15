@@ -12,13 +12,9 @@ public class Experience : Entity<int>
 {
 
     public int UserId { get; set; }
-    public string Name { get; set; }
-    public string Position { get; set;}
-    public string Sector { get; set;}
-     
-     public Address Address { get; set; } 
-    
-
-
-
+    public int PositionId { get; set;}
+    public int SectorId { get; set;}
+    public int CompanyId { get; set; }
+    public int AddressId { get; set; }
+    public Address Address { get; set;} 
 }
