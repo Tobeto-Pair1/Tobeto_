@@ -1,4 +1,5 @@
-﻿using Entities.Concretes;
+﻿using Entities.Concrete;
+using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -14,7 +15,11 @@ public class TobetoDbContext : DbContext
     protected IConfiguration Configuration { get; set; }
 
     public DbSet<User> Users { get; set; }
-    public DbSet<Category> Categories { get; set; }
+    public DbSet<Category>Categories { get; set;}
+
+    public DbSet<Address> Addresses { get; set; }
+
+
     public DbSet<Course> Courses { get; set; }
     
 

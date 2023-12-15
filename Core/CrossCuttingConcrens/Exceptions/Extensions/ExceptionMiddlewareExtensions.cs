@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.CrossCuttingConcerns.Exceptions;
+using Microsoft.AspNetCore.Builder;
 
 namespace Core.CrossCuttingConcrens;
 
-public class ExceptionMiddlewareExtensions
+public static class ExceptionMiddlewareExtensions
 {
 
 
