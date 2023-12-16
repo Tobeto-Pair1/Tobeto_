@@ -28,6 +28,8 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ILanguageDal, EfLanguageDal>();
         services.AddScoped<IUserDal, EfUserDal>();
 
+        services.AddScoped<ITownDal, EfTownDal>();
+
 
 
         //services.AddScoped<ICategoryDal, EfCategoryDal>();
