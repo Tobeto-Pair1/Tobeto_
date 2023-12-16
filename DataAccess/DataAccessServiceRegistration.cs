@@ -30,7 +30,9 @@ public static class DataAccessServiceRegistration
 
 
 
+
         //services.AddScoped<ICategoryDal, EfCategoryDal>();
+
 
         return services;
     }

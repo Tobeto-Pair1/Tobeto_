@@ -39,7 +39,7 @@ namespace Business.Concrete
         public async Task<DeletedLanguageResponse> Delete(DeleteLanguageRequest deleteLanguageRequest)
         {
             ForeignLanguage foreignLanguage = _mapper.Map<ForeignLanguage>(deleteLanguageRequest);
-            ForeignLanguage deletedLanguage = await _languageDal.AddAsync(foreignLanguage);
+            ForeignLanguage deletedLanguage = await _languageDal.DeleteAsync(foreignLanguage);
             DeletedLanguageResponse deletedLanguageResponse = _mapper.Map<DeletedLanguageResponse>(deletedLanguage);
             return deletedLanguageResponse;
         }
@@ -57,7 +57,7 @@ namespace Business.Concrete
         public async Task<UpdatedLanguageResponse> Update(UpdateLanguageRequest updateLanguageRequest)
         {
             ForeignLanguage foreignLanguage = _mapper.Map<ForeignLanguage>(updateLanguageRequest);
-            ForeignLanguage updateLanguage = await _languageDal.AddAsync(foreignLanguage);
+            ForeignLanguage updateLanguage = await _languageDal.UpdateAsync(foreignLanguage);
             UpdatedLanguageResponse updateLanguageResponse = _mapper.Map<UpdatedLanguageResponse>(updateLanguage);
             return updateLanguageResponse;
         }

@@ -19,6 +19,16 @@ public class UserManager : IUserService
     IUserDal _userDal;
     IMapper _mapper;
 
+
+
+    public UserManager(IUserDal userDal)
+    {
+        this._userDal = userDal;
+
+    }
+
+   
+
     public UserManager(IUserDal userDal, IMapper mapper)
     {
         _userDal = userDal;
@@ -27,6 +37,8 @@ public class UserManager : IUserService
 
     public async Task Add(CreateUserRequest request)
     {
+
+        
         User user = _mapper.Map<User>(request);
         await _userDal.AddAsync(user);
        

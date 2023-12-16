@@ -11,10 +11,10 @@ namespace Business.Abstract;
 public interface IUserService
 {
 
+
+    Task Add(User user); 
+    void Delete(User user); 
     public Task Add(CreateUserRequest request);
-
-
-
 
 
 }
