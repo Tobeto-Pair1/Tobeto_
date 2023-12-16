@@ -11,7 +11,7 @@ namespace Entities.Concretes;
 
 public class User: Entity<int>
 {
-
+    public int AdrressId { get; set; }
     public string  IdentityNumber { get; set; }
     public string  FirstName { get; set; }
     public string  Lastname { get; set; }
@@ -19,13 +19,5 @@ public class User: Entity<int>
     public string  Email { get; set; }
     public DateTime  BirthDate { get; set; }
 
-    //public Address Address { get; set; }
-
-
-
-
-
-
-
-
+    public Address Address { get; set; }
 }

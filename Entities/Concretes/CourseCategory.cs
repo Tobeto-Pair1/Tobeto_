@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 namespace Entities.Concretes;
 
 public class CourseCategory : Entity<int>
-{
-    
+{ 
     public int CategoryId { get; set; }
+
+    public Category Category { get; set; }
+
     public int CourseId { get; set; } // 4
+    public Course Course { get; set; }
+
 }
