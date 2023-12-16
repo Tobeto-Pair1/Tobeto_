@@ -30,6 +30,11 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
         services.AddScoped<IUserDal, EfUserDal>();
 
+        services.AddScoped<ITownDal, EfTownDal>();
+        services.AddScoped<ISkillDal, EfSkillDal>();
+
+        services.AddScoped<ISectorDal, EfSectorDal>();
+
 
 
 

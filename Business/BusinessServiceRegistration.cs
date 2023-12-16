@@ -23,7 +23,6 @@ namespace Business
             services.AddScoped<ISocialMediaService, SocialMediaManager>();
             services.AddScoped<IUserService, UserManager>();
 
-            //services.AddScoped<CategoryBusinessRules>();
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

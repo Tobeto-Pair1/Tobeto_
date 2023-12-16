@@ -12,5 +12,4 @@ public class Skill : Entity<int>
 
     public string Name { get; set; }
 
-
 }

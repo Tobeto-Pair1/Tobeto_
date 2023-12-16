@@ -26,7 +26,5 @@
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Rules\" />
-  </ItemGroup>
+
 </Project>
