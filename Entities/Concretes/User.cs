@@ -19,5 +19,5 @@ public class User: Entity<int>
     public string  Email { get; set; }
     public DateTime  BirthDate { get; set; }
 
-    public Address Address { get; set; }
+    //public Address Address { get; set; }
 }

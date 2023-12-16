@@ -1,5 +1,5 @@
-﻿using Business.DTOs.Request;
-using Business.DTOs.Response;
+﻿using Business.Dtos.Requests;
+using Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +10,8 @@ namespace Business.Abstract;
 
 public interface IUserService
 {
-
-
-    Task Add(User user); 
     void Delete(User user); 
-    public Task Add(CreateUserRequest request);
+    Task Add(CreateUserRequest request);
 
 
 }

@@ -15,29 +15,23 @@ namespace Business
     public static class BusinessServiceRegistration
     {
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
-        {
-            // services.AddScoped<IUserService, UserManager>();
-
-           
-           
-            //services.AddScoped<CategoryBusinessRules>();
-            services.AddScoped<ISocialMediaService, SocialMediaManager>();
-            services.AddScoped<IEducationService, EducationManager>();
-
+        {     
             services.AddScoped<IAddressService, AddressManager>();
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<IEducationService, EducationManager>();
             services.AddScoped<ILanguageService, LanguageManager>();
+            services.AddScoped<ISocialMediaService, SocialMediaManager>();
             services.AddScoped<IUserService, UserManager>();
+
+            //services.AddScoped<CategoryBusinessRules>();
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
         }
 
-        public static IServiceCollection AddSubClassesOfType(
-    this IServiceCollection services,
-    Assembly assembly,
-    Type type,
-    Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null
-)
+        public static IServiceCollection AddSubClassesOfType(this IServiceCollection services,
+         Assembly assembly,Type type,Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null)
         {
             var types = assembly.GetTypes().Where(t => t.IsSubclassOf(type) && type != t).ToList();
             foreach (var item in types)

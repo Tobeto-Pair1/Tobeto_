@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.DTOs.Request;
-using Business.DTOs.Response;
+using Business.Dtos.Requests;
+using Business.Dtos.Responses;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
@@ -18,8 +18,8 @@ namespace Business.Concrete
 {
     public class LanguageManager : ILanguageService
     {
-        private readonly ILanguageDal _languageDal;
-        private readonly IMapper _mapper;
+        ILanguageDal _languageDal;
+        IMapper _mapper;
         
         public LanguageManager(ILanguageDal languageDal, IMapper mapper)
         {

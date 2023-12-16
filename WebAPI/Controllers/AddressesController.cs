@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Business.DTOs.Request;
+using Business.Dtos.Requests;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpDelete]
+        [HttpPost("delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteAddressRequest deleteAddressRequest)
         {
 
@@ -44,7 +44,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
+        [HttpGet("getList")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             var result = await _addressService.GetListAsync(pageRequest);

@@ -15,7 +15,7 @@ public class City : Entity<int>
 
     public string Name { get; set; }
 
-    public Town Town { get; set; }
-    public List<Country> Countries { get; set; }
-    public List<Address>  Addresses { get; set; }
+    public List<Town> Town { get; set; }
+    public Country Country { get; set; }
+    public Address Address { get; set; }
 }

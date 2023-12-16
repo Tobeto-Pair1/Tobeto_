@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.DTOs.Request;
-using Business.DTOs.Response;
+using Business.Dtos.Requests;
+using Business.Dtos.Responses;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
@@ -18,7 +18,7 @@ namespace Business.Concrete
 {
     public class AddressManager : IAddressService
     {
-     private readonly   IAddressDal _addressDal;
+        IAddressDal _addressDal;
         IMapper _mapper;
 
         public AddressManager(IAddressDal addressDal, IMapper mapper)
@@ -35,9 +35,9 @@ namespace Business.Concrete
             return createdAddressResponse;
         }
 
-        public async Task<DeletedAddressResponse> Delete(DeleteAddressRequest deleteddressRequest)
+        public async Task<DeletedAddressResponse> Delete(DeleteAddressRequest deleteAddressRequest)
         {
-            Address address = _mapper.Map<Address>(deleteddressRequest);
+            Address address = _mapper.Map<Address>(deleteAddressRequest);
             Address deletedAddress = await _addressDal.DeleteAsync(address);
             DeletedAddressResponse deletedAddressResponse = _mapper.Map<DeletedAddressResponse>(deletedAddress);
             return deletedAddressResponse;
@@ -45,7 +45,8 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListAddressResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _addressDal.GetListAsync(include: a => (IIncludableQueryable<Address, object>)a.Include(a => a.UserId),
+            var data = await _addressDal.GetListAsync(include: a => a.Include(a => a.City).
+            Include(a=>a.Country).Include(a=>a.Town),
                index: pageRequest.PageIndex,
                size: pageRequest.PageSize);
 

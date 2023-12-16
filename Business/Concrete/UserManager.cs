@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.DTOs.Request;
-using Business.DTOs.Response;
+using Business.Dtos.Requests;
+using Business.Dtos.Responses;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete;
@@ -42,5 +42,10 @@ public class UserManager : IUserService
         User user = _mapper.Map<User>(request);
         await _userDal.AddAsync(user);
        
+    }
+
+    public void Delete(User user)
+    {
+        throw new NotImplementedException();
     }
 }

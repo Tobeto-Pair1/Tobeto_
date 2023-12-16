@@ -346,6 +346,7 @@ namespace Core.DataAccess.Repositories
                 );
         }
 
+
         private async Task setEntityAsSoftDeletedAsync(IEntityTimestamps entity)
         {
             if (entity.DeletedDate.HasValue)

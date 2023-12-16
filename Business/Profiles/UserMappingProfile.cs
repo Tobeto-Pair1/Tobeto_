@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Business.DTOs.Request;
-using Business.DTOs.Response;
+using Business.Dtos.Requests;
+using Business.Dtos.Responses;
 using Entities.Concrete;
 using Entities.Concretes;
 using System;
@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Business.Profiles
 {
-    public class MappingUserProfile : Profile
+    public class UserMappingProfile : Profile
     {
-        public MappingUserProfile()
+        public UserMappingProfile()
         {
 
             CreateMap<User, CreatedUserResponse>().ReverseMap();
