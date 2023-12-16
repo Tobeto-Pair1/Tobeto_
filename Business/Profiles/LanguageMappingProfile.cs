@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using Business.DTOs.Request;
-using Business.DTOs.Response;
+using Business.Dtos.Requests;
+using Business.Dtos.Responses;
 using Entities.Concrete;
 
 namespace Business.Profiles
 {
-    public class MappingLanguageProfile : Profile
+    public class LanguageMappingProfile : Profile
     {
-        public MappingLanguageProfile()
+        public LanguageMappingProfile()
         {
             CreateMap<ForeignLanguage, CreatedLanguageResponse>().ReverseMap();
             CreateMap<CreateLanguageRequest, ForeignLanguage>().ReverseMap();

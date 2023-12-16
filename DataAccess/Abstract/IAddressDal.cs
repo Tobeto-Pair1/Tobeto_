@@ -6,10 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
-{
-    public interface IAddressDal: IRepository<Address, int>, IAsyncRepository<Address, int>
-    {
+namespace DataAccess.Abstract;
 
-    }
+public interface IAddressDal: IRepository<Address, int>, IAsyncRepository<Address, int>
+{
+
 }

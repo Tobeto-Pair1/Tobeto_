@@ -1,5 +1,5 @@
-﻿using Business.DTOs.Request;
-using Business.DTOs.Response;
+﻿using Business.Dtos.Requests;
+using Business.Dtos.Responses;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using System;
@@ -8,16 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface IAddressService
 {
-    public interface IAddressService
-    {
-        Task<IPaginate<GetListAddressResponse>> GetListAsync(PageRequest pageRequest);
-        Task<CreatedAddressResponse> Add(CreateAddressRequest createAddressRequest);
 
-        Task<UpdatedAddressResponse> Update(UpdateAddressRequest updateAddressRequest);
+    Task<IPaginate<GetListAddressResponse>> GetListAsync(PageRequest pageRequest);
+    
+    Task<CreatedAddressResponse> Add(CreateAddressRequest createAddressRequest);
 
-        Task<DeletedAddressResponse> Delete(DeleteAddressRequest deleteddressRequest);
+    Task<UpdatedAddressResponse> Update(UpdateAddressRequest updateAddressRequest);
 
-    }
+    Task<DeletedAddressResponse> Delete(DeleteAddressRequest deleteAddressRequest);
+
 }

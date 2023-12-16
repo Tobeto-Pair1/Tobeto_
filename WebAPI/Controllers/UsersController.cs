@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
-using Business.DTOs.Request;
-using Business.DTOs.Response;
+using Business.Dtos.Requests;
+using Business.Dtos.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,12 +27,4 @@ public class UsersController : ControllerBase
 
         return Ok();
     }
-
-
-
-
-
-
-
-
 }

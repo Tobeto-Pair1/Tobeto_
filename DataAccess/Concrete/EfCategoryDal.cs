@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.DataAccess.Repositories;
+using DataAccess.Abstract;
+using DataAccess.Context;
+using Entities.Concretes;
 
 namespace DataAccess.Concrete;
 
-public class EfCategoryDal
+public class EfCategoryDal : EfRepositoryBase<Category, int, TobetoDbContext>, ICategoryDal
 {
+    public EfCategoryDal(TobetoDbContext context) : base(context)
+    {
+
+    }
 }
+    
+   

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Response;
+namespace Business.Dtos.Responses;
 
 public class CreatedUserResponse
 {

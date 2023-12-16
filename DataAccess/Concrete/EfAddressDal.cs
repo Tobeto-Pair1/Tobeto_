@@ -8,14 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrete
+namespace DataAccess.Concrete;
+
+public class EfAddressDal: EfRepositoryBase<Address, int, TobetoDbContext>, IAddressDal
 {
-    public class EfAddressDal: EfRepositoryBase<Address, int, TobetoDbContext>, IAddressDal
+    public EfAddressDal(TobetoDbContext context) : base(context)
     {
-        public EfAddressDal(TobetoDbContext context) : base(context)
-        {
-        }
     }
-
-
 }
+    
+   

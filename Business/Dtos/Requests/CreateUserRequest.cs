@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Request;
+namespace Business.Dtos.Requests;
 
 public class CreateUserRequest
 {
