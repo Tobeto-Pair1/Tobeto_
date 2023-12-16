@@ -1,12 +1,12 @@
 ﻿using System;
-using Business.DTOs.Request;
-using Business.DTOs.Response;
+using Business.DTOs.Requests;
+using Business.DTOs.Responses;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 
 namespace Business.Abstract
 {
-	public interface ISectorService
+    public interface ISectorService
 	{
         Task<IPaginate<GetListSectorResponse>> GetListAsync(PageRequest pageRequest);
         Task<CreatedSectorResponse> Add(CreateSectorRequest createSectorRequest);

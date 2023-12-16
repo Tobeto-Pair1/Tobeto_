@@ -1,8 +1,9 @@
 ﻿using System;
-namespace Business.DTOs.Request
+
+namespace Business.DTOs.Requests
 {
-	public class UpdateSectorRequest
-	{
+    public class DeleteSectorRequest
+    {
         public int Id { get; set; }
         public string Name { get; set; }
     }

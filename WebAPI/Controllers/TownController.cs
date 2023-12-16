@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
-using Business.DTOs.Request;
+using Business.DTOs.Requests;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Mvc;
 

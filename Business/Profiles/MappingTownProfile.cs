@@ -1,14 +1,14 @@
 ﻿using System;
 using AutoMapper;
-using Business.DTOs.Request;
-using Business.DTOs.Response;
+using Business.DTOs.Requests;
+using Business.DTOs.Responses;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using Entities.Concretes;
 
 namespace Business.Profiles
 {
-	public class MappingTownProfile : Profile
+    public class MappingTownProfile : Profile
 	{
 		public MappingTownProfile()
 		{

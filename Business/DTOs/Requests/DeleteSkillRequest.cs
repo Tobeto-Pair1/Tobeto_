@@ -1,4 +1,4 @@
-namespace Business.DTOs.Request;
+namespace Business.DTOs.Requests;
 
 public class DeleteSkillRequest
 {

@@ -1,4 +1,4 @@
-namespace Business.DTOs.Response;
+namespace Business.DTOs.Responses;
 
 public class DeletedSkillResponse
 {
