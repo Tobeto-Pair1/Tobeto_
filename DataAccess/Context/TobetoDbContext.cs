@@ -24,7 +24,7 @@ public class TobetoDbContext : DbContext
 
 
     public DbSet<Town> Town { get; set; }
-
+    public DbSet<Skill> Skill { get; set; }
 
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {
