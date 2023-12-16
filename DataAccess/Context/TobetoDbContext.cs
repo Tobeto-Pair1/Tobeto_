@@ -26,6 +26,8 @@ public class TobetoDbContext : DbContext
 
     public DbSet<Course> Courses { get; set; }
 
+    public DbSet<Sector> Sectors { get; set; }
+
 
     public DbSet<Town> Town { get; set; }
     public DbSet<Skill> Skill { get; set; }

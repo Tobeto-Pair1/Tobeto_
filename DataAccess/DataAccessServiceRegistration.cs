@@ -31,6 +31,8 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ITownDal, EfTownDal>();
         services.AddScoped<ISkillDal, EfSkillDal>();
 
+        services.AddScoped<ISectorDal, EfSectorDal>();
+
 
 
 
