@@ -15,6 +15,10 @@ public class TobetoDbContext : DbContext
     protected IConfiguration Configuration { get; set; }
 
     public DbSet<User> Users { get; set; }
+
+    public DbSet<Education> Educations { get; set; }
+    public DbSet<SocialMedia> SocialMedias { get; set; }
+
     public DbSet<Category>Categories { get; set;}
 
     public DbSet<Address> Addresses { get; set; }
