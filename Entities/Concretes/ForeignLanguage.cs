@@ -9,9 +9,7 @@ namespace Entities.Concrete
 {
     public class ForeignLanguage: Entity<int>
     {
-        public int LanguageId { get; set; }
-        public int UserId { get; set; }
-        public string LanguageName { get; set; }
-        public string LanguageLevel { get; set; }
+        
+        public string Name { get; set; }
     }
 }

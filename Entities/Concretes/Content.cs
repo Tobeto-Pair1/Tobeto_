@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Skill : Entity<int>
+public class Content : Entity<int>
 {
 
     public string Name { get; set; }

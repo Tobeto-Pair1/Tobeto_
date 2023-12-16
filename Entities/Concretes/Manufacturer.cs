@@ -5,7 +5,7 @@ namespace Entities.Concretes
 {
 	public class Manufacturer:Entity<int>
 	{
-		public string ManufacturerName { get; set; }
+		public string Name { get; set; }
 	}
 }
 

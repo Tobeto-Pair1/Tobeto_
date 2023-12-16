@@ -14,7 +14,5 @@ public class EfUserDal : EfRepositoryBase<User, int, TobetoDbContext>, IUserDal
 {
     public EfUserDal(TobetoDbContext context) : base(context)
     {
-
-
     }
 }

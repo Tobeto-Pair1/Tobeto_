@@ -18,8 +18,8 @@ namespace Business.Concrete
 {
     public class LanguageManager : ILanguageService
     {
-        ILanguageDal _languageDal;
-        IMapper _mapper;
+        private readonly ILanguageDal _languageDal;
+        private readonly IMapper _mapper;
         
         public LanguageManager(ILanguageDal languageDal, IMapper mapper)
         {
@@ -46,7 +46,7 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListLanguageResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _languageDal.GetListAsync(include: l => (IIncludableQueryable<ForeignLanguage, object>)l.Include(l => l.UserId),
+            var data = await _languageDal.GetListAsync(include: l => (IIncludableQueryable<ForeignLanguage, object>)l.Include(l => l.Id),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);
 

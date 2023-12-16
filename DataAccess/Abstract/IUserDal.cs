@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract;
 
-public interface IUserDal : IRepository<User , int> , IAsyncRepository<User , int>  
+public interface IUserDal : IRepository<User ,int> , IAsyncRepository<User ,int>
 {
 }

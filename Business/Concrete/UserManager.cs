@@ -1,6 +1,10 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
+using Business.DTOs.Request;
+using Business.DTOs.Response;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -12,8 +16,9 @@ namespace Business.Concrete;
 
 public class UserManager : IUserService
 {
-
     IUserDal _userDal;
+    IMapper _mapper;
+
 
 
     public UserManager(IUserDal userDal)
@@ -22,13 +27,20 @@ public class UserManager : IUserService
 
     }
 
-    public Task Add(User user)
+   
+
+    public UserManager(IUserDal userDal, IMapper mapper)
     {
-        throw new NotImplementedException();
+        _userDal = userDal;
+        _mapper = mapper;
     }
 
-    public void Delete(User user)
+    public async Task Add(CreateUserRequest request)
     {
-        throw new NotImplementedException();
+
+        
+        User user = _mapper.Map<User>(request);
+        await _userDal.AddAsync(user);
+       
     }
 }
