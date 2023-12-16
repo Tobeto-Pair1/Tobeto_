@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ public class City : Entity<int>
 
     public string Name { get; set; }
 
-
+    public Town Town { get; set; }
+    public List<Country> Countries { get; set; }
+    public List<Address>  Addresses { get; set; }
 }

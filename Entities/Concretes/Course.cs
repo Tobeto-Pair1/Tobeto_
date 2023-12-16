@@ -9,8 +9,8 @@ namespace Entities.Concretes;
 
 public class Course : Entity<int>
 {
-    public string Name { get; set; } // 1 java 2 c# 3 js 4 html 
-   
+    public string Name { get; set; }
 
+    public List<CourseCategory> CourseCategories { get; set; }
 }
 
