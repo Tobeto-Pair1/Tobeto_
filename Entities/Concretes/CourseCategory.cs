@@ -10,10 +10,9 @@ namespace Entities.Concretes;
 public class CourseCategory : Entity<int>
 { 
     public int CategoryId { get; set; }
-
-    public Category Category { get; set; }
+    public virtual Category Category { get; set; }
 
     public int CourseId { get; set; }
-    public Course Course { get; set; }
+    public List<Course> Courses { get; set; }
 
 }
