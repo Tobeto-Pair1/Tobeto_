@@ -7,6 +7,10 @@ namespace Entities.Concretes
 	{
         public string Name{ get; set; }
 
+<<<<<<< v1
+        public ICollection <CourseCategory> CourseCategories { get; set; }
+=======
+>>>>>>> master
     }
 }
 
