@@ -12,4 +12,6 @@ public class Level : Entity<int>
 {
 
     public string  Name { get; set; }
+
+    public ICollection<Level> Levels { get; set; }
 }

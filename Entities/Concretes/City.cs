@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class City : Entity<int>
+public class City : Entity<int> 
 {
 
     public int CountryId { get; set; }
@@ -20,5 +20,5 @@ public class City : Entity<int>
     public Address Address { get; set; }
 }
 
-   }
+   
 

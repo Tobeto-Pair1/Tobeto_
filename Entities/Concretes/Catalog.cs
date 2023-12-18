@@ -18,8 +18,13 @@ public class Catalog : Entity<int>
     public int LevelId { get; set; }
 
     public Situation Situation { get; set; }
+    public SoftwareLanguage SoftwareLanguage { get; set; }
+    public Instructor Instructor { get; set; }
+    public Subject Subject { get; set; }
+    public Category Category { get; set; }
+    public Level Level { get; set; }
 
-   
+
 
 
 
