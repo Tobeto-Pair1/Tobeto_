@@ -11,6 +11,9 @@ public class NotificationType : Entity<Guid>
 {
 
     public string Name { get; set; } //haber duyuru
+    public ICollection <New> News { get; set; }
+    public ICollection<Announcement> Announcements { get; set; }
+
 
 
 }
