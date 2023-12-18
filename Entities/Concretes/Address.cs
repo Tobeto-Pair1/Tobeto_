@@ -15,8 +15,11 @@ public class Address : Entity<int>
     public int TownId { get; set; }
     public string Description { get; set; }
 
-    public Country Country { get; set; }
-    public City City { get; set; }
-    public Town Town { get; set; }
-    public User User { get; set; }
+    public Country Country { get; set; } 
+    public City City { get; set; } 
+    public Town Town { get; set; } 
+
+
+
+
 }

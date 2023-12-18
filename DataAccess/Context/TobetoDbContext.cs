@@ -19,7 +19,7 @@ public class TobetoDbContext : DbContext
     public DbSet<Education> Educations { get; set; }
     public DbSet<SocialMedia> SocialMedias { get; set; }
 
-    public DbSet<Category>Categories { get; set;}
+    public DbSet<Category> Categories { get; set; }
 
     public DbSet<Address> Addresses { get; set; }
 
@@ -31,6 +31,7 @@ public class TobetoDbContext : DbContext
 
     public DbSet<Town> Town { get; set; }
     public DbSet<Skill> Skill { get; set; }
+    public DbSet<NotificationType> NotificationTypes {get; set;}
 
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {

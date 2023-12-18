@@ -15,6 +15,10 @@ public class City : Entity<int>
 
     public string Name { get; set; }
 
+
     public Country Country { get; set; }
     public Address Address { get; set; }
 }
+
+   }
+
