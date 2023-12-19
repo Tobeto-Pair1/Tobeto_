@@ -11,4 +11,7 @@ public class CourseType : Entity<int>
 {
 
     public string Name { get; set; }
+    public virtual ICollection<AsyncLesson> AsyncLessons { get; set; }
+    public virtual ICollection<SynchronLesson> SynchronLessons { get; set; }
+
 }
