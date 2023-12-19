@@ -16,6 +16,8 @@ public class Education : Entity<int>
     public DateTime StartDate { get; set; }
     public DateTime GraduationDate { get; set; }
 
+    public User User { get; set; }
+
     
 
 }
