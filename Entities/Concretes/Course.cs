@@ -9,10 +9,14 @@ namespace Entities.Concretes;
 
 public class Course : Entity<int>
 {
+
     public string Name { get; set; }
-     
-    public List<CourseCategory> CourseCategories { get; set; }
-    public bool IsCourseType { get; set; }
+
+    public int AboutOfCourseId { get; set; }
+    public AboutOfCourse AboutOfCourse { get; set; }
+    public  List<CourseModule> CourseModules { get; set; }
+
+
 
 
 }

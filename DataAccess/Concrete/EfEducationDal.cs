@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete;
 
-public class EfEducationDal : EfRepositoryBase<Education, int, TobetoDbContext>, IEducationDal
+public class EfEducationDal : EfRepositoryBase<UserEducation, int, TobetoDbContext>, IEducationDal
 {
     public EfEducationDal(TobetoDbContext context) : base(context)
     {

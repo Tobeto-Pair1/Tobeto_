@@ -15,17 +15,17 @@ public class EducationMappingProfile : Profile
 {
     public EducationMappingProfile()
     {       
-        CreateMap<Education, CreatedEducationResponse>().ReverseMap();
+        CreateMap<UserEducation, CreatedEducationResponse>().ReverseMap();
 
-        CreateMap<Education, CreateEducationRequest>().ReverseMap();
+        CreateMap<UserEducation, CreateEducationRequest>().ReverseMap();
 
-        CreateMap<Education, DeleteEducationRequest>().ReverseMap();
+        CreateMap<UserEducation, DeleteEducationRequest>().ReverseMap();
 
-        CreateMap<Education, DeletedEducationResponse>().ReverseMap();
+        CreateMap<UserEducation, DeletedEducationResponse>().ReverseMap();
 
-        CreateMap<Education, GetListEducationResponse>().ReverseMap();
+        CreateMap<UserEducation, GetListEducationResponse>().ReverseMap();
 
-        CreateMap<Paginate<Education>, Paginate<GetListEducationResponse>>().ReverseMap();
+        CreateMap<Paginate<UserEducation>, Paginate<GetListEducationResponse>>().ReverseMap();
 
        
     }

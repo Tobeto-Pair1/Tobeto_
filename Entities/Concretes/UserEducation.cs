@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Education : Entity<int>
+public class UserEducation : Entity<int>
 {
     public int UserId { get; set; }
     public string EducationType { get; set; }
