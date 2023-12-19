@@ -19,7 +19,6 @@ public class City : Entity<int>
     public virtual List<Town> Town { get; set; }
 
 
-    public Country Country { get; set; }
     public Address Address { get; set; }
 }
 
