@@ -14,4 +14,6 @@ public class Instructor : Entity<int>
     
     public int UserId { get; set; }
 
+    public ICollection<Instructor> Instructors { get; set; }
+
 }

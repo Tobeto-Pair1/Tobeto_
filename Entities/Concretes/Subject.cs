@@ -11,4 +11,6 @@ public class Subject : Entity<int>
 {
 
     public string Name { get; set; }
+
+    public ICollection<Subject> Subjects { get; set; }
 }

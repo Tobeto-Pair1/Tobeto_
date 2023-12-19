@@ -9,6 +9,7 @@ namespace Entities.Concretes
 
         public ICollection<CourseCategory> CourseCategories { get; set; }
 
+
     }
 }
 
