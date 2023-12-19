@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract;
 
-public interface IEducationDal : IRepository<Education, int>, IAsyncRepository<Education, int>
+public interface IEducationDal : IRepository<UserEducation, int>, IAsyncRepository<UserEducation, int>
 {
 
 }

@@ -6,8 +6,10 @@ namespace Entities.Concretes
 	public class Category : Entity<int>
 	{
         public string Name{ get; set; }
+        public ICollection<SubCategory>  SubCategories { get; set; }
 
-        public ICollection<CourseCategory> CourseCategories { get; set; }
+        
+
 
 
     }

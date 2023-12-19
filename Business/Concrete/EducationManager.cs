@@ -26,8 +26,8 @@ public class EducationManager : IEducationService
 
     public async Task<CreatedEducationResponse> Add(CreateEducationRequest createEducationRequest)
     {
-        Education education = _mapper.Map<Education>(createEducationRequest);
-        Education createdEducation = await _educationDal.AddAsync(education);
+        UserEducation education = _mapper.Map<UserEducation>(createEducationRequest);
+        UserEducation createdEducation = await _educationDal.AddAsync(education);
         CreatedEducationResponse educationResponse = _mapper.Map<CreatedEducationResponse>(createdEducation);
         return educationResponse;
 
@@ -35,8 +35,8 @@ public class EducationManager : IEducationService
 
     public async Task<DeletedEducationResponse> Delete(DeleteEducationRequest deleteEducationRequest)
     {
-        Education education = _mapper.Map<Education>(deleteEducationRequest);
-        Education deletedEducation = await _educationDal.DeleteAsync(education);
+        UserEducation education = _mapper.Map<UserEducation>(deleteEducationRequest);
+        UserEducation deletedEducation = await _educationDal.DeleteAsync(education);
         DeletedEducationResponse educationResponse = _mapper.Map<DeletedEducationResponse>(deletedEducation);
         return educationResponse;
     }

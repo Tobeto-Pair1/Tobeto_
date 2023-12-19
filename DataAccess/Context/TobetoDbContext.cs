@@ -16,7 +16,7 @@ public class TobetoDbContext : DbContext
 
     public DbSet<User> Users { get; set; }
 
-    public DbSet<Education> Educations { get; set; }
+    public DbSet<UserEducation> Educations { get; set; }
     public DbSet<SocialMedia> SocialMedias { get; set; }
 
     public DbSet<Category> Categories { get; set; }

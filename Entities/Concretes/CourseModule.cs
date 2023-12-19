@@ -7,10 +7,14 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Content : Entity<int>
+public  class CourseModule: Entity<int>
 {
 
+
     public string Name { get; set; }
+    public List<Lesson> Lessons { get; set; }
+
+
 
 
 }
