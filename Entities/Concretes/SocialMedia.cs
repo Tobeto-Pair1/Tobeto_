@@ -15,7 +15,6 @@ public class SocialMedia : Entity<int>
   
     public ICollection<UserSocial>? UserSocials { get; set; }
 
-    public string Name { get; set; }
 
 
 }
