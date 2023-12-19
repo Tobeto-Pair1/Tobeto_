@@ -13,5 +13,5 @@ public class SoftwareLanguage : Entity<int>
 
     public string Name { get; set; }
 
-
+    public ICollection<SoftwareLanguage> SoftwareLanguages { get; set; }
 }
