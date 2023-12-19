@@ -13,6 +13,7 @@ public class Course : Entity<int>
     public string Name { get; set; }
      
     public bool IsCourseType { get; set; }
+    public virtual ICollection<CourseProgram> CoursePrograms { get; set; }
 
 
 

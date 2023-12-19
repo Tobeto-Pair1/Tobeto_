@@ -21,6 +21,9 @@ public class User: Entity<int>
     public virtual Address Adrress { get; set; }
     public ICollection<UserSkill> UserSkills { get; set; }
     public ICollection<UserSocial> UserSocials { get; set; }
+    public ICollection<Student>Students { get; set; }
+    public ICollection<Employee>Employees { get; set; }
+    public ICollection<Instructor> Instructors { get; set; }
 
 
 
