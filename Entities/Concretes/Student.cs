@@ -1,5 +1,4 @@
 ﻿using Core.Entities;
-using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Country : Entity<int>
+public class Student : Entity<int>
 {
+
     public string Name { get; set; }
-    public virtual List<City> Cities { get; set; }
+
 
 }

@@ -7,6 +7,8 @@ namespace Entities.Concretes
 	{
         public string Name{ get; set; }
 
+        public ICollection<CourseCategory> CourseCategories { get; set; }
+
     }
 }
 

@@ -16,11 +16,7 @@ public class Catalog : Entity<int>
     public int SubjectId { get; set; }
     public int CategoryId { get; set; }
     public int LevelId { get; set; }
-
+    public Instructor Instructor { get; set; } 
     public Situation Situation { get; set; }
-
-   
-
-
 
 }

@@ -12,4 +12,7 @@ public class Skill : Entity<int>
 
     public string Name { get; set; }
 
+    public ICollection<UserSkill> UserSkills { get; set; }
+    
+
 }

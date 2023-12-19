@@ -9,6 +9,13 @@ namespace Entities.Concretes;
 
 public class UserSocial : Entity<int>
 {
-    public int UserId { get; set; }
-    public int SocialMediaId { get; set; }
+    public int? UserId { get; set; }
+    public int? SocialMediaId { get; set; }
+    public virtual User? User { get; set; }
+
+    public virtual SocialMedia? SocialMedia { get; set; }
+
+
+
+
 }

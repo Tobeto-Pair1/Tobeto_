@@ -10,9 +10,10 @@ namespace Entities.Concretes;
 public class SocialMedia : Entity<int>
 {
 
-    public string Name { get; set; }
-    public int UserId { get; set; }
-    
+    public string? Name { get; set; }
+    public string? Link { get; set; }
+  
+    public ICollection<UserSocial>? UserSocials { get; set; }
 
 
 }

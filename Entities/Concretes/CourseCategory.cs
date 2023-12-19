@@ -11,10 +11,9 @@ public class CourseCategory : Entity<int>
 { 
     public int CategoryId { get; set; }
 
-    public ICollection<Category> Categories { get; set; }
-
-    public List<Course> Courses { get; set; }
-  
+  public Category Category { get; set; }
+    public Course Course { get; set; }
+    public int CourseId { get; set; }
  
 
 }
