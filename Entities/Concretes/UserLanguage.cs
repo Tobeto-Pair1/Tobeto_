@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class UserLanguage : Entity<int>
+public class UserLanguage : Entity<Guid>
 {
 
     public int LanguageId { get; set; }

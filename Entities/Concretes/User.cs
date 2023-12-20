@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class User: Entity<int>
+public class User: Entity<Guid>
 {
     public string IdentityNumber { get; set; }
     public string  FirstName { get; set; }
@@ -17,7 +17,7 @@ public class User: Entity<int>
     public string  PhoneNumber { get; set; }
     public string?  Email { get; set; }
     public DateTime  BirthDate { get; set; }
-    public Guid? AdrressId { get; set; }
+    public Guid AdrressId { get; set; }
 
 
     public virtual Address Address { get; set; }
@@ -27,9 +27,6 @@ public class User: Entity<int>
     public virtual ICollection<Employee>Employees { get; set; }
     public virtual ICollection<Instructor> Instructors { get; set; }
     public virtual ICollection<Experience> Experiences { get; set; }
-
-
-
 
 
 }

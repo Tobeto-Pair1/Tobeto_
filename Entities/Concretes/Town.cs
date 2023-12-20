@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Town : Entity<int>
+public class Town : Entity<Guid>
 
 {
-    public int CityId { get; set; }
+    public Guid CityId { get; set; }
     public string Name { get; set; }
     public City  City { get; set; }
 

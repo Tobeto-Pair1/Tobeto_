@@ -11,7 +11,6 @@ public class Lesson :Entity<int>
 {
 
     public string Name { get; set; }
-
     public DateTime DurationTime { get; set; }  //total süre
     public DateTime TimeSpent { get; set; }  //geçirilen süre
 
