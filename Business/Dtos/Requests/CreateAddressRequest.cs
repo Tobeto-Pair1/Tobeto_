@@ -8,8 +8,8 @@ namespace Business.Dtos.Requests;
 
 public class CreateAddressRequest
 {
-    public int CountryId { get; set; }
-    public int CityId { get; set; }
-    public int TownId { get; set; }
+    public Guid CountryId { get; set; }
+    public Guid CityId { get; set; }
+    public Guid TownId { get; set; }
     public string Description { get; set; }
 }

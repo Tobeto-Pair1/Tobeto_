@@ -9,7 +9,6 @@ namespace Entities.Concretes
 
         public  virtual ICollection<Course> Courses { get; set; }
         public ICollection<SubCategory>  SubCategories { get; set; }
-
     }
 }
 
