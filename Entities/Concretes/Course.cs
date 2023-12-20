@@ -7,17 +7,12 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Course : Entity<int>
+public class Course : Entity<Guid>
 {
-
     public string Name { get; set; }
-     
     public bool IsCourseType { get; set; }
     public virtual ICollection<CourseProgram> CoursePrograms { get; set; }
 
-
-
- // public List<CourseCategory> CourseCategories { get; set; }
-
+    public AboutOfCourse AboutOfCourse { get; set; }
 }
 
