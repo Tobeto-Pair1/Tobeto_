@@ -11,11 +11,7 @@ namespace Entities.Concretes
 
         public virtual User User { get; set; }
     }
-	public class Department:Entity<Guid>
-	{
-	public string Name { get; set; }
 
-	}
 }
 
 
