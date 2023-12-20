@@ -5,7 +5,7 @@ using Entities.Concretes;
 
 namespace DataAccess.Concrete;
 
-public class EfCategoryDal : EfRepositoryBase<Category, int, TobetoDbContext>, ICategoryDal
+public class EfCategoryDal : EfRepositoryBase<Category, Guid, TobetoDbContext>, ICategoryDal
 {
     public EfCategoryDal(TobetoDbContext context) : base(context)
     {

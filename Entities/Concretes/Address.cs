@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete;
 
-public class Address : Entity<int>
+public class Address : Entity<Guid>
 {
-    public int CountryId { get; set; }
-    public int CityId { get; set; }
-    public int TownId { get; set; }
-    public string Description { get; set; }
+    public Guid CountryId { get; set; }
+    public Guid CityId { get; set; }
+    public Guid TownId { get; set; }
+    public string? Description { get; set; }
 
     public virtual Country Country { get; set; } 
     public virtual City City { get; set; } 

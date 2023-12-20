@@ -15,10 +15,12 @@ namespace Business
     public static class BusinessServiceRegistration
     {
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
-        {     
+        {
+            services.AddScoped<IAboutOfCourseService, AboutOfCourseManager>();
             services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IEducationService, EducationManager>();
+            services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ILanguageService, LanguageManager>();
             services.AddScoped<ISocialMediaService, SocialMediaManager>();
             services.AddScoped<IUserService, UserManager>();

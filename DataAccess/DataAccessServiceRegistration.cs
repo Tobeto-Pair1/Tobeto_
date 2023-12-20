@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concretes;
 
 namespace DataAccess;
 
@@ -23,9 +24,11 @@ public static class DataAccessServiceRegistration
 
         services.AddDbContext<TobetoDbContext>(options=>options.UseSqlServer(configuration.GetConnectionString("Data Source=DESKTOP-3O4V1S5;Initial Catalog=Tobeto;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")));
 
+        services.AddScoped<IAboutOfCourseDal, EfAboutOfCourseDal>();
         services.AddScoped<IAddressDal, EfAddressDal>();
         services.AddScoped<ICategoryDal, EfCategoryDal>();
         services.AddScoped<IEducationDal, EfEducationDal>();
+        services.AddScoped<IInstructorDal, EfInstructorDal>();
         services.AddScoped<ILanguageDal, EfLanguageDal>();
         services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
         services.AddScoped<IUserDal, EfUserDal>();

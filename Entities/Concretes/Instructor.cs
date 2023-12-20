@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Instructor : Entity<int>
-{
-    public string Name { get; set; }
-    public string Lastname { get; set; }
-    
-    public int UserId { get; set; }
+public class Instructor : Entity<Guid>
+{  
+    public Guid UserId { get; set; }
 
-    public ICollection<Instructor> Instructors { get; set; }
+    public User User { get; set; }
 
 }
