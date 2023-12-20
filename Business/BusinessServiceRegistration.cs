@@ -22,6 +22,7 @@ namespace Business
             services.AddScoped<ILanguageService, LanguageManager>();
             services.AddScoped<ISocialMediaService, SocialMediaManager>();
             services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IUserEducationService, UserEducationManager>();
 
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

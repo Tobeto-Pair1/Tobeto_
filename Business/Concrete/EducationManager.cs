@@ -15,36 +15,50 @@ namespace Business.Abstract;
 
 public class EducationManager : IEducationService
 {
-   IEducationDal _educationDal;
-    IMapper _mapper;
+    //IEducationDal _educationDal;
+    // IMapper _mapper;
 
-    public EducationManager(IEducationDal educationDal, IMapper mapper)
+    // public EducationManager(IEducationDal educationDal, IMapper mapper)
+    // {
+    //     _educationDal = educationDal;
+    //     _mapper = mapper;
+    // }
+
+    // public async Task<CreatedEducationResponse> Add(CreateEducationRequest createEducationRequest)
+    // {
+    //     UserEducation education = _mapper.Map<UserEducation>(createEducationRequest);
+    //     UserEducation createdEducation = await _educationDal.AddAsync(education);
+    //     CreatedEducationResponse educationResponse = _mapper.Map<CreatedEducationResponse>(createdEducation);
+    //     return educationResponse;
+
+    // }
+
+    // public async Task<DeletedEducationResponse> Delete(DeleteEducationRequest deleteEducationRequest)
+    // {
+    //     UserEducation education = _mapper.Map<UserEducation>(deleteEducationRequest);
+    //     UserEducation deletedEducation = await _educationDal.DeleteAsync(education);
+    //     DeletedEducationResponse educationResponse = _mapper.Map<DeletedEducationResponse>(deletedEducation);
+    //     return educationResponse;
+    // }
+
+    // public async Task<IPaginate<GetListEducationResponse>> GetListAsync(PageRequest pageRequest)
+    // {
+    //     var data = await _educationDal.GetListAsync(index: pageRequest.PageIndex, size: pageRequest.PageSize);
+    //     var result = _mapper.Map<Paginate<GetListEducationResponse>>(data);
+    //     return result;
+    // }
+    public Task<CreatedEducationResponse> Add(CreateEducationRequest createEducationRequest)
     {
-        _educationDal = educationDal;
-        _mapper = mapper;
+        throw new NotImplementedException();
     }
 
-    public async Task<CreatedEducationResponse> Add(CreateEducationRequest createEducationRequest)
+    public Task<DeletedEducationResponse> Delete(DeleteEducationRequest deleteEducationRequest)
     {
-        UserEducation education = _mapper.Map<UserEducation>(createEducationRequest);
-        UserEducation createdEducation = await _educationDal.AddAsync(education);
-        CreatedEducationResponse educationResponse = _mapper.Map<CreatedEducationResponse>(createdEducation);
-        return educationResponse;
-
+        throw new NotImplementedException();
     }
 
-    public async Task<DeletedEducationResponse> Delete(DeleteEducationRequest deleteEducationRequest)
+    public Task<IPaginate<GetListEducationResponse>> GetListAsync(PageRequest pageRequest)
     {
-        UserEducation education = _mapper.Map<UserEducation>(deleteEducationRequest);
-        UserEducation deletedEducation = await _educationDal.DeleteAsync(education);
-        DeletedEducationResponse educationResponse = _mapper.Map<DeletedEducationResponse>(deletedEducation);
-        return educationResponse;
-    }
-
-    public async Task<IPaginate<GetListEducationResponse>> GetListAsync(PageRequest pageRequest)
-    {
-        var data = await _educationDal.GetListAsync(index: pageRequest.PageIndex, size: pageRequest.PageSize);
-        var result = _mapper.Map<Paginate<GetListEducationResponse>>(data);
-        return result;
+        throw new NotImplementedException();
     }
 }

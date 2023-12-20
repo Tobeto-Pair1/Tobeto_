@@ -25,7 +25,7 @@ public static class DataAccessServiceRegistration
 
         services.AddScoped<IAddressDal, EfAddressDal>();
         services.AddScoped<ICategoryDal, EfCategoryDal>();
-        services.AddScoped<IEducationDal, EfEducationDal>();
+        //services.AddScoped<IEducationDal, EfEducationDal>();
         services.AddScoped<ILanguageDal, EfLanguageDal>();
         services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
         services.AddScoped<IUserDal, EfUserDal>();
@@ -34,6 +34,8 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ISkillDal, EfSkillDal>();
 
         services.AddScoped<ISectorDal, EfSectorDal>();
+
+        services.AddScoped<IUserEducationDal, EfUserEducationDal>();
 
 
 
