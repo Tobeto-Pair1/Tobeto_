@@ -39,6 +39,8 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ISectorDal, EfSectorDal>();
         services.AddScoped<IStudentDal, EfStudentDal>();
 
+        services.AddScoped<IAsyncLessonDal, EfAsyncLessonDal>();
+
 
 
 
