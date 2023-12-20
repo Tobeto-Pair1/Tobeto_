@@ -22,6 +22,7 @@ public class TobetoDbContext : DbContext
     public DbSet<Category> Categories { get; set; }
 
     public DbSet<Address> Addresses { get; set; }
+    public DbSet<Student> Students { get; set; }
 
 
     public DbSet<Course> Courses { get; set; }
@@ -33,6 +34,8 @@ public class TobetoDbContext : DbContext
     public DbSet<Skill> Skill { get; set; }
     public DbSet<NotificationType> NotificationTypes {get; set;}
     public DbSet<UserEducation> UserEducation { get; set; }
+
+    public DbSet<AsyncLesson> AsyncLessons { get; set; }
 
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {

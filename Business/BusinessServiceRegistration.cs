@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Business.Profiles;
 
 namespace Business
 {
@@ -21,8 +22,12 @@ namespace Business
             services.AddScoped<IEducationService, EducationManager>();
             services.AddScoped<ILanguageService, LanguageManager>();
             services.AddScoped<ISocialMediaService, SocialMediaManager>();
+
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IUserEducationService, UserEducationManager>();
+
+            services.AddScoped<IStudentService, StudentManager>();
+            services.AddScoped<IAsyncLessonService, AsyncLessonManager>(); 
 
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
