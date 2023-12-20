@@ -18,15 +18,15 @@ public class User: Entity<Guid>
     public string?  Email { get; set; }
     public DateTime  BirthDate { get; set; }
     public Guid AdrressId { get; set; }
-    public virtual Address Adrress { get; set; }
-    public ICollection<UserSkill> UserSkills { get; set; }
-    public ICollection<UserSocial> UserSocials { get; set; }
-    public ICollection<Student>Students { get; set; }
-    public ICollection<Employee>Employees { get; set; }
-    public ICollection<Instructor> Instructors { get; set; }
 
 
-
+    public virtual Address Address { get; set; }
+    public virtual ICollection<UserSkill> UserSkills { get; set; }
+    public virtual ICollection<UserSocial> UserSocials { get; set; }
+    public virtual ICollection<Student>Students { get; set; }
+    public virtual ICollection<Employee>Employees { get; set; }
+    public virtual ICollection<Instructor> Instructors { get; set; }
+    public virtual ICollection<Experience> Experiences { get; set; }
 
 
 }

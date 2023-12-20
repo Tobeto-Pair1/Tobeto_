@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ public class UserLanguage : Entity<Guid>
 
     public int LanguageId { get; set; }
     public int UserId { get; set; }
-    public int LevelId { get; set; }
+
+    public User User { get; set; }
+    public ForeignLanguage ForeignLanguage { get; set; }
 
 
 
