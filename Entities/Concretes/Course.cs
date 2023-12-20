@@ -11,6 +11,7 @@ public class Course : Entity<Guid>
 {
     public string Name { get; set; }
     public bool IsCourseType { get; set; }
+    public virtual ICollection<CourseProgram> CoursePrograms { get; set; }
 
     public AboutOfCourse AboutOfCourse { get; set; }
 }
