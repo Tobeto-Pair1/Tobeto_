@@ -34,6 +34,8 @@ public class TobetoDbContext : DbContext
     public DbSet<Skill> Skill { get; set; }
     public DbSet<NotificationType> NotificationTypes {get; set;}
 
+    public DbSet<AsyncLesson> AsyncLessons { get; set; }
+
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {
         Configuration = configuration;

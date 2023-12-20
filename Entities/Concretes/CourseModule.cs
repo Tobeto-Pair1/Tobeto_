@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public  class CourseModule: Entity<int>
+public  class CourseModule: Entity<Guid>
 {
 
 
