@@ -3,7 +3,7 @@ using Core.Entities;
 
 namespace Entities.Concretes
 {
-	public class Homework:Entity<int>
+	public class Homework:Entity<Guid>
 	{
 		public bool HomeWorkIsSend { get; set; }
 		public string InstructorDescription { get; set; }

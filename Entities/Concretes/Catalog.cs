@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Catalog : Entity<int>
+public class Catalog : Entity<Guid>
 {
 
-    public int SituationId { get; set; }
-    public int SoftwareLanguageId { get; set; }
-    public int InstructorId { get; set; }
-    public int SubjectId { get; set; }
-    public int CategoryId { get; set; }
-    public int LevelId { get; set; }
+    public Guid SituationId { get; set; }
+    public Guid SoftwareLanguageId { get; set; }
+    public Guid InstructorId { get; set; }
+    public Guid SubjectId { get; set; }
+    public Guid CategoryId { get; set; }
+    public Guid LevelId { get; set; }
+
+
     public Instructor Instructor { get; set; } 
     public Situation Situation { get; set; }
     public SoftwareLanguage SoftwareLanguage { get; set; }

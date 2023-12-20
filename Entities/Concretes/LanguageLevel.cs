@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,4 +12,6 @@ public class LanguageLevel : Entity<int>
 {
 
     public string Name { get; set; }
+    
+    public virtual ICollection<ForeignLanguage> ForeignLanguages { get; set; }
 }

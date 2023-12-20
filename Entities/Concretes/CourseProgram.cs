@@ -9,8 +9,8 @@ namespace Entities.Concretes;
 
 public class CourseProgram : Entity<int> 
 {
-    public int ProgramId  { get; set; }
-    public int CourseId { get; set; }
+    public Guid ProgramId  { get; set; }
+    public Guid CourseId { get; set; }
 
     public virtual Course Course { get; set; }
     public virtual Program Program { get; set; }

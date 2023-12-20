@@ -8,12 +8,18 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Experience : Entity<int>
+public class Experience : Entity<Guid>
 {
-    public int UserId { get; set; }
-    public int PositionId { get; set;}
-    public int SectorId { get; set;}
-    public int CompanyId { get; set; }
-    public int CityId { get; set; }
-    public City City { get; set;} 
+    public Guid UserId { get; set; }
+    public Guid PositionId { get; set;}
+    public Guid SectorId { get; set;}
+    public Guid CompanyId { get; set; }
+    public Guid CityId { get; set; }
+
+
+    public virtual City City { get; set;} 
+    public virtual Company Company { get; set; }
+    public virtual Position Position { get; set; }
+    public virtual Sector Sector { get; set; }
+    public virtual User User { get; set; }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Course : Entity<int>
+public class Course : Entity<Guid>
 {
 
     public string Name { get; set; }

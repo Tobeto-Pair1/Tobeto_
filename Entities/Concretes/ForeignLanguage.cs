@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,9 @@ namespace Entities.Concrete
     {
         
         public string Name { get; set; }
+        public int LevelId { get; set; }
+        
+        public virtual ICollection<UserLanguage> UserLanguages{ get; set; }
+        public virtual LanguageLevel LanguageLevel { get; set; }
     }
 }
