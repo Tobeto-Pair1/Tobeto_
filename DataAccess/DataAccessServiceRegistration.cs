@@ -19,10 +19,9 @@ public static class DataAccessServiceRegistration
     public static IServiceCollection AddDataAccessServices(this IServiceCollection services, IConfiguration configuration)
     {
 
-        //Data Source=DESKTOP-3O4V1S5;Initial Catalog=Tobeto;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False
-        services.AddDbContext<TobetoDbContext>(options => options.UseInMemoryDatabase("TobetoDbContext"));
+        //services.AddDbContext<TobetoDbContext>(options => options.UseInMemoryDatabase("TobetoDB"));
 
-        services.AddDbContext<TobetoDbContext>(options=>options.UseSqlServer(configuration.GetConnectionString("Data Source=DESKTOP-3O4V1S5;Initial Catalog=Tobeto;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")));
+        services.AddDbContext<TobetoDbContext>(options=>options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
 
         services.AddScoped<IAboutOfCourseDal, EfAboutOfCourseDal>();
         services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
@@ -41,9 +40,6 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ISkillDal, EfSkillDal>();
         services.AddScoped<ISectorDal, EfSectorDal>();
         services.AddScoped<IHomeworkDal, EfHomeworkDal>();
-
-
-        //services.AddScoped<ICategoryDal, EfCategoryDal>();
 
 
         return services;

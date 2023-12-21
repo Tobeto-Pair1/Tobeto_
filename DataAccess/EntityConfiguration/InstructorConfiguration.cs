@@ -8,7 +8,7 @@ public class InstructorConfiguration : IEntityTypeConfiguration<Instructor>
 {
     public void Configure(EntityTypeBuilder<Instructor> builder)
     {
-        builder.ToTable("AboutOfCourses").HasKey(b => b.Id);
+        builder.ToTable("Instructors").HasKey(b => b.Id);
         builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
         builder.Property(b => b.UserId).HasColumnName("UserId");
 
