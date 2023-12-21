@@ -1,6 +1,7 @@
 using AutoMapper;
 using Business.DTOs.Requests;
 using Business.DTOs.Responses;
+using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using Entities.Concretes;
 
@@ -14,7 +15,7 @@ public class StudentMappingProfile : Profile
         CreateMap<CreateStudentRequest, Student>().ReverseMap();
 
         CreateMap<Student, GetListStudentResponse>().ReverseMap();
-        CreateMap<PageRequest, Student>().ReverseMap();//
+        CreateMap<Paginate<Student>, GetListStudentResponse > ().ReverseMap();
 
         CreateMap<Student, UpdatedStudentResponse>().ReverseMap();
         CreateMap<UpdateStudentRequest, Student>().ReverseMap();

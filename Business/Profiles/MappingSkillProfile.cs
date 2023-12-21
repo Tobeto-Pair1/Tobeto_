@@ -1,7 +1,10 @@
 using AutoMapper;
+using Business.Dtos.Responses;
 using Business.DTOs.Requests;
 using Business.DTOs.Responses;
+using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
+using Entities.Concrete;
 using Entities.Concretes;
 
 namespace Business.Profiles;
@@ -13,8 +16,8 @@ public class MappingSkillProfile : Profile
         CreateMap<Skill, CreatedSkillResponse>().ReverseMap();
         CreateMap<CreateSkillRequest, Skill>().ReverseMap();
 
-        CreateMap<Skill, GetListSkillResponse>().ReverseMap();
-        CreateMap<PageRequest, Skill>().ReverseMap();//
+        CreateMap<Paginate<Skill>, GetListSkillResponse>().ReverseMap();
+        CreateMap<Skill, GetListSkillResponse > ().ReverseMap();
 
         CreateMap<Skill, UpdatedSkillResponse>().ReverseMap();
         CreateMap<UpdateSkillRequest, Skill>().ReverseMap();

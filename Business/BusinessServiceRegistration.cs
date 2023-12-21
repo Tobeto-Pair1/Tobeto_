@@ -18,6 +18,8 @@ namespace Business
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
             services.AddScoped<IAboutOfCourseService, AboutOfCourseManager>();
+            services.AddScoped<IAnnouncementService, AnnouncementManager>();
+            services.AddScoped<IEmployeeService, EmployeeManager>();
             services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IEducationService, EducationManager>();
@@ -25,7 +27,14 @@ namespace Business
             services.AddScoped<ILanguageService, LanguageManager>();
             services.AddScoped<ISocialMediaService, SocialMediaManager>();
             services.AddScoped<IStudentService, StudentManager>();
-            services.AddScoped<IAsyncLessonService, AsyncLessonManager>(); 
+            services.AddScoped<IAsyncLessonService, AsyncLessonManager>();
+            services.AddScoped<ITownService, TownManager>();
+            services.AddScoped<IUserLanguageService, UserLanguageManager>();
+            services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<ISkillService, SkillManager>();
+            services.AddScoped<ISectorService, SectorManager>();
+            services.AddScoped<IHomeworkService, HomeworkManager>();
+
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

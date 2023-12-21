@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Business.Dtos.Requests;
 
-namespace Business.Dtos.Requests;
-
-public class CreateUserRequest
+public class UpdateUserRequest
 {
-
     public string IdentityNumber { get; set; }
     public string FirstName { get; set; }
     public string Lastname { get; set; }
@@ -16,6 +9,6 @@ public class CreateUserRequest
     public string? Email { get; set; }
     public DateTime BirthDate { get; set; }
     public Guid AdrressId { get; set; }
-    
+
 }
 

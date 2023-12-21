@@ -11,11 +11,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class EfAnnoucementDal : EfRepositoryBase<Announcement, Guid, TobetoDbContext>, IAnnouncementDal
+    public class EfHomeworkDal : EfRepositoryBase<Homework, Guid, TobetoDbContext>, IHomeworkDal
     {
-        public EfAnnoucementDal(TobetoDbContext context) : base(context)
+        public EfHomeworkDal(TobetoDbContext context) : base(context)
         {
         }
-
     }
 }

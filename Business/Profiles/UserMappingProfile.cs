@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Business.Dtos.Requests;
-using Business.Dtos.Responses;
-using Entities.Concrete;
+using Business.DTOs.Responses;
+using Core.DataAccess.Dynamic;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -18,6 +18,10 @@ namespace Business.Profiles
 
             CreateMap<User, CreatedUserResponse>().ReverseMap();
             CreateMap<CreateUserRequest, User>().ReverseMap();
+
+
+            CreateMap<User, GetListUserResponse>().ReverseMap();
+            CreateMap<Paginate<User>, GetListUserResponse>().ReverseMap();
 
         }
     }

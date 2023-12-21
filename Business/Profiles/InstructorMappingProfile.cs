@@ -29,7 +29,7 @@ public class InstructorMappingProfile : Profile
             ForMember(destinationMember: a => a.FullName,
             memberOptions: opt => opt.MapFrom(a => a.User.FirstName + a.User.Lastname)).ReverseMap();
 
-        CreateMap<Instructor, Paginate<GetListInstructorResponse>>().ReverseMap();
+        CreateMap<Paginate<Instructor>, Paginate<GetListInstructorResponse>>().ReverseMap();
     }
 
 }

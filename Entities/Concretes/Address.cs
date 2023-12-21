@@ -19,8 +19,6 @@ public class Address : Entity<Guid>
     public virtual City City { get; set; } 
     public virtual Town Town { get; set; } 
 
-    public  virtual User User { get; set; }
-
 
 
 
