@@ -46,7 +46,7 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListEmployeeResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _employeeDal.GetListAsync(include: e => e.Include(e => e.Name),
+            var data = await _employeeDal.GetListAsync(include: e => e.Include(e => e.Department).Include(d=>d.User),
              index: pageRequest.PageIndex,
              size: pageRequest.PageSize);
 

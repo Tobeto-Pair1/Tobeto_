@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using AutoMapper;
 using Business.Dtos.Requests;
 using Business.Dtos.Responses;
 using Business.DTOs.Requests;
@@ -26,7 +25,7 @@ namespace Business.Profiles
             CreateMap<AsyncLesson, DeletedAsyncLessonResponse>().ReverseMap();
 
             CreateMap<AsyncLesson, GetListAsyncLessonResponse>().ReverseMap();
-            CreateMap<AsyncLesson,Paginate<GetListAsyncLessonResponse>>().ReverseMap();
+            CreateMap<Paginate<AsyncLesson>,Paginate<GetListAsyncLessonResponse>>().ReverseMap();
 
 
 

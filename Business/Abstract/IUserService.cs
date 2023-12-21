@@ -1,4 +1,8 @@
 ﻿using Business.Dtos.Requests;
+using Business.DTOs.Requests;
+using Business.DTOs.Responses;
+using Core.DataAccess.Dynamic;
+using Core.DataAccess.Paging;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -10,8 +14,13 @@ namespace Business.Abstract;
 
 public interface IUserService
 {
-    void Delete(User user); 
-    Task Add(CreateUserRequest request);
+    Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest);
+
+    Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest);
+
+    Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest);
+
+    Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest);
 
 
 }

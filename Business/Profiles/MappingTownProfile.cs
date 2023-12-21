@@ -15,8 +15,8 @@ namespace Business.Profiles
             CreateMap<Town, CreatedTownResponse>().ReverseMap();
             CreateMap<CreateTownRequest, Town>().ReverseMap();
 
+            CreateMap<Paginate<Town>, GetListTownResponse>().ReverseMap();
             CreateMap<Town, GetListTownResponse>().ReverseMap();
-            CreateMap<PageRequest, Town>().ReverseMap();//
 
             CreateMap<Town, UpdatedTownResponse>().ReverseMap();
             CreateMap<UpdateTownRequest, Town>().ReverseMap();

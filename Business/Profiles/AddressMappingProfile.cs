@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Business.Dtos.Requests;
 using Business.Dtos.Responses;
+using Business.DTOs.Responses;
 using Core.DataAccess.Dynamic;
 using Entities.Concrete;
+using Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +29,8 @@ public class AddressMappingProfile : Profile
             ForMember(destinationMember: a => a.TownId,
             memberOptions: opt => opt.MapFrom(a => a.Town.Id)).
             ReverseMap();
-        CreateMap<Address, Paginate<GetListAddressResponse>>().ReverseMap();
+        CreateMap<Paginate<Address>, Paginate<GetListAddressResponse>>().ReverseMap();
+
     }
 
 }

@@ -32,7 +32,7 @@ public class AboutOfCourseMappingProfile : Profile
             ForMember(destinationMember: a => a.ManufacturerName,
             memberOptions: opt => opt.MapFrom(a => a.Manufacturer.Name)).ReverseMap();
 
-        CreateMap<AboutOfCourse, Paginate<GetListAboutOfCourseResponse>>().ReverseMap();
+        CreateMap<Paginate<AboutOfCourse>, Paginate<GetListAboutOfCourseResponse>>().ReverseMap();
     }
 
 }

@@ -8,9 +8,10 @@ namespace Business.DTOs.Responses
 {
     public class GetListEmployeeResponse
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+        public Guid DepartmentId { get; set; }
         public string Name { get; set; }
-        public string DepartmentId { get; set; }
+
         public Guid UserId { get; set; }
     }
 }

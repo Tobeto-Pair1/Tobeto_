@@ -3,6 +3,7 @@ using Business.Dtos.Requests;
 using Business.Dtos.Responses;
 using Business.DTOs.Requests;
 using Business.DTOs.Responses;
+using Core.DataAccess.Dynamic;
 using Entities.Concrete;
 using Entities.Concretes;
 using System;
@@ -20,6 +21,8 @@ namespace Business.Profiles
             CreateMap<Employee, CreatedEmployeeResponse>().ReverseMap();
             CreateMap<CreateEmployeeRequest, Employee>().ReverseMap();
 
+
+            CreateMap<Paginate<Employee>, Paginate<GetListEmployeeResponse>>().ReverseMap();
             CreateMap<Employee, GetListEmployeeResponse>().ReverseMap();
         }
     }

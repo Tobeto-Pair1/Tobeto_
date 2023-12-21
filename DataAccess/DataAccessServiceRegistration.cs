@@ -25,23 +25,22 @@ public static class DataAccessServiceRegistration
         services.AddDbContext<TobetoDbContext>(options=>options.UseSqlServer(configuration.GetConnectionString("Data Source=DESKTOP-3O4V1S5;Initial Catalog=Tobeto;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")));
 
         services.AddScoped<IAboutOfCourseDal, EfAboutOfCourseDal>();
+        services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
+        services.AddScoped<IEmployeeDal, EfEmployeeDal>();
         services.AddScoped<IAddressDal, EfAddressDal>();
         services.AddScoped<ICategoryDal, EfCategoryDal>();
         services.AddScoped<IEducationDal, EfEducationDal>();
         services.AddScoped<IInstructorDal, EfInstructorDal>();
         services.AddScoped<ILanguageDal, EfLanguageDal>();
         services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
-        services.AddScoped<IUserDal, EfUserDal>();
-
-        services.AddScoped<ITownDal, EfTownDal>();
-        services.AddScoped<ISkillDal, EfSkillDal>();
-
-        services.AddScoped<ISectorDal, EfSectorDal>();
         services.AddScoped<IStudentDal, EfStudentDal>();
-
         services.AddScoped<IAsyncLessonDal, EfAsyncLessonDal>();
-
-
+        services.AddScoped<ITownDal, EfTownDal>();
+        services.AddScoped<IUserLanguageDal, EfUserLanguageDal>();
+        services.AddScoped<IUserDal, EfUserDal>();
+        services.AddScoped<ISkillDal, EfSkillDal>();
+        services.AddScoped<ISectorDal, EfSectorDal>();
+        services.AddScoped<IHomeworkDal, EfHomeworkDal>();
 
 
         //services.AddScoped<ICategoryDal, EfCategoryDal>();
