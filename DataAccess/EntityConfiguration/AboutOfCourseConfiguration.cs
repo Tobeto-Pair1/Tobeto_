@@ -10,6 +10,7 @@ public class AboutOfCourseConfiguration : IEntityTypeConfiguration<AboutOfCourse
     {
         builder.ToTable("AboutOfCourses").HasKey(b => b.Id);
         builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
+        builder.Property(b => b.CourseId).HasColumnName("CourseId");
         builder.Property(b => b.CategoryId).HasColumnName("CategoryId");
         builder.Property(b => b.ManufacturerId).HasColumnName("ManufacturerId");
         builder.Property(b => b.StartTime).HasColumnName("StartTime");

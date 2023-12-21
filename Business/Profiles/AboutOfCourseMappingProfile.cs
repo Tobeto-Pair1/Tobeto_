@@ -11,9 +11,15 @@ public class AboutOfCourseMappingProfile : Profile
 {
     public AboutOfCourseMappingProfile()
     {
-        CreateMap<AboutOfCourse, CreatedAboutOfCourseResponse>().ReverseMap();
+        CreateMap<AboutOfCourse, CreatedAboutOfCourseResponse>().ForMember(destinationMember: a => a.CategoryId,
+            memberOptions: opt => opt.MapFrom(a => a.Category.Id)).
+            ForMember(destinationMember: a => a.ManufacturerId,
+            memberOptions: opt => opt.MapFrom(a => a.Manufacturer.Id)).ReverseMap();
 
-        CreateMap<AboutOfCourse, CreateAboutOfCourseRequest>().ReverseMap();
+        CreateMap<AboutOfCourse, CreateAboutOfCourseRequest>().ForMember(destinationMember: a => a.CategoryId,
+            memberOptions: opt => opt.MapFrom(a => a.Category.Id)).
+            ForMember(destinationMember: a => a.ManufacturerId,
+            memberOptions: opt => opt.MapFrom(a => a.Manufacturer.Id)).ReverseMap();
 
 
         CreateMap<AboutOfCourse, DeletedAboutOfCourseResponse>().ReverseMap();

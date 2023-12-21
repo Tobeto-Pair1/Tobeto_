@@ -14,7 +14,7 @@ namespace DataAccess.EntityConfiguration
 
     public void Configure(EntityTypeBuilder<AsyncLesson> builder)
         {
-            builder.ToTable("AsyncLesson").HasKey(an => an.Id);
+            builder.ToTable("AsyncLessons").HasKey(an => an.Id);
             builder.Property(an => an.Name).HasColumnName("Name").IsRequired();
             builder.Property(an => an.DurationTime).HasColumnName("DurationTime");
             builder.Property(an => an.TimeSpent).HasColumnName("TimeSpent");
