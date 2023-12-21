@@ -34,6 +34,8 @@ namespace Business
             services.AddScoped<ISkillService, SkillManager>();
             services.AddScoped<ISectorService, SectorManager>();
             services.AddScoped<IHomeworkService, HomeworkManager>();
+            services.AddScoped<ISynchronLessonService, SynchronLessonManager>();
+
 
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
