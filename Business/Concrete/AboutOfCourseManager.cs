@@ -38,9 +38,9 @@ public class AboutOfCourseManager : IAboutOfCourseService
         return createdAboutOfCourseResponse;
     }
 
-    public async Task<DeletedAboutOfCourseResponse> Delete(DeleteAboutOfCourseRequest deletAboutOfCourseRequest)
+    public async Task<DeletedAboutOfCourseResponse> Delete(DeleteAboutOfCourseRequest deleteAboutOfCourseRequest)
     {
-        AboutOfCourse aboutOfCourse = _mapper.Map<AboutOfCourse>(deletAboutOfCourseRequest);
+        AboutOfCourse aboutOfCourse = _mapper.Map<AboutOfCourse>(deleteAboutOfCourseRequest);
         AboutOfCourse deletedAboutOfCourse = await _aboutOfCourseDal.DeleteAsync(aboutOfCourse);
         DeletedAboutOfCourseResponse deletedAboutOfCourseResponse = _mapper.Map<DeletedAboutOfCourseResponse>(deletedAboutOfCourse);
         return deletedAboutOfCourseResponse;

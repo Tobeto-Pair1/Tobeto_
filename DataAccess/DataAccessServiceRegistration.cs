@@ -40,6 +40,8 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ISkillDal, EfSkillDal>();
         services.AddScoped<ISectorDal, EfSectorDal>();
         services.AddScoped<IHomeworkDal, EfHomeworkDal>();
+        services.AddScoped<ISynchronLessonDal, EfSynchronLessonDal>();
+
 
 
         return services;
