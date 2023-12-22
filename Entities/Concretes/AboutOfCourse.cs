@@ -16,6 +16,7 @@ public class AboutOfCourse : Entity<Guid>
     public Category Category { get; set; }
     public Manufacturer Manufacturer { get; set; }
     public Course Course { get; set; }
+
    // public Lesson Lesson { get; set; }
 
 }

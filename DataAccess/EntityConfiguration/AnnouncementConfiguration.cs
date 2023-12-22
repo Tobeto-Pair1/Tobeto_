@@ -16,7 +16,7 @@ namespace DataAccess.EntityConfiguration
         {
             builder.ToTable("Announcements").HasKey(an => an.Id);
             builder.Property(an => an.Title).HasColumnName("Title").IsRequired();
-            builder.Property(an => an.Label).HasColumnName("CityId");
+            builder.Property(an => an.Label).HasColumnName("Label");
 
 
 
