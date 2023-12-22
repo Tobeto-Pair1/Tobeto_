@@ -14,7 +14,7 @@ namespace Entities.Concrete
         public string Name { get; set; }
         public Guid LevelId { get; set; }
         
-        public virtual ICollection<UserLanguage> UserLanguages{ get; set; }
+        public virtual ICollection<UserLanguage> Users{ get; set; }
         public virtual LanguageLevel LanguageLevel { get; set; }
     }
 }

@@ -18,7 +18,6 @@ public class AboutOfCourseConfiguration : IEntityTypeConfiguration<AboutOfCourse
         builder.Property(b => b.SpentTime).HasColumnName("SpentTime");
 
 
-
         builder.HasOne(b => b.Category);
         builder.HasOne(b => b.Manufacturer);
         builder.HasOne(b => b.Course);

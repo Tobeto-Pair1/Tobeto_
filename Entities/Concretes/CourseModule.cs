@@ -9,12 +9,6 @@ namespace Entities.Concretes;
 
 public  class CourseModule: Entity<Guid>
 {
-
-
     public string Name { get; set; }
     public List<Lesson> Lessons { get; set; }
-
-
-
-
 }

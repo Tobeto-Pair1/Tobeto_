@@ -22,6 +22,7 @@ public class User: Entity<Guid>
 
     public virtual Address Address { get; set; }
     public virtual ICollection<UserSkill> UserSkills { get; set; }
+    public virtual ICollection<UserLanguage> Languages { get; set; }
     public virtual ICollection<UserSocial> UserSocials { get; set; }
     public virtual ICollection<Student>Students { get; set; }
     public virtual ICollection<Employee>Employees { get; set; }
