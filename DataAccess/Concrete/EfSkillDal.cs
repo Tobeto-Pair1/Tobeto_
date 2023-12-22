@@ -5,7 +5,7 @@ using Entities.Concretes;
 
 namespace DataAccess.Concrete;
 
-public class EfSkillDal : EfRepositoryBase<Skill, int, TobetoDbContext> , ISkillDal
+public class EfSkillDal : EfRepositoryBase<Skill, Guid, TobetoDbContext> , ISkillDal
 {
     public EfSkillDal(TobetoDbContext context) : base(context)
     {

@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.Dtos.Requests;
-using Business.Dtos.Responses;
+using Business.DTOs.Responses;
+using Core.DataAccess.Dynamic;
+using Core.DataAccess.Paging;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
-using Entities.Concrete;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +20,6 @@ public class UserManager : IUserService
 {
     IUserDal _userDal;
     IMapper _mapper;
-
-
-
-    public UserManager(IUserDal userDal)
-    {
-        this._userDal = userDal;
-
-    }
-
    
 
     public UserManager(IUserDal userDal, IMapper mapper)
@@ -35,17 +28,65 @@ public class UserManager : IUserService
         _mapper = mapper;
     }
 
-    public async Task Add(CreateUserRequest request)
+    public  async Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest)
     {
 
-        
-        User user = _mapper.Map<User>(request);
-        await _userDal.AddAsync(user);
+        User user = _mapper.Map<User>(createUserRequest);
+
+        User userCreated = await _userDal.AddAsync(user);
+
+        CreatedUserResponse createUserResponse = _mapper.Map<CreatedUserResponse>(userCreated);
+
+        return createUserResponse;
+
+    }
+
+
+
+    public async Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest)
+    {
+
+        User user = _mapper.Map<User>(deleteUserRequest);
+
+        User userDeleted = await _userDal.DeleteAsync(user);
        
+        DeletedUserResponse deletedUserResponse = _mapper.Map<DeletedUserResponse>(userDeleted);
+        
+        return deletedUserResponse;
+
     }
 
-    public void Delete(User user)
+
+    
+public async Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest)
     {
-        throw new NotImplementedException();
+        var data = await _userDal.GetListAsync(include: l => l.Include(l => l.Address),
+                     index: pageRequest.PageIndex,
+                     size: pageRequest.PageSize);
+
+        var result = _mapper.Map<Paginate<GetListUserResponse>>(data);
+        return result;
     }
+
+    public async Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest)
+    {
+        User user = _mapper.Map<User>(updateUserRequest);
+
+        User userUpdated = await _userDal.UpdateAsync(user);
+
+        UpdatedUserResponse updatedUserResponse = _mapper.Map<UpdatedUserResponse>(userUpdated);
+
+        return updatedUserResponse;
+    }
+
+ 
+
+
+    
+
+   
+
+ 
+
+
 }

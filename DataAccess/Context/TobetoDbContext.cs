@@ -33,6 +33,13 @@ public class TobetoDbContext : DbContext
     public DbSet<NotificationType> NotificationTypes {get; set;}
     public DbSet<Employee> Employees { get; set; }
     public DbSet<AsyncLesson> AsyncLessons { get; set; }
+    public DbSet<SynchronLesson> SynchronLessons { get; set; }
+    public DbSet<UserEducation> UserEducations { get; set; }
+    public DbSet<New> News { get; set; }
+    public DbSet<City> Cities { get; set; }
+
+
+
 
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {
@@ -41,10 +48,13 @@ public class TobetoDbContext : DbContext
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
         foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
         {
             relationship.DeleteBehavior = DeleteBehavior.Restrict;
         }
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+
     }
 }

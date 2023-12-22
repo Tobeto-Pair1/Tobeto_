@@ -8,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrete;
-
-public class EfEducationDal : EfRepositoryBase<UserEducation, int, TobetoDbContext>, IEducationDal
+namespace DataAccess.Concrete
 {
-    public EfEducationDal(TobetoDbContext context) : base(context)
+    public class EfUserEducationDal : EfRepositoryBase<UserEducation, Guid, TobetoDbContext>, IUserEducationDal
     {
+        public EfUserEducationDal(TobetoDbContext context) : base(context)
+        {
+        }
     }
+
 }
