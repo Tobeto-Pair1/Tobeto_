@@ -3,7 +3,7 @@ using Entities.Concretes;
 
 namespace DataAccess.Abstract;
 
-public interface ISkillDal: IRepository<Skill, int>, IAsyncRepository<Skill, int>
+public interface ISkillDal: IRepository<Skill, Guid>, IAsyncRepository<Skill, Guid>
 {
     
 }

@@ -4,7 +4,7 @@ using Entities.Concretes;
 
 namespace DataAccess.Abstract
 {
-	public interface ISectorDal : IRepository<Sector, int>, IAsyncRepository<Sector, int>
+	public interface ISectorDal : IRepository<Sector, Guid>, IAsyncRepository<Sector, Guid>
     {
 	}
 }

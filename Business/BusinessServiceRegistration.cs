@@ -22,7 +22,6 @@ namespace Business
             services.AddScoped<IEmployeeService, EmployeeManager>();
             services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
-            services.AddScoped<IEducationService, EducationManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ILanguageService, LanguageManager>();
             services.AddScoped<ISocialMediaService, SocialMediaManager>();

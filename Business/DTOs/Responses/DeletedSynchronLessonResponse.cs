@@ -2,6 +2,8 @@
 {
     public class DeletedSynchronLessonResponse
     {
+
+        public Guid Id { get; set; }
         public DateTime DurationTime { get; set; }
         public DateTime TimeSpent { get; set; }
         public DateTime StartTime { get; set; }
