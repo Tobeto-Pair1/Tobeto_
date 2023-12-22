@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class ForeignLanguage: Entity<int>
+    public class ForeignLanguage: Entity<Guid>
     {
         
         public string Name { get; set; }
-        public int LevelId { get; set; }
+        public Guid LevelId { get; set; }
         
-        public virtual ICollection<UserLanguage> UserLanguages{ get; set; }
+        public virtual ICollection<UserLanguage> Users{ get; set; }
         public virtual LanguageLevel LanguageLevel { get; set; }
     }
 }

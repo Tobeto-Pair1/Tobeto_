@@ -11,15 +11,21 @@ public class AboutOfCourseMappingProfile : Profile
 {
     public AboutOfCourseMappingProfile()
     {
-        CreateMap<AboutOfCourse, CreatedAboutOfCourseResponse>().ForMember(destinationMember: a => a.CategoryId,
-            memberOptions: opt => opt.MapFrom(a => a.Category.Id)).
-            ForMember(destinationMember: a => a.ManufacturerId,
-            memberOptions: opt => opt.MapFrom(a => a.Manufacturer.Id)).ReverseMap();
+        CreateMap<AboutOfCourse, CreatedAboutOfCourseResponse>().
+            ForMember(destinationMember: a => a.CourseName,
+            memberOptions: opt => opt.MapFrom(a => a.Course.Name)).
+            ForMember(destinationMember: a => a.CategoryName,
+            memberOptions: opt => opt.MapFrom(a => a.Category.Name)).
+            ForMember(destinationMember: a => a.ManufacturerName,
+            memberOptions: opt => opt.MapFrom(a => a.Manufacturer.Name)).ReverseMap();
 
-        CreateMap<AboutOfCourse, CreateAboutOfCourseRequest>().ForMember(destinationMember: a => a.CategoryId,
-            memberOptions: opt => opt.MapFrom(a => a.Category.Id)).
-            ForMember(destinationMember: a => a.ManufacturerId,
-            memberOptions: opt => opt.MapFrom(a => a.Manufacturer.Id)).ReverseMap();
+        CreateMap<AboutOfCourse, CreateAboutOfCourseRequest>().
+            ForMember(destinationMember: a => a.CourseName,
+            memberOptions: opt => opt.MapFrom(a => a.Course.Name)).
+            ForMember(destinationMember: a => a.CategoryName,
+            memberOptions: opt => opt.MapFrom(a => a.Category.Name)).
+            ForMember(destinationMember: a => a.ManufacturerName,
+            memberOptions: opt => opt.MapFrom(a => a.Manufacturer.Name)).ReverseMap();
 
 
         CreateMap<AboutOfCourse, DeletedAboutOfCourseResponse>().ReverseMap();
@@ -33,6 +39,14 @@ public class AboutOfCourseMappingProfile : Profile
 
 
         CreateMap<AboutOfCourse, GetListAboutOfCourseResponse>().
+            ForMember(destinationMember: a => a.CourseName,
+            memberOptions: opt => opt.MapFrom(a => a.Course.Name)).
+            ForMember(destinationMember: a => a.CourseId,
+            memberOptions: opt => opt.MapFrom(a => a.Category.Id)).
+            ForMember(destinationMember: a => a.CategoryId,
+            memberOptions: opt => opt.MapFrom(a => a.Category.Id)).
+            ForMember(destinationMember: a => a.ManufacturerId,
+            memberOptions: opt => opt.MapFrom(a => a.Manufacturer.Id)).
             ForMember(destinationMember: a => a.CategoryName,
             memberOptions: opt => opt.MapFrom(a => a.Category.Name)).
             ForMember(destinationMember: a => a.ManufacturerName,
