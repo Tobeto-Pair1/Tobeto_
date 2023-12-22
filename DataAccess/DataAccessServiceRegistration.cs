@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concretes;
+using System.Reflection;
 
 namespace DataAccess;
 
@@ -20,9 +21,11 @@ public static class DataAccessServiceRegistration
     {
 
         //Data Source=DESKTOP-3O4V1S5;Initial Catalog=Tobeto;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False
-        services.AddDbContext<TobetoDbContext>(options => options.UseInMemoryDatabase("TobetoDbContext"));
+        //services.AddDbContext<TobetoDbContext>(options => options.UseInMemoryDatabase("TobetoDbContext"));
 
-        services.AddDbContext<TobetoDbContext>(options=>options.UseSqlServer(configuration.GetConnectionString("Data Source=DESKTOP-3O4V1S5;Initial Catalog=Tobeto;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")));
+        services.AddDbContext<TobetoDbContext>(options =>
+            options.UseSqlServer("Data Source=DESKTOP-3O4V1S5;Initial Catalog=Tobeto_Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False",
+            b => b.MigrationsAssembly("WebAPI")));
 
         services.AddScoped<IAboutOfCourseDal, EfAboutOfCourseDal>();
         services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
