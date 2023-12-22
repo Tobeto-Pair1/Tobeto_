@@ -1,5 +1,5 @@
 ﻿using Core.DataAccess.Repositories;
-using Entities.Concrete;
+using Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface ILanguageDal: IRepository<ForeignLanguage, Guid>, IAsyncRepository<ForeignLanguage, Guid>
+    public interface ISynchronLessonDal: IRepository<SynchronLesson, Guid>, IAsyncRepository<SynchronLesson, Guid>
     {
     }
 }

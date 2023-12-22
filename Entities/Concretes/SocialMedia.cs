@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class SocialMedia : Entity<int>
+public class SocialMedia : Entity<Guid>
 {
 
     public string? Name { get; set; }

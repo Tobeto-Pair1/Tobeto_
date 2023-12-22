@@ -6,9 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract;
-
-public interface IEducationDal : IRepository<UserEducation, int>, IAsyncRepository<UserEducation, int>
+namespace DataAccess.Abstract
 {
+    public interface IUserEducationDal: IRepository<UserEducation, Guid>, IAsyncRepository<UserEducation, Guid>
+    {
 
+    }
 }

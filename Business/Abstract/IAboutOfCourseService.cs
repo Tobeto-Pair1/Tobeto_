@@ -14,6 +14,6 @@ public interface IAboutOfCourseService
 
     Task<UpdatedAboutOfCourseResponse> Update(UpdateAboutOfCourseRequest updateAboutOfCourseRequest);
 
-    Task<DeletedAboutOfCourseResponse> Delete(DeleteAboutOfCourseRequest deletAboutOfCourseRequest);
+    Task<DeletedAboutOfCourseResponse> Delete(DeleteAboutOfCourseRequest deleteAboutOfCourseRequest);
 
 }

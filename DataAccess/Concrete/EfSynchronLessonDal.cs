@@ -1,7 +1,7 @@
 ﻿using Core.DataAccess.Repositories;
 using DataAccess.Abstract;
 using DataAccess.Context;
-using Entities.Concrete;
+using Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +10,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class EfLanguageDal : EfRepositoryBase<ForeignLanguage, Guid, TobetoDbContext>, ILanguageDal
+    public class EfSynchronLessonDal : EfRepositoryBase<SynchronLesson, Guid, TobetoDbContext>, ISynchronLessonDal
     {
-        public EfLanguageDal(TobetoDbContext context) : base(context)
+        public EfSynchronLessonDal(TobetoDbContext context) : base(context)
         {
         }
     }
-    
-
-   
-}
+ }
