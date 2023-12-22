@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading.Tasks;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concretes;
@@ -39,8 +40,10 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ISkillDal, EfSkillDal>();
         services.AddScoped<ISectorDal, EfSectorDal>();
         services.AddScoped<IHomeworkDal, EfHomeworkDal>();
+        services.AddScoped<INewDal, EfNewDal>();
         services.AddScoped<ISynchronLessonDal, EfSynchronLessonDal>();
         services.AddScoped<IUserEducationDal, EfUserEducationDal>();
+
 
 
 
