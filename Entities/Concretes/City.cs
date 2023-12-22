@@ -10,6 +10,7 @@ namespace Entities.Concretes;
 
 public class City : Entity<Guid> 
 {
+    public Guid TownId { get; set; }
 
     public Guid CountryId { get; set; }
 
