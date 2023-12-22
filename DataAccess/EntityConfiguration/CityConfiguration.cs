@@ -15,9 +15,10 @@ namespace DataAccess.EntityConfiguration
         {
             builder.ToTable("Cities").HasKey(c => c.Id);
             builder.Property(c => c.Id).HasColumnName("Id").IsRequired();
+            builder.Property(c => c.CountryId).HasColumnName("CountryId");          
             builder.Property(c => c.Name).HasColumnName("Name");
 
-            builder.HasOne(c => c.Town);
+            builder.HasMany(c => c.Towns);
             builder.HasOne(c => c.Country);
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 

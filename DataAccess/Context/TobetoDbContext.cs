@@ -17,7 +17,7 @@ public class TobetoDbContext : DbContext
     public DbSet<AboutOfCourse> AboutOfCourses { get; set; }
     public DbSet<Announcement> Announcements { get; set; }
     public DbSet<User> Users { get; set; }
-    public DbSet<UserEducation> Educations { get; set; }
+    public DbSet<UserEducation> UserEducations { get; set; }
     public DbSet<Instructor> Instructors { get; set; }
     public DbSet<SocialMedia> SocialMedias { get; set; }
     public DbSet<Category> Categories { get; set; }
@@ -28,13 +28,12 @@ public class TobetoDbContext : DbContext
     public DbSet<Homework> Homeworks { get; set; }
     public DbSet<ForeignLanguage> ForeignLanguages { get; set; }
     public DbSet<UserLanguage> UserLanguages { get; set; }
-    public DbSet<Town> Town { get; set; }
-    public DbSet<Skill> Skill { get; set; }
+    public DbSet<Town> Towns { get; set; }
+    public DbSet<Skill> Skills { get; set; }
     public DbSet<NotificationType> NotificationTypes {get; set;}
     public DbSet<Employee> Employees { get; set; }
     public DbSet<AsyncLesson> AsyncLessons { get; set; }
     public DbSet<SynchronLesson> SynchronLessons { get; set; }
-    public DbSet<UserEducation> UserEducations { get; set; }
     public DbSet<New> News { get; set; }
     public DbSet<City> Cities { get; set; }
 
@@ -48,13 +47,11 @@ public class TobetoDbContext : DbContext
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
         {
             relationship.DeleteBehavior = DeleteBehavior.Restrict;
         }
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
-
     }
 }

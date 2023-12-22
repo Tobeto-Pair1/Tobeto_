@@ -46,7 +46,7 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListCityResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _cityDal.GetListAsync(include: a => a.Include(a => a.Town).
+            var data = await _cityDal.GetListAsync(include: a => a.Include(a => a.Towns).
        Include(a => a.Country),
           index: pageRequest.PageIndex,
           size: pageRequest.PageSize);
