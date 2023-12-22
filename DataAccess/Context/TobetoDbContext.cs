@@ -33,6 +33,10 @@ public class TobetoDbContext : DbContext
     public DbSet<NotificationType> NotificationTypes {get; set;}
     public DbSet<Employee> Employees { get; set; }
     public DbSet<AsyncLesson> AsyncLessons { get; set; }
+    public DbSet<SynchronLesson> SynchronLessons { get; set; }
+    public DbSet<UserEducation> UserEducations { get; set; }
+    public DbSet<New> News { get; set; }
+
 
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {
