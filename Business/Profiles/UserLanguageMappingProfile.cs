@@ -18,6 +18,12 @@ namespace Business.Profiles
             CreateMap<UserLanguage, CreatedUserLanguageResponse>().ReverseMap();
             CreateMap<CreateUserLanguageRequest, UserLanguage>().ReverseMap();
 
+            CreateMap<UserLanguage, DeletedUserLanguageResponse>().ReverseMap();
+            CreateMap<DeleteUserLanguageRequest, UserLanguage>().ReverseMap();
+
+            CreateMap<UserLanguage, UpdatedUserLanguageResponse>().ReverseMap();
+            CreateMap<UpdateUserLanguageRequest, UserLanguage>().ReverseMap();
+
             CreateMap<Paginate<UserLanguage>, GetListUserLanguageResponse>().ReverseMap();
             CreateMap<UserLanguage, GetListUserLanguageResponse>().ReverseMap();
         }
