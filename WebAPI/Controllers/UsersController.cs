@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Dtos.Requests;
 using Business.Dtos.Responses;
+using Business.DTOs.Requests;
+using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,13 +20,33 @@ public class UsersController : ControllerBase
         _userService = userService;
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Register([FromBody] CreateUserRequest request)
+    [HttpPost("add")]
+    public async Task<IActionResult> Add([FromBody] CreateUserRequest createUserRequest)
     {
 
-       await _userService.Add(request);
-
-
-        return Ok();
+        var result = await _userService.Add(createUserRequest);
+        return Ok(result);
     }
+
+    [HttpDelete("delete")]
+    public async Task<IActionResult> Delete([FromBody] DeleteUserRequest deleteUserRequest)
+    {
+        var result = await _userService.Delete(deleteUserRequest);
+        return Ok(result);
+    }
+
+    [HttpPost("update")]
+    public async Task<IActionResult> Update([FromBody] UpdateUserRequest updateUserRequest)
+    {
+        var result = await _userService.Update(updateUserRequest);
+        return Ok(result);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+    {
+        var result = await _userService.GetListAsync(pageRequest);
+        return Ok(result);
+    }
+
 }

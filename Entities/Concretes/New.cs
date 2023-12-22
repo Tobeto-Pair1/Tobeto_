@@ -12,8 +12,9 @@ public class New : Entity<Guid>
 
     public string Title { get; set; }
     public string Label { get; set; }
-
     public Guid NotificationId { get; set; }
+
+
     public NotificationType NotificationType { get; set; }
 
 

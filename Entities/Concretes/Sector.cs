@@ -2,7 +2,7 @@
 
 namespace Entities.Concretes;
 
-public class Sector:Entity<int>
+public class Sector:Entity<Guid>
 {
     public string Name { get; set;}
 

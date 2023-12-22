@@ -22,7 +22,6 @@ namespace Business
             services.AddScoped<IEmployeeService, EmployeeManager>();
             services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
-            services.AddScoped<IEducationService, EducationManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ILanguageService, LanguageManager>();
             services.AddScoped<ISocialMediaService, SocialMediaManager>();
@@ -34,6 +33,10 @@ namespace Business
             services.AddScoped<ISkillService, SkillManager>();
             services.AddScoped<ISectorService, SectorManager>();
             services.AddScoped<IHomeworkService, HomeworkManager>();
+            services.AddScoped<ISynchronLessonService, SynchronLessonManager>();
+            services.AddScoped<IUserEducationService, UserEducationManager>();
+
+
 
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
