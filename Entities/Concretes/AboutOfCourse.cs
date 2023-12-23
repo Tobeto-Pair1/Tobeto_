@@ -13,11 +13,9 @@ public class AboutOfCourse : Entity<Guid>
     public DateTime EndTime { get; set; }
     public DateTime SpentTime { get; set; }
 
-    public Category Category { get; set; }
-    public Manufacturer Manufacturer { get; set; }
-    public Course Course { get; set; }
-
-   // public Lesson Lesson { get; set; }
+    public virtual Category Category { get; set; }
+    public virtual Manufacturer Manufacturer { get; set; }
+    public virtual Course Course { get; set; }
 
 }
 

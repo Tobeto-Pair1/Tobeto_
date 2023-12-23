@@ -5,13 +5,15 @@ namespace Entities.Concretes
 {
 	public class Homework:Entity<Guid>
 	{
-		public bool HomeWorkIsSend { get; set; }
-		public string InstructorDescription { get; set; }
-		public string StudentDescription { get; set; }
+        public Guid CourseId { get; set; }
+        public Guid SynchronLessonId { get; set; }
+		public string Name { get; set; }
 		public DateTime LastDate { get; set; }
 		public string HomeworkTaskFile { get; set; }
+        public string HomeworkSentFile { get; set; }
 
-		public virtual Program Program { get; set; } 
+        public virtual Course Course { get; set; }
+        public virtual SynchronLesson SynchronLesson { get; set; }
     }
 }
 

@@ -17,7 +17,4 @@ public class UserEducation : Entity<Guid>
     public DateTime GraduationDate { get; set; }
 
     public User User { get; set; }
-
-    
-
 }

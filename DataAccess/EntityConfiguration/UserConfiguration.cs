@@ -14,20 +14,20 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
 
-        builder.ToTable("User").HasKey(o => o.Id);
-
-        builder.Property(o => o.AdrressId).HasColumnName("AdrressId").IsRequired();
-        builder.Property(o => o.IdentityNumber).HasColumnName("IdentityNumber").IsRequired();
+        builder.ToTable("Users").HasKey(o => o.Id);
+        builder.Property(o => o.Id).HasColumnName("Id");
+       // builder.Property(o => o.AdrressId).HasColumnName("AdrressId");
         builder.Property(b => b.FirstName).HasColumnName("FirstName").IsRequired();
         builder.Property(b => b.Lastname).HasColumnName("Lastname").IsRequired();
-        builder.Property(b => b.PhoneNumber).HasColumnName("PhoneNumber");
+        builder.Property(o => o.IdentityNumber).HasColumnName("IdentityNumber").IsRequired();
+        builder.Property(b => b.PhoneNumber).HasColumnName("PhoneNumber").IsRequired();
         builder.Property(b => b.Email).HasColumnName("Email");
-        builder.Property(b => b.BirthDate).HasColumnName("BirthDate");
+        builder.Property(b => b.BirthDate).HasColumnName("BirthDate").IsRequired();
+        builder.Property(b => b.AboutMe).HasColumnName("AboutMe").IsRequired();
 
+        builder.HasIndex(indexExpression: b => b.IdentityNumber, name: "UK_Users_IdentityNumber").IsUnique();
 
-        builder.HasOne("Address");
-
-
+        //builder.HasOne(b=>b.Address);
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
 

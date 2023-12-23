@@ -46,9 +46,7 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListSynchronLessonResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _synchronLessonDal.GetListAsync(include: b => b.Include(b => b.CourseType).Include(b => b.Instructors),
-            index: pageRequest.PageIndex,
-            size: pageRequest.PageSize);
+            var data = await _synchronLessonDal.GetListAsync(index: pageRequest.PageIndex, size: pageRequest.PageSize);
 
             var result = _mapper.Map<Paginate<GetListSynchronLessonResponse>>(data);
             return result;

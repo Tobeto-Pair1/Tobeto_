@@ -16,7 +16,7 @@ public class City : Entity<Guid>
     public virtual Country Country { get; set; }
     public virtual ICollection<Town> Towns { get; set; }
     public virtual ICollection<Experience> Experiences { get; set; }
-    public Address Address { get; set; }
+    public virtual Address Address { get; set; }
 }
 
    

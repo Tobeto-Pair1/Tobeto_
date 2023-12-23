@@ -18,7 +18,6 @@ namespace DataAccess.EntityConfiguration
             builder.Property(c => c.CountryId).HasColumnName("CountryId");          
             builder.Property(c => c.Name).HasColumnName("Name");
 
-            builder.HasMany(c => c.Towns);
             builder.HasOne(c => c.Country);
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 

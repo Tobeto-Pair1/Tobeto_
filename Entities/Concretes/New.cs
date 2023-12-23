@@ -15,9 +15,6 @@ public class New : Entity<Guid>
     public Guid NotificationId { get; set; }
 
 
-    public NotificationType NotificationType { get; set; }
-
-
-
+    public virtual NotificationType NotificationType { get; set; }
 
 }

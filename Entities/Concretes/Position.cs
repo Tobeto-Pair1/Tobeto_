@@ -2,7 +2,7 @@
 
 namespace Entities.Concretes;
 
-public class Position : Entity<int>
+public class Position : Entity<Guid>
 {
     public string Name { get; set;}
 

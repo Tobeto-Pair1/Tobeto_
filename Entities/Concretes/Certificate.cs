@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class Student : Entity<Guid>
+public class Certificate : Entity<Guid>
 {
     public Guid UserId { get; set; }
+    public string FileName { get; set; }
+    public string FileType { get; set; }
 
-    public virtual User User { get; set; }
+    public User User { get; set; }
 }

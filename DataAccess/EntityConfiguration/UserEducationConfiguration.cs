@@ -15,6 +15,7 @@ namespace DataAccess.EntityConfiguration
         {
             builder.ToTable("UserEducations").HasKey(b => b.Id);
             builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
+            builder.Property(b => b.UserId).HasColumnName("UserId").IsRequired();
             builder.Property(b => b.University).HasColumnName("University");
             builder.Property(b => b.Department).HasColumnName("Department");
             builder.Property(b => b.EducationType).HasColumnName("EducationType");

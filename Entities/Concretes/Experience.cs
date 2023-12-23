@@ -16,10 +16,10 @@ public class Experience : Entity<Guid>
     public Guid CompanyId { get; set; }
     public Guid CityId { get; set; }
 
-
-    public virtual City City { get; set;} 
+    
+    public virtual User User { get; set; }
+    public virtual City City { get; set; }
     public virtual Company Company { get; set; }
     public virtual Position Position { get; set; }
     public virtual Sector Sector { get; set; }
-    public virtual User User { get; set; }
 }

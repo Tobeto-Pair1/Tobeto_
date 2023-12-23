@@ -49,7 +49,7 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListAsyncLessonResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _asyncLessonDal.GetListAsync(include: l => l.Include(l => l.CourseModule).Include(l=>l.Instructors),
+            var data = await _asyncLessonDal.GetListAsync(include: l => l.Include(l => l.CourseModule).Include(l=>l.Instructor),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);
 

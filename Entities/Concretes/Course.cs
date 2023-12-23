@@ -10,9 +10,10 @@ namespace Entities.Concretes;
 public class Course : Entity<Guid>
 {
     public string Name { get; set; }
-    public bool IsCourseType { get; set; }
-    public virtual ICollection<CourseProgram> CoursePrograms { get; set; }
+    public Guid CourseTypeId { get; set; }
 
-    public AboutOfCourse AboutOfCourse { get; set; }
+    public virtual ICollection<CourseProgram> CoursePrograms { get; set; }
+    public virtual AboutOfCourse AboutOfCourse { get; set; }
+    public virtual CourseType CourseType { get; set; }
 }
 

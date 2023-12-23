@@ -5,7 +5,7 @@ using Entities.Concretes;
 
 namespace DataAccess.Concrete;
 
-public class EfStudentDal: EfRepositoryBase<Student, int, TobetoDbContext>, IStudentDal
+public class EfStudentDal: EfRepositoryBase<Student, Guid, TobetoDbContext>, IStudentDal
 {
     public EfStudentDal(TobetoDbContext context) : base(context)
     {
