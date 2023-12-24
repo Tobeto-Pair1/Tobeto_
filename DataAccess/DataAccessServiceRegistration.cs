@@ -52,6 +52,7 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ISynchronLessonDal, EfSynchronLessonDal>();
         services.AddScoped<IUserEducationDal, EfUserEducationDal>();
         services.AddScoped<ICityDal, EfCityDal>();
+        services.AddScoped<ICompanyDal, EfCompanyDal>();
 
 
 
