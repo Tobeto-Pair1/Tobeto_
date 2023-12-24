@@ -10,6 +10,8 @@ namespace Entities.Concretes
 
         public virtual Category Categories { get; set; }
         public  virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<SynchronLessonDetail> SynchronLessonDetails { get; set; }
+        public virtual ICollection<AsyncLessonDetail> AsyncLessonDetails { get; set; }
     }
 }
 

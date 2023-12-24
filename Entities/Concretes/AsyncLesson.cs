@@ -14,8 +14,7 @@ namespace Entities.Concretes
 
         public virtual Instructor Instructor {get;set;}
         public virtual CourseModule CourseModule { get; set; }
-	}
-
-
+        public virtual  AsyncLessonDetail AsyncLessonDetail { get; set; }
+    }
 }
 

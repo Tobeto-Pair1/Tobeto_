@@ -22,12 +22,3 @@ public class AsyncLessonDetail : Entity<Guid>
     public virtual SubType SubType { get; set; }
 
 }
-
-public class LessonLanguage : Entity<Guid>
-{
-    public string Name { get; set; }
-}
-public class SubType : Entity<Guid>
-{
-    public string Name { get; set; }
-}
