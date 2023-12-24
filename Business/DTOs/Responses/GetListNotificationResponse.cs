@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Responses
 {
-    public class UpdatedAnnouncementResponse
+    public class GetListNotificationResponse
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Label { get; set; }
+
     }
 }

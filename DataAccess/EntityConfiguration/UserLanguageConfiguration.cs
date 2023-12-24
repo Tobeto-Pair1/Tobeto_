@@ -22,7 +22,6 @@ namespace DataAccess.EntityConfiguration
             builder.HasOne(b => b.ForeignLanguage).WithMany(b => b.Users).HasForeignKey(b => b.ForeignLanguageId);
             builder.HasOne(b => b.User).WithMany(b => b.UserLanguages).HasForeignKey(b => b.Id);
             builder.HasOne(b => b.LanguageLevel).WithMany(b => b.UserLanguages).HasForeignKey(b => b.LanguageLevelId);
-
             builder.HasQueryFilter(ul => !ul.DeletedDate.HasValue);
         }
     }

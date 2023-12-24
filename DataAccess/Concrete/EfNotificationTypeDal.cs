@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess.Repositories;
+using DataAccess.Abstract;
 using DataAccess.Context;
 using Entities.Concretes;
 using System;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete;
 
-public class EfNotificationDal : EfRepositoryBase<NotificationType, Guid, TobetoDbContext>
+public class EfNotificationTypeDal : EfRepositoryBase<NotificationType, Guid, TobetoDbContext>, INotificationTypeDal
 {
-    public EfNotificationDal(TobetoDbContext context) : base(context)
+    public EfNotificationTypeDal(TobetoDbContext context) : base(context)
     {
     }
 }

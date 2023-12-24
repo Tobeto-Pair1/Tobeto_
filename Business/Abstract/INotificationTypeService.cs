@@ -10,10 +10,5 @@ namespace Business.Abstract;
 public interface INotificationTypeService 
 {
 
-  
-
-
-    
-
 
 }

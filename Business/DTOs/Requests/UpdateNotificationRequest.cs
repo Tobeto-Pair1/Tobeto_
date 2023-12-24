@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Responses
+namespace Business.DTOs.Requests
 {
-    public class GetListNewResponse
+    public class UpdateNotificationRequest
     {
         public string Title { get; set; }
         public string Label { get; set; }
-        public Guid NotificationId { get; set; }
     }
 }

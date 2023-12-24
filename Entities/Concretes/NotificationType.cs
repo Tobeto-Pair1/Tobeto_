@@ -12,9 +12,7 @@ public class NotificationType : Entity<Guid>
 {
     public string Name { get; set; } //haber, duyuru
 
-
-    public virtual ICollection <New> News { get; set; }
-    public virtual ICollection<Announcement> Announcements { get; set; }
+    public virtual ICollection<Notification> Notifications { get; set; }
 
 
     //public virtual ICollection<Notification> Notification { get; set; }

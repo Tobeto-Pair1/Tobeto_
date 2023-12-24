@@ -18,7 +18,7 @@ namespace Business
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
             services.AddScoped<IAboutOfCourseService, AboutOfCourseManager>();
-            services.AddScoped<IAnnouncementService, AnnouncementManager>();
+            services.AddScoped<INotificationService, NotificationManager>();
             services.AddScoped<IEmployeeService, EmployeeManager>();
             services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
@@ -36,7 +36,6 @@ namespace Business
             services.AddScoped<ISynchronLessonService, SynchronLessonManager>();
             services.AddScoped<IUserEducationService, UserEducationManager>();
             services.AddScoped<ICityService, CityManager>();
-            services.AddScoped<INewService, NewManager>();
 
 
 

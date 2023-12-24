@@ -10,11 +10,11 @@ using Entities.Concretes;
 
 namespace DataAccess.EntityConfiguration
 {
-    public class AnnouncementConfiguration : IEntityTypeConfiguration<Announcement>
+    public class NotificationConfiguration : IEntityTypeConfiguration<Notification>
     {
-        public void Configure(EntityTypeBuilder<Announcement> builder)
+        public void Configure(EntityTypeBuilder<Notification> builder)
         {
-            builder.ToTable("Announcements").HasKey(an => an.Id);
+            builder.ToTable("Notifications").HasKey(an => an.Id);
             builder.Property(an => an.Id).HasColumnName("Id").IsRequired();
             builder.Property(an => an.NotificationTypeId).HasColumnName("NotificationTypeId").IsRequired();
             builder.Property(an => an.Title).HasColumnName("Title");

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Responses
+namespace Business.DTOs.Requests
 {
-    public class CreatedAnnouncementResponse
+    public class CreateNotificationRequest
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public string Label { get; set; }
     }
