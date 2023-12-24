@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-//Id = UserId
+
 public class UserSkill : Entity<Guid>
 {
+    public Guid UserId { get; set; }
     public Guid SkillId  { get; set; }
 
     public virtual User User { get; set; }

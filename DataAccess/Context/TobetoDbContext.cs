@@ -35,6 +35,12 @@ public class TobetoDbContext : DbContext
     public DbSet<AsyncLesson> AsyncLessons { get; set; }
     public DbSet<SynchronLesson> SynchronLessons { get; set; }
     public DbSet<City> Cities { get; set; }
+    public DbSet<SynchronLessonDetail> SynchronLessonDetails { get; set; }
+    public DbSet<SynchronLessonInstructor> SynchronLessonInstructors { get; set; }
+    public DbSet<UserSocial> UserSocials { get; set; }
+    public DbSet<UserSkill> UserSkills { get; set; }
+    public DbSet<SubType> SubTypes { get; set; }
+    public DbSet<Program> Programs { get; set; }
 
 
 
