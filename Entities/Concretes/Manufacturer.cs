@@ -6,7 +6,10 @@ namespace Entities.Concretes
 	public class Manufacturer:Entity<Guid>
 	{
 		public string Name { get; set; }
-		public List<Course> Courses { get;}
-	}
+
+		public virtual ICollection<Course> Courses { get;}
+        public virtual ICollection<AsyncLessonDetail> AsyncLessonDetail { get; set; }
+        public virtual ICollection<SynchronLessonDetail> SynchronLessonDetails { get; set; }
+    }
 }
 

@@ -17,9 +17,9 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
     {
         builder.ToTable("Addresses").HasKey(b => b.Id);
         builder.Property(b => b.Id ).HasColumnName("Id").IsRequired(); 
-        builder.Property(b => b.CityId).HasColumnName("CityId");
-        builder.Property(b => b.CountryId).HasColumnName("CountryId"); 
-        builder.Property(b => b.TownId).HasColumnName("TownId"); 
+        builder.Property(b => b.CityId).HasColumnName("CityId").IsRequired();
+        builder.Property(b => b.CountryId).HasColumnName("CountryId").IsRequired(); 
+        builder.Property(b => b.TownId).HasColumnName("TownId").IsRequired(); 
         builder.Property(b => b.Description).HasColumnName("Description");
 
 

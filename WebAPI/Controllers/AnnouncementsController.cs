@@ -11,16 +11,16 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AnnouncementsController : ControllerBase
     {
-        IAnnouncementService _announcementService;
+        INotificationService _announcementService;
 
-        public AnnouncementsController(IAnnouncementService announcementService)
+        public AnnouncementsController(INotificationService announcementService)
         {
             _announcementService=announcementService;
         }
 
         [HttpPost("add")]
 
-        public async Task<IActionResult> Add([FromBody] CreateAnnouncementRequest createAnnouncementRequest)
+        public async Task<IActionResult> Add([FromBody] CreateNotificationRequest createAnnouncementRequest)
         {
 
             var result = await _announcementService.Add(createAnnouncementRequest);
@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
         [HttpPost("update")]
-        public async Task<IActionResult> Update([FromBody] UpdateAnnouncementRequest updateAnnouncementRequest)
+        public async Task<IActionResult> Update([FromBody] UpdateNotificationRequest updateAnnouncementRequest)
         {
 
             var result = await _announcementService.Update(updateAnnouncementRequest);
@@ -37,7 +37,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteAnnouncementRequest deleteAnnouncementRequest)
+        public async Task<IActionResult> Delete([FromBody] DeleteNotificationRequest deleteAnnouncementRequest)
         {
 
             var result = await _announcementService.Delete(deleteAnnouncementRequest);

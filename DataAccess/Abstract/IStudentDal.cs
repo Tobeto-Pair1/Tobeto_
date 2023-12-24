@@ -3,7 +3,7 @@ using Entities.Concretes;
 
 namespace DataAccess.Abstract;
 
-public interface IStudentDal:IRepository<Student, int>, IAsyncRepository<Student, int>
+public interface IStudentDal:IRepository<Student, Guid>, IAsyncRepository<Student, Guid>
 {
     
 }

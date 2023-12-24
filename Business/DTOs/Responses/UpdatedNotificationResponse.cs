@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Responses
 {
-    public class DeletedAnnouncementResponse
+    public class UpdatedNotificationResponse
     {
         public int Id { get; set; }
         public string Title { get; set; }

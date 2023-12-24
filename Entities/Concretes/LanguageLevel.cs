@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class LanguageLevel : Entity<int>
+public class LanguageLevel : Entity<Guid>
 {
-
     public string Name { get; set; }
     
-    public virtual ICollection<ForeignLanguage> ForeignLanguages { get; set; }
+    public virtual ICollection<UserLanguage> UserLanguages { get; set; }
+
 }

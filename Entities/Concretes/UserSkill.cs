@@ -7,17 +7,11 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class UserSkill : Entity<int>
+//Id = UserId
+public class UserSkill : Entity<Guid>
 {
+    public Guid SkillId  { get; set; }
 
-
-    public int UserId { get; set; }
-    public int SkillId  { get; set; }
     public virtual User User { get; set; }
-
     public  virtual Skill Skill { get; set; }
-    
-
-
-
 }

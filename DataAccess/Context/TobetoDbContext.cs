@@ -15,7 +15,8 @@ public class TobetoDbContext : DbContext
     protected IConfiguration Configuration { get; set; }
 
     public DbSet<AboutOfCourse> AboutOfCourses { get; set; }
-    public DbSet<Announcement> Announcements { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
+    public DbSet<NotificationType> NotificationTypes { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<UserEducation> UserEducations { get; set; }
     public DbSet<Instructor> Instructors { get; set; }
@@ -30,11 +31,9 @@ public class TobetoDbContext : DbContext
     public DbSet<UserLanguage> UserLanguages { get; set; }
     public DbSet<Town> Towns { get; set; }
     public DbSet<Skill> Skills { get; set; }
-    public DbSet<NotificationType> NotificationTypes {get; set;}
     public DbSet<Employee> Employees { get; set; }
     public DbSet<AsyncLesson> AsyncLessons { get; set; }
     public DbSet<SynchronLesson> SynchronLessons { get; set; }
-    public DbSet<New> News { get; set; }
     public DbSet<City> Cities { get; set; }
 
 

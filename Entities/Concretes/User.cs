@@ -11,23 +11,27 @@ namespace Entities.Concretes;
 
 public class User: Entity<Guid>
 {
-    public string IdentityNumber { get; set; }
     public string  FirstName { get; set; }
     public string  Lastname { get; set; }
+    public string IdentityNumber { get; set; }
     public string  PhoneNumber { get; set; }
     public string?  Email { get; set; }
     public DateTime  BirthDate { get; set; }
     public Guid AdrressId { get; set; }
+    public string AboutMe { get; set; }
 
 
     public virtual Address Address { get; set; }
-    public virtual ICollection<UserSkill> UserSkills { get; set; }
-    public virtual ICollection<UserLanguage> Languages { get; set; }
-    public virtual ICollection<UserSocial> UserSocials { get; set; }
-    public virtual ICollection<Student>Students { get; set; }
-    public virtual ICollection<Employee>Employees { get; set; }
-    public virtual ICollection<Instructor> Instructors { get; set; }
     public virtual ICollection<Experience> Experiences { get; set; }
+    public virtual ICollection<UserEducation> UserEducations { get; set; }
+    public virtual ICollection<UserSkill> UserSkills { get; set; }
+    public virtual ICollection<UserSocial> UserSocials { get; set; }
+    public virtual ICollection<UserLanguage> UserLanguages { get; set; }
+
+    //public virtual ICollection<Student>Students { get; set; }
+    //public virtual ICollection<Employee>Employees { get; set; }
+    //public virtual ICollection<Instructor> Instructors { get; set; }
+
 
 
 }

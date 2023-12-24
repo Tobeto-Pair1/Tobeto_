@@ -2,7 +2,7 @@
 
 namespace Entities.Concretes;
 
-public class Company : Entity<int>
+public class Company : Entity<Guid>
 {
     public string Name { get; set; }
 

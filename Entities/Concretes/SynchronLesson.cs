@@ -1,20 +1,21 @@
 ﻿using System;
 using Core.Entities;
 
-namespace Entities.Concretes
+namespace Entities.Concretes;
+
+public class SynchronLesson : Entity<Guid>
 {
-	public class SynchronLesson:Entity<Guid>
-	{
+    public Guid SynchronLessonDetailId { get; set; }
+    public string SessionName { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
+    public DateTime TimeSpent { get; set; }
 
-        public DateTime DurationTime { get; set; }  //total süre
-        public DateTime TimeSpent { get; set; }  //geçirilen süre
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public Guid InstructorId { get; set; }
 
-        // query yazılıp ders ile ilgili olan hocalar çekilecek comboboxdan aralarından seçim yaptırılacak**
-        public virtual ICollection<Instructor> Instructors { get; set; }
-        public virtual CourseType CourseType { get; set; }
-	}
+    //  public string SessionRecording { get; set; }
+
+    // query yazılıp ders ile ilgili olan hocalar çekilecek comboboxdan aralarından seçim yaptırılacak**
+    public virtual ICollection<SynchronLessonInstructor> SynchronLessonInstructor { get; set; }
+    public virtual SynchronLessonDetail SynchronLessonDetail { get; set; }
 }
 

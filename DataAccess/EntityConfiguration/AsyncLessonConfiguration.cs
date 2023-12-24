@@ -20,7 +20,9 @@ namespace DataAccess.EntityConfiguration
             builder.Property(an => an.TimeSpent).HasColumnName("TimeSpent");
             builder.Property(an => an.InstructorId).HasColumnName("InstructorId");
             builder.Property(an => an.CourseModuleId).HasColumnName("CourseModuleId");
-          
+
+            //builder.HasMany(an => an.Instructors);
+            builder.HasOne(an => an.CourseModule);
             builder.HasQueryFilter(an => !an.DeletedDate.HasValue);
         }
     }
