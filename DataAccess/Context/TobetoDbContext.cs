@@ -38,6 +38,7 @@ public class TobetoDbContext : DbContext
     //public DbSet<Experience> Experiences { get; set; }
     
 
+    public DbSet<Company> Companies { get; set; }
 
 
 
