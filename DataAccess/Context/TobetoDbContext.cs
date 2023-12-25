@@ -41,7 +41,8 @@ public class TobetoDbContext : DbContext
     public DbSet<UserSkill> UserSkills { get; set; }
     public DbSet<SubType> SubTypes { get; set; }
     public DbSet<Program> Programs { get; set; }
-
+    public DbSet<Experience> Experiences { get; set; }
+    public DbSet<Company> Companies { get; set; }
 
 
 

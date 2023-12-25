@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
-using Business.Dtos.Requests;
-using Business.Dtos.Responses;
-using Business.DTOs.Requests;
-using Business.DTOs.Responses;
+using Business.DTOs.Employees;
 using Core.DataAccess.Dynamic;
 using Entities.Concrete;
 using Entities.Concretes;
@@ -28,7 +25,14 @@ namespace Business.Profiles
             CreateMap<UpdateEmployeeRequest, Employee>().ReverseMap();
 
             CreateMap<Paginate<Employee>, Paginate<GetListEmployeeResponse>>().ReverseMap();
-            CreateMap<Employee, GetListEmployeeResponse>().ReverseMap();
+            CreateMap<Employee, GetListEmployeeResponse>()
+           .ForMember(destinationMember: a => a.DepartmentId,
+            memberOptions: opt => opt.MapFrom(a => a.Department.Id))
+           .ForMember(destinationMember: a => a.UserId,
+            memberOptions: opt => opt.MapFrom(a => a.User.Id))
+           .ForMember(destinationMember: a => a.FullName,
+            memberOptions: opt => opt.MapFrom(a => (a.User.FirstName )))
+           .ReverseMap();
         }
     }
 }

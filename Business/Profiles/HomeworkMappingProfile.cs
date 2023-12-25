@@ -3,14 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Business.DTOs.Requests;
-using Business.DTOs.Responses;
 using Core.DataAccess.Paging;
 using Entities.Concretes;
 
 using Core.DataAccess.Dynamic;
 
 using System.Threading.Tasks;
+using Business.DTOs.Homeworks;
 
 namespace Business.Profiles
 {

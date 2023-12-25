@@ -1,5 +1,4 @@
-﻿using Business.DTOs.Requests;
-using Business.DTOs.Responses;
+﻿using Business.DTOs.Notifications;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using System;
@@ -8,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Abstract 
+namespace Business.Abstract
 {
     public interface INotificationService
     {
