@@ -1,6 +1,4 @@
-﻿using Business.Dtos.Responses;
-using Business.DTOs.Requests;
-using Business.DTOs.Responses;
+﻿using Business.DTOs.AboutOfCourses;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 

@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Profiles;
+using Business.DTOs.UserLanguages;
 
 namespace Business
 {
@@ -18,12 +19,11 @@ namespace Business
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
             services.AddScoped<IAboutOfCourseService, AboutOfCourseManager>();
-            services.AddScoped<INotificationService, NotificationManager>();
             services.AddScoped<IEmployeeService, EmployeeManager>();
             services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
-            services.AddScoped<ILanguageService, LanguageManager>();
+            services.AddScoped<IForeignLanguageService, ForeignLanguageManager>();
             services.AddScoped<ISocialMediaService, SocialMediaManager>();
             services.AddScoped<IStudentService, StudentManager>();
             services.AddScoped<IAsyncLessonService, AsyncLessonManager>();
@@ -36,7 +36,8 @@ namespace Business
             services.AddScoped<ISynchronLessonService, SynchronLessonManager>();
             services.AddScoped<IUserEducationService, UserEducationManager>();
             services.AddScoped<ICityService, CityManager>();
-
+            services.AddScoped<INotificationService, NotificationManager>();
+            services.AddScoped<IExperienceService, ExperienceManager>();
 
 
 

@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Business.Dtos.Requests;
+using Business.DTOs.ForeignLanguages;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,16 +10,16 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ForeignLanguagesController : ControllerBase
     {
-        ILanguageService _languageService;
+        IForeignLanguageService _languageService;
 
-        public ForeignLanguagesController(ILanguageService languageService)
+        public ForeignLanguagesController(IForeignLanguageService languageService)
         {
             _languageService = languageService;
         }
 
         [HttpPost("add")]
 
-        public async Task<IActionResult> Add([FromBody] CreateLanguageRequest createLanguageRequest)
+        public async Task<IActionResult> Add([FromBody] CreateForeignLanguageRequest createLanguageRequest)
         {
 
             var result = await _languageService.Add(createLanguageRequest);
@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] DeleteLanguageRequest deleteLanguageRequest)
+        public async Task<IActionResult> Delete([FromBody] DeleteForeignLanguageRequest deleteLanguageRequest)
         {
             var result = await _languageService.Delete(deleteLanguageRequest);
 
@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public async Task<IActionResult> Update([FromBody] UpdateLanguageRequest updateLanguageRequest)
+        public async Task<IActionResult> Update([FromBody] UpdateForeignLanguageRequest updateLanguageRequest)
         {
             var result = await _languageService.Update(updateLanguageRequest);
 

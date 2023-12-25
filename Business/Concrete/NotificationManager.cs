@@ -1,14 +1,9 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.Dtos.Requests;
-using Business.Dtos.Responses;
-using Business.DTOs.Requests;
-using Business.DTOs.Responses;
+using Business.DTOs.Notifications;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
-using Entities.Concrete;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -22,9 +17,10 @@ namespace Business.Concrete
     {
         INotificationDal _notificationDal;
         IMapper _mapper;
-        public NotificationManager(IMapper mapper)
+        public NotificationManager(IMapper mapper, INotificationDal notificationDal)
         {
             _mapper = mapper;
+            _notificationDal = notificationDal;
         }
         public async Task<CreatedNotificationResponse> Add(CreateNotificationRequest createNotificationRequest)
         {

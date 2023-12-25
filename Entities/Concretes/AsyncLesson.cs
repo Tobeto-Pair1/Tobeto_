@@ -17,4 +17,3 @@ namespace Entities.Concretes
         public virtual  AsyncLessonDetail AsyncLessonDetail { get; set; }
     }
 }
-

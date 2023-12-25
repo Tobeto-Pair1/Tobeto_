@@ -14,6 +14,7 @@ public class InstructorConfiguration : IEntityTypeConfiguration<Instructor>
 
 
         builder.HasOne(b => b.User);
+        builder.HasOne(b => b.SynchronLessonInstructor);
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
     }
 }
