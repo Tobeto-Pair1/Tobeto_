@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using Business.Dtos.Requests;
-using Business.Dtos.Responses;
 using Core.DataAccess.Dynamic;
 using Entities.Concretes;
+using Business.DTOs.UserEducations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +14,17 @@ public class EducationMappingProfile : Profile
 {
     public EducationMappingProfile()
     {       
-        CreateMap<UserEducation, CreatedEducationResponse>().ReverseMap();
+        CreateMap<UserEducation, CreatedUserEducationResponse>().ReverseMap();
 
-        CreateMap<UserEducation, CreateEducationRequest>().ReverseMap();
+        CreateMap<UserEducation, CreateUserEducationRequest>().ReverseMap();
 
-        CreateMap<UserEducation, DeleteEducationRequest>().ReverseMap();
+        CreateMap<UserEducation, DeleteUserEducationRequest>().ReverseMap();
 
-        CreateMap<UserEducation, DeletedEducationResponse>().ReverseMap();
+        CreateMap<UserEducation, DeletedUserEducationResponse>().ReverseMap();
 
-        CreateMap<UserEducation, GetListEducationResponse>().ReverseMap();
+        CreateMap<UserEducation, GetListUserEducationResponse>().ReverseMap();
 
-        CreateMap<Paginate<UserEducation>, Paginate<GetListEducationResponse>>().ReverseMap();
+        CreateMap<Paginate<UserEducation>, Paginate<GetListUserEducationResponse>>().ReverseMap();
 
        
     }

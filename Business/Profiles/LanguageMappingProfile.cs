@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Business.Dtos.Requests;
-using Business.Dtos.Responses;
+using Business.DTOs.ForeignLanguages;
 using Core.DataAccess.Dynamic;
 using Entities.Concrete;
 
@@ -10,10 +9,10 @@ namespace Business.Profiles
     {
         public LanguageMappingProfile()
         {
-            CreateMap<ForeignLanguage, CreatedLanguageResponse>().ReverseMap();
-            CreateMap<CreateLanguageRequest, ForeignLanguage>().ReverseMap();
+            CreateMap<ForeignLanguage, CreatedForeignLanguageResponse>().ReverseMap();
+            CreateMap<CreateForeignLanguageRequest, ForeignLanguage>().ReverseMap();
 
-            CreateMap<Paginate<ForeignLanguage>, GetListLanguageResponse>().ReverseMap();
+            CreateMap<Paginate<ForeignLanguage>, GetListForeignLanguageResponse>().ReverseMap();
         }
 
     }
