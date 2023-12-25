@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Business.Dtos.Requests;
 using Business.DTOs.Requests;
-using Business.DTOs.Responses;
+using Business.DTOs.UserSkills;
 using Core.DataAccess.Dynamic;
 using Entities.Concretes;
 using System;
@@ -22,7 +21,7 @@ namespace Business.Profiles
             CreateMap<UserSkill, DeletedUserSkillResponse>().ReverseMap();
             CreateMap<DeleteUserSkillRequest, UserSkill>().ReverseMap();
             CreateMap<UserSkill, UpdatedUserSkillResponse>().ReverseMap();
-            CreateMap<UpdateUserRequest, UserSkill>().ReverseMap();
+            CreateMap<UpdateUserSkillRequest, UserSkill>().ReverseMap();
 
             CreateMap<UserSkill, GetListUserSkillResponse>().ReverseMap();
             CreateMap<Paginate<UserSkill>, Paginate<GetListUserSkillResponse>>().ReverseMap();

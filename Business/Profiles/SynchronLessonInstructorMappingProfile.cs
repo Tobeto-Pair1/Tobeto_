@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Business.DTOs.Requests;
-using Business.DTOs.Responses;
+using Business.DTOs.SynchronLessonInstructors;
 using Core.DataAccess.Dynamic;
 using Entities.Concretes;
 using System;

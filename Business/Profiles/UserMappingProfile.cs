@@ -18,6 +18,11 @@ namespace Business.Profiles
             CreateMap<User, CreatedUserResponse>().ReverseMap();
             CreateMap<CreateUserRequest, User>().ReverseMap();
 
+            CreateMap<User, DeletedUserResponse>().ReverseMap();
+            CreateMap<DeleteUserRequest, User>().ReverseMap();
+
+            CreateMap<User, UpdatedUserResponse>().ReverseMap();
+            CreateMap<UpdateUserRequest, User>().ReverseMap();
 
             CreateMap<User, GetListUserResponse>().ReverseMap();
             CreateMap<Paginate<User>,Paginate<GetListUserResponse>>().ReverseMap();

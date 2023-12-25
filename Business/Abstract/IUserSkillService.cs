@@ -1,6 +1,5 @@
 ﻿using Business.DTOs.Requests;
-using Business.Dtos.Responses;
-using Business.DTOs.Responses;
+using Business.DTOs.UserSkills;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using System;
