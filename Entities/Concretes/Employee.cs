@@ -5,7 +5,7 @@ namespace Entities.Concretes
 {
 	public class Employee:Entity<Guid>
 	{
-		public string Name { get; set; }
+		//public string Name { get; set; } gereksiz
 		public Guid DepartmentId {get; set;}
 		public Guid UserId { get; set; }
 

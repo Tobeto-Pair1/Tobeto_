@@ -12,6 +12,6 @@ public class Instructor : Entity<Guid>
     public Guid UserId { get; set; }
 
     public virtual User User { get; set; }
-    public virtual SynchronLesson SynchronLesson { get; set; }
+    public virtual SynchronLessonInstructor SynchronLessonInstructor { get; set; }
     public virtual ICollection<AsyncLesson> AsyncLessons { get; set; }
 }

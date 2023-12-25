@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Business.DTOs.Requests;
-using Business.DTOs.Responses;
+using Business.DTOs.Instructors;
 using Core.DataAccess.Dynamic;
 using Entities.Concretes;
 
@@ -25,9 +24,10 @@ public class InstructorMappingProfile : Profile
         CreateMap<Instructor, UpdatedInstructorResponse>().ReverseMap();
 
 
-        CreateMap<Instructor, GetListInstructorResponse>().
-            ForMember(destinationMember: a => a.FullName,
-            memberOptions: opt => opt.MapFrom(a => a.User.FirstName + a.User.Lastname)).ReverseMap();
+        CreateMap<Instructor, GetListInstructorResponse>()
+            /*.ForMember(destinationMember: a => a.FullName,
+            memberOptions: opt => opt.MapFrom(a => a.User.FirstName + a.User.Lastname))*/
+            .ReverseMap();
 
         CreateMap<Paginate<Instructor>, Paginate<GetListInstructorResponse>>().ReverseMap();
     }

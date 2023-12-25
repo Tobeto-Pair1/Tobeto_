@@ -16,7 +16,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.ToTable("Users").HasKey(o => o.Id);
         builder.Property(o => o.Id).HasColumnName("Id");
-       // builder.Property(o => o.AdrressId).HasColumnName("AdrressId");
+        builder.Property(o => o.AdrressId).HasColumnName("AdrressId");
         builder.Property(b => b.FirstName).HasColumnName("FirstName").IsRequired();
         builder.Property(b => b.Lastname).HasColumnName("Lastname").IsRequired();
         builder.Property(o => o.IdentityNumber).HasColumnName("IdentityNumber").IsRequired();
@@ -27,7 +27,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.HasIndex(indexExpression: b => b.IdentityNumber, name: "UK_Users_IdentityNumber").IsUnique();
 
-        //builder.HasOne(b=>b.Address);
+        builder.HasOne(b=>b.Address);
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
 

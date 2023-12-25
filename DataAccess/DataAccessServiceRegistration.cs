@@ -39,7 +39,7 @@ public static class DataAccessServiceRegistration
         services.AddScoped<IAddressDal, EfAddressDal>();
         services.AddScoped<ICategoryDal, EfCategoryDal>();
         services.AddScoped<IInstructorDal, EfInstructorDal>();
-        services.AddScoped<ILanguageDal, EfLanguageDal>();
+        services.AddScoped<IForeignLanguageDal, EfForeignLanguageDal>();
         services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
         services.AddScoped<IStudentDal, EfStudentDal>();
         services.AddScoped<IAsyncLessonDal, EfAsyncLessonDal>();
@@ -53,6 +53,8 @@ public static class DataAccessServiceRegistration
         services.AddScoped<IUserEducationDal, EfUserEducationDal>();
         services.AddScoped<ICityDal, EfCityDal>();
         services.AddScoped<ICompanyDal, EfCompanyDal>();
+        services.AddScoped<IExperienceDal, EfExperienceDal>();
+
 
 
 

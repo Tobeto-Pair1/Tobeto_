@@ -1,6 +1,5 @@
 using AutoMapper;
-using Business.DTOs.Requests;
-using Business.DTOs.Responses;
+using Business.DTOs.Students;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using Entities.Concretes;
