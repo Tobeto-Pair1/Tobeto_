@@ -36,7 +36,12 @@ namespace Business
             services.AddScoped<ISynchronLessonService, SynchronLessonManager>();
             services.AddScoped<IUserEducationService, UserEducationManager>();
             services.AddScoped<ICityService, CityManager>();
-
+            services.AddScoped<ISynchronLessonDetailService, SynchronLessonDetailManager>();
+            services.AddScoped<ISynchronLessonInstructorService, SynchronLessonInstructorManager>();
+            services.AddScoped<IUserSocialService, UserSocialManager>();
+            services.AddScoped<IUserSkillService, UserSkillManager>();
+            services.AddScoped<ISubTypeService, SubTypeManager>();
+            services.AddScoped<IProgramService, ProgramManager>();
 
 
 
