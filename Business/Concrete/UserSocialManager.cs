@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.DTOs.Requests;
-using Business.Dtos.Responses;
-using Business.DTOs.Responses;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
@@ -13,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Business.DTOs.UserSocials;
 
 namespace Business.Concrete
 {

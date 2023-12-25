@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Business.Dtos.Requests;
-using Business.DTOs.Requests;
-using Business.DTOs.Responses;
+using Business.DTOs.UserSocials;
 using Core.DataAccess.Dynamic;
 using Entities.Concretes;
 using System;
@@ -20,7 +18,7 @@ namespace Business.Profiles
             CreateMap<CreateUserSocialRequest, UserSocial>().ReverseMap();
 
             CreateMap<UserSocial, DeletedUserSocialResponse>().ReverseMap();
-            CreateMap<DeleteUserRequest, UserSocial>().ReverseMap();
+            CreateMap<DeleteUserSocialRequest, UserSocial>().ReverseMap();
 
             CreateMap<UserSocial, UpdatedUserSocialResponse>().ReverseMap();
             CreateMap<UpdateUserSocialRequest, UserSocial>().ReverseMap();

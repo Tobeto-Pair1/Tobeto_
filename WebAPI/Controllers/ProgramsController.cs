@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Business.DTOs.Requests;
+using Business.DTOs.Programs;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

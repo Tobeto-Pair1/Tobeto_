@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.DTOs.Requests;
-using Business.DTOs.Responses;
+using Business.DTOs.SubTypes;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
