@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
         public async Task<IActionResult> Update([FromBody] UpdateTownRequest updateTownRequest)
         {
             var result = await _townService.Update(updateTownRequest);
