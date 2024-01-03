@@ -27,8 +27,8 @@ public static class DataAccessServiceRegistration
         services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
 
         //services.AddDbContext<TobetoDbContext>(options =>
-        //    options.UseSqlServer("Data Source=DESKTOP-3O4V1S5;Initial Catalog=Tobeto_Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False",
-        //    b => b.MigrationsAssembly("WebAPI")));
+        //    options.UseSqlServer("TobetoDB",
+        //    b => b.MigrationsAssembly("DataAccess")));
 
 
 

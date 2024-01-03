@@ -13,7 +13,7 @@ public class Address : Entity<Guid>
     public Guid CountryId { get; set; }
     public Guid CityId { get; set; }
     public Guid TownId { get; set; }
-    public string? Description { get; set; }
+    public string Description { get; set; }
 
     public virtual Country Country { get; set; } 
     public virtual City City { get; set; } 

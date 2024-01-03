@@ -10,6 +10,6 @@ namespace Entities.Concretes;
 
 public class Country : Entity<Guid>
 {
-    public string Name { get; set; }
+    public string? Name { get; set; }
     public virtual List<City> Cities { get; set; }
 }
