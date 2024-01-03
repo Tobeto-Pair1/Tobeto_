@@ -8,9 +8,9 @@ namespace Business.DTOs.Addresses;
 
 public class CreateAddressRequest
 {
-    public string CountryName { get; set; }
-    public string CityName { get; set; }
-    public string TownName { get; set; }
+    public Guid CountryId { get; set; }
+    public Guid CityId { get; set; }
+    public Guid TownId { get; set; }
     public string Description { get; set; }
 
 }

@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Entities.Concrete;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,11 @@ public class User: Entity<Guid>
     public string  PhoneNumber { get; set; }
     public string?  Email { get; set; }
     public DateTime  BirthDate { get; set; }
-    public Guid AdrressId { get; set; }
+    public Guid AddressId { get; set; }
     public string AboutMe { get; set; }
 
 
-    public virtual Address Address { get; set; }
+    public virtual  Address Address { get; set; }
     public virtual ICollection<Experience> Experiences { get; set; }
     public virtual ICollection<Certificate> Certificate { get; set; }
     public virtual ICollection<UserEducation> UserEducations { get; set; }

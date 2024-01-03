@@ -32,10 +32,14 @@ namespace Business.Profiles
             CreateMap<Company, UpdatedCompanyResponse>().ReverseMap();
 
 
-            CreateMap<Company, GetListCompanyResponse>().ReverseMap();
+            CreateMap<Company, GetListCompanyResponse>().
+                ForMember(destinationMember: a => a.ExperienceId,
+            memberOptions: opt => opt.MapFrom(a => a.Id))
+                .ReverseMap();
 
 
-            CreateMap<Paginate<Company>, Paginate<GetListCompanyResponse>>().ReverseMap();
+            CreateMap<Paginate<Company>, Paginate<GetListCompanyResponse>>()
+                .ReverseMap();
         }
     }
 }

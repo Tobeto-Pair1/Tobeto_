@@ -15,7 +15,7 @@ namespace DataAccess.EntityConfiguration
         {
             builder.ToTable("SynchronLessonInstructors").HasKey(b => b.Id);
             builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
-            builder.Property(b => b.Instructor.Id).HasColumnName("InstructorId").IsRequired();
+            builder.Property(b => b.InstructorId).HasColumnName("InstructorId").IsRequired();
 
 
             builder.HasOne(b => b.Instructor);

@@ -13,6 +13,8 @@ public class CategoryMappingProfile : Profile
         CreateMap<Category, UpdatedCategoryResponse>().ReverseMap();
         CreateMap<Category, DeletedCategoryResponse>().ReverseMap();
 
+        CreateMap<Category, DeleteCategoryRequest>().ReverseMap();
+
 
         CreateMap<Category, CreateCategoryRequest>().ReverseMap();
 

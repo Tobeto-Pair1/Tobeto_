@@ -45,6 +45,10 @@ namespace Business
             services.AddScoped<INotificationService, NotificationManager>();
             services.AddScoped<IExperienceService, ExperienceManager>();
 
+            services.AddScoped<ICompanyService, CompanyManager>();
+
+           
+
 
 
 

@@ -24,7 +24,7 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
 
 
 
-        builder.HasOne(b => b.City);
+        builder.HasOne(b => b.City).WithMany(b=>b.Addresses).HasForeignKey(b=>b.CityId);
         builder.HasOne(b => b.Country);
         builder.HasOne(b => b.Town);
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);

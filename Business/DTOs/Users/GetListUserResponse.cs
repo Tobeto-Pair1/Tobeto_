@@ -15,6 +15,9 @@ namespace Business.DTOs.Users
         public string PhoneNumber { get; set; }
         public string? Email { get; set; }
         public DateTime BirthDate { get; set; }
-        public Guid AdrressId { get; set; }
+        public string CountryName { get; set; }
+        public string CityName { get; set; }
+        public string TownName { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -15,7 +15,6 @@ public class CatalogConfiguration : IEntityTypeConfiguration<Catalog>
     {
 
 
-
         //builder.ToTable("Catalogs").HasKey(o => o.Id);
         //builder.Property(o => o.Id).HasColumnName("Id").IsRequired();
         //builder.Property(o => o.SubjectId).HasColumnName("SubjectId").IsRequired();
@@ -23,10 +22,10 @@ public class CatalogConfiguration : IEntityTypeConfiguration<Catalog>
         //builder.Property(o => o.LevelId).HasColumnName("LevelId").IsRequired();
         //builder.Property(o => o.SituationId).HasColumnName("SituationId").IsRequired();
         //builder.Property(o => o.SoftwareLanguageId).HasColumnName("SoftwareLanguageId").IsRequired();
-       
 
 
-        
+
+
 
 
 

@@ -15,8 +15,17 @@ namespace Business.Profiles
         public UserMappingProfile()
         {
 
+        //       public string CountryName { get; set; }
+        //public string CityName { get; set; }
+        //public string TownName { get; set; }
+        //public string Description { get; set; }
+
             CreateMap<User, CreatedUserResponse>().ReverseMap();
-            CreateMap<CreateUserRequest, User>().ReverseMap();
+            CreateMap<User,CreateUserRequest>() 
+            //    .
+            //    ForMember(destinationMember: a => a.AddressId,
+            //memberOptions: opt => opt.MapFrom(a => a.Address.Id)) 
+                .ReverseMap();
 
             CreateMap<User, DeletedUserResponse>().ReverseMap();
             CreateMap<DeleteUserRequest, User>().ReverseMap();
@@ -24,7 +33,16 @@ namespace Business.Profiles
             CreateMap<User, UpdatedUserResponse>().ReverseMap();
             CreateMap<UpdateUserRequest, User>().ReverseMap();
 
-            CreateMap<User, GetListUserResponse>().ReverseMap();
+            CreateMap<User, GetListUserResponse>()
+                .ForMember(destinationMember: a => a.TownName,
+           memberOptions: opt => opt.MapFrom(a => a.Address.Town.Name))
+                .ForMember(destinationMember: a => a.CountryName,
+           memberOptions: opt => opt.MapFrom(a => a.Address.Country.Name))
+                .ForMember(destinationMember: a => a.CityName,
+           memberOptions: opt => opt.MapFrom(a => a.Address.City.Name))
+                .ForMember(destinationMember: a => a.Description,
+           memberOptions: opt => opt.MapFrom(a => a.Address.Description))
+                .ReverseMap();
             CreateMap<Paginate<User>,Paginate<GetListUserResponse>>().ReverseMap();
 
         }
