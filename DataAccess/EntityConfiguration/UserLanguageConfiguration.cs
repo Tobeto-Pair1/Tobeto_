@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.EntityConfiguration;
 
-public class UserLanguageConfiguration: IEntityTypeConfiguration<UserLanguage>
+public class UserLanguageConfiguration : IEntityTypeConfiguration<UserLanguage>
 {
     public void Configure(EntityTypeBuilder<UserLanguage> builder)
     {

@@ -28,6 +28,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasIndex(indexExpression: b => b.IdentityNumber, name: "UK_Users_IdentityNumber").IsUnique();
 
         builder.HasOne(b=>b.Address);
+
+        builder.HasMany(b => b.UserLanguages);
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
 
