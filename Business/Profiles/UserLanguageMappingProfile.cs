@@ -19,20 +19,7 @@ namespace Business.Profiles
             memberOptions: opt => opt.MapFrom(a => a.ForeignLanguage.Name)).
             ForMember(destinationMember: a => a.LanguageLevelName,
             memberOptions: opt => opt.MapFrom(a => a.LanguageLevel.Name)).
-            ForMember(destinationMember: a => a.IdentityNumber,
-            memberOptions: opt => opt.MapFrom(a => a.User.IdentityNumber)).
-            ForMember(destinationMember: a => a.FirstName,
-            memberOptions: opt => opt.MapFrom(a => a.User.FirstName)).
-             ForMember(destinationMember: a => a.Lastname,
-            memberOptions: opt => opt.MapFrom(a => a.User.Lastname)).
-            ForMember(destinationMember: a => a.PhoneNumber,
-            memberOptions: opt => opt.MapFrom(a => a.User.PhoneNumber)).
-            ForMember(destinationMember: a => a.Email,
-            memberOptions: opt => opt.MapFrom(a => a.User.Email)).
-            ForMember(destinationMember: a => a.BirthDate,
-            memberOptions: opt => opt.MapFrom(a => a.User.BirthDate)).
-            ForMember(destinationMember: a => a.AboutMe,
-            memberOptions: opt => opt.MapFrom(a => a.User.AboutMe)).ReverseMap();
+          ReverseMap();
 
 
             CreateMap<UserLanguage, CreateUserLanguageRequest>().
@@ -40,21 +27,7 @@ namespace Business.Profiles
                 memberOptions: opt => opt.MapFrom(a => a.ForeignLanguage.Name)).
                 ForMember(destinationMember: a => a.LanguageLevelName,
                 memberOptions: opt => opt.MapFrom(a => a.LanguageLevel.Name)).
-                ForMember(destinationMember: a => a.IdentityNumber,
-                memberOptions: opt => opt.MapFrom(a => a.User.IdentityNumber)).
-                ForMember(destinationMember: a => a.FirstName,
-                memberOptions: opt => opt.MapFrom(a => a.User.FirstName)).
-                 ForMember(destinationMember: a => a.Lastname,
-                memberOptions: opt => opt.MapFrom(a => a.User.Lastname)).
-                ForMember(destinationMember: a => a.PhoneNumber,
-                memberOptions: opt => opt.MapFrom(a => a.User.PhoneNumber)).
-                ForMember(destinationMember: a => a.Email,
-                memberOptions: opt => opt.MapFrom(a => a.User.Email)).
-                ForMember(destinationMember: a => a.BirthDate,
-                memberOptions: opt => opt.MapFrom(a => a.User.BirthDate)).
-                ForMember(destinationMember: a => a.AboutMe,
-                memberOptions: opt => opt.MapFrom(a => a.User.AboutMe))
-                .ReverseMap();
+                ReverseMap();
 
             CreateMap<UserLanguage, DeletedUserLanguageResponse>().ReverseMap();
             CreateMap<DeleteUserLanguageRequest, UserLanguage>().ReverseMap();
@@ -67,9 +40,3 @@ namespace Business.Profiles
         }
     }
 }
-/*ForMember(destinationMember: a => a.CityName,
-            memberOptions: opt => opt.MapFrom(a => a.User.Address.City.Name)).
-            ForMember(destinationMember: a => a.CountryName,
-            memberOptions: opt => opt.MapFrom(a => a.User.Address.Country.Name)).
-            ForMember(destinationMember: a => a.TownName,
-            memberOptions: opt => opt.MapFrom(a => a.User.Address.Town.Name))*/

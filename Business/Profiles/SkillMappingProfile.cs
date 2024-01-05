@@ -7,9 +7,9 @@ using Entities.Concretes;
 
 namespace Business.Profiles;
 
-public class MappingSkillProfile : Profile
+public class SkillMappingProfile : Profile
 {
-    public MappingSkillProfile()
+    public SkillMappingProfile()
     {
         CreateMap<Skill, CreatedSkillResponse>().ReverseMap();
         CreateMap<CreateSkillRequest, Skill>().ReverseMap();

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.DTOs.Users;
 using Core.DataAccess.Dynamic;
+using Entities.Concrete;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -15,17 +16,19 @@ namespace Business.Profiles
         public UserMappingProfile()
         {
 
-        //       public string CountryName { get; set; }
-        //public string CityName { get; set; }
-        //public string TownName { get; set; }
-        //public string Description { get; set; }
+        //public string CountryName { get; set;}
+        //public string CityName { get; set;}
+        //public string TownName { get; set;}
+        //public string Description { get; set;}
 
             CreateMap<User, CreatedUserResponse>().ReverseMap();
-            CreateMap<User,CreateUserRequest>() 
-            //    .
-            //    ForMember(destinationMember: a => a.AddressId,
-            //memberOptions: opt => opt.MapFrom(a => a.Address.Id)) 
+
+            CreateMap<Country, CreateUserRequest>().ReverseMap();
+            CreateMap<Address, CreateUserRequest>().ReverseMap();
+            CreateMap<User, CreateUserRequest>()
+                .IncludeMembers(memberExpressions: a => a.Address)
                 .ReverseMap();
+             //   .ReverseMap();
 
             CreateMap<User, DeletedUserResponse>().ReverseMap();
             CreateMap<DeleteUserRequest, User>().ReverseMap();

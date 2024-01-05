@@ -18,13 +18,14 @@ public class CreateUserRequest
     public DateTime BirthDate { get; set; }
     public string AboutMe { get; set; }
 
-    public Guid CountryId { get; set; }
-    public Guid CityId { get; set; }
-    public Guid TownId { get; set; }
-    public Guid AddressId { get; set; }
+    //public Guid CountryId { get; set; }
+    //public Guid CityId { get; set; }
+    //public Guid TownId { get; set; }
 
-    //   public CreateAddressRequest CreateAddressRequest { get; set; }
-
+    public string Name { get; set; }
+    public string CityName { get; set; }
+    public string TownName { get; set; }
+    public string Description { get; set; }
 
 
 }
