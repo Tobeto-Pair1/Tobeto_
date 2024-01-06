@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
-        [HttpPost("delete")]
+        [HttpDelete("delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteCategoryRequest deleteCategoryRequest)
         {
             await _categoryService.Delete(deleteCategoryRequest);
@@ -37,6 +37,13 @@ namespace WebAPI.Controllers
         {
             var result = await _categoryService.GetListAsync(pageRequest);
             return Ok(result);
+        }
+        [HttpPut("update")]
+        public async Task<IActionResult> Update([FromBody] UpdateCategoryRequest updateCategoryRequest)
+        {
+            await _categoryService.Update(updateCategoryRequest);
+            return Ok();
+
         }
     }
 }

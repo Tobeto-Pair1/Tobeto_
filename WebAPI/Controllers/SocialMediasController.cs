@@ -23,8 +23,14 @@ namespace WepApi.Controllers
             await _socialMediaService.Add(createSocialMediaRequest);
             return Ok();
         }
+        [HttpPut("update")]
+        public async Task<IActionResult> Delete([FromBody] UpdateSocialMediaRequest updateSocialMediaRequest)
+        {
+            await _socialMediaService.Update(updateSocialMediaRequest);
+            return Ok();
+        }
 
-        [HttpPost("delete")]
+        [HttpDelete("delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteSocialMediaRequest deleteSocialMediaRequest)
         {
             await _socialMediaService.Delete(deleteSocialMediaRequest);

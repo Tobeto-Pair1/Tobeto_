@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
 
             return Ok(result);
         }
-        [HttpDelete]
+        [HttpDelete("delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteUserLanguageRequest deleteUserLanguageRequest)
         {
             var result = await _userLanguageService.Delete(deleteUserLanguageRequest);
@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
         public async Task<IActionResult> Update([FromBody] UpdateUserLanguageRequest updateUserLanguageRequest)
         {
             var result = await _userLanguageService.Update(updateUserLanguageRequest);
@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
+        [HttpGet("getlist")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             var result = await _userLanguageService.GetListAsync(pageRequest);

@@ -36,14 +36,14 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
         public async Task<IActionResult> Update([FromBody] UpdateSectorRequest updateSectorRequest)
         {
             var result = await _sectorService.Update(updateSectorRequest);
             return Ok(result);
         }
 
-        [HttpGet]
+        [HttpGet("getlist")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             var result = await _sectorService.GetListAsync(pageRequest);

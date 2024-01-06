@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
 
             return Ok(result);
         }
-        [HttpPost("update")]
+        [HttpPut("update")]
         public async Task<IActionResult> Update([FromBody] UpdateAboutOfCourseRequest updateAboutOfCourseRequest)
         {
 
@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost("delete")]
+        [HttpDelete("delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteAboutOfCourseRequest deleteAboutOfCourseRequest )
         {
 
