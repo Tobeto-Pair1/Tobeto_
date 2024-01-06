@@ -12,16 +12,17 @@ public class SkillMappingProfile : Profile
     public SkillMappingProfile()
     {
         CreateMap<Skill, CreatedSkillResponse>().ReverseMap();
-        CreateMap<CreateSkillRequest, Skill>().ReverseMap();
-
-        CreateMap<Paginate<Skill>, GetListSkillResponse>().ReverseMap();
-        CreateMap<Skill, GetListSkillResponse > ().ReverseMap();
+        CreateMap<Skill, CreateSkillRequest>().ReverseMap();
 
         CreateMap<Skill, UpdatedSkillResponse>().ReverseMap();
-        CreateMap<UpdateSkillRequest, Skill>().ReverseMap();
+        CreateMap<Skill, UpdateSkillRequest>().ReverseMap();
 
         CreateMap<Skill, CreatedSkillResponse>().ReverseMap();
-        CreateMap<CreateSkillRequest, Skill>().ReverseMap();
+        CreateMap<Skill, CreateSkillRequest>().ReverseMap();
+
+        CreateMap<Skill, GetListSkillResponse>().ReverseMap();
+        CreateMap<Paginate<Skill>, Paginate<GetListSkillResponse>>().ReverseMap();
+        
 
     }
 }

@@ -2,9 +2,9 @@
 {
     public class UpdateUserSkillRequest
     {
-        public Guid SkillName { get; set; }
-        public Guid FirtName { get; set; }
-        public Guid LastName { get; set; }
+        public Guid SkillId { get; set; }
+        public Guid Id { get; set; }
+
 
     }
 }
