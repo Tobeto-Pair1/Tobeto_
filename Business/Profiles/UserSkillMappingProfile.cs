@@ -16,12 +16,13 @@ namespace Business.Profiles
         public UserSkillMappingProfile()
         {
             CreateMap<UserSkill, CreatedUserSkillResponse>().ReverseMap();
-            CreateMap<CreateUserSkillRequest, UserSkill>().ReverseMap();
+            CreateMap<UserSkill, CreateUserSkillRequest>().ReverseMap();
 
             CreateMap<UserSkill, DeletedUserSkillResponse>().ReverseMap();
-            CreateMap<DeleteUserSkillRequest, UserSkill>().ReverseMap();
+            CreateMap<UserSkill, DeleteUserSkillRequest>().ReverseMap();
+
             CreateMap<UserSkill, UpdatedUserSkillResponse>().ReverseMap();
-            CreateMap<UpdateUserSkillRequest, UserSkill>().ReverseMap();
+            CreateMap<UserSkill, UpdateUserSkillRequest>().ReverseMap();
 
             CreateMap<UserSkill, GetListUserSkillResponse>().ReverseMap();
             CreateMap<Paginate<UserSkill>, Paginate<GetListUserSkillResponse>>().ReverseMap();

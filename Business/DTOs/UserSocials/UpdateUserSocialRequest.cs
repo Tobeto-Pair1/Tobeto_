@@ -2,6 +2,7 @@
 {
     public class UpdateUserSocialRequest
     {
-        public string Link { get; set; }
+        public Guid Id { get; set; }
+        public Guid SocialMediaId { get; set; }
     }
 }

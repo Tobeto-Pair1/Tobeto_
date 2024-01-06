@@ -8,6 +8,7 @@ namespace Business.DTOs.UserSocials
 {
     public class CreateUserSocialRequest
     {
-        public string Link { get; set; }
+        public Guid Id { get; set; }
+        public Guid SocialMediaId { get; set; }
     }
 }
