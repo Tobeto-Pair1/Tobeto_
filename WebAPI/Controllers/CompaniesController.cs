@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
-        [HttpPost("delete")]
+        [HttpDelete("delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteCompanyRequest deleteCompanyRequest)
         {
             await _companyService.Delete(deleteCompanyRequest);
@@ -36,6 +36,13 @@ namespace WebAPI.Controllers
         {
             var result = await _companyService.GetListAsync(pageRequest);
             return Ok(result);
+        }
+        [HttpPut("update")]
+        public async Task<IActionResult> Update([FromBody] UpdateCompanyRequest updateCompanyRequest)
+        {
+            await _companyService.Update(updateCompanyRequest);
+            return Ok();
+
         }
     }
 }

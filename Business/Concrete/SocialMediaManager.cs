@@ -32,9 +32,9 @@ public class SocialMediaManager : ISocialMediaService
         return socialMediaResponse;
     }
 
-    public async Task<DeletedSocialMediaResponse> Delete(DeleteSocialMediaRequest createSocialMediaRequest)
+    public async Task<DeletedSocialMediaResponse> Delete(DeleteSocialMediaRequest deleteSocialMediaRequest)
     {
-        SocialMedia socialMedia = _mapper.Map<SocialMedia>(createSocialMediaRequest);
+        SocialMedia socialMedia = _mapper.Map<SocialMedia>(deleteSocialMediaRequest);
         SocialMedia deletedSocialMedia = await _socialMediaDal.DeleteAsync(socialMedia);
         DeletedSocialMediaResponse socialMediaResponse = _mapper.Map<DeletedSocialMediaResponse>(deletedSocialMedia);
         return socialMediaResponse;
@@ -45,5 +45,13 @@ public class SocialMediaManager : ISocialMediaService
         var data = await _socialMediaDal.GetListAsync(index:pageRequest.PageIndex, size:pageRequest.PageSize);
         var result = _mapper.Map<Paginate<GetListSocialMediaResponse>>(data);
         return result;
+    }
+
+    public async Task<UpdateSocialMediaResponse> Update(UpdateSocialMediaRequest updateSocialMediaRequest)
+    {
+        SocialMedia socialMedia = _mapper.Map<SocialMedia>(updateSocialMediaRequest);
+        SocialMedia updatedSocialMedia = await _socialMediaDal.UpdateAsync(socialMedia);
+        UpdateSocialMediaResponse socialMediaResponse = _mapper.Map<UpdateSocialMediaResponse>(updatedSocialMedia);
+        return socialMediaResponse;
     }
 }

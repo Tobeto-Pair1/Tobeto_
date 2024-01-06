@@ -33,14 +33,14 @@ public class UsersController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("update")]
+    [HttpPut("update")]
     public async Task<IActionResult> Update([FromBody] UpdateUserRequest updateUserRequest)
     {
         var result = await _userService.Update(updateUserRequest);
         return Ok(result);
     }
 
-    [HttpGet]
+    [HttpGet("getlist")]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
         var result = await _userService.GetListAsync(pageRequest);
