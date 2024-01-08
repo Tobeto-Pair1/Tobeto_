@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Profiles;
+using Core.Business;
 
 namespace Business
 {
@@ -46,15 +47,14 @@ namespace Business
 
             services.AddScoped<ICompanyService, CompanyManager>();
 
-           
 
 
 
 
 
+            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
             return services;
         }
 

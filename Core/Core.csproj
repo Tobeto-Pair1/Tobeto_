@@ -25,6 +25,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CrossCuttingConcrens\Exceptions\Extensions\" />
-    <Folder Include="CrossCuttingConcrens\Exceptions\Handlers\" />
   </ItemGroup>
 </Project>
