@@ -1,6 +1,8 @@
 
 using Business;
+using Core.CrossCuttingConcrens;
 using DataAccess;
+
 
 namespace WebAPI
 {
@@ -36,6 +38,8 @@ namespace WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.ConfigureCustomExceptionMiddleware();
 
             app.UseAuthorization();
 
