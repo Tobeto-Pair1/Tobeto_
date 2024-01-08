@@ -13,6 +13,9 @@ using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concretes;
 using System.Reflection;
+using Microsoft.AspNetCore.Identity;
+
+
 
 namespace DataAccess;
 
@@ -22,13 +25,29 @@ public static class DataAccessServiceRegistration
     {
 
 
-        //services.AddDbContext<TobetoDbContext>(options => options.UseInMemoryDatabase("TobetoDbContext"));
 
-        services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
+
+        // services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
 
         //services.AddDbContext<TobetoDbContext>(options =>
         //    options.UseSqlServer("TobetoDB",
         //    b => b.MigrationsAssembly("DataAccess")));
+
+
+
+        services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
+
+
+
+       services.AddIdentity<AppUser, AppRole>(o =>
+       {
+           o.Password.RequiredLength = 6;
+           o.SignIn.RequireConfirmedEmail = true;
+           o.Lockout.MaxFailedAccessAttempts = 3;
+           o.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+           o.Lockout.AllowedForNewUsers = true;
+
+       }).AddEntityFrameworkStores<TobetoDbContext>();
 
 
 
@@ -60,9 +79,6 @@ public static class DataAccessServiceRegistration
         services.AddScoped<IProgramDal, EfProgramDal>();
         services.AddScoped<ICompanyDal, EfCompanyDal>();
         services.AddScoped<IExperienceDal, EfExperienceDal>();
-
-
-
 
 
         return services;

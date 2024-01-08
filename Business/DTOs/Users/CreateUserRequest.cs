@@ -21,6 +21,7 @@ public class CreateUserRequest
     public Guid CityId { get; set; }	   
     public Guid TownId { get; set; }	   
     public string Description { get; set; }
+    public bool? RememberMe { get; set; }
 
 
 }
