@@ -11,7 +11,7 @@ namespace WebAPI.Controllers
     public class UserSkillsController : ControllerBase
     {
 
-        IUserSkillService _userSkillService;
+      private readonly  IUserSkillService _userSkillService;
 
         public UserSkillsController(IUserSkillService userSkillService)
         {

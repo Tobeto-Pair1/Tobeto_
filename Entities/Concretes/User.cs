@@ -1,5 +1,7 @@
 ﻿using Core.Entities;
 using Entities.Concrete;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,11 +31,18 @@ public class User: Entity<Guid>
     public virtual ICollection<UserSkill> UserSkills { get; set; }
     public virtual ICollection<UserSocial> UserSocials { get; set; }
     public virtual ICollection<UserLanguage> UserLanguages { get; set; }
+ 
 
     //public virtual ICollection<Student>Students { get; set; }
     //public virtual ICollection<Employee>Employees { get; set; }
     //public virtual ICollection<Instructor> Instructors { get; set; }
 
 
+    public string GetName()
+    {
+
+        return (string.Join(" ", FirstName + Lastname));
+
+    }
 
 }
