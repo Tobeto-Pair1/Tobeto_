@@ -52,9 +52,11 @@ namespace Business
             services.AddScoped<IProgramService, ProgramManager>();
             services.AddScoped<INotificationService, NotificationManager>();
             services.AddScoped<IExperienceService, ExperienceManager>();
+            services.AddScoped<IExamService, ExamManager>();
+            services.AddScoped<IGradeService, GradeManager>();
+            services.AddScoped<IQuestionService, QuestionManager>();
+            services.AddScoped<IStudentAnswerService, StudentAnswerManager>();
             services.AddScoped<ICompanyService, CompanyManager>();
-
-
 
 
 

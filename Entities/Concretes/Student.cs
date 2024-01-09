@@ -12,4 +12,8 @@ public class Student : Entity<Guid>
     public Guid UserId { get; set; }
 
     public virtual User User { get; set; }
+
+    public virtual ICollection<Grade> Grades { get; set; }
+    public virtual ICollection<StudentAnswer> StudentAnswers { get; set; }
+
 }
