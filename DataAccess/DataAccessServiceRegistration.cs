@@ -34,6 +34,13 @@ public static class DataAccessServiceRegistration
         //    b => b.MigrationsAssembly("DataAccess")));
 
 
+        services.AddScoped<IForeignLanguageDal, EfForeignLanguageDal>();
+        services.AddScoped<IForeignLanguageLevelDal, EfForeignLanguageLevelDal>();
+        services.AddScoped<IUserLanguageDal, EfUserLanguageDal>();
+
+        services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
+        services.AddScoped<IUserSocialDal, EfUserSocialDal>();
+
 
         services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
 
@@ -58,12 +65,9 @@ public static class DataAccessServiceRegistration
         services.AddScoped<IAddressDal, EfAddressDal>();
         services.AddScoped<ICategoryDal, EfCategoryDal>();
         services.AddScoped<IInstructorDal, EfInstructorDal>();
-        services.AddScoped<IForeignLanguageDal, EfForeignLanguageDal>();
-        services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
         services.AddScoped<IStudentDal, EfStudentDal>();
         services.AddScoped<IAsyncLessonDal, EfAsyncLessonDal>();
         services.AddScoped<ITownDal, EfTownDal>();
-        services.AddScoped<IUserLanguageDal, EfUserLanguageDal>();
         services.AddScoped<IUserDal, EfUserDal>();
         services.AddScoped<ISkillDal, EfSkillDal>();
         services.AddScoped<ISectorDal, EfSectorDal>();
@@ -73,12 +77,13 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ICityDal, EfCityDal>();
         services.AddScoped<ISynchronLessonDetailDal, EfSynchronLessonDetailDal>();
         services.AddScoped<ISynchronLessonInstructorDal, EfSynchronLessonInstructorDal>();
-        services.AddScoped<IUserSocialDal, EfUserSocialDal>();
         services.AddScoped<IUserSkillDal, EfUserSkillDal>();
         services.AddScoped<ISubTypeDal, EfSubTypeDal>();
         services.AddScoped<IProgramDal, EfProgramDal>();
         services.AddScoped<ICompanyDal, EfCompanyDal>();
         services.AddScoped<IExperienceDal, EfExperienceDal>();
+
+       
 
 
         return services;

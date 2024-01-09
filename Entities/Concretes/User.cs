@@ -38,11 +38,4 @@ public class User: Entity<Guid>
     //public virtual ICollection<Instructor> Instructors { get; set; }
 
 
-    public string GetName()
-    {
-
-        return (string.Join(" ", FirstName + Lastname));
-
-    }
-
 }

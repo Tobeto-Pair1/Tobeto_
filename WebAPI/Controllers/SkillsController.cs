@@ -12,11 +12,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class SkillController : Controller
+    public class SkillsController : Controller
     {
         ISkillService _skillService;
 
-        public SkillController(ISkillService skillService)
+        public SkillsController(ISkillService skillService)
         {
             _skillService = skillService;
         }

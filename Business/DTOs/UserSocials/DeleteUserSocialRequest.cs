@@ -1,8 +1,8 @@
-﻿namespace Business.DTOs.UserSocials
+﻿namespace Business.DTOs.UserSocials;
+
+public class DeleteUserSocialRequest
 {
-    public class DeleteUserSocialRequest
-    {
-        public Guid Id { get; set; }
-        public Guid SocialMediaId { get; set; }
-    }
+    public Guid UserId { get; set; }
+    public Guid SocialMediaId { get; set; }
+    public string Link { get; set; }
 }
