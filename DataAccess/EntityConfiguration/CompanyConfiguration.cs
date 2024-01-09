@@ -18,7 +18,7 @@ namespace DataAccess.EntityConfiguration
             builder.Property(b => b.Name).HasColumnName("Name").IsRequired();
            // builder.Property(b => b.ExperienceId).HasColumnName("ExperienceId").IsRequired();
 
-            builder.HasMany(b=> b.Experiences);
+           // builder.HasMany(b=> b.Experiences);
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
