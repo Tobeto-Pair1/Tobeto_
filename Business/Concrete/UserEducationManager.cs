@@ -46,9 +46,8 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListUserEducationResponse>> GetListAsync(PageRequest pageRequest)
         {
             var data = await _userEducationDal.GetListAsync(include: a => a.Include(a => a.User),
-     
-         index: pageRequest.PageIndex,
-         size: pageRequest.PageSize);
+                index: pageRequest.PageIndex,
+                size: pageRequest.PageSize);
 
             var result = _mapper.Map<Paginate<GetListUserEducationResponse>>(data);
             return result;

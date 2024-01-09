@@ -8,5 +8,5 @@ namespace Business.DTOs.ForeignLanguages;
 
 public class CreateForeignLanguageRequest
 {
-    public string LanguageName { get; set; }
+    public string Name { get; set; }
 }

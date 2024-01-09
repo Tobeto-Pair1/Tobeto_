@@ -9,7 +9,6 @@ namespace Business.DTOs.Users;
 
 public class CreateUserRequest
 {
-
     public string IdentityNumber { get; set; }
     public string FirstName { get; set; }
     public string Lastname { get; set; }
@@ -21,7 +20,5 @@ public class CreateUserRequest
     public Guid CityId { get; set; }	   
     public Guid TownId { get; set; }	   
     public string Description { get; set; }
-
-
 }
 

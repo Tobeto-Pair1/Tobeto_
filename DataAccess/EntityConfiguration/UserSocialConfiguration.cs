@@ -13,13 +13,14 @@ namespace DataAccess.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<UserSocial> builder)
         {
-            builder.ToTable("UserSocials").HasKey(b =>new { b.Id ,b.SocialMediaId});
-            builder.Property(b => b.Id).HasColumnName("UserId").IsRequired();
+            builder.ToTable("UserSocials").HasKey(b => b.Id);
+            builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
+            builder.Property(b => b.UserId).HasColumnName("UserId").IsRequired();
             builder.Property(b => b.SocialMediaId).HasColumnName("SocialMediaId");
-         
+            builder.Property(b => b.Link).HasColumnName("Link").IsRequired();      
 
-            builder.HasOne(b => b.User).WithMany(b=>b.UserSocials).HasForeignKey(b=>b.Id);
-            builder.HasOne(b => b.SocialMedia).WithMany(b=>b.UserSocials);
+            builder.HasOne(b => b.User);
+            builder.HasOne(b => b.SocialMedia);
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
 

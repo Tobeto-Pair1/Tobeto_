@@ -8,13 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrete
+namespace DataAccess.Concrete;
+
+public class EfUserSkillDal : EfRepositoryBase<UserSkill, Guid,TobetoDbContext>, IUserSkillDal
 {
-    public class EfUserSkillDal : EfRepositoryBase<UserSkill, Guid,TobetoDbContext>, IUserSkillDal
+    public EfUserSkillDal(TobetoDbContext context) : base(context) 
     {
-        public EfUserSkillDal(TobetoDbContext context) : base(context) 
-        {
-            
-        }
+        
     }
 }

@@ -48,7 +48,7 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListUserLanguageResponse>> GetListAsync(PageRequest pageRequest)
         {
             var data = await _userLanguageDal.GetListAsync(include: l => l.Include(l => l.User)
-                 .Include(l=>l.ForeignLanguage).Include(l=>l.LanguageLevel),
+                 .Include(l=>l.ForeignLanguage).Include(l=>l.ForeignLanguageLevel),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);
 

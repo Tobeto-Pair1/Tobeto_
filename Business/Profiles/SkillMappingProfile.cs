@@ -17,12 +17,10 @@ public class SkillMappingProfile : Profile
         CreateMap<Skill, UpdatedSkillResponse>().ReverseMap();
         CreateMap<Skill, UpdateSkillRequest>().ReverseMap();
 
-        CreateMap<Skill, CreatedSkillResponse>().ReverseMap();
-        CreateMap<Skill, CreateSkillRequest>().ReverseMap();
+        CreateMap<Skill, DeletedSkillResponse>().ReverseMap();
+        CreateMap<Skill, DeleteSkillRequest>().ReverseMap();
 
         CreateMap<Skill, GetListSkillResponse>().ReverseMap();
         CreateMap<Paginate<Skill>, Paginate<GetListSkillResponse>>().ReverseMap();
-        
-
     }
 }

@@ -34,6 +34,25 @@ public class User: Entity<Guid>
     //public virtual ICollection<Employee>Employees { get; set; }
     //public virtual ICollection<Instructor> Instructors { get; set; }
 
+    public User()
+    {
+        Experiences = new HashSet<Experience>();
+        Certificate = new HashSet<Certificate>();
+        UserEducations = new HashSet<UserEducation>();
+        UserSkills = new HashSet<UserSkill>();
+        UserSocials = new HashSet<UserSocial>();
+        UserLanguages = new HashSet<UserLanguage>();
+    }
 
-
+    public User(string firstName, string lastname, string ıdentityNumber, string phoneNumber, string? email, DateTime birthDate, Guid addressId, string aboutMe) : this()
+    {
+        FirstName = firstName;
+        Lastname = lastname;
+        IdentityNumber = ıdentityNumber;
+        PhoneNumber = phoneNumber;
+        Email = email;
+        BirthDate = birthDate;
+        AddressId = addressId;
+        AboutMe = aboutMe;
+    }
 }

@@ -10,6 +10,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Profiles;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Business
 {
@@ -17,17 +19,22 @@ namespace Business
     {
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
+
+            services.AddScoped<IUserLanguageService, UserLanguageManager>();
+            services.AddScoped<IForeignLanguageService, ForeignLanguageManager>();
+            services.AddScoped<IForeignLanguageLevelService, ForeignLanguageLevelManager>();
+
+
+
             services.AddScoped<IAboutOfCourseService, AboutOfCourseManager>();
             services.AddScoped<IEmployeeService, EmployeeManager>();
             services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
-            services.AddScoped<IForeignLanguageService, ForeignLanguageManager>();
             services.AddScoped<ISocialMediaService, SocialMediaManager>();
             services.AddScoped<IStudentService, StudentManager>();
             services.AddScoped<IAsyncLessonService, AsyncLessonManager>();
             services.AddScoped<ITownService, TownManager>();
-            services.AddScoped<IUserLanguageService, UserLanguageManager>();
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<ISkillService, SkillManager>();
             services.AddScoped<ISectorService, SectorManager>();
@@ -43,15 +50,14 @@ namespace Business
             services.AddScoped<IProgramService, ProgramManager>();
             services.AddScoped<INotificationService, NotificationManager>();
             services.AddScoped<IExperienceService, ExperienceManager>();
-
             services.AddScoped<ICompanyService, CompanyManager>();
 
-           
 
 
 
 
 
+            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
@@ -59,7 +65,7 @@ namespace Business
         }
 
         public static IServiceCollection AddSubClassesOfType(this IServiceCollection services,
-         Assembly assembly,Type type,Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null)
+         Assembly assembly, Type type, Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null)
         {
             var types = assembly.GetTypes().Where(t => t.IsSubclassOf(type) && type != t).ToList();
             foreach (var item in types)
