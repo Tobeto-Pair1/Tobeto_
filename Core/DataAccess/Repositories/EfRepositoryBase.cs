@@ -10,8 +10,8 @@ using System.Reflection;
 namespace Core.DataAccess.Repositories
 {
     public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
-    where TEntity : Entity<TEntityId>
-    where TContext : DbContext
+        where TEntity : Entity<TEntityId>
+        where TContext : Microsoft.EntityFrameworkCore.DbContext 
     {
         protected readonly TContext Context;
 

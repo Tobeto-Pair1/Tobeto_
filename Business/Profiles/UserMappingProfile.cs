@@ -19,7 +19,7 @@ namespace Business.Profiles
 
             CreateMap<Address, CreateUserRequest>().ReverseMap();
             CreateMap<User, CreateUserRequest>()
-                .IncludeMembers(memberExpressions: a => a.Address)
+                //.IncludeMembers(memberExpressions: a => a.Address)
                 .ReverseMap();
 
             CreateMap<User, DeletedUserResponse>().ReverseMap();
