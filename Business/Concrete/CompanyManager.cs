@@ -48,8 +48,8 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListCompanyResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _companyDal.GetListAsync 
-                (include: a => a.Include(a => a.Experiences),
+            var data = await _companyDal.GetListAsync    //include: a => a.Include(a => a.Experiences),
+                (
                 index: pageRequest.PageIndex, size: pageRequest.PageSize);
             var result = _mapper.Map<Paginate<GetListCompanyResponse>>(data);
 

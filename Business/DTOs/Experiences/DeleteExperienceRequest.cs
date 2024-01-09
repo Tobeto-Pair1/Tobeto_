@@ -2,6 +2,8 @@
 
 public class DeleteExperienceRequest
 {
+    public Guid Id { get; set; }
+    public Guid UserId { get; set; }
     public string CompanyName { get; set; }
     public string PositionName { get; set; }
     public string SectorName { get; set; }
