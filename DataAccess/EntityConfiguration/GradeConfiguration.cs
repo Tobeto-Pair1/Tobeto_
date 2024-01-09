@@ -15,7 +15,7 @@ namespace DataAccess.EntityConfiguration
         public void Configure(EntityTypeBuilder<Grade> builder)
         {
             builder.ToTable("Grades").HasKey(b => b.Id);
-            builder.Property(b => b.GradeId).HasColumnName("GradeId").IsRequired();
+            builder.Property(b => b.Id).HasColumnName("GradeId").IsRequired();
             builder.Property(b => b.Score).HasColumnName("Score").IsRequired();
 
            

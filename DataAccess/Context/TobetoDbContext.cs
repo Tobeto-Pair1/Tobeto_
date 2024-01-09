@@ -45,6 +45,7 @@ public class TobetoDbContext : IdentityDbContext<AppUser, AppRole, Guid, Identit
     public DbSet<UserSkill> UserSkills { get; set; }
     public DbSet<Town> Towns { get; set; }
 
+    public DbSet<Certificate> Certificates { get; set; }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<AsyncLesson> AsyncLessons { get; set; }
     public DbSet<SynchronLesson> SynchronLessons { get; set; }

@@ -89,6 +89,8 @@ public static class DataAccessServiceRegistration
         services.AddScoped<IQuestionDal, EfQuestionDal>();
         services.AddScoped<IStudentAnswerDal, EfStudentAnswerDal>();
 
+        services.AddScoped<ICertificateDal, EfCertificateDal>();
+
 
 
 

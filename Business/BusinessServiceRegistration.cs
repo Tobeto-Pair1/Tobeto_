@@ -59,6 +59,7 @@ namespace Business
             services.AddScoped<ICompanyService, CompanyManager>();
             services.AddScoped<IAsyncLessonDetailService, AsyncLessonDetailManager>();
             services.AddScoped<ICountryService, CountryManager>();
+            services.AddScoped<ICertificateService, CertificateManager>();
 
 
 
