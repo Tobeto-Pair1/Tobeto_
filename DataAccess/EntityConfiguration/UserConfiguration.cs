@@ -19,11 +19,11 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(o => o.AddressId).HasColumnName("AddressId");
         builder.Property(b => b.FirstName).HasColumnName("FirstName").IsRequired();
         builder.Property(b => b.Lastname).HasColumnName("Lastname").IsRequired();
-        builder.Property(o => o.IdentityNumber).HasColumnName("IdentityNumber").IsRequired();
+        builder.Property(o => o.IdentityNumber).HasColumnName("IdentityNumber");
         builder.Property(b => b.PhoneNumber).HasColumnName("PhoneNumber").IsRequired();
-        builder.Property(b => b.Email).HasColumnName("Email");
-        builder.Property(b => b.BirthDate).HasColumnName("BirthDate").IsRequired();
-        builder.Property(b => b.AboutMe).HasColumnName("AboutMe").IsRequired();
+        builder.Property(b => b.Email).HasColumnName("Email").IsRequired();
+        builder.Property(b => b.BirthDate).HasColumnName("BirthDate");
+        builder.Property(b => b.AboutMe).HasColumnName("AboutMe");
 
         builder.HasIndex(indexExpression: b => b.IdentityNumber, name: "UK_Users_IdentityNumber").IsUnique();
 
