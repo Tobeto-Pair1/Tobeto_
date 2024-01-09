@@ -15,7 +15,7 @@ namespace DataAccess.EntityConfiguration
         public void Configure(EntityTypeBuilder<Question> builder)
         {
             builder.ToTable("Questions").HasKey(b => b.Id);
-            builder.Property(b => b.QuestionId).HasColumnName("QuestionId").IsRequired();
+            builder.Property(b => b.Id).HasColumnName("QuestionId").IsRequired();
             builder.Property(b => b.QuestionText).HasColumnName("QuestionText").IsRequired();
             builder.Property(b => b.OptionA).HasColumnName("OptionA").IsRequired();
             builder.Property(b => b.OptionB).HasColumnName("OptionB").IsRequired();
