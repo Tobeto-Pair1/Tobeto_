@@ -18,7 +18,11 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
         builder.Property(c => c.CountryId).HasColumnName("CountryId");          
         builder.Property(c => c.Name).HasColumnName("Name");
 
-        builder.HasOne(c => c.Country);
+        //builder.HasOne(aoc => aoc.Account)
+        //        .WithMany(a => a.AccountOccupationClasses)
+        //        .HasForeignKey(aoc => aoc.AccountId);
+
+        builder.HasOne(c => c.Country).WithMany(c => c.Cities).HasForeignKey(c=>c.CountryId);
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
     }

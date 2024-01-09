@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Requests
+namespace Business.DTOs.Requests;
+
+public class CreateUserSkillRequest
 {
-    public class CreateUserSkillRequest
-    {
-        public Guid SkillName { get; set; }
-        public Guid FirtName { get; set; }
-        public Guid LastName { get; set; }
-    }
+    public Guid SkillId { get; set; }
+    public Guid UsersId { get; set; }
+
 }

@@ -8,6 +8,6 @@ namespace Business.Messages
 {
     public class BusinessMessages
     {
-
+        public static string SocialMediaLimit = "En fazla 3 sosyal medya hesabınız olabilir...";
     }
 }

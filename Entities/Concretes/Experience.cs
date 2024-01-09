@@ -10,7 +10,7 @@ namespace Entities.Concretes;
 
 public class Experience : Entity<Guid>
 {
-    //public Guid UserId { get; set; }
+    public Guid UserId { get; set; }
     public Guid PositionId { get; set;}
     public Guid SectorId { get; set;}
     public Guid CompanyId { get; set; }
@@ -21,7 +21,7 @@ public class Experience : Entity<Guid>
     public string Description { get; set; }
 
 
-    //public virtual User User { get; set; }
+    public virtual User User { get; set; }
     public virtual City City { get; set; }
     public virtual Company Company { get; set; }
     public virtual Position Position { get; set; }

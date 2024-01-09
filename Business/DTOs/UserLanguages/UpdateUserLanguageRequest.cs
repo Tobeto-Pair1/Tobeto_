@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.UserLanguages
+namespace Business.DTOs.UserLanguages;
+
+public class UpdateUserLanguageRequest
 {
-    public class UpdateUserLanguageRequest
-    {
-        public string Name { get; set; }
-        public string Level { get; set; }
-    }
+    public Guid ForeignLanguageId { get; set; }
+    public Guid UserId { get; set; }
+    public Guid LanguageLevelId { get; set; }
 }

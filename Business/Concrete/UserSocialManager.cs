@@ -44,8 +44,7 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListUserSocialResponse>> GetListAsync(PageRequest pageRequest)
         {
 
-            var data = await _userSocialDal.GetListAsync(include: a => a.Include(a => a.SocialMedia).
-            Include(a => a.User),
+            var data = await _userSocialDal.GetListAsync(include: a => a.Include(a => a.SocialMedia),
                index: pageRequest.PageIndex,
                size: pageRequest.PageSize);
 

@@ -2,6 +2,6 @@
 
 public class CreateSocialMediaRequest
 {
-    public string SocialMediaName { get; set; }
-
+    public string Name { get; set; }
 }
+

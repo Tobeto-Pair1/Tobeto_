@@ -4,8 +4,8 @@ namespace Business.DTOs.Towns
 {
     public class CreateTownRequest
     {
-        public int Id { get; set; }
         public string Name { get; set; }
+        public Guid CityId { get; set; }
     }
 }
 

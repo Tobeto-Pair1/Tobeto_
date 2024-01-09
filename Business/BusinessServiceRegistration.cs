@@ -10,7 +10,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Profiles;
-using Business.DTOs.UserLanguages;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Core.Business;
+
 
 namespace Business
 {
@@ -18,17 +21,22 @@ namespace Business
     {
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
+
+            services.AddScoped<IUserLanguageService, UserLanguageManager>();
+            services.AddScoped<IForeignLanguageService, ForeignLanguageManager>();
+            services.AddScoped<IForeignLanguageLevelService, ForeignLanguageLevelManager>();
+
+
+
             services.AddScoped<IAboutOfCourseService, AboutOfCourseManager>();
             services.AddScoped<IEmployeeService, EmployeeManager>();
             services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
-            services.AddScoped<IForeignLanguageService, ForeignLanguageManager>();
             services.AddScoped<ISocialMediaService, SocialMediaManager>();
             services.AddScoped<IStudentService, StudentManager>();
             services.AddScoped<IAsyncLessonService, AsyncLessonManager>();
             services.AddScoped<ITownService, TownManager>();
-            services.AddScoped<IUserLanguageService, UserLanguageManager>();
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<ISkillService, SkillManager>();
             services.AddScoped<ISectorService, SectorManager>();
@@ -48,17 +56,19 @@ namespace Business
             services.AddScoped<IGradeService, GradeManager>();
             services.AddScoped<IQuestionService, QuestionManager>();
             services.AddScoped<IStudentAnswerService, StudentAnswerManager>();
+            services.AddScoped<ICompanyService, CompanyManager>();
 
 
 
+
+            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
             return services;
         }
 
         public static IServiceCollection AddSubClassesOfType(this IServiceCollection services,
-         Assembly assembly,Type type,Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null)
+         Assembly assembly, Type type, Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null)
         {
             var types = assembly.GetTypes().Where(t => t.IsSubclassOf(type) && type != t).ToList();
             foreach (var item in types)
@@ -70,5 +80,35 @@ namespace Business
             return services;
         }
 
+
+        public static void AddJwtBearerAuthentication(this IServiceCollection services)
+        {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(configuration =>
+            {
+                configuration.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+
+                    ValidIssuer = "Ahmet Güzeller",
+                    ValidAudience = "IT Desk",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("AdnanşensesAdnanşensesAdnanşensesAdnanşensesAdnanşenses"))
+                };
+            });
+        }
+
+
+
+
+
+
     }
+
+
 }

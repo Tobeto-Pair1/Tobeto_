@@ -2,6 +2,8 @@
 
 public class CreatedSocialMediaResponse
 {
-    public int Id { get; set; }
-    public string SocialMediaName { get; set; }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
 }
+
+

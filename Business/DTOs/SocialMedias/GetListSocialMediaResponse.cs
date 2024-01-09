@@ -2,7 +2,6 @@
 
 public class GetListSocialMediaResponse
 {
-    public int Id { get; set; }
-    public int UserName { get; set; }
-    public string SocialMediaName { get; set; }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
 }

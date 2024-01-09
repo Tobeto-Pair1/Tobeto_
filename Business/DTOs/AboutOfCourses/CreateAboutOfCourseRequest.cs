@@ -8,9 +8,9 @@ namespace Business.DTOs.AboutOfCourses;
 
 public class CreateAboutOfCourseRequest
 {
-    public string CategoryName { get; set; }
-    public string CourseName { get; set; }
-    public string ManufacturerName { get; set; }
+    public Guid CategoryId { get; set; }
+    public Guid CourseId { get; set; }
+    public Guid ManufacturerId { get; set; }
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
     public DateTime SpentTime { get; set; }

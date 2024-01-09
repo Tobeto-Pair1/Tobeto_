@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
+//user-Social == SocialMediaUrl
 public class UserSocial : Entity<Guid>
 {
     public Guid UserId { get; set; }
     public Guid SocialMediaId { get; set; }
     public string Link { get; set; }
+
 
     public virtual User User { get; set; }
     public virtual SocialMedia SocialMedia { get; set; }

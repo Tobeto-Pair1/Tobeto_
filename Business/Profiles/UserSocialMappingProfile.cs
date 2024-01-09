@@ -8,23 +8,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Profiles
+namespace Business.Profiles;
+
+public class UserSocialMappingProfile : Profile
 {
-    public class UserSocialMappingProfile: Profile
+    public UserSocialMappingProfile()
     {
-        public UserSocialMappingProfile()
-        {
-            CreateMap<UserSocial, CreatedUserSocialResponse>().ReverseMap();
-            CreateMap<CreateUserSocialRequest, UserSocial>().ReverseMap();
+        CreateMap<UserSocial, CreatedUserSocialResponse>().ReverseMap();
+        CreateMap<UserSocial, CreateUserSocialRequest>().ReverseMap();
 
-            CreateMap<UserSocial, DeletedUserSocialResponse>().ReverseMap();
-            CreateMap<DeleteUserSocialRequest, UserSocial>().ReverseMap();
+        CreateMap<UserSocial, DeletedUserSocialResponse>().ReverseMap();
+        CreateMap<UserSocial, DeleteUserSocialRequest>().ReverseMap();
 
-            CreateMap<UserSocial, UpdatedUserSocialResponse>().ReverseMap();
-            CreateMap<UpdateUserSocialRequest, UserSocial>().ReverseMap();
+        CreateMap<UserSocial, UpdatedUserSocialResponse>().ReverseMap();
+        CreateMap<UserSocial, UpdateUserSocialRequest>().ReverseMap();
 
-            CreateMap<User, GetListUserSocialResponse>().ReverseMap();
-            CreateMap<Paginate<User>, Paginate<GetListUserSocialResponse>>().ReverseMap();
-        }
+        CreateMap<UserSocial, GetListUserSocialResponse>()
+             .ForMember(destinationMember: a => a.SocialMediaName,
+             memberOptions: opt => opt.MapFrom(a => a.SocialMedia.Name))
+            .ReverseMap();
+        CreateMap<Paginate<UserSocial>, Paginate<GetListUserSocialResponse>>().ReverseMap();
     }
 }

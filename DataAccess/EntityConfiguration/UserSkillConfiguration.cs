@@ -7,19 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.EntityConfiguration
+namespace DataAccess.EntityConfiguration;
+public class UserSkillConfiguration: IEntityTypeConfiguration<UserSkill>
 {
-    public class UserSkillConfiguration: IEntityTypeConfiguration<UserSkill>
+    public void Configure(EntityTypeBuilder<UserSkill> builder)
     {
-        public void Configure(EntityTypeBuilder<UserSkill> builder)
-        {
-            builder.ToTable("UserSkills").HasKey(b => b.Id);
-            builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
-            builder.Property(b => b.Skill.Name).HasColumnName("SkillName");
+        builder.ToTable("UserSkills").HasKey(b =>new {b.Id,b.SkillId});
+        builder.Property(b => b.Id).HasColumnName("UserId").IsRequired();
+        builder.Property(b => b.SkillId).HasColumnName("SkillId");
 
-            builder.HasOne(k => k.User);
-            builder.HasOne(k => k.Skill);
-            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
-        }
+        builder.HasOne(k => k.User).WithMany(k=>k.UserSkills).HasForeignKey(k=>k.Id);
+        builder.HasOne(k => k.Skill);
+        builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
     }
 }

@@ -15,7 +15,7 @@ using Business.DTOs.UserSkills;
 
 namespace Business.Concrete
 {
-    public class UserSkillManager: IUserSkillService
+    public class UserSkillManager : IUserSkillService
     {
         IUserSkillDal _userSkillDal;
         IMapper _mapper;
@@ -45,8 +45,7 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListUserSkillResponse>> GetListAsync(PageRequest pageRequest)
         {
 
-            var data = await _userSkillDal.GetListAsync(include: a => a.Include(a => a.User).
-            Include(a => a.Skill),
+            var data = await _userSkillDal.GetListAsync(include: a => a.Include(a => a.User).Include(a => a.Skill),
                index: pageRequest.PageIndex,
                size: pageRequest.PageSize);
 

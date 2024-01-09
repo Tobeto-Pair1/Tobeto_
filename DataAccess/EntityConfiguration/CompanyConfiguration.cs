@@ -16,7 +16,7 @@ namespace DataAccess.EntityConfiguration
             builder.ToTable("Company").HasKey(b => b.Id);
             builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
             builder.Property(b => b.Name).HasColumnName("Name").IsRequired();
-            builder.Property(b => b.ExperienceId).HasColumnName("ExperienceId").IsRequired();
+           // builder.Property(b => b.ExperienceId).HasColumnName("ExperienceId").IsRequired();
 
             builder.HasMany(b=> b.Experiences);
 

@@ -10,11 +10,11 @@ namespace Entities.Concretes;
 
 //Id = UserId
 public class UserLanguage : Entity<Guid>
-{
+{                                                                           
     public Guid ForeignLanguageId { get; set; }
-    public Guid LanguageLevelId { get; set; }
+    public Guid ForeignLanguageLevelId { get; set; }
 
     public virtual User User { get; set; }
     public virtual ForeignLanguage ForeignLanguage { get; set; }
-    public virtual LanguageLevel LanguageLevel { get; set; }
+    public virtual ForeignLanguageLevel ForeignLanguageLevel { get; set; }
 }

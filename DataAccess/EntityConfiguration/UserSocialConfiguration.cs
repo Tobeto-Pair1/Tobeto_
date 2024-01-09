@@ -15,11 +15,9 @@ namespace DataAccess.EntityConfiguration
         {
             builder.ToTable("UserSocials").HasKey(b => b.Id);
             builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
-            builder.Property(b => b.Link).HasColumnName("Link");
-            builder.Property(b => b.User.FirstName).HasColumnName("FirstName");
-            builder.Property(b => b.User.Lastname).HasColumnName("LastName");
-            builder.Property(b => b.SocialMedia.Name).HasColumnName("SocialMediaName");
-         
+            builder.Property(b => b.UserId).HasColumnName("UserId").IsRequired();
+            builder.Property(b => b.SocialMediaId).HasColumnName("SocialMediaId");
+            builder.Property(b => b.Link).HasColumnName("Link").IsRequired();      
 
             builder.HasOne(b => b.User);
             builder.HasOne(b => b.SocialMedia);

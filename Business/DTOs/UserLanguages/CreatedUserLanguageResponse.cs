@@ -4,18 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.UserLanguages
+namespace Business.DTOs.UserLanguages;
+
+public class CreatedUserLanguageResponse
 {
-    public class CreatedUserLanguageResponse
-    {
-        public string LanguageName { get; set; }
-        public string LanguageLevelName { get; set; }
-        public string IdentityNumber { get; set; }
-        public string FirstName { get; set; }
-        public string Lastname { get; set; }
-        public string PhoneNumber { get; set; }
-        public string? Email { get; set; }
-        public DateTime BirthDate { get; set; }
-        public string AboutMe { get; set; }
-    }
+    public Guid Id { get; set; }
+    public Guid ForeignLanguageId { get; set; }
+    public Guid ForeignLanguageLevelId { get; set; }
 }

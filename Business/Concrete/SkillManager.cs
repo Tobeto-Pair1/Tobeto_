@@ -36,9 +36,7 @@ public class SkillManager : ISkillService
     }
     public async Task<IPaginate<GetListSkillResponse>> GetListAsync(PageRequest pageRequest)
     {
-        var data = await _skillDal.GetListAsync(include: l => (IIncludableQueryable<Skill, object>)l.Include(l => l.Id),
-            index: pageRequest.PageIndex,
-            size: pageRequest.PageSize);
+        var data = await _skillDal.GetListAsync(index: pageRequest.PageIndex,size: pageRequest.PageSize);
 
         var result = _mapper.Map<Paginate<GetListSkillResponse>>(data);
         return result;

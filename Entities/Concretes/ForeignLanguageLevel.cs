@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-public class LanguageLevel : Entity<Guid>
+public class ForeignLanguageLevel : Entity<Guid>
 {
     public string Name { get; set; }
     

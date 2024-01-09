@@ -15,8 +15,8 @@ public class Catalog : Entity<Guid>
     //public Guid CourseLevelId { get; set; }
 
 
-    public  Instructor Instructor { get; set; } 
-  //  public Situation Situation { get; set; }
+    public Instructor Instructor { get; set; }
+    //  public Situation Situation { get; set; }
     public Category Category { get; set; }
     //public CourseLevel Level { get; set; }
 }
