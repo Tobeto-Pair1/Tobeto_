@@ -9,11 +9,11 @@ namespace Entities.Concretes;
 
 public class AsyncLessonDetail : Entity<Guid>
 {
-    public Guid ManufacturerId { get; set; }
-    public Guid CategoryId { get; set; }
-    public Guid AsyncLessonId { get; set; }
-    public Guid LessonLanguageId { get; set; }
-    public Guid SubTypeId { get; set; }
+    public Guid? ManufacturerId { get; set; }
+    public Guid? CategoryId { get; set; }
+    public Guid? AsyncLessonId { get; set; }
+    public Guid? LessonLanguageId { get; set; }
+    public Guid? SubTypeId { get; set; }
 
     public virtual Manufacturer Manufacturer { get; set; }
     public virtual Category Category  { get; set; }

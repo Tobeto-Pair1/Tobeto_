@@ -39,7 +39,7 @@ namespace Business.Concrete
         public async Task<DeletedAsyncLessonResponse> Delete(DeleteAsyncLessonRequest deleteAsyncLessonRequest)
         {
             AsyncLesson asyncLesson = _mapper.Map<AsyncLesson>(deleteAsyncLessonRequest);
-            AsyncLesson deletedAsyncLesson = await _asyncLessonDal.AddAsync(asyncLesson);
+            AsyncLesson deletedAsyncLesson = await _asyncLessonDal.DeleteAsync(asyncLesson);
             DeletedAsyncLessonResponse deletedAsyncLessonResponse = _mapper.Map<DeletedAsyncLessonResponse>(deletedAsyncLesson);
             return deletedAsyncLessonResponse;
         }
@@ -59,7 +59,7 @@ namespace Business.Concrete
         public async Task<UpdatedAsyncLessonResponse> Update(UpdateAsyncLessonRequest updateAsyncLessonRequest)
         {
             AsyncLesson asyncLesson = _mapper.Map<AsyncLesson>(updateAsyncLessonRequest);
-            AsyncLesson updatedAsyncLesson = await _asyncLessonDal.AddAsync(asyncLesson);
+            AsyncLesson updatedAsyncLesson = await _asyncLessonDal.UpdateAsync(asyncLesson);
             UpdatedAsyncLessonResponse updatedAsyncLessonResponse = _mapper.Map<UpdatedAsyncLessonResponse>(updatedAsyncLesson);
             return updatedAsyncLessonResponse;
         }

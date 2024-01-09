@@ -52,15 +52,17 @@ public class TobetoDbContext : IdentityDbContext<AppUser, AppRole, Guid, Identit
     public DbSet<SynchronLessonDetail> SynchronLessonDetails { get; set; }
     public DbSet<SynchronLessonInstructor> SynchronLessonInstructors { get; set; }
     public DbSet<UserSocial> UserSocials { get; set; }
-
     public DbSet<SubType> SubTypes { get; set; }
     public DbSet<Program> Programs { get; set; }
     public DbSet<Experience> Experiences { get; set; }
     public DbSet<Company> Companies { get; set; }
+    public DbSet<AsyncLessonDetail> AsyncLessonDetails { get; set; }
+    public DbSet<Country> Countries { get; set; }
     public DbSet<Exam> Exams { get; set; }
     public DbSet<Grade> Grades { get; set; }
     public DbSet<Question> Questions { get; set; }
     public DbSet<StudentAnswer> StudentAnswers { get; set; }
+
 
 
 
