@@ -13,6 +13,6 @@ namespace Entities.Concrete
         
         public string Name { get; set; }
 
-        public virtual ICollection<UserLanguage> Users{ get; set; }
+        public virtual ICollection<UserLanguage> UserLanguages{ get; set; }
     }
 }

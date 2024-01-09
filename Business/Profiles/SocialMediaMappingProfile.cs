@@ -10,9 +10,7 @@ public class SocialMediaMappingProfile : Profile
     public SocialMediaMappingProfile()
     {
         CreateMap<SocialMedia, CreatedSocialMediaResponse>().ReverseMap();
-        CreateMap<SocialMedia, CreateSocialMediaRequest>()
-        
-            .ReverseMap();
+        CreateMap<SocialMedia, CreateSocialMediaRequest>().ReverseMap();
 
         CreateMap<SocialMedia, UpdatedSocialMediaResponse>().ReverseMap();
         CreateMap<SocialMedia, UpdateSocialMediaRequest>().ReverseMap();

@@ -7,17 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface IForeignLanguageService
 {
-    public interface IForeignLanguageService
-    {
-        Task<IPaginate<GetListForeignLanguageResponse>> GetListAsync(PageRequest pageRequest);
-        Task<CreatedForeignLanguageResponse> Add(CreateForeignLanguageRequest createLanguageRequest);
+    Task<IPaginate<GetListForeignLanguageResponse>> GetListAsync(PageRequest pageRequest);
+    Task<CreatedForeignLanguageResponse> Add(CreateForeignLanguageRequest createLanguageRequest);
 
-        Task<UpdatedForeignLanguageResponse> Update(UpdateForeignLanguageRequest updateLanguageRequest);
+    Task<UpdatedForeignLanguageResponse> Update(UpdateForeignLanguageRequest updateLanguageRequest);
 
-        Task<DeletedForeignLanguageResponse> Delete(DeleteForeignLanguageRequest deleteLanguageRequest);
+    Task<DeletedForeignLanguageResponse> Delete(DeleteForeignLanguageRequest deleteLanguageRequest);
 
 
-    }
 }

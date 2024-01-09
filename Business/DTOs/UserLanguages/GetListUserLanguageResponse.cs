@@ -10,8 +10,8 @@ namespace Business.DTOs.UserLanguages
     {
         public Guid Id { get; set; }
         public Guid ForeignLanguageId { get; set; }
-        public Guid UserId { get; set; }
-        public Guid LanguageLevelId { get; set; }
-
+        public string ForeignLanguageName { get; set; }
+        public Guid ForeignLanguageLevelId { get; set; }
+        public string ForeignLanguageLevelName { get; set; }
     }
 }

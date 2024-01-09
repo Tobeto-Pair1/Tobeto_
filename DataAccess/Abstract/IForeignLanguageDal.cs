@@ -6,9 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace DataAccess.Abstract;
+
+public interface IForeignLanguageDal : IRepository<ForeignLanguage, Guid>, IAsyncRepository<ForeignLanguage, Guid>
 {
-    public interface IForeignLanguageDal : IRepository<ForeignLanguage, Guid>, IAsyncRepository<ForeignLanguage, Guid>
-    {
-    }
 }

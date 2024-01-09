@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.SocialMedias
+namespace Business.DTOs.SocialMedias;
+
+public class UpdateSocialMediaResponse
 {
-    public class UpdateSocialMediaResponse
-    {
-        public int Id { get; set; }
-        public string SocialMediaName { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
 }
