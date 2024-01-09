@@ -15,12 +15,14 @@ public class AddressMappingProfile : Profile
 {
     public AddressMappingProfile()
     {
-        CreateMap<Address, CreatedAddressResponse>().ForMember(destinationMember: a => a.CityId,
-            memberOptions: opt => opt.MapFrom(a => a.City.Id)).
-            ForMember(destinationMember: a => a.CountryId,
-            memberOptions: opt => opt.MapFrom(a => a.Country.Id)).
-            ForMember(destinationMember: a => a.TownId,
-            memberOptions: opt => opt.MapFrom(a => a.Town.Id)).ReverseMap();
+        CreateMap<Address, CreatedAddressResponse>().
+            ForMember(destinationMember: a => a.CityName,
+            memberOptions: opt => opt.MapFrom(a => a.City.Name)).
+            ForMember(destinationMember: a => a.CountryName,
+            memberOptions: opt => opt.MapFrom(a => a.Country.Name)).
+            ForMember(destinationMember: a => a.TownName,
+            memberOptions: opt => opt.MapFrom(a => a.Town.Name))
+            .ReverseMap();
 
         CreateMap<Address, CreateAddressRequest>()
             //.ForMember(destinationMember: a => a.CityId,

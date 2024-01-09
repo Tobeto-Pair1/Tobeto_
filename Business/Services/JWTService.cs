@@ -42,7 +42,7 @@ public class JWTService
             notBefore: DateTime.UtcNow,
             expires: expire,
              claims: claims,
-            signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Doldur be Meyhaneci dsfsfdsaf"))
+            signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("AdnanşensesAdnanşensesAdnanşensesAdnanşensesAdnanşenses"))
                                   , SecurityAlgorithms.HmacSha256)
 
             );

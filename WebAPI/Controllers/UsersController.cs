@@ -32,36 +32,40 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("add")]
-    public async Task<IActionResult> Add([FromBody] CreateUserRequest request ,
+    public async Task<IActionResult> Add([FromBody] CreateUserRequest createUserRequest,
                                          CancellationToken cancellationToken)
     {
 
         //User user = _tobetoDbContext.Users
-         //.FirstOrDefault(o => o.Email == request.Email 
-         //|| 
-         //o.IdentityNumber == request.IdentityNumber);
+        //.FirstOrDefault(o => o.Email == request.Email 
+        //|| 
+        //o.IdentityNumber == request.IdentityNumber);
 
 
         //if(user is not null)
         //{
-            //return BadRequest(new { Message = "Kullanıcı Bulunamadı" });
+        //return BadRequest(new { Message = "Kullanıcı Bulunamadı" });
         //}
 
-        User user  = new()
+        User user = new()
         {
-            IdentityNumber = request.IdentityNumber,
-            Email = request.Email,
-            AboutMe = request.AboutMe,
-            BirthDate = request.BirthDate,
-            FirstName = request.FirstName,
-            Lastname = request.Lastname
+            //IdentityNumber = createUserRequest.IdentityNumber,
+            Email = createUserRequest.Email,
+            //AboutMe = createUserRequest.AboutMe,
+            //BirthDate = createUserRequest.BirthDate,
+            FirstName = createUserRequest.FirstName,
+            PhoneNumber = createUserRequest.PhoneNumber,
+            Lastname = createUserRequest.Lastname
         };
         _tobetoDbContext.Users.Add(user);
         _tobetoDbContext.SaveChanges();
-        var resultToken = _jWTService.CreateToken(user , false);
+        var resultToken = _jWTService.CreateToken(user, false);
 
 
         return Ok(new { AccessToken = resultToken });
+
+        //var result = await _userService.Add(createUserRequest);
+        //return Ok(result);
     }
 
     [HttpDelete("delete")]
