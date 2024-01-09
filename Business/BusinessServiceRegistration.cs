@@ -48,6 +48,7 @@ namespace Business
             services.AddScoped<IExperienceService, ExperienceManager>();
 
             services.AddScoped<ICompanyService, CompanyManager>();
+            services.AddScoped<IAsyncLessonDetailService, AsyncLessonDetailManager>();
 
 
 

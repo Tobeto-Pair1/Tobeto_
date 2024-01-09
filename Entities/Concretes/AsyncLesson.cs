@@ -10,6 +10,7 @@ namespace Entities.Concretes
         public DateTime TimeSpent { get; set; }  //geçirilen süre
         public Guid InstructorId { get; set; }
         public Guid CourseModuleId { get; set; }
+        public Guid AsyncLessonDetailId { get; set; }
 
 
         public virtual Instructor Instructor {get;set;}
