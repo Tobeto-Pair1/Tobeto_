@@ -55,6 +55,7 @@ public class TobetoDbContext : IdentityDbContext<AppUser, AppRole, Guid, Identit
     public DbSet<Experience> Experiences { get; set; }
     public DbSet<Company> Companies { get; set; }
     public DbSet<AsyncLessonDetail> AsyncLessonDetails { get; set; }
+    public DbSet<Country> Countries { get; set; }
 
 
 

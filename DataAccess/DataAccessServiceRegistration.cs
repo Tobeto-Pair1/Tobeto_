@@ -80,6 +80,7 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ICompanyDal, EfCompanyDal>();
         services.AddScoped<IExperienceDal, EfExperienceDal>();
         services.AddScoped<IAsyncLessonDetailDal, EfAsyncLessonDetailDal>();
+        services.AddScoped<ICountryDal, EfCountryDal>();
 
 
         return services;

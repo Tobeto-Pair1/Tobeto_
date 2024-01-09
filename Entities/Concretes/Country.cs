@@ -11,5 +11,6 @@ namespace Entities.Concretes;
 public class Country : Entity<Guid>
 {
     public string? Name { get; set; }
-    public virtual List<City> Cities { get; set; }
+    public Guid? CityId { get; set; }
+    public virtual ICollection <City> Cities { get; set; }
 }
