@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using Entities.Concretes;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -12,17 +13,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.Context;
-public class TobetoDbContext : IdentityDbContext<AppUser, AppRole, Guid, IdentityUserClaim<Guid>,
-        IdentityUserRole<Guid>, IdentityUserLogin<Guid>,
-        IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
+public class TobetoDbContext : DbContext
 {
     protected IConfiguration Configuration { get; set; }
 
 
 
-    public DbSet<AppUser> AppUsers { get; set; }
-    public DbSet<AppRole> AppRoles { get; set; }
-
+    public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+    public DbSet<OperationClaim> OperationClaims { get; set; }
 
 
     public DbSet<AboutOfCourse> AboutOfCourses { get; set; }
@@ -80,41 +78,5 @@ public class TobetoDbContext : IdentityDbContext<AppUser, AppRole, Guid, Identit
         {
             relationship.DeleteBehavior = DeleteBehavior.Restrict;
         }
-
-
-
-
-        #region identity
-
-
-        modelBuilder.Entity<IdentityUserRole<Guid>>().HasNoKey();
-
-
-        modelBuilder.Entity<IdentityUserRole<Guid>>(entity =>
-        {
-            entity.HasKey(e => new { e.UserId, e.RoleId });
-        });
-
-        modelBuilder.Entity<IdentityUserToken<Guid>>(entity =>
-        {
-            entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
-        });
-
-
-        modelBuilder.Entity<AppUser>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-        });
-
-        modelBuilder.Entity<AppRole>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-        });
-         modelBuilder.Entity<IdentityUserLogin<Guid>>(entity =>
-    {
-        entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
-        // Diğer yapılandırmalar...
-    });
     }
-        #endregion
 }

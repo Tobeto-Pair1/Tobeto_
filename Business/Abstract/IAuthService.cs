@@ -1,5 +1,5 @@
 ﻿using Business.DTOs.Users;
-using Entities.Concretes;
+using Core.Entities.Concrete;
 using Core.Utilities.Security.JWT;
 using System;
 using System.Collections.Generic;
@@ -11,8 +11,16 @@ namespace Business.Abstract;
 
 public interface IAuthService
 {
-    Task<CreatedUserResponse> Register(CreateUserRequest createUserRequest, string password);
-    //Task<User> Login(UserForLoginDto userForLoginDto);
-    //Task UserExists(string email);
-    //Task<AccessToken> CreateAccessToken(User user);
+    //IDataResult<UserAuth> Register(UserForRegisterDto userForRegisterDto, string password);
+    Task<UserAuth> Register(UserForRegisterRequest userForRegisterRequest, string password);
+
+    //IDataResult<UserAuth> Login(UserForLoginDto userForLoginDto);
+    Task<UserAuth> Login(UserForLoginRequest userForLoginRequest);
+    //IResult UserExists(string email);
+    void UserExists(string email);
+    //IDataResult<AccessToken> CreateAccessToken(UserAuth user);
+    AccessToken CreateAccessToken(UserAuth userAuth);
 }
+
+
+

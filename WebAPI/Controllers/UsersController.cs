@@ -17,56 +17,13 @@ namespace WebAPI.Controllers;
 [ApiController]
 public class UsersController : ControllerBase
 {
-    private readonly SignInManager<AppUser> _signInManager;
     private readonly IUserService _userService;
-    private readonly TobetoDbContext _tobetoDbContext;
-    private readonly JWTService _jWTService;
 
-    public UsersController(IUserService userService,
-                       TobetoDbContext tobetoDbContext,
-                       JWTService jWTService)
+    public UsersController(IUserService userService)
     {
         _userService = userService;
-        _tobetoDbContext = tobetoDbContext;
-        _jWTService = jWTService;
     }
 
-    [HttpPost("add")]
-    public async Task<IActionResult> Add([FromBody] CreateUserRequest createUserRequest,
-                                         CancellationToken cancellationToken)
-    {
-
-        //User user = _tobetoDbContext.Users
-        //.FirstOrDefault(o => o.Email == request.Email 
-        //|| 
-        //o.IdentityNumber == request.IdentityNumber);
-
-
-        //if(user is not null)
-        //{
-        //return BadRequest(new { Message = "Kullanıcı Bulunamadı" });
-        //}
-
-        User user = new()
-        {
-            //IdentityNumber = createUserRequest.IdentityNumber,
-            Email = createUserRequest.Email,
-            //AboutMe = createUserRequest.AboutMe,
-            //BirthDate = createUserRequest.BirthDate,
-            FirstName = createUserRequest.FirstName,
-            PhoneNumber = createUserRequest.PhoneNumber,
-            Lastname = createUserRequest.Lastname
-        };
-        _tobetoDbContext.Users.Add(user);
-        _tobetoDbContext.SaveChanges();
-        var resultToken = _jWTService.CreateToken(user, false);
-
-
-        return Ok(new { AccessToken = resultToken });
-
-        //var result = await _userService.Add(createUserRequest);
-        //return Ok(result);
-    }
 
     [HttpDelete("delete")]
     public async Task<IActionResult> Delete([FromBody] DeleteUserRequest deleteUserRequest)

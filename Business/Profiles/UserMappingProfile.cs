@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.DTOs.Users;
 using Core.DataAccess.Dynamic;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Entities.Concretes;
 using System;
@@ -15,12 +16,13 @@ namespace Business.Profiles
     {
         public UserMappingProfile()
         {
-            CreateMap<User, CreatedUserResponse>().ReverseMap();
+            CreateMap<User, UserAuth>().ReverseMap();
 
-            CreateMap<Address, CreateUserRequest>().ReverseMap();
-            CreateMap<User, CreateUserRequest>()
-                //.IncludeMembers(memberExpressions: a => a.Address)
-                .ReverseMap();
+            CreateMap<User, UserForRegisterRequest>().ReverseMap();
+            CreateMap<User, UserForLoginRequest>().ReverseMap();
+
+            CreateMap<UserAuth, UserForRegisterRequest>().ReverseMap();
+            CreateMap<UserAuth, UserForLoginRequest>().ReverseMap();
 
             CreateMap<User, DeletedUserResponse>().ReverseMap();
             CreateMap<User, DeleteUserRequest>().ReverseMap();
