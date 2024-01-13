@@ -46,15 +46,6 @@ public static class DataAccessServiceRegistration
 
 
 
-       services.AddIdentity<AppUser, AppRole>(o =>
-       {
-           o.Password.RequiredLength = 6;
-           o.SignIn.RequireConfirmedEmail = true;
-           o.Lockout.MaxFailedAccessAttempts = 3;
-           o.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
-           o.Lockout.AllowedForNewUsers = true;
-
-       }).AddEntityFrameworkStores<TobetoDbContext>();
 
 
 
@@ -90,6 +81,7 @@ public static class DataAccessServiceRegistration
         services.AddScoped<IStudentAnswerDal, EfStudentAnswerDal>();
 
         services.AddScoped<ICertificateDal, EfCertificateDal>();
+        services.AddScoped<IUserOperationClaimDal, EfUserOperationClaimDal>();
 
 
 

@@ -13,7 +13,7 @@ using Business.Profiles;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Business;
-
+using Core.Utilities.Security.JWT;
 
 namespace Business
 {
@@ -60,6 +60,10 @@ namespace Business
             services.AddScoped<IAsyncLessonDetailService, AsyncLessonDetailManager>();
             services.AddScoped<ICountryService, CountryManager>();
             services.AddScoped<ICertificateService, CertificateManager>();
+
+            services.AddScoped<IAuthService, AuthManager>();
+            services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
+            services.AddScoped<ITokenHelper, JwtHelper>();
 
 
 

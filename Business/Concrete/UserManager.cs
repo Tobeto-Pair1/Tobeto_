@@ -3,6 +3,7 @@ using Business.Abstract;
 using Business.DTOs.Users;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
+using Core.Entities.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concretes;
@@ -27,18 +28,18 @@ public class UserManager : IUserService
         _mapper = mapper;
     }
 
-    public  async Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest)
-    {
+    //public  async Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest)
+    //{
 
-        User user = _mapper.Map<User>(createUserRequest);
+    //    User user = _mapper.Map<User>(createUserRequest);
 
-        User userCreated = await _userDal.AddAsync(user);
+    //    User userCreated = await _userDal.AddAsync(user);
 
-        CreatedUserResponse createUserResponse = _mapper.Map<CreatedUserResponse>(userCreated);
+    //    CreatedUserResponse createUserResponse = _mapper.Map<CreatedUserResponse>(userCreated);
 
-        return createUserResponse;
+    //    return createUserResponse;
 
-    }
+    //}
 
 
 
@@ -81,14 +82,26 @@ public async Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageR
         return updatedUserResponse;
     }
 
- 
+
+    public async Task<UserAuth> Add(UserAuth userAuth)
+    {
+        User user = _mapper.Map<User>(userAuth);
+        User userCreated = await _userDal.AddAsync(user);
+        UserAuth userAuthMap = _mapper.Map<UserAuth>(userCreated);
+        return userAuthMap;
+    }
+
+    public async Task<UserAuth> GetByMail(string email)
+    {
+        var result = await _userDal.GetAsync(u => u.Email == email);
+        UserAuth userAuth = _mapper.Map<UserAuth>(result);
+        return userAuth;
+    }
 
 
-    
 
-   
 
- 
+
 
 
 }
