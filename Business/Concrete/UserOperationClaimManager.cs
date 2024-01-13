@@ -20,7 +20,7 @@ public class UserOperationClaimManager : IUserOperationClaimService
         _mapper = mapper;
     }
 
-    public async Task<IList<OperationClaim>> GetClaims(int id)
+    public async Task<IList<OperationClaim>> GetClaims(Guid id)
     {
         var userOperationClaims = await _userOperationClaimDal.GetListAsync(u => u.UserId == id,
                                                                include: u => u.Include(u => u.OperationClaim));
