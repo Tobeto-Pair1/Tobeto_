@@ -3,6 +3,6 @@ using Core.Entities.Concrete;
 
 namespace DataAccess.Abstract;
 
-public interface IUserOperationClaimDal : IRepository<UserOperationClaim, int>, IAsyncRepository<UserOperationClaim, int>
+public interface IUserOperationClaimDal : IRepository<UserOperationClaim, Guid>, IAsyncRepository<UserOperationClaim, Guid>
 {
 }

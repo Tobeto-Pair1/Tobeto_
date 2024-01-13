@@ -7,6 +7,6 @@ namespace Business.Abstract;
 
 public interface IUserOperationClaimService
 {
-   Task<IList<OperationClaim>> GetClaims(int id);
+   Task<IList<OperationClaim>> GetClaims(Guid id);
 
 }
