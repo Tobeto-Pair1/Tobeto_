@@ -27,22 +27,6 @@ public class UserManager : IUserService
         _userDal = userDal;
         _mapper = mapper;
     }
-
-    //public  async Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest)
-    //{
-
-    //    User user = _mapper.Map<User>(createUserRequest);
-
-    //    User userCreated = await _userDal.AddAsync(user);
-
-    //    CreatedUserResponse createUserResponse = _mapper.Map<CreatedUserResponse>(userCreated);
-
-    //    return createUserResponse;
-
-    //}
-
-
-
     public async Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest)
     {
 

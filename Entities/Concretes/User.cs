@@ -16,9 +16,11 @@ public class User: Entity<Guid>
 {
     public string  FirstName { get; set; }
     public string  Lastname { get; set; }
+    public string Email { get; set; }
+    public byte[] PasswordSalt { get; set; }
+    public byte[] PasswordHash { get; set; }
+    public string PhoneNumber { get; set; }
     public string? IdentityNumber { get; set; }
-    public string  PhoneNumber { get; set; }
-    public string  Email { get; set; }
     public DateTime?  BirthDate { get; set; }
     public Guid? AddressId { get; set; }
     public string? AboutMe { get; set; }

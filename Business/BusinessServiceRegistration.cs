@@ -60,6 +60,7 @@ namespace Business
             services.AddScoped<IAsyncLessonDetailService, AsyncLessonDetailManager>();
             services.AddScoped<ICountryService, CountryManager>();
             services.AddScoped<ICertificateService, CertificateManager>();
+            services.AddScoped<IImageService, ImageManager>();
 
             services.AddScoped<IAuthService, AuthManager>();
             services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
