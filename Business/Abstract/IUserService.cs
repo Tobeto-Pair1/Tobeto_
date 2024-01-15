@@ -14,12 +14,9 @@ namespace Business.Abstract;
 public interface IUserService
 {
     Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest);
-
-  //  Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest);
     Task<UserAuth> Add(UserAuth userAuth);
-    
     Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest);
-
     Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest);
     Task<UserAuth> GetByMail(string email);
+
 }
