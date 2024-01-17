@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.DTOs.AboutOfCourses;
 using Core.DataAccess.Paging;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
+        [Authorize(Roles ="admin")]
 
         public async Task<IActionResult> Add([FromBody] CreateAboutOfCourseRequest createAboutOfCourseRequest)
         {

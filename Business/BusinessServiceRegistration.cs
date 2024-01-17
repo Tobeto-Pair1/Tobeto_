@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Business;
 using Core.Utilities.Security.JWT;
+using Core.Utilities.FileUpload;
 
 namespace Business
 {
@@ -65,6 +66,8 @@ namespace Business
             services.AddScoped<IAuthService, AuthManager>();
             services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
             services.AddScoped<ITokenHelper, JwtHelper>();
+            services.AddScoped<IFileUploadAdapter, CloudinaryAdapter>();
+
 
 
 
