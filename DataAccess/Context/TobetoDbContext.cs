@@ -42,7 +42,6 @@ public class TobetoDbContext : DbContext
     public DbSet<Skill> Skills { get; set; }
     public DbSet<UserSkill> UserSkills { get; set; }
     public DbSet<Town> Towns { get; set; }
-
     public DbSet<Certificate> Certificates { get; set; }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<AsyncLesson> AsyncLessons { get; set; }
