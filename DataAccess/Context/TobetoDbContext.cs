@@ -61,6 +61,7 @@ public class TobetoDbContext : DbContext
     public DbSet<Question> Questions { get; set; }
     public DbSet<StudentAnswer> StudentAnswers { get; set; }
     public DbSet<Image> Images { get; set; }
+    public DbSet<CourseModule> CourseModules { get; set; }
 
 
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
