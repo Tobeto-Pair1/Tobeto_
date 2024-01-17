@@ -2,8 +2,7 @@
 {
     public class DeletedImageResponse
     {
-        public string? ImageUrl { get; set; }
-        public Guid UserId { get; set; }
+        public Guid Id { get; set; }
     }
 
 }

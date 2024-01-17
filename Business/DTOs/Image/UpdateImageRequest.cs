@@ -1,10 +1,12 @@
-﻿namespace Business.DTOs.Image
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Business.DTOs.Image
 {
     public class UpdateImageRequest
     {
         public Guid Id { get; set; }
-        public string? ImageUrl { get; set; }
-        public Guid UserId { get; set; }
+        public IFormFile? File { get; set; }
+        public string Description { get; set; }
     }
 
 }

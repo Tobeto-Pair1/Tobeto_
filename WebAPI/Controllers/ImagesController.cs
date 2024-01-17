@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
 
         [HttpPost("add")]
 
-        public async Task<IActionResult> Add([FromBody] CreateImageRequest createImageRequest)
+        public async Task<IActionResult> Add([FromForm] CreateImageRequest createImageRequest)
         {
 
             var result = await _imageService.Add(createImageRequest);
@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] UpdateImageRequest updateImageRequest)
+        public async Task<IActionResult> Update([FromForm] UpdateImageRequest updateImageRequest)
         {
 
             var result = await _imageService.Update(updateImageRequest);
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteImageRequest deleteImageRequest)
+        public async Task<IActionResult> Delete([FromForm] DeleteImageRequest deleteImageRequest)
         {
 
             var result = await _imageService.Delete(deleteImageRequest);
@@ -44,11 +44,5 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getList")]
-        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
-        {
-            var result = await _imageService.GetListAsync(pageRequest);
-            return Ok(result);
-        }
     }
 }

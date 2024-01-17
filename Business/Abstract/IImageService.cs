@@ -1,6 +1,7 @@
 ﻿using Business.DTOs.Image;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,8 @@ namespace Business.Abstract
 {
     public interface IImageService
     {
-        Task<IPaginate<GetListImageResponse>> GetListAsync(PageRequest pageRequest);
-
         Task<CreatedImageResponse> Add(CreateImageRequest createImageRequest);
-
-        Task<UpdatedImageResponse> Update(UpdateImageRequest updateImageRequest);
-
         Task<DeletedImageResponse> Delete(DeleteImageRequest deleteImageRequest);
+        Task<UpdatedImageResponse> Update(UpdateImageRequest updateImageRequest);
     }
 }
