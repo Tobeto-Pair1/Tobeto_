@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.UserLanguages
+namespace Business.DTOs.UserLanguages;
+
+public class DeletedUserLanguageResponse
 {
-    public class DeletedUserLanguageResponse
-    {
-        public Guid Id { get; set; }
-        public Guid ForeignLanguageId { get; set; }
-        public Guid UserId { get; set; }
-        public Guid LanguageLevelId { get; set; }
-    }
+    public Guid ForeignLanguageId { get; set; }
+    public Guid UserId { get; set; }
+    public Guid LanguageLevelId { get; set; }
 }

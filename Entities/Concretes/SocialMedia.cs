@@ -9,9 +9,7 @@ namespace Entities.Concretes;
 
 public class SocialMedia : Entity<Guid>
 {
-
     public string Name { get; set; }
-    public string Link { get; set; }
 
     public virtual ICollection<UserSocial> UserSocials { get; set; }
 }

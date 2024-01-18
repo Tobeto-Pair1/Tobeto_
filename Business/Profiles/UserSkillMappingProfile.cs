@@ -9,23 +9,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Profiles
+namespace Business.Profiles;
+
+public class UserSkillMappingProfile : Profile
 {
-    public class UserSkillMappingProfile : Profile
+    public UserSkillMappingProfile()
     {
-        public UserSkillMappingProfile()
-        {
-            CreateMap<UserSkill, CreatedUserSkillResponse>().ReverseMap();
-            CreateMap<UserSkill, CreateUserSkillRequest>().ReverseMap();
+        CreateMap<UserSkill, CreatedUserSkillResponse>().ReverseMap();
+        CreateMap<UserSkill, CreateUserSkillRequest>()
+            .ForMember(a=>a.UsersId, opt=>opt.MapFrom(a=>a.Id))
+            .ReverseMap();
 
-            CreateMap<UserSkill, DeletedUserSkillResponse>().ReverseMap();
-            CreateMap<UserSkill, DeleteUserSkillRequest>().ReverseMap();
+        CreateMap<UserSkill, DeletedUserSkillResponse>().ReverseMap();
+        CreateMap<UserSkill, DeleteUserSkillRequest>().ReverseMap();
 
-            CreateMap<UserSkill, UpdatedUserSkillResponse>().ReverseMap();
-            CreateMap<UserSkill, UpdateUserSkillRequest>().ReverseMap();
+        CreateMap<UserSkill, UpdatedUserSkillResponse>().ReverseMap();
+        CreateMap<UserSkill, UpdateUserSkillRequest>().ReverseMap();
 
-            CreateMap<UserSkill, GetListUserSkillResponse>().ReverseMap();
-            CreateMap<Paginate<UserSkill>, Paginate<GetListUserSkillResponse>>().ReverseMap();
-        }
+        CreateMap<UserSkill, GetListUserSkillResponse>().ReverseMap();
+        CreateMap<Paginate<UserSkill>, Paginate<GetListUserSkillResponse>>().ReverseMap();
     }
 }

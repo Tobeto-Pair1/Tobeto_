@@ -17,52 +17,13 @@ namespace WebAPI.Controllers;
 [ApiController]
 public class UsersController : ControllerBase
 {
-    private readonly SignInManager<AppUser> _signInManager;
     private readonly IUserService _userService;
-    private readonly TobetoDbContext _tobetoDbContext;
-    private readonly JWTService _jWTService;
 
-    public UsersController(IUserService userService,
-                       TobetoDbContext tobetoDbContext,
-                       JWTService jWTService)
+    public UsersController(IUserService userService)
     {
         _userService = userService;
-        _tobetoDbContext = tobetoDbContext;
-        _jWTService = jWTService;
     }
 
-    [HttpPost("add")]
-    public async Task<IActionResult> Add([FromBody] CreateUserRequest request ,
-                                         CancellationToken cancellationToken)
-    {
-
-        //User user = _tobetoDbContext.Users
-         //.FirstOrDefault(o => o.Email == request.Email 
-         //|| 
-         //o.IdentityNumber == request.IdentityNumber);
-
-
-        //if(user is not null)
-        //{
-            //return BadRequest(new { Message = "Kullanıcı Bulunamadı" });
-        //}
-
-        User user  = new()
-        {
-            IdentityNumber = request.IdentityNumber,
-            Email = request.Email,
-            AboutMe = request.AboutMe,
-            BirthDate = request.BirthDate,
-            FirstName = request.FirstName,
-            Lastname = request.Lastname
-        };
-        _tobetoDbContext.Users.Add(user);
-        _tobetoDbContext.SaveChanges();
-        var resultToken = _jWTService.CreateToken(user , false);
-
-
-        return Ok(new { AccessToken = resultToken });
-    }
 
     [HttpDelete("delete")]
     public async Task<IActionResult> Delete([FromBody] DeleteUserRequest deleteUserRequest)

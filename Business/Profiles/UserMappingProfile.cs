@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.DTOs.Users;
 using Core.DataAccess.Dynamic;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Entities.Concretes;
 using System;
@@ -15,26 +16,19 @@ namespace Business.Profiles
     {
         public UserMappingProfile()
         {
+            CreateMap<User, UserAuth>().ReverseMap();
 
-        //public string CountryName { get; set;}
-        //public string CityName { get; set;}
-        //public string TownName { get; set;}
-        //public string Description { get; set;}
+            CreateMap<User, UserForRegisterRequest>().ReverseMap();
+            CreateMap<User, UserForLoginRequest>().ReverseMap();
 
-            CreateMap<User, CreatedUserResponse>().ReverseMap();
-
-            CreateMap<Country, CreateUserRequest>().ReverseMap();
-            CreateMap<Address, CreateUserRequest>().ReverseMap();
-            CreateMap<User, CreateUserRequest>()
-                .IncludeMembers(memberExpressions: a => a.Address)
-                .ReverseMap();
-             //   .ReverseMap();
+            CreateMap<UserAuth, UserForRegisterRequest>().ReverseMap();
+            CreateMap<UserAuth, UserForLoginRequest>().ReverseMap();
 
             CreateMap<User, DeletedUserResponse>().ReverseMap();
-            CreateMap<DeleteUserRequest, User>().ReverseMap();
+            CreateMap<User, DeleteUserRequest>().ReverseMap();
 
             CreateMap<User, UpdatedUserResponse>().ReverseMap();
-            CreateMap<UpdateUserRequest, User>().ReverseMap();
+            CreateMap<User, UpdateUserRequest>().ReverseMap();
 
             CreateMap<User, GetListUserResponse>()
                 .ForMember(destinationMember: a => a.TownName,
@@ -47,7 +41,6 @@ namespace Business.Profiles
            memberOptions: opt => opt.MapFrom(a => a.Address.Description))
                 .ReverseMap();
             CreateMap<Paginate<User>,Paginate<GetListUserResponse>>().ReverseMap();
-
         }
     }
 }

@@ -8,15 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrete
-{
-    public class EfForeignLanguageDal : EfRepositoryBase<ForeignLanguage, Guid, TobetoDbContext>, IForeignLanguageDal
-    {
-        public EfForeignLanguageDal(TobetoDbContext context) : base(context)
-        {
-        }
-    }
-    
+namespace DataAccess.Concrete;
 
-   
+public class EfForeignLanguageDal : EfRepositoryBase<ForeignLanguage, Guid, TobetoDbContext>, IForeignLanguageDal
+{
+    public EfForeignLanguageDal(TobetoDbContext context) : base(context)
+    {
+    }
 }

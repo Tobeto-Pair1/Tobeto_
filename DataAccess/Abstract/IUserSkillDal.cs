@@ -6,9 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace DataAccess.Abstract;
+
+public interface IUserSkillDal : IRepository<UserSkill,Guid>, IAsyncRepository<UserSkill, Guid>
 {
-    public interface IUserSkillDal : IRepository<UserSkill,Guid>, IAsyncRepository<UserSkill, Guid>
-    {
-    }
 }

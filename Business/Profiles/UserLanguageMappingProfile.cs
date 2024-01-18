@@ -14,20 +14,8 @@ namespace Business.Profiles
     {
         public UserLanguageMappingProfile()
         {
-            CreateMap<UserLanguage, CreatedUserLanguageResponse>().
-            ForMember(destinationMember: a => a.LanguageName,
-            memberOptions: opt => opt.MapFrom(a => a.ForeignLanguage.Name)).
-            ForMember(destinationMember: a => a.LanguageLevelName,
-            memberOptions: opt => opt.MapFrom(a => a.LanguageLevel.Name)).
-          ReverseMap();
-
-
-            CreateMap<UserLanguage, CreateUserLanguageRequest>().
-                  ForMember(destinationMember: a => a.LanguageName,
-                memberOptions: opt => opt.MapFrom(a => a.ForeignLanguage.Name)).
-                ForMember(destinationMember: a => a.LanguageLevelName,
-                memberOptions: opt => opt.MapFrom(a => a.LanguageLevel.Name)).
-                ReverseMap();
+            CreateMap<UserLanguage, CreatedUserLanguageResponse>().ReverseMap();
+            CreateMap<UserLanguage, CreateUserLanguageRequest>().ReverseMap();
 
             CreateMap<UserLanguage, DeletedUserLanguageResponse>().ReverseMap();
             CreateMap<DeleteUserLanguageRequest, UserLanguage>().ReverseMap();
@@ -35,8 +23,14 @@ namespace Business.Profiles
             CreateMap<UserLanguage, UpdatedUserLanguageResponse>().ReverseMap();
             CreateMap<UpdateUserLanguageRequest, UserLanguage>().ReverseMap();
 
-            CreateMap<Paginate<UserLanguage>, GetListUserLanguageResponse>().ReverseMap();
-            CreateMap<UserLanguage, GetListUserLanguageResponse>().ReverseMap();
+            CreateMap<Paginate<UserLanguage>, Paginate<GetListUserLanguageResponse>>().ReverseMap();
+
+            CreateMap<UserLanguage, GetListUserLanguageResponse>()
+                 .ForMember(destinationMember: a => a.ForeignLanguageName,
+                 memberOptions: opt => opt.MapFrom(a => a.ForeignLanguage.Name)).
+                ForMember(destinationMember: a => a.ForeignLanguageLevelName,
+                memberOptions: opt => opt.MapFrom(a => a.ForeignLanguageLevel.Name))
+                .ReverseMap();
         }
     }
 }

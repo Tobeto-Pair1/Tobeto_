@@ -8,5 +8,6 @@ namespace Business.DTOs.ForeignLanguages;
 
 public class UpdateForeignLanguageRequest
 {
-    public string LanguageName { get; set; }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
 }

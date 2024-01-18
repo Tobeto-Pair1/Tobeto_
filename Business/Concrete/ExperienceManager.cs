@@ -44,8 +44,8 @@ public class ExperienceManager : IExperienceService
     }
     public async Task<IPaginate<GetListExperienceResponse>> GetListAsync(PageRequest pageRequest)
     {
-        var data = await _experienceDal.GetListAsync(include: a => a.Include(a => a.Position)
-        .Include(a => a.Sector).Include(a => a.Company).Include(a => a.City),
+        var data = await _experienceDal.GetListAsync(include: a => a.
+               Include(a => a.City),
                index: pageRequest.PageIndex,
                size: pageRequest.PageSize);
 

@@ -14,23 +14,31 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Business;
 
+using Core.Utilities.Security.JWT;
+using Core.Utilities.FileUpload;
+
 namespace Business
 {
     public static class BusinessServiceRegistration
     {
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
+
+            services.AddScoped<IUserLanguageService, UserLanguageManager>();
+            services.AddScoped<IForeignLanguageService, ForeignLanguageManager>();
+            services.AddScoped<IForeignLanguageLevelService, ForeignLanguageLevelManager>();
+
+
+
             services.AddScoped<IAboutOfCourseService, AboutOfCourseManager>();
             services.AddScoped<IEmployeeService, EmployeeManager>();
             services.AddScoped<IAddressService, AddressManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
-            services.AddScoped<IForeignLanguageService, ForeignLanguageManager>();
             services.AddScoped<ISocialMediaService, SocialMediaManager>();
             services.AddScoped<IStudentService, StudentManager>();
             services.AddScoped<IAsyncLessonService, AsyncLessonManager>();
             services.AddScoped<ITownService, TownManager>();
-            services.AddScoped<IUserLanguageService, UserLanguageManager>();
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<ISkillService, SkillManager>();
             services.AddScoped<ISectorService, SectorManager>();
@@ -46,9 +54,20 @@ namespace Business
             services.AddScoped<IProgramService, ProgramManager>();
             services.AddScoped<INotificationService, NotificationManager>();
             services.AddScoped<IExperienceService, ExperienceManager>();
-
+            services.AddScoped<IExamService, ExamManager>();
+            services.AddScoped<IGradeService, GradeManager>();
+            services.AddScoped<IQuestionService, QuestionManager>();
+            services.AddScoped<IStudentAnswerService, StudentAnswerManager>();
             services.AddScoped<ICompanyService, CompanyManager>();
+            services.AddScoped<IAsyncLessonDetailService, AsyncLessonDetailManager>();
+            services.AddScoped<ICountryService, CountryManager>();
+            services.AddScoped<ICertificateService, CertificateManager>();
+            services.AddScoped<IImageService, ImageManager>();
 
+            services.AddScoped<IAuthService, AuthManager>();
+            services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
+            services.AddScoped<ITokenHelper, JwtHelper>();
+            services.AddScoped<IFileUploadAdapter, CloudinaryAdapter>();
 
 
 
@@ -61,7 +80,7 @@ namespace Business
         }
 
         public static IServiceCollection AddSubClassesOfType(this IServiceCollection services,
-         Assembly assembly,Type type,Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null)
+         Assembly assembly, Type type, Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null)
         {
             var types = assembly.GetTypes().Where(t => t.IsSubclassOf(type) && type != t).ToList();
             foreach (var item in types)
@@ -74,27 +93,7 @@ namespace Business
         }
 
 
-        public static void AddJwtBearerAuthentication(this IServiceCollection services)
-        {
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(configuration =>
-            {
-                configuration.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidateLifetime = true,
-
-                    ValidIssuer = "Pair-1",
-                    ValidAudience = "Tobeto",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Doldur be Meyhaneci dsfsfdsaf"))
-                };
-            });
-        }
+     
 
 
 

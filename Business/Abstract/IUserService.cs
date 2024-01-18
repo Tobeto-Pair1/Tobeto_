@@ -1,6 +1,7 @@
 ﻿using Business.DTOs.Users;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
+using Core.Entities.Concrete;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,9 @@ namespace Business.Abstract;
 public interface IUserService
 {
     Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest);
-
-    Task<CreatedUserResponse> Add(CreateUserRequest createUserRequest);
-
+    Task<UserAuth> Add(UserAuth userAuth);
     Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest);
-
     Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest);
-
+    Task<UserAuth> GetByMail(string email);
 
 }
