@@ -13,6 +13,7 @@ using Business.Profiles;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Business;
+
 using Core.Utilities.Security.JWT;
 using Core.Utilities.FileUpload;
 
@@ -92,27 +93,7 @@ namespace Business
         }
 
 
-        public static void AddJwtBearerAuthentication(this IServiceCollection services)
-        {
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(configuration =>
-            {
-                configuration.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidateLifetime = true,
-
-                    ValidIssuer = "Ahmet Güzeller",
-                    ValidAudience = "IT Desk",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("AdnanşensesAdnanşensesAdnanşensesAdnanşensesAdnanşenses"))
-                };
-            });
-        }
+     
 
 
 
