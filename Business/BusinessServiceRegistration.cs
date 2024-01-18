@@ -10,6 +10,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Profiles;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Core.Business;
 
 namespace Business
 {
@@ -86,8 +89,8 @@ namespace Business
                     ValidateIssuerSigningKey = true,
                     ValidateLifetime = true,
 
-                    ValidIssuer = "Ahmet Güzeller",
-                    ValidAudience = "IT Desk",
+                    ValidIssuer = "Pair-1",
+                    ValidAudience = "Tobeto",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Doldur be Meyhaneci dsfsfdsaf"))
                 };
             });

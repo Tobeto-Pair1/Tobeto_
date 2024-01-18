@@ -21,6 +21,7 @@ public class TobetoDbContext : IdentityDbContext<AppUser, AppRole, Guid, Identit
 
 
     public DbSet<AppUser> AppUsers { get; set; }
+    public DbSet<CourseType> CourseTypes { get; set; }
     public DbSet<AppRole> AppRoles { get; set; }
 
 

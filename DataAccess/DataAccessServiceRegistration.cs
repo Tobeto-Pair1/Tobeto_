@@ -49,7 +49,7 @@ public static class DataAccessServiceRegistration
 
        }).AddEntityFrameworkStores<TobetoDbContext>();
 
-
+        services.AddScoped<ICourseTypeDal, EfCourseTypeDal>();
 
         services.AddScoped<IAboutOfCourseDal, EfAboutOfCourseDal>();
         services.AddScoped<INotificationDal, EfNotificationDal>();
