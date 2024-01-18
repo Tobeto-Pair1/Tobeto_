@@ -68,7 +68,7 @@ public class TobetoDbContext : DbContext
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {
         Configuration = configuration;
-      // Database.EnsureCreated();
+       Database.EnsureCreated();
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

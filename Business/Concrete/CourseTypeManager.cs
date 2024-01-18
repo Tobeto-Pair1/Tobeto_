@@ -23,12 +23,11 @@ public class CourseTypeManager : ICourseTypeService
    private readonly ICourseTypeDal _courseTypeDal;
     private readonly IMapper _mapper;
 
-    public CourseTypeManager(ICourseTypeDal _categoryDal , IMapper _mapper)
+    public CourseTypeManager(ICourseTypeDal courseTypeDal, IMapper mapper)
     {
-        this._courseTypeDal = _courseTypeDal;
-        this._mapper = _mapper;
+        _courseTypeDal = courseTypeDal;
+        _mapper = mapper;
     }
-
 
     public async Task<CreatedCourseTypeResponse> Add(CreateCourseTypeRequest createCourseTypeRequest)
     {

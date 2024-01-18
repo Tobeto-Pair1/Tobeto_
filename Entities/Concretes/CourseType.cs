@@ -4,7 +4,7 @@ namespace Entities.Concretes;
 
 public class CourseType : Entity<Guid>
 {
-
+    
     public string Name { get; set; }
 
     public virtual ICollection<Course> Courses { get; set; }

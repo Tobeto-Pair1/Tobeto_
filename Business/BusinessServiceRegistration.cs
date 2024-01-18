@@ -29,6 +29,7 @@ namespace Business
             services.AddScoped<IForeignLanguageLevelService, ForeignLanguageLevelManager>();
 
 
+            services.AddScoped<ICourseTypeService, CourseTypeManager>();
 
             services.AddScoped<IAboutOfCourseService, AboutOfCourseManager>();
             services.AddScoped<IEmployeeService, EmployeeManager>();

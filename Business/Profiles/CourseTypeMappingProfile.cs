@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.DTOs.Categories;
 using Business.DTOs.Company;
 using Business.DTOs.CourseType;
 using Business.DTOs.Requests;
@@ -27,7 +28,12 @@ public class CourseTypeMappingProfile : Profile
         CreateMap<CourseType, UpdateCourseTypeRequest>().ReverseMap();
 
         CreateMap<CourseType, UpdatedCourseTypeResponse>().ReverseMap();
-      
+
+
+
+        CreateMap<CourseType, GetListCourseTypeResponse>().ReverseMap();
+
+        CreateMap<Paginate<CourseType>, Paginate<GetListCourseTypeResponse>>().ReverseMap();
     }
 }
 
