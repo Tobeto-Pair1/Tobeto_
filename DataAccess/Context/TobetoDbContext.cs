@@ -43,7 +43,6 @@ public class TobetoDbContext : DbContext
     public DbSet<Skill> Skills { get; set; }
     public DbSet<UserSkill> UserSkills { get; set; }
     public DbSet<Town> Towns { get; set; }
-
     public DbSet<Certificate> Certificates { get; set; }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<AsyncLesson> AsyncLessons { get; set; }
@@ -63,6 +62,10 @@ public class TobetoDbContext : DbContext
     public DbSet<Question> Questions { get; set; }
     public DbSet<StudentAnswer> StudentAnswers { get; set; }
     public DbSet<Image> Images { get; set; }
+    public DbSet<CourseModule> CourseModules { get; set; }
+    public DbSet<CourseProgram> CoursePrograms { get; set; }
+    public DbSet<CourseStudent> CourseStudents { get; set; }
+
 
 
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
