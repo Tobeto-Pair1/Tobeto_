@@ -5,6 +5,7 @@ using Core.Business;
 using Core.CrossCuttingConcrens.Exceptions.Types;
 using Core.Entities.Concrete;
 using Core.Utilities.Security.Hashing;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.VisualBasic;
@@ -38,5 +39,11 @@ public class AuthBusinessRules : BaseBusinessRules
             throw new BusinessException(BusinessMessages.PasswordError);
         }
         return userToCheck;
+    }
+    public Task ThrowExceptionIfCreateAccessTokenIsNull(AccessToken accessToken)
+    {
+        if (accessToken == null)
+            throw new BusinessException(BusinessMessages.CreateAccessTokenNot);
+        return Task.CompletedTask;
     }
 }
