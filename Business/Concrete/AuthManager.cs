@@ -33,18 +33,6 @@ namespace Business.Concrete
             _authBusinessRules = authBusinessRules;
         }
 
-
-        //public async Task<UserAuth> Register(UserForRegisterRequest userForRegisterRequest, string password)
-        //{
-        //    byte[] passwordHash, passwordSalt;
-        //    HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);               
-        //    UserAuth userAuth = _mapper.Map<UserAuth>(userForRegisterRequest);
-        //    userAuth.PasswordHash = passwordHash;
-        //    userAuth.PasswordSalt = passwordSalt;
-        //    await _userService.Add(userAuth);
-        //    return userAuth;
-
-        //}
         public async Task<AccessToken> Register(UserForRegisterRequest userForRegisterRequest, string password)
         {
             await _authBusinessRules.EmailCanNotBeDuplicatedWhenRegistered(userForRegisterRequest.Email);
@@ -56,54 +44,26 @@ namespace Business.Concrete
             userAuth.PasswordSalt = passwordSalt;
             var createdUser = await _userService.Add(userAuth);
 
-            var resultToken = await CreateAccessTokenCheck(createdUser);
+            var resultToken = await CreateAccessToken(createdUser);
+            await _authBusinessRules.ThrowExceptionIfCreateAccessTokenIsNull(resultToken);
             return resultToken;
 
         }
 
-        //public Task<UserAuth> Login(UserForLoginRequest userForLoginRequest)
-        //{
-        //    var userToCheck = _userService.GetByMail(userForLoginRequest.Email);
-        //    if (userToCheck == null)
-        //    {
-        //        throw new BusinessException(BusinessMessages.UserNotFound);
-        //    }
-
-        //    if (!HashingHelper.VerifyPasswordHash(userForLoginRequest.Password, userToCheck.Result.PasswordHash, userToCheck.Result.PasswordSalt))
-        //    {
-        //        throw new BusinessException(BusinessMessages.PasswordError);
-        //    }
-
-        //    return userToCheck;
-        //}
         public async Task<AccessToken> Login(UserForLoginRequest userForLoginRequest)
         {
             var userToCheck = await _authBusinessRules.LoginInformationCheck(userForLoginRequest);
 
-            var resultToken = await CreateAccessTokenCheck(userToCheck);
-            return resultToken;
+            var result = await CreateAccessToken(userToCheck);
+            await _authBusinessRules.ThrowExceptionIfCreateAccessTokenIsNull(result);
+            return result;
         }
-
-        //public void UserExists(string email)
-        //{
-        //    if (_userService.GetByMail(email).Result != null)
-        //    {
-        //       throw new BusinessException(BusinessMessages.UserAlreadyExists);
-        //    }
-        //   // return null;
-        //}
 
         public async Task<AccessToken> CreateAccessToken(UserAuth userAuth)
         {
             var claims = await _userOperationClaimService.GetClaims(userAuth.Id);
             var accessToken = await _tokenHelper.CreateToken(userAuth, claims);
             return accessToken;
-        }
-        private async Task<AccessToken> CreateAccessTokenCheck(UserAuth userAuth)
-        {
-            var result = await CreateAccessToken(userAuth);
-            if (result == null) throw new BusinessException(BusinessMessages.CreateAccessTokenNot);
-            return result;
         }
     }
 }

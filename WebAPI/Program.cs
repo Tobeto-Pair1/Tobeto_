@@ -1,9 +1,9 @@
-
 using Business;
-using Business.Services;
 using Core.CrossCuttingConcrens;
+using Core.Utilities.Security.Encryption;
+using Core.Utilities.Security.JWT;
 using DataAccess;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace WebAPI
 {
@@ -21,7 +21,6 @@ namespace WebAPI
             builder.Services.AddControllers();
             builder.Services.AddBusinessServices();
             builder.Services.AddDataAccessServices(builder.Configuration);
-            builder.Services.AddScoped<JWTService>();
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -29,7 +28,25 @@ namespace WebAPI
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
-                
+
+            const string tokenOptionsConfigurationSection = "TokenOptions";
+            TokenOptions? tokenOptions = builder.Configuration.GetSection(tokenOptionsConfigurationSection).Get<TokenOptions>();
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new()
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidIssuer = tokenOptions.Issuer,
+                        ValidAudience = tokenOptions.Audience,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+                    };
+                });
+
 
 
 
