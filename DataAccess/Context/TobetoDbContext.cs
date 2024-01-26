@@ -11,9 +11,10 @@ public class TobetoDbContext : DbContext
     protected IConfiguration Configuration { get; set; }
 
 
+    public DbSet<CourseType> CourseTypes { get; set; }
 
-    public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     public DbSet<OperationClaim> OperationClaims { get; set; }
+
 
 
     public DbSet<AboutOfCourse> AboutOfCourses { get; set; }
@@ -54,12 +55,16 @@ public class TobetoDbContext : DbContext
     public DbSet<Question> Questions { get; set; }
     public DbSet<StudentAnswer> StudentAnswers { get; set; }
     public DbSet<Image> Images { get; set; }
+    public DbSet<CourseModule> CourseModules { get; set; }
+    public DbSet<CourseProgram> CoursePrograms { get; set; }
+    public DbSet<CourseStudent> CourseStudents { get; set; }
+
 
 
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {
         Configuration = configuration;
-      // Database.EnsureCreated();
+       Database.EnsureCreated();
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

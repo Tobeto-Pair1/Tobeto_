@@ -12,7 +12,6 @@
     <None Remove="Concrete\**" />
   </ItemGroup>
 
-
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
