@@ -2,6 +2,7 @@ using Business;
 using Core.CrossCuttingConcrens;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
+using Core.Validation.ActionFilter;
 using DataAccess;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
@@ -22,13 +23,6 @@ namespace WebAPI
             builder.Services.AddBusinessServices();
             builder.Services.AddDataAccessServices(builder.Configuration);
 
-
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
-            var app = builder.Build();
-
             const string tokenOptionsConfigurationSection = "TokenOptions";
             TokenOptions? tokenOptions = builder.Configuration.GetSection(tokenOptionsConfigurationSection).Get<TokenOptions>();
 
@@ -47,8 +41,11 @@ namespace WebAPI
                     };
                 });
 
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
-
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
