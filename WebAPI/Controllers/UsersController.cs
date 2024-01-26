@@ -1,15 +1,7 @@
 ﻿using Business.Abstract;
-using Business.DTOs.Login;
 using Business.DTOs.Users;
-using Business.Services;
 using Core.DataAccess.Paging;
-using DataAccess.Context;
-using Entities.Concretes;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace WebAPI.Controllers;
 

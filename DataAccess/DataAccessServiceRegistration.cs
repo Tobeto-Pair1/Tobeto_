@@ -2,18 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading.Tasks;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
-using Entities.Concretes;
-using System.Reflection;
-using Microsoft.AspNetCore.Identity;
 
 
 
@@ -23,31 +13,14 @@ public static class DataAccessServiceRegistration
 {
     public static IServiceCollection AddDataAccessServices(this IServiceCollection services, IConfiguration configuration)
     {
-
-
-
-
-        // services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
-
-        //services.AddDbContext<TobetoDbContext>(options =>
-        //    options.UseSqlServer("TobetoDB",
-        //    b => b.MigrationsAssembly("DataAccess")));
-
-
+        services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
+      
         services.AddScoped<IForeignLanguageDal, EfForeignLanguageDal>();
         services.AddScoped<IForeignLanguageLevelDal, EfForeignLanguageLevelDal>();
         services.AddScoped<IUserLanguageDal, EfUserLanguageDal>();
-
         services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
         services.AddScoped<IUserSocialDal, EfUserSocialDal>();
-
-
-        services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
-
-
-
         services.AddScoped<ICourseTypeDal, EfCourseTypeDal>();
-
         services.AddScoped<IAboutOfCourseDal, EfAboutOfCourseDal>();
         services.AddScoped<INotificationDal, EfNotificationDal>();
         services.AddScoped<INotificationTypeDal, EfNotificationTypeDal>();
@@ -85,9 +58,6 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ICourseModuleDal, EfCourseModuleDal>();
         services.AddScoped<ICourseProgramDal, EfCourseProgramDal>();
         services.AddScoped<ICourseStudentDal, EfCourseStudentDal>();
-
-
-
 
         return services;
     }
