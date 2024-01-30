@@ -14,6 +14,4 @@ public class CreateAsyncLessonRequest
     public Guid InstructorId { get; set; }
     public Guid CourseModuleId { get; set; }
 
-    /*public string InstructorName { get; set; }
-    public string CourseModuleName { get; set; }*/
 }
