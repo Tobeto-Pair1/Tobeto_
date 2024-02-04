@@ -58,6 +58,7 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ICourseModuleDal, EfCourseModuleDal>();
         services.AddScoped<ICourseProgramDal, EfCourseProgramDal>();
         services.AddScoped<ICourseStudentDal, EfCourseStudentDal>();
+        services.AddScoped<IBlogDal, EfBlogDal>();
 
         return services;
     }

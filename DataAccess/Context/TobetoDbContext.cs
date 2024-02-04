@@ -10,13 +10,10 @@ public class TobetoDbContext : DbContext
 {
     protected IConfiguration Configuration { get; set; }
 
-
     public DbSet<CourseType> CourseTypes { get; set; }
-
+    public DbSet<Blog> Blogs { get; set; }
     public DbSet<OperationClaim> OperationClaims { get; set; }
-
-
-
+    public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     public DbSet<AboutOfCourse> AboutOfCourses { get; set; }
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<NotificationType> NotificationTypes { get; set; }
@@ -59,8 +56,6 @@ public class TobetoDbContext : DbContext
     public DbSet<CourseProgram> CoursePrograms { get; set; }
     public DbSet<CourseStudent> CourseStudents { get; set; }
 
-
-
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {
         Configuration = configuration;
@@ -69,5 +64,9 @@ public class TobetoDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+        {
+            relationship.DeleteBehavior = DeleteBehavior.Restrict;
+        }
     }
 }

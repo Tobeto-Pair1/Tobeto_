@@ -23,13 +23,13 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(b => b.PhoneNumber).HasColumnName("PhoneNumber").IsRequired();
         builder.Property(b => b.Email).HasColumnName("Email").IsRequired();
         builder.Property(b => b.BirthDate).HasColumnName("BirthDate");
-        builder.Property(b => b.ImageId).HasColumnName("ImageId");
+       // builder.Property(b => b.ImageId).HasColumnName("ImageId");
         builder.Property(b => b.AboutMe).HasColumnName("AboutMe");
 
         builder.HasIndex(indexExpression: b => b.IdentityNumber, name: "UK_Users_IdentityNumber").IsUnique();
 
         builder.HasOne(b=>b.Address);
-        builder.HasOne(b => b.Image);
+       // builder.HasOne(b => b.Image);
         builder.HasMany(b => b.UserLanguages);
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 

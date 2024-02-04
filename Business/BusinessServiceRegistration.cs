@@ -62,6 +62,8 @@ namespace Business
             services.AddScoped<ICourseStudentService, CourseStudentManager>();
             services.AddScoped<IAuthService, AuthManager>();
             services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
+            services.AddScoped<IBlogService, BlogManager>();
+
             services.AddScoped<ITokenHelper, JwtHelper>();
             services.AddScoped<IFileUploadAdapter, CloudinaryAdapter>();
 
