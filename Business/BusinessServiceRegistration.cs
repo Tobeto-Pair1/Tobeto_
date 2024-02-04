@@ -3,6 +3,7 @@ using Business.Abstract;
 using Business.Concrete;
 using System.Reflection;
 using Core.Business;
+
 using Core.Utilities.Security.JWT;
 using Core.Utilities.FileUpload;
 using Core.Validation.ActionFilter;
@@ -21,6 +22,7 @@ namespace Business
             services.AddScoped<IUserLanguageService, UserLanguageManager>();
             services.AddScoped<IForeignLanguageService, ForeignLanguageManager>();
             services.AddScoped<IForeignLanguageLevelService, ForeignLanguageLevelManager>();
+            services.AddScoped<ICourseTypeService, CourseTypeManager>();
             services.AddScoped<IAboutOfCourseService, AboutOfCourseManager>();
             services.AddScoped<IEmployeeService, EmployeeManager>();
             services.AddScoped<IAddressService, AddressManager>();
@@ -54,6 +56,10 @@ namespace Business
             services.AddScoped<ICountryService, CountryManager>();
             services.AddScoped<ICertificateService, CertificateManager>();
             services.AddScoped<IImageService, ImageManager>();
+            services.AddScoped<ICourseService, CourseManager>();
+            services.AddScoped<ICourseModuleService, CourseModuleManager>();
+            services.AddScoped<ICourseProgramService, CourseProgramManager>();
+            services.AddScoped<ICourseStudentService, CourseStudentManager>();
             services.AddScoped<IAuthService, AuthManager>();
             services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
             services.AddScoped<IBlogService, BlogManager>();

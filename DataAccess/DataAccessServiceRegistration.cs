@@ -14,12 +14,13 @@ public static class DataAccessServiceRegistration
     public static IServiceCollection AddDataAccessServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
-
+      
         services.AddScoped<IForeignLanguageDal, EfForeignLanguageDal>();
         services.AddScoped<IForeignLanguageLevelDal, EfForeignLanguageLevelDal>();
         services.AddScoped<IUserLanguageDal, EfUserLanguageDal>();
         services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
         services.AddScoped<IUserSocialDal, EfUserSocialDal>();
+        services.AddScoped<ICourseTypeDal, EfCourseTypeDal>();
         services.AddScoped<IAboutOfCourseDal, EfAboutOfCourseDal>();
         services.AddScoped<INotificationDal, EfNotificationDal>();
         services.AddScoped<INotificationTypeDal, EfNotificationTypeDal>();
@@ -53,6 +54,10 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ICertificateDal, EfCertificateDal>();
         services.AddScoped<IUserOperationClaimDal, EfUserOperationClaimDal>();
         services.AddScoped<IImageDal, EfImageDal>();
+        services.AddScoped<ICourseDal, EfCourseDal>();
+        services.AddScoped<ICourseModuleDal, EfCourseModuleDal>();
+        services.AddScoped<ICourseProgramDal, EfCourseProgramDal>();
+        services.AddScoped<ICourseStudentDal, EfCourseStudentDal>();
         services.AddScoped<IBlogDal, EfBlogDal>();
 
         return services;
