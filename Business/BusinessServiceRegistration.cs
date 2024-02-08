@@ -6,7 +6,6 @@ using Core.Business;
 
 using Core.Utilities.Security.JWT;
 using Core.Utilities.FileUpload;
-using Core.Validation.ActionFilter;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 
@@ -66,10 +65,6 @@ namespace Business
 
             services.AddScoped<ITokenHelper, JwtHelper>();
             services.AddScoped<IFileUploadAdapter, CloudinaryAdapter>();
-
-            services.AddMvc(options => options.Filters.Add(typeof(ValidationFilter)))
-                .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateUserRequestValidator>())
-                .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
 
 
 

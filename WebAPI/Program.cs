@@ -1,8 +1,10 @@
+using Autofac;
+using Business.DependencyResolvers.Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Business;
-using Core.CrossCuttingConcrens;
+using Core.CrossCuttingConcerns.Exceptions.Extensions;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
-using Core.Validation.ActionFilter;
 using DataAccess;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
@@ -20,6 +22,11 @@ namespace WebAPI
             builder.Services.AddBusinessServices();
             builder.Services.AddDataAccessServices(builder.Configuration);
 
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+          .ConfigureContainer<ContainerBuilder>(builder =>
+          {
+              builder.RegisterModule(new AutofacBusinessModule());
+          });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -60,7 +67,7 @@ namespace WebAPI
             app.MapControllers();
 
 
-           // app.UseCors();
+            // app.UseCors();
 
             app.Run();
         }
