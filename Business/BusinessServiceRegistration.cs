@@ -66,6 +66,10 @@ namespace Business
             services.AddScoped<ITokenHelper, JwtHelper>();
             services.AddScoped<IFileUploadAdapter, CloudinaryAdapter>();
 
+            services.AddMvc(options => options.Filters.Add(typeof(ValidationFilter)))
+                .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateUserRequestValidator>())
+                .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
+
 
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));

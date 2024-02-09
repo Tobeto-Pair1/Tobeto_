@@ -20,7 +20,7 @@ namespace DataAccess.EntityConfiguration
             builder.Property(an => an.Description).HasColumnName("Description");
 
 
-            builder.HasOne(an => an.User);
+          //  builder.HasOne(an => an.User);
 
             builder.HasQueryFilter(an => !an.DeletedDate.HasValue);
         }

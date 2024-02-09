@@ -15,5 +15,6 @@ namespace Business.Abstract
         Task<CreatedImageResponse> Add(CreateImageRequest createImageRequest);
         Task<DeletedImageResponse> Delete(DeleteImageRequest deleteImageRequest);
         Task<UpdatedImageResponse> Update(UpdateImageRequest updateImageRequest);
+        Task<IPaginate<GetListImageResponse>> GetListAsync(PageRequest pageRequest);
     }
 }
