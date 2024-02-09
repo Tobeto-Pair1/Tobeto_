@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Image
+namespace Business.DTOs.Image;
+
+public class GetListImageResponse
 {
-    public class GetListImageResponse
-    {
-
-        public Guid UserId { get; set; }
-        public string? ImageUrl { get; set; }
-    }
-
+    public string FileName { get; set; }
+    public string FileUrl { get; set; }
+    public string Description { get; set; }
 }

@@ -1,6 +1,6 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using Core.CrossCuttingConcrens.Exceptions.Types;
+using Core.CrossCuttingConcerns.Exceptions.Types;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 

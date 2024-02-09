@@ -1,8 +1,7 @@
-﻿using System.Net.NetworkInformation;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Core.CrossCuttingConcrens.Exceptions.HttpProblemDetails;
+namespace Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails;
 
 public class InternalServerErrorProblemDetails : ProblemDetails
 {

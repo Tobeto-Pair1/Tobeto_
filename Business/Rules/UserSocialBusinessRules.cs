@@ -1,14 +1,7 @@
 ﻿using Business.Messages;
 using Core.Business;
-using Core.CrossCuttingConcrens.Exceptions.Types;
+using Core.CrossCuttingConcerns.Exceptions.Types;
 using DataAccess.Abstract;
-using Entities.Concretes;
-using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Rules
 {

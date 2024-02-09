@@ -2,13 +2,11 @@
 using Business.DTOs.Users;
 using Business.Messages;
 using Core.Business;
-using Core.CrossCuttingConcrens.Exceptions.Types;
+using Core.CrossCuttingConcerns.Exceptions.Types;
 using Core.Entities.Concrete;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
-using DataAccess.Abstract;
-using Entities.Concrete;
-using Microsoft.VisualBasic;
+
 
 namespace Business.Rules;
 

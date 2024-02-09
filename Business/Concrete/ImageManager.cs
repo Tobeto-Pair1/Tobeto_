@@ -2,6 +2,7 @@
 using Business.Abstract;
 using Business.DTOs.Certificate;
 using Business.DTOs.Cities;
+using Business.DTOs.Grades;
 using Business.DTOs.Image;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
@@ -53,7 +54,13 @@ namespace Business.Concrete
             DeletedImageResponse deletedImageResponse = _mapper.Map<DeletedImageResponse>(image);
             return deletedImageResponse;
         }
+        public async Task<IPaginate<GetListImageResponse>> GetListAsync(PageRequest pageRequest)
+        {
+            var data = await _imageDal.GetListAsync(index: pageRequest.PageIndex, size: pageRequest.PageSize);
 
+            var result = _mapper.Map<Paginate<GetListImageResponse>>(data);
+            return result;
+        }
         public async Task<UpdatedImageResponse> Update(UpdateImageRequest updateImageRequest)
         {
             Image? image = await _imageDal.GetAsync(predicate: f => f.Id == updateImageRequest.Id);
@@ -66,5 +73,7 @@ namespace Business.Concrete
             UpdatedImageResponse updatedImageResponse = _mapper.Map<UpdatedImageResponse>(image);
             return updatedImageResponse;
         }
+
+
     }
 }

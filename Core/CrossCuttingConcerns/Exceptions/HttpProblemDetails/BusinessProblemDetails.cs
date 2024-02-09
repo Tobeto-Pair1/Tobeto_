@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.CrossCuttingConcrens.Exceptions.HttpProblemDetails;
+namespace Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails;
 
 public class BusinessProblemDetails : ProblemDetails
 {
@@ -19,3 +18,4 @@ public class BusinessProblemDetails : ProblemDetails
         Type = "https://example.com/probs/business";
     }
 }
+
