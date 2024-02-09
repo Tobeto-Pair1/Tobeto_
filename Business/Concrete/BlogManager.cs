@@ -50,4 +50,13 @@ public class BlogManager : IBlogService
         UpdatedBlogResponse updatedBlogResponse = _mapper.Map<UpdatedBlogResponse>(updateblog);
         return updatedBlogResponse;
     }
+    public async Task<BlogResponse> GetByIdAsync(Guid id)
+    {
+        Blog? blog = await _blogDal.GetAsync(b => b.Id == id);
+        if (blog == null)
+        {
+            throw new KeyNotFoundException("Blog bulunamadı.");
+        }
+        return _mapper.Map<BlogResponse>(blog);
+    }
 }

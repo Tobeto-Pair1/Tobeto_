@@ -20,6 +20,9 @@ public class BlogMappingProfile : Profile
 
         CreateMap<Blog, GetListBlogResponse>().ReverseMap();
         CreateMap<Paginate<Blog>, Paginate<GetListBlogResponse>>().ReverseMap();
+        
+        CreateMap<Blog, BlogResponse>().ReverseMap();
+
     }
     
 }
