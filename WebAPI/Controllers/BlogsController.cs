@@ -51,4 +51,24 @@ public class BlogsController : ControllerBase
         var result = await _blogService.GetListAsync(pageRequest);
         return Ok(result);
     }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        try
+        {
+            var blogResponse = await _blogService.GetByIdAsync(id);
+            if(blogResponse == null) 
+            {
+                return NotFound();
+            }
+            return Ok(blogResponse);
+        }
+        catch (Exception ex)
+        {
+            // Loglama yapabilirsiniz
+            return StatusCode(StatusCodes.Status500InternalServerError, "Bir hata oluştu");
+        }
+    }
+
+
 }
