@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Employees
+namespace Business.DTOs.Employees;
+
+public class UpdateEmployeeRequest
 {
-    public class UpdateEmployeeRequest
-    {
-        public string Name { get; set; }
-        public Guid DepartmentId { get; set; }
-        //public string DepartmentName { get; set; }
-    }
+    public Guid Id { get; set; }
+    public Guid DepartmentId { get; set; }
+    //public string UserId { get; set; }
 }

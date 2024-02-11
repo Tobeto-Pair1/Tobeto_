@@ -1,7 +1,10 @@
+using Business.DTOs.Users;
+
 namespace Business.DTOs.Students;
 
 public class GetListStudentResponse
 {
-    public string Name { get; set; }
+    public Guid Id{ get; set; }
 
+    public GetListUserResponse GetListUserResponse { get; set; }
 }

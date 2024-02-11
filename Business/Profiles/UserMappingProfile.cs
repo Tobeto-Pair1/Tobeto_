@@ -28,7 +28,16 @@ namespace Business.Profiles
             CreateMap<User, DeleteUserRequest>().ReverseMap();
 
             CreateMap<User, UpdatedUserResponse>().ReverseMap();
-            CreateMap<User, UpdateUserRequest>().ReverseMap();
+            CreateMap<User, UpdateUserRequest>()
+                  .ForMember(destinationMember: a => a.TownId,
+           memberOptions: opt => opt.MapFrom(a => a.Address.TownId))
+                .ForMember(destinationMember: a => a.CountryId,
+           memberOptions: opt => opt.MapFrom(a => a.Address.CountryId))
+                .ForMember(destinationMember: a => a.CityId,
+           memberOptions: opt => opt.MapFrom(a => a.Address.CityId))
+                .ForMember(destinationMember: a => a.Description,
+           memberOptions: opt => opt.MapFrom(a => a.Address.Description))
+                .ReverseMap();
 
             CreateMap<User, GetListUserResponse>()
                 .ForMember(destinationMember: a => a.TownName,

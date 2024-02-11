@@ -1,12 +1,15 @@
 using AutoMapper;
 using Business.Abstract;
+using Business.DTOs.Blogs;
 using Business.DTOs.Students;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using System.Reflection.Metadata;
 
 namespace Business.Concrete;
 
@@ -23,7 +26,11 @@ public class StudentManager:IStudentService
 
     public async Task<IPaginate<GetListStudentResponse>> GetListAsync(PageRequest pageRequest)
     {
-        var data = await _studentDal.GetListAsync(include: l => (IIncludableQueryable<Student, object>)l.Include(l => l.Id),
+        var data = await _studentDal.GetListAsync(include: s => s
+        .Include(s => s.User)
+          .Include(l => l.User.Address.City)
+          .Include(l => l.User.Address.Country)
+           .Include(l => l.User.Address.Town),
             index: pageRequest.PageIndex,
             size: pageRequest.PageSize);
 
@@ -41,7 +48,8 @@ public class StudentManager:IStudentService
 
     public async Task<UpdatedStudentResponse> Update(UpdateStudentRequest updateStudentRequest)
     {
-        Student student = _mapper.Map<Student>(updateStudentRequest);
+        Student? student = await _studentDal.GetAsync(u => u.Id == updateStudentRequest.Id);
+        _mapper.Map(updateStudentRequest, student);
         Student updateStudent = await _studentDal.UpdateAsync(student);
         UpdatedStudentResponse updatedStudentResponse = _mapper.Map<UpdatedStudentResponse>(updateStudent);
         return updatedStudentResponse;
@@ -49,7 +57,7 @@ public class StudentManager:IStudentService
 
     public async Task<DeletedStudentResponse> Delete(DeleteStudentRequest deleteStudentRequest)
     {
-        Student student = _mapper.Map<Student>(deleteStudentRequest);
+        Student? student = await _studentDal.GetAsync(u => u.Id == deleteStudentRequest.Id);
         Student deletedStudent = await _studentDal.DeleteAsync(student);
         DeletedStudentResponse deletedStudentResponse = _mapper.Map<DeletedStudentResponse>(deletedStudent);
         return deletedStudentResponse;
