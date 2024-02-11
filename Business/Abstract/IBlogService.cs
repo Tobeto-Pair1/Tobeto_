@@ -14,8 +14,6 @@ public interface IBlogService
     Task<UpdatedBlogResponse> Update(UpdateBlogRequest updateBlogRequest);
 
     Task<DeletedBlogResponse> Delete(DeleteBlogRequest deleteBlogRequest);
-    
+  
     Task<GetBlogResponse> GetByIdAsync(Guid id);
-
-
 }
