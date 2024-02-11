@@ -32,7 +32,8 @@ namespace Business.Concrete
 
         public  async Task<DeletedNotificationResponse> Delete(DeleteNotificationRequest deleteNotificationRequest)
         {
-            Notification notification = _mapper.Map<Notification>(deleteNotificationRequest);
+            Notification notification = await _notificationDal.GetAsync(u => u.Id == deleteNotificationRequest.Id);
+            _mapper.Map(deleteNotificationRequest, notification);
             Notification deletedNotification = await _notificationDal.DeleteAsync(notification);
             DeletedNotificationResponse deletedNotificationResponse = _mapper.Map<DeletedNotificationResponse>(deletedNotification);
             return deletedNotificationResponse;
@@ -47,7 +48,8 @@ namespace Business.Concrete
 
         public async Task<UpdatedNotificationResponse> Update(UpdateNotificationRequest updateNotificationRequest)
         {
-            Notification notification = _mapper.Map<Notification>(updateNotificationRequest);
+            Notification notification = await _notificationDal.GetAsync(u => u.Id == updateNotificationRequest.Id);
+            _mapper.Map(updateNotificationRequest, notification);
             Notification updateNotification = await _notificationDal.UpdateAsync(notification);
             UpdatedNotificationResponse updatedNotificationResponse = _mapper.Map<UpdatedNotificationResponse>(updateNotification);
             return updatedNotificationResponse;

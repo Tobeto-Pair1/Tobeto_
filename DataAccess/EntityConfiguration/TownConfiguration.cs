@@ -13,13 +13,13 @@ namespace DataAccess.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Town> builder)
         {
-            builder.ToTable("Towns").HasKey(an => an.Id);
-            builder.Property(t => t.CityId).HasColumnName("CityId").IsRequired();
-            builder.Property(t => t.Name).HasColumnName("Name").IsRequired();
+            builder.ToTable("Towns").HasKey(b => b.Id);
+            builder.Property(b => b.CityId).HasColumnName("CityId").IsRequired();
+            builder.Property(b => b.Name).HasColumnName("Name").IsRequired();
 
 
-            builder.HasOne(t => t.City).WithMany(t=>t.Towns).HasForeignKey(t=>t.CityId);
-            builder.HasQueryFilter(t => !t.DeletedDate.HasValue);
+            builder.HasOne(t => t.City).WithMany(t=>t.Towns).HasForeignKey(b => b.CityId);
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }
 }

@@ -8,18 +8,18 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
 {
     public void Configure(EntityTypeBuilder<Experience> builder)
     {
-        builder.ToTable("Experiences").HasKey(b => new { b.Id });
+        builder.ToTable("Experiences").HasKey(b => b.Id);
         builder.Property(ul => ul.Id).HasColumnName("Id").IsRequired();
+        builder.Property(ul => ul.UserId).HasColumnName("UserId").IsRequired();
+        builder.Property(ul => ul.CityId).HasColumnName("CityId").IsRequired();
         builder.Property(ul => ul.PositionName).HasColumnName("PositionName").IsRequired();
         builder.Property(ul => ul.SectorName).HasColumnName("SectorName").IsRequired();
         builder.Property(ul => ul.CompanyName).HasColumnName("CompanyName").IsRequired();
-        builder.Property(ul => ul.UserId).HasColumnName("UserId").IsRequired();
-        builder.Property(ul => ul.CityId).HasColumnName("CityId").IsRequired();
 
 
-        builder.HasOne(b => b.User).WithMany(b => b.Experiences).HasForeignKey(b => b.UserId);
-        builder.HasOne(b => b.City).WithMany(b => b.Experiences).HasForeignKey(b => b.CityId);
-        builder.HasQueryFilter(ul => !ul.DeletedDate.HasValue);
+        builder.HasOne(b => b.User);
+        builder.HasOne(b => b.City);
+        builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
 
         //builder.Property(ul => ul.PositionId).HasColumnName("PositionId").IsRequired();

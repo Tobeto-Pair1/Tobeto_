@@ -12,12 +12,11 @@ public class CourseTypeConfiguration : IEntityTypeConfiguration<CourseType>
 {
     public void Configure(EntityTypeBuilder<CourseType> builder)
     {
-
-
-        builder.ToTable("CourseTypes");
+        builder.ToTable("CourseTypes").HasKey(b => b.Id);
+        builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
         builder.Property(b => b.Name).HasColumnName("Name").IsRequired();
 
-        builder.HasMany(c => c.Courses);
+        builder.HasMany(b => b.Courses);
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
 

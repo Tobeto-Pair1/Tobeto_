@@ -5,6 +5,7 @@ using Entities.Concretes;
 using DataAccess.Abstract;
 using AutoMapper;
 using Core.DataAccess.Dynamic;
+using Business.Rules;
 
 namespace Business.Concrete;
 
@@ -12,11 +13,13 @@ public class BlogManager : IBlogService
 {
     private readonly IBlogDal _blogDal;
     private readonly IMapper _mapper;
+    private readonly BlogBusinessRules _blogBusinessRules;
 
-    public BlogManager(IBlogDal blogDal, IMapper mapper)
+    public BlogManager(IBlogDal blogDal, IMapper mapper, BlogBusinessRules blogBusinessRules)
     {
         _blogDal = blogDal;
         _mapper = mapper;
+        _blogBusinessRules = blogBusinessRules;
     }
 
     public async Task<CreatedBlogResponse> Add(CreateBlogRequest createBlogRequest)
@@ -45,9 +48,17 @@ public class BlogManager : IBlogService
 
     public async Task<UpdatedBlogResponse> Update(UpdateBlogRequest updateBlogRequest)
     {
-        Blog blog = _mapper.Map<Blog>(updateBlogRequest);
+        Blog? blog = await _blogDal.GetAsync(u => u.Id == updateBlogRequest.Id);
+        _mapper.Map(updateBlogRequest, blog);
         Blog updateblog = await _blogDal.UpdateAsync(blog);
         UpdatedBlogResponse updatedBlogResponse = _mapper.Map<UpdatedBlogResponse>(updateblog);
         return updatedBlogResponse;
+    }
+    public async Task<GetBlogResponse> GetByIdAsync(Guid id)
+    {
+        Blog? blog = await _blogDal.GetAsync(b => b.Id == id);
+        await _blogBusinessRules.ThrowExceptionIfBlogIsNull(blog);
+        GetBlogResponse getBlogResponse = _mapper.Map<GetBlogResponse>(blog);
+        return getBlogResponse;
     }
 }

@@ -13,16 +13,16 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
 {
     public void Configure(EntityTypeBuilder<City> builder)
     {
-        builder.ToTable("Cities").HasKey(c => c.Id);
-        builder.Property(c => c.Id).HasColumnName("Id").IsRequired();
-        builder.Property(c => c.CountryId).HasColumnName("CountryId");          
-        builder.Property(c => c.Name).HasColumnName("Name");
+        builder.ToTable("Cities").HasKey(b => b.Id);
+        builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
+        builder.Property(b => b.CountryId).HasColumnName("CountryId");          
+        builder.Property(b => b.Name).HasColumnName("Name");
 
-        //builder.HasOne(aoc => aoc.Account)
+        //builder.HasOne(aob => aoc.Account)
         //        .WithMany(a => a.AccountOccupationClasses)
-        //        .HasForeignKey(aoc => aoc.AccountId);
+        //        .HasForeignKey(aob => aoc.AccountId);
 
-        builder.HasOne(c => c.Country).WithMany(c => c.Cities).HasForeignKey(c=>c.CountryId);
+        builder.HasOne(b => b.Country);
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
     }

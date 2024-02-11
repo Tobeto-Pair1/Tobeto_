@@ -13,7 +13,7 @@ namespace DataAccess.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<AsyncLessonDetail> builder)
         {
-            builder.ToTable("AsyncLessonDetails").HasKey(an => an.Id);
+            builder.ToTable("AsyncLessonDetails").HasKey(b => b.Id);
             builder.Property(b => b.ManufacturerId).HasColumnName("ManufacturerId");
             builder.Property(b => b.AsyncLessonId).HasColumnName("AsyncLessonId");
             builder.Property(b => b.LessonLanguageId).HasColumnName("LessonLanguageId");
@@ -22,7 +22,7 @@ namespace DataAccess.EntityConfiguration
 
             builder.HasOne(b => b.Manufacturer);
             builder.HasOne(b => b.Category);
-            builder.HasOne(b => b.AsyncLesson).WithOne(b=>b.AsyncLessonDetail).HasForeignKey<AsyncLesson>(b => b.AsyncLessonDetailId);
+            builder.HasOne(b => b.AsyncLesson);
             builder.HasOne(b => b.LessonLanguage);
             builder.HasOne(b => b.SubType);
 

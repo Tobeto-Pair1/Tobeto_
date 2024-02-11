@@ -21,13 +21,6 @@ namespace DataAccess.EntityConfiguration
             builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
             builder.Property(b => b.Name).HasColumnName("Name").IsRequired();
 
-            builder.HasData(
-     new Category { Id = Guid.NewGuid(), Name = "Web Yazılım" },
-     new Category { Id = Guid.NewGuid(), Name = "Siber Güvenlik" },
-     new Category { Id = Guid.NewGuid(), Name = "Mobil Geliştirme" },
-     new Category { Id = Guid.NewGuid(), Name = "Gömülü Yazılım" },
-     new Category { Id = Guid.NewGuid(), Name = "Soft Skill Eğitim" }
- );
 
             builder.HasIndex(indexExpression: b => b.Name, name: "UK_Categories_Name").IsUnique();
 

@@ -13,7 +13,7 @@ namespace DataAccess.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Skill> builder)
         {
-            builder.ToTable("Skills").HasKey(b => new {b.Id});
+            builder.ToTable("Skills").HasKey(b => b.Id);
             builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
             builder.Property(b => b.Name).HasColumnName("Name").IsRequired();
 

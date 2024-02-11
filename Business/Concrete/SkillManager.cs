@@ -29,7 +29,8 @@ public class SkillManager : ISkillService
     }
     public async Task<DeletedSkillResponse> Delete(DeleteSkillRequest deleteSkillRequest)
     {
-        Skill skill = _mapper.Map<Skill>(deleteSkillRequest);
+        Skill skill = await _skillDal.GetAsync(u => u.Id == deleteSkillRequest.Id);
+        _mapper.Map(deleteSkillRequest, skill);
         Skill deletedSkill = await _skillDal.DeleteAsync(skill);
         DeletedSkillResponse deletedSkillResponse = _mapper.Map<DeletedSkillResponse>(deletedSkill);
         return deletedSkillResponse;
@@ -43,7 +44,8 @@ public class SkillManager : ISkillService
     }
     public async Task<UpdatedSkillResponse> Update(UpdateSkillRequest updateSkillRequest)
     {
-        Skill skill = _mapper.Map<Skill>(updateSkillRequest);
+        Skill skill = await _skillDal.GetAsync(u => u.Id == updateSkillRequest.Id);
+        _mapper.Map(updateSkillRequest, skill);
         Skill updateSkill = await _skillDal.UpdateAsync(skill);
         UpdatedSkillResponse updatedSkillResponse = _mapper.Map<UpdatedSkillResponse>(updateSkill);
         return updatedSkillResponse;

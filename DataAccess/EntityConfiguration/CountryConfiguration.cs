@@ -17,11 +17,6 @@ namespace DataAccess.EntityConfiguration
             builder.Property(c => c.Id).HasColumnName("Id").IsRequired();
             builder.Property(c => c.Name).HasColumnName("Name");
 
-
-
-
-
-
             builder.HasMany(c => c.Cities);
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }

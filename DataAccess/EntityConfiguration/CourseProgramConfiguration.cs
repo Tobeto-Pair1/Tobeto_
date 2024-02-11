@@ -14,17 +14,17 @@ namespace DataAccess.EntityConfiguration
         public void Configure(EntityTypeBuilder<CourseProgram> builder)
         {
             {
-                builder.ToTable("CoursePrograms").HasKey(an => an.Id);
-                builder.Property(an => an.Id).HasColumnName("Id").IsRequired();
-                builder.Property(an => an.ProgramId).HasColumnName("ProgramId").IsRequired();
-                builder.Property(an => an.CourseId).HasColumnName("CourseId").IsRequired();
+                builder.ToTable("CoursePrograms").HasKey(b=> b.Id);
+                builder.Property(b=> b.Id).HasColumnName("Id").IsRequired();
+                builder.Property(b=> b.ProgramId).HasColumnName("ProgramId").IsRequired();
+                builder.Property(b=> b.CourseId).HasColumnName("CourseId").IsRequired();
 
 
 
                 builder.HasOne(b => b.Course);
                 builder.HasOne(b => b.Program);
 
-                builder.HasQueryFilter(an => !an.DeletedDate.HasValue);
+                builder.HasQueryFilter(b=> !b.DeletedDate.HasValue);
             }
         }
     }
