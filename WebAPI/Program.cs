@@ -2,6 +2,7 @@ using Autofac;
 using Business.DependencyResolvers.Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Business;
+using Core;
 using Core.CrossCuttingConcerns.Exceptions.Extensions;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
@@ -19,6 +20,7 @@ namespace WebAPI
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddCoreServices();
             builder.Services.AddBusinessServices();
             builder.Services.AddDataAccessServices(builder.Configuration);
 

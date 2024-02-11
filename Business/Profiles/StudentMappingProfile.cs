@@ -11,15 +11,18 @@ public class StudentMappingProfile : Profile
     public StudentMappingProfile()
     {
         CreateMap<Student, CreatedStudentResponse>().ReverseMap();
-        CreateMap<CreateStudentRequest, Student>().ReverseMap();
+        CreateMap<Student, CreateStudentRequest>().ReverseMap();
 
-        CreateMap<Student, GetListStudentResponse>().ReverseMap();
-        CreateMap<Paginate<Student>, GetListStudentResponse > ().ReverseMap();
+        CreateMap<Student, GetListStudentResponse>()
+             .ForMember(destinationMember: a => a.GetListUserResponse,
+                memberOptions: opt => opt.MapFrom(a => a.User))
+            .ReverseMap();
+        CreateMap<Paginate<Student>, Paginate<GetListStudentResponse>>().ReverseMap();
 
         CreateMap<Student, UpdatedStudentResponse>().ReverseMap();
-        CreateMap<UpdateStudentRequest, Student>().ReverseMap();
+        CreateMap<Student, UpdateStudentRequest>().ReverseMap();
 
-        CreateMap<Student, CreatedStudentResponse>().ReverseMap();
-        CreateMap<CreateStudentRequest, Student>().ReverseMap();
+        CreateMap<Student, DeletedStudentResponse>().ReverseMap();
+        CreateMap<Student, DeleteStudentRequest>().ReverseMap();
     }
 }

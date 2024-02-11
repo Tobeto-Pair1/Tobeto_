@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.Instructors;
+using Business.DTOs.Students;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
@@ -37,7 +38,7 @@ public class InstructorManager : IInstructorService
 
     public async Task<DeletedInstructorResponse> Delete(DeleteInstructorRequest deleteInstructorRequest)
     {
-        Instructor ınstructor = _mapper.Map<Instructor>(deleteInstructorRequest);
+        Instructor ınstructor = await _ınstructorDal.GetAsync(u => u.Id == deleteInstructorRequest.Id);
         Instructor deletedInstructor = await _ınstructorDal.DeleteAsync(ınstructor);
         DeletedInstructorResponse deletedInstructorResponse = _mapper.Map<DeletedInstructorResponse>(deletedInstructor);
         return deletedInstructorResponse;
@@ -55,7 +56,8 @@ public class InstructorManager : IInstructorService
 
     public async Task<UpdatedInstructorResponse> Update(UpdateInstructorRequest updateInstructorRequest)
     {
-        Instructor ınstructor = _mapper.Map<Instructor>(updateInstructorRequest);
+        Instructor ınstructor = await _ınstructorDal.GetAsync(u => u.Id == updateInstructorRequest.Id);
+        _mapper.Map(updateInstructorRequest, ınstructor);
         Instructor updatedInstructor = await _ınstructorDal.UpdateAsync(ınstructor);
         UpdatedInstructorResponse updatedInstructorResponse = _mapper.Map<UpdatedInstructorResponse>(updatedInstructor);
         return updatedInstructorResponse;
