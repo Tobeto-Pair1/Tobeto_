@@ -13,13 +13,6 @@ namespace Entities.Concretes
         public string FileUrl { get; set; }
         public string Description { get; set; }
 
-        //public string? ImageUrl { get; set; }
-        //public Guid UserId { get; set; }
-
-
-        //user 
-        //courses
-        //Lessons
-        // public User User { get; set; }
+        public User User { get; set; }
     }
 }

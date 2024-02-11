@@ -10,7 +10,8 @@ namespace Entities.Concretes;
 
 //Id = UserId
 public class UserLanguage : Entity<Guid>
-{                                                                           
+{
+    public Guid UserId { get; set; }
     public Guid ForeignLanguageId { get; set; }
     public Guid ForeignLanguageLevelId { get; set; }
 

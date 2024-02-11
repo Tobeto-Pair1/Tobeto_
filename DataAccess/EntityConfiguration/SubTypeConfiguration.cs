@@ -13,9 +13,9 @@ namespace DataAccess.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<SubType> builder)
         {
-            builder.ToTable("SubTypes").HasKey(t => t.Id);
-            builder.Property(t => t.Id).HasColumnName("Id").IsRequired();
-            builder.HasQueryFilter(t => !t.DeletedDate.HasValue);
+            builder.ToTable("SubTypes").HasKey(b => b.Id);
+            builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }
 }

@@ -14,10 +14,11 @@ namespace DataAccess.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
-            builder.ToTable("Employees").HasKey(e => e.Id);
-            builder.Property(e => e.DepartmentId).HasColumnName("DepartmentId").IsRequired();
-            builder.Property(e => e.UserId).HasColumnName("UserId");
-            //builder.Property(e => e.Name).HasColumnName("Name");
+            builder.ToTable("Employees").HasKey( b => b.Id);
+            builder.Property( b => b.Id).HasColumnName("Id").IsRequired();
+            builder.Property( b => b.DepartmentId).HasColumnName("DepartmentId").IsRequired();
+            builder.Property( b => b.UserId).HasColumnName("UserId");
+            //builder.Property( b =b.Name).HasColumnName("Name");
 
 
             builder.HasOne(b => b.Department);

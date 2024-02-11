@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Business.Abstract;
 using Business.DTOs.UserSkills;
+using Business.DTOs.Skills;
+using DataAccess.Concrete;
 
 namespace Business.Concrete
 {
@@ -36,7 +38,8 @@ namespace Business.Concrete
 
         public async Task<DeletedUserSkillResponse> Delete(DeleteUserSkillRequest deleteUserSkillRequest)
         {
-            UserSkill userSkill = _mapper.Map<UserSkill>(deleteUserSkillRequest);
+            UserSkill userSkill = await _userSkillDal.GetAsync(u => u.Id == deleteUserSkillRequest.Id);
+            _mapper.Map(deleteUserSkillRequest, userSkill);
             UserSkill deletedUserSkill = await _userSkillDal.DeleteAsync(userSkill);
             DeletedUserSkillResponse deletedUserSkillResponse = _mapper.Map<DeletedUserSkillResponse>(deletedUserSkill);
             return deletedUserSkillResponse;

@@ -37,7 +37,8 @@ namespace Business.Concrete
 
         public async Task<DeletedAddressResponse> Delete(DeleteAddressRequest deleteAddressRequest)
         {
-            Address address = _mapper.Map<Address>(deleteAddressRequest);
+            Address address = await _addressDal.GetAsync(b => b.Id == deleteAddressRequest.Id);
+            _mapper.Map(deleteAddressRequest, address); 
             Address deletedAddress = await _addressDal.DeleteAsync(address);
             DeletedAddressResponse deletedAddressResponse = _mapper.Map<DeletedAddressResponse>(deletedAddress);
             return deletedAddressResponse;
@@ -56,7 +57,8 @@ namespace Business.Concrete
 
         public async Task<UpdatedAddressResponse> Update(UpdateAddressRequest updateAddressRequest)
         {
-            Address address = _mapper.Map<Address>(updateAddressRequest);
+            Address address = await _addressDal.GetAsync(b => b.Id == updateAddressRequest.Id);
+            _mapper.Map(updateAddressRequest, address);
             Address updateAddress = await _addressDal.UpdateAsync(address);
             UpdatedAddressResponse updatedAddressResponse = _mapper.Map<UpdatedAddressResponse>(updateAddress);
             return updatedAddressResponse;

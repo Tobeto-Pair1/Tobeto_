@@ -6,6 +6,8 @@ namespace Entities.Concretes;
 
 public class User: Entity<Guid>
 {
+    public Guid? AddressId { get; set; }
+    public Guid? ImageId { get; set; }
     public string  FirstName { get; set; }
     public string  Lastname { get; set; }
     public string Email { get; set; }
@@ -14,11 +16,11 @@ public class User: Entity<Guid>
     public string PhoneNumber { get; set; }
     public string? IdentityNumber { get; set; }
     public DateTime?  BirthDate { get; set; }
-    public Guid? AddressId { get; set; }
     public string? AboutMe { get; set; }
 
 
     public virtual  Address Address { get; set; }
+    public virtual Image Image { get; set; }
     public virtual ICollection<Experience> Experiences { get; set; }
     public virtual ICollection<Certificate> Certificate { get; set; }
     public virtual ICollection<UserEducation> UserEducations { get; set; }

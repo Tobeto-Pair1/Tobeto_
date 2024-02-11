@@ -12,6 +12,8 @@ public class TobetoDbContext : DbContext
 
     public DbSet<CourseType> CourseTypes { get; set; }
     public DbSet<Blog> Blogs { get; set; }
+    public DbSet<BlogPress> BlogsPress { get; set; }
+
     public DbSet<OperationClaim> OperationClaims { get; set; }
     public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     public DbSet<AboutOfCourse> AboutOfCourses { get; set; }
@@ -59,7 +61,7 @@ public class TobetoDbContext : DbContext
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {
         Configuration = configuration;
-      // Database.EnsureCreated();
+        Database.EnsureCreated();
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

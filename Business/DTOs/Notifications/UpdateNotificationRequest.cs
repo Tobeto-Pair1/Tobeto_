@@ -8,6 +8,7 @@ namespace Business.DTOs.Notifications
 {
     public class UpdateNotificationRequest
     {
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Label { get; set; }
     }

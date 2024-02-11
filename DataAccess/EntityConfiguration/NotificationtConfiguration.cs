@@ -14,15 +14,15 @@ namespace DataAccess.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Notification> builder)
         {
-            builder.ToTable("Notifications").HasKey(an => an.Id);
-            builder.Property(an => an.Id).HasColumnName("Id").IsRequired();
-            builder.Property(an => an.NotificationTypeId).HasColumnName("NotificationTypeId").IsRequired();
-            builder.Property(an => an.Title).HasColumnName("Title");
-            builder.Property(an => an.Label).HasColumnName("Label");
+            builder.ToTable("Notifications").HasKey(b => b.Id);
+            builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
+            builder.Property(b => b.NotificationTypeId).HasColumnName("NotificationTypeId").IsRequired();
+            builder.Property(b => b.Title).HasColumnName("Title");
+            builder.Property(b => b.Label).HasColumnName("Label");
 
 
             builder.HasOne(b => b.NotificationType);
-            builder.HasQueryFilter(an => !an.DeletedDate.HasValue);
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }
 }

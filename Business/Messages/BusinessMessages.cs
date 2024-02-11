@@ -15,5 +15,5 @@ public class BusinessMessages
     public static string SuccessfulLogin = "Sisteme giriş başarılı";
     public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
     public static string CreateAccessTokenNot = "Token Oluşturulamadı.";
-
+    internal static string BlogNotFound = "Blog bulunamadı.";
 }

@@ -13,15 +13,15 @@ namespace DataAccess.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<CourseModule> builder)
         {
-            builder.ToTable("CourseModules").HasKey(an => an.Id);
-            builder.Property(an => an.Id).HasColumnName("Id").IsRequired();
-            builder.Property(an => an.CourseId).HasColumnName("CourseId").IsRequired();
+            builder.ToTable("CourseModules").HasKey(b => b.Id);
+            builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
+            builder.Property(b => b.CourseId).HasColumnName("CourseId").IsRequired();
 
 
             builder.HasOne(b => b.Course);
             builder.HasMany(b => b.AsyncLessons);
 
-            builder.HasQueryFilter(an => !an.DeletedDate.HasValue);
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
   
         }

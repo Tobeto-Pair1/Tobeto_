@@ -13,16 +13,15 @@ namespace DataAccess.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Image> builder)
         {
-            builder.ToTable("Images").HasKey(an => an.Id);
-            builder.Property(an => an.Id).HasColumnName("Id");
-            builder.Property(an => an.FileName).HasColumnName("FileName");
-            builder.Property(an => an.FileUrl).HasColumnName("FileUrl");
-            builder.Property(an => an.Description).HasColumnName("Description");
+            builder.ToTable("Images").HasKey(b => b.Id);
+            builder.Property(b => b.Id).HasColumnName("Id");
+            builder.Property(b => b.FileName).HasColumnName("FileName");
+            builder.Property(b => b.FileUrl).HasColumnName("FileUrl");
+            builder.Property(b => b.Description).HasColumnName("Description");
 
 
-          //  builder.HasOne(an => an.User);
-
-            builder.HasQueryFilter(an => !an.DeletedDate.HasValue);
+            builder.HasOne(b => b.User);
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }
 }

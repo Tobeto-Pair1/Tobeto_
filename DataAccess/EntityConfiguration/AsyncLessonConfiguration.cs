@@ -14,19 +14,17 @@ namespace DataAccess.EntityConfiguration
 
     public void Configure(EntityTypeBuilder<AsyncLesson> builder)
         {
-            builder.ToTable("AsyncLessons").HasKey(an => an.Id);
-            builder.Property(an => an.Name).HasColumnName("Name").IsRequired();
-            builder.Property(an => an.DurationTime).HasColumnName("DurationTime");
-            builder.Property(an => an.TimeSpent).HasColumnName("TimeSpent");
-            builder.Property(an => an.InstructorId).HasColumnName("InstructorId");
-            builder.Property(an => an.CourseModuleId).HasColumnName("CourseModuleId");
-            builder.Property(an => an.AsyncLessonDetailId).HasColumnName("AsyncLessonDetailId");
+            builder.ToTable("AsyncLessons").HasKey(b => b.Id);
+            builder.Property(b => b.Name).HasColumnName("Name").IsRequired();
+            builder.Property(b => b.DurationTime).HasColumnName("DurationTime");
+            builder.Property(b => b.TimeSpent).HasColumnName("TimeSpent");
+            builder.Property(b => b.InstructorId).HasColumnName("InstructorId");
+            builder.Property(b => b.CourseModuleId).HasColumnName("CourseModuleId");
 
 
-            builder.HasOne(an => an.Instructor);
-            builder.HasOne(an => an.CourseModule);
-            builder.HasOne(an => an.AsyncLessonDetail);
-            builder.HasQueryFilter(an => !an.DeletedDate.HasValue);
+            builder.HasOne(b => b.Instructor);
+            builder.HasOne(b => b.CourseModule);
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }
 }
