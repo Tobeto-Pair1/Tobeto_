@@ -10,6 +10,8 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 
 using Business.Validations;
+using Core.Utilities.Business.EmailService;
+using Core.Services.Mailing;
 
 namespace Business;
 
@@ -63,6 +65,10 @@ public static class BusinessServiceRegistration
         services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
         services.AddScoped<IBlogService, BlogManager>();
         services.AddScoped<IBlogPressService, BlogPressManager>();
+
+     
+
+        services.AddScoped<IEmailService, EmailService>();
 
 
         services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
