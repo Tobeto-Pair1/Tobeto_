@@ -8,6 +8,7 @@ using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
 using DataAccess;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Core.Services.Mailing;
 
 namespace WebAPI
 {
@@ -36,6 +37,8 @@ namespace WebAPI
 
             const string tokenOptionsConfigurationSection = "TokenOptions";
             TokenOptions? tokenOptions = builder.Configuration.GetSection(tokenOptionsConfigurationSection).Get<TokenOptions>();
+
+            builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
