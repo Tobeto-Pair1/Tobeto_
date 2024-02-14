@@ -12,7 +12,7 @@ public class Notification : Entity<Guid>
 {
     public string Title { get; set; }
     public string Label { get; set; }
-    public Guid NotificationTypeId { get; set; }
+   // public Guid NotificationTypeId { get; set; }
 
-    public virtual NotificationType NotificationType { get; set; }
+    //public virtual NotificationType NotificationType { get; set; }
 }
