@@ -16,12 +16,12 @@ namespace DataAccess.EntityConfiguration
         {
             builder.ToTable("Notifications").HasKey(b => b.Id);
             builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
-            builder.Property(b => b.NotificationTypeId).HasColumnName("NotificationTypeId").IsRequired();
+           // builder.Property(b => b.NotificationTypeId).HasColumnName("NotificationTypeId").IsRequired();
             builder.Property(b => b.Title).HasColumnName("Title");
             builder.Property(b => b.Label).HasColumnName("Label");
 
 
-            builder.HasOne(b => b.NotificationType);
+            //builder.HasOne(b => b.NotificationType);
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }
