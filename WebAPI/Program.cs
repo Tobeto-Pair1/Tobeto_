@@ -24,6 +24,7 @@ namespace WebAPI
             builder.Services.AddCoreServices();
             builder.Services.AddBusinessServices();
             builder.Services.AddDataAccessServices(builder.Configuration);
+            builder.Services.AddCors(opt => opt.AddDefaultPolicy(p => { p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); }));
 
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
           .ConfigureContainer<ContainerBuilder>(builder =>
@@ -73,6 +74,7 @@ namespace WebAPI
 
 
             // app.UseCors();
+            app.UseCors(opt => opt.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
             app.Run();
         }
