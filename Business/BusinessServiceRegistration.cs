@@ -65,8 +65,9 @@ public static class BusinessServiceRegistration
         services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
         services.AddScoped<IBlogService, BlogManager>();
         services.AddScoped<IBlogPressService, BlogPressManager>();
+        services.AddScoped<IContactInformationService, ContactInformationManager>();
 
-     
+
 
         services.AddScoped<IEmailService, EmailService>();
 
