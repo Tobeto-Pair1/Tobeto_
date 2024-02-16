@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.DTOs.Employees;
 using Core.DataAccess.Paging;
+using Core.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,13 @@ namespace WebAPI.Controllers
         {
             _employeeService= employeeService;
         }
+        //[HttpPost("login")]
+        //public async Task<IActionResult> Login([FromBody] EmployeeForLoginRequest employeeForLoginRequest)
+        //{
+        //    var loginResult = await _employeeService.Login(employeeForLoginRequest);
 
+        //    return Ok(loginResult);
+        //}
         [HttpPost("add")]
 
         public async Task<IActionResult> Add([FromBody] CreateEmployeeRequest createEmployeeRequest)

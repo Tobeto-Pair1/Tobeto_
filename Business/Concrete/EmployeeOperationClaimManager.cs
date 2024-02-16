@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.DTOs.Users;
-using Core.DataAccess.Dynamic;
 using Core.Entities.Concrete;
 using DataAccess.Abstract;
 using Microsoft.EntityFrameworkCore;
@@ -9,20 +7,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concrete;
 
-public class UserOperationClaimManager : IUserOperationClaimService
+public class EmployeeOperationClaimManager : IEmployeeOperationClaimService
 {
-    IUserOperationClaimDal _userOperationClaimDal;
+    IEmployeeOperationClaimDal _employeeOperationClaimDal;
     IMapper _mapper;
 
-    public UserOperationClaimManager(IUserOperationClaimDal userOperationClaimDal, IMapper mapper)
+    public EmployeeOperationClaimManager(IEmployeeOperationClaimDal employeeOperationClaimDal, IMapper mapper)
     {
-        _userOperationClaimDal = userOperationClaimDal;
+        _employeeOperationClaimDal = employeeOperationClaimDal;
         _mapper = mapper;
     }
 
     public async Task<IList<OperationClaim>> GetClaims(Guid id)
     {
-        var userOperationClaims = await _userOperationClaimDal.GetListAsync(u => u.UserId == id,
+        var userOperationClaims = await _employeeOperationClaimDal.GetListAsync(u => u.EmployeeId == id,
                                                                include: u => u.Include(u => u.OperationClaim));
         IList<OperationClaim> operationClaims =
             userOperationClaims.Items.Select(u => new OperationClaim

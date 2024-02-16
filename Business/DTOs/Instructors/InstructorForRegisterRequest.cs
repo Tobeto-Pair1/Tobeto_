@@ -1,8 +1,7 @@
 ﻿namespace Business.DTOs.Instructors;
 
-public class UpdateInstructorRequest
+public class InstructorForRegisterRequest
 {
-    public Guid Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }

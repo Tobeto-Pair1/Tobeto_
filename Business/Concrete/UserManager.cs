@@ -27,9 +27,9 @@ public class UserManager : IUserService
         _userDal = userDal;
         _mapper = mapper;
     }
-    public async Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest)
+    public async Task<DeletedUserResponse> Delete(Guid id)
     {
-        User? user = await _userDal.GetAsync(u => u.Id == deleteUserRequest.Id);
+        User? user = await _userDal.GetAsync(u => u.Id == id);
         await _userDal.DeleteAsync(user);    
         DeletedUserResponse deletedUserResponse = _mapper.Map<DeletedUserResponse>(user);      
         return deletedUserResponse;

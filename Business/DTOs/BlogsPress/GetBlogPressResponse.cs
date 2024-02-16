@@ -1,9 +1,9 @@
-namespace Business.DTOs.BlogsPress
+namespace Business.DTOs.BlogsPress;
+
+public class GetBlogPressResponse
 {
-    public class GetBlogPressResponse
-    {
-        public Guid Id { get; set; }
-        public string Title { get; set; }
-        public string Text { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string Title { get; set; }
+    public string Text { get; set; }
+    public DateTime CreatedDate { get; set; }
 }

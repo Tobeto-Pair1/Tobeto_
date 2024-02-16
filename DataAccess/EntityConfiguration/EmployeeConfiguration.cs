@@ -16,13 +16,13 @@ namespace DataAccess.EntityConfiguration
         {
             builder.ToTable("Employees").HasKey( b => b.Id);
             builder.Property( b => b.Id).HasColumnName("Id").IsRequired();
-            builder.Property( b => b.DepartmentId).HasColumnName("DepartmentId").IsRequired();
-            builder.Property( b => b.UserId).HasColumnName("UserId");
+            builder.Property( b => b.DepartmentId).HasColumnName("DepartmentId");
+       //     builder.Property( b => b.UserId).HasColumnName("UserId");
             //builder.Property( b =b.Name).HasColumnName("Name");
 
 
             builder.HasOne(b => b.Department);
-            builder.HasOne(b => b.User);
+          //  builder.HasOne(b => b.User);
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }
