@@ -75,10 +75,14 @@ public static class DataAccessServiceRegistration
         services.AddScoped<IUserDal, EfUserDal>();
         services.AddScoped<IUserOperationClaimDal, EfUserOperationClaimDal>();
 
-     
         services.AddScoped<IImageDal, EfImageDal>();
 
         services.AddScoped<IStudentDal, EfStudentDal>();
+      
+        services.AddScoped<IContactInformationDal, EfContactInformationDal>();
+
+
+
 
         return services;
     }
