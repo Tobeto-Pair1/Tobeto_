@@ -12,5 +12,4 @@ public class GetListNotificationResponse
     public string Title { get; set; }
     public string Label { get; set; }
     public DateTime CreatedDate { get; set; }
-
 }

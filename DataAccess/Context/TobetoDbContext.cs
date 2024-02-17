@@ -64,12 +64,16 @@ public class TobetoDbContext : DbContext
     public DbSet<CourseModule> CourseModules { get; set; }
     public DbSet<CourseProgram> CoursePrograms { get; set; }
     public DbSet<CourseStudent> CourseStudents { get; set; }
+
     public DbSet<SubType> SubTypes { get; set; }
     public DbSet<Program> Programs { get; set; }
     public DbSet<AsyncLesson> AsyncLessons { get; set; }
     public DbSet<SynchronLesson> SynchronLessons { get; set; }
     public DbSet<SynchronLessonDetail> SynchronLessonDetails { get; set; }
     public DbSet<SynchronLessonInstructor> SynchronLessonInstructors { get; set; }
+
+    public DbSet<ContactInformation> ContactInformation { get; set; }
+
 
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {

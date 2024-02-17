@@ -9,9 +9,9 @@ namespace Entities.Concretes
 {
     public class Image:Entity<Guid>
     {
-        public string FileName { get; set; }
+        public string? FileName { get; set; }
         public string FileUrl { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public User User { get; set; }
     }
