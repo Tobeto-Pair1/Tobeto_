@@ -64,9 +64,11 @@ public static class BusinessServiceRegistration
 
         services.AddScoped<IEmployeeService, EmployeeManager>();
         services.AddScoped<IEmployeeOperationClaimService, EmployeeOperationClaimManager>();
+        services.AddScoped<IEmployeeAuthService, AuthEmployeeManager>();
 
         services.AddScoped<IInstructorService, InstructorManager>();
         services.AddScoped<IInstructorOperationClaimService, InstructorOperationClaimManager>();
+        services.AddScoped<IInstructorAuthService, AuthInstructorManager >();
 
 
         services.AddScoped<IUserService, UserManager>();
