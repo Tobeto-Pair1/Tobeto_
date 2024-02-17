@@ -1,6 +1,8 @@
 ﻿using Business.DTOs.Instructors;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
+using Core.Entities.Concrete;
+using Core.Utilities.Security.JWT;
 
 namespace Business.Abstract;
 
@@ -15,4 +17,5 @@ public interface IInstructorService
 
     Task<DeletedInstructorResponse> Delete(DeleteInstructorRequest deleteInstructorRequest);
 
+    Task<UserAuth> GetByMail(string email);
 }

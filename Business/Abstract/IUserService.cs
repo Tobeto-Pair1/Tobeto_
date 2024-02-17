@@ -16,7 +16,9 @@ public interface IUserService
     Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest);
     Task<UserAuth> Add(UserAuth userAuth);
     Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest);
-    Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest);
+    //Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest);
+    Task<DeletedUserResponse> Delete(Guid id);
+
     Task<UserAuth> GetByMail(string email);
 
 }

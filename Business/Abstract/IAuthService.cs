@@ -1,4 +1,6 @@
-﻿using Business.DTOs.Users;
+﻿using Business.DTOs.Employees;
+using Business.DTOs.Instructors;
+using Business.DTOs.Users;
 using Core.Entities.Concrete;
 using Core.Utilities.Security.JWT;
 using System;
@@ -15,6 +17,3 @@ public interface IAuthService
     Task<AccessToken> Login(UserForLoginRequest userForLoginRequest);
     Task<AccessToken> CreateAccessToken(UserAuth userAuth);
 }
-
-
-

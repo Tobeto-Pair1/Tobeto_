@@ -1,23 +1,20 @@
 ﻿using Business.DTOs.Employees;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core.Entities.Concrete;
+using Core.Utilities.Security.JWT;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface IEmployeeService
 {
-    public interface IEmployeeService
-    {
 
-        Task<IPaginate<GetListEmployeeResponse>> GetListAsync(PageRequest pageRequest);
+    Task<IPaginate<GetListEmployeeResponse>> GetListAsync(PageRequest pageRequest);
 
-        Task<CreatedEmployeeResponse> Add(CreateEmployeeRequest createEmployeeRequest);
+    Task<CreatedEmployeeResponse> Add(CreateEmployeeRequest createEmployeeRequest);
 
-        Task<UpdatedEmployeeResponse> Update(UpdateEmployeeRequest updateEmployeeRequest);
+    Task<UpdatedEmployeeResponse> Update(UpdateEmployeeRequest updateEmployeeRequest);
 
-        Task<DeletedEmployeeResponse> Delete(DeleteEmployeeRequest deleteEmployeeRequest);
-    }
+    Task<DeletedEmployeeResponse> Delete(DeleteEmployeeRequest deleteEmployeeRequest);
+    Task<UserAuth> GetByMail(string email);
 }

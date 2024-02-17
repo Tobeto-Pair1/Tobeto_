@@ -9,9 +9,19 @@ namespace Entities.Concretes;
 
 public class Instructor : Entity<Guid>
 {
-    public Guid UserId { get; set; }
+    public Guid? ImageId { get; set; }
+    public string FirstName { get; set; }
+    public string Lastname { get; set; }
+    public string Email { get; set; }
+    public byte[] PasswordSalt { get; set; }
+    public byte[] PasswordHash { get; set; }
+    public string PhoneNumber { get; set; }
+    public string? IdentityNumber { get; set; }
+    public DateTime? BirthDate { get; set; }
 
-    public virtual User User { get; set; }
+    //public Guid UserId { get; set; }
+    //public virtual User User { get; set; }
+
     public virtual SynchronLessonInstructor SynchronLessonInstructor { get; set; }
     public virtual ICollection<AsyncLesson> AsyncLessons { get; set; }
 }

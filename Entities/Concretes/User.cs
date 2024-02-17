@@ -9,7 +9,7 @@ public class User: Entity<Guid>
     public Guid? AddressId { get; set; }
     public Guid? ImageId { get; set; }
     public string  FirstName { get; set; }
-    public string  Lastname { get; set; }
+    public string  LastName { get; set; }
     public string Email { get; set; }
     public byte[] PasswordSalt { get; set; }
     public byte[] PasswordHash { get; set; }

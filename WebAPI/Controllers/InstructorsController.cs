@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.DTOs.Instructors;
+using Business.DTOs.Users;
 using Core.DataAccess.Paging;
+using Core.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +18,14 @@ namespace WebAPI.Controllers
         {
             _ınstructorService = ınstructorService;
         }
+
+        //[HttpPost("login")]
+        //public async Task<IActionResult> Login([FromBody] InstructorForLoginRequest ınstructorForLoginRequest)
+        //{
+        //    var loginResult = await _ınstructorService.Login(ınstructorForLoginRequest);
+
+        //    return Ok(loginResult);
+        //}
 
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] CreateInstructorRequest createInstructorRequest)

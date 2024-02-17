@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Employees
-{
-    public class CreatedEmployeeResponse
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
+namespace Business.DTOs.Employees;
 
-        public Guid DepartmentId { get; set; }
-        public string DepartmentName { get; set; }
-        public Guid UserId { get; set; }
-    }
+public class CreatedEmployeeResponse
+{
+    public Guid Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
+    public string PhoneNumber { get; set; }
+    public Guid DepartmentId { get; set; }
+    public string DepartmentName { get; set; }
 }

@@ -12,6 +12,7 @@ using MailKit.Security;
 using MimeKit;
 using ServiceStack.Messaging;
 using Core.Utilities.Business.EmailService;
+
 using Entities.Concretes;
 
 namespace Business.Concrete;
@@ -20,11 +21,12 @@ namespace Business.Concrete;
 public class AuthManager : IAuthService
 {
     private readonly IUserService _userService;
+
+    private readonly IMapper _mapper;
     private readonly ITokenHelper _tokenHelper;
     private readonly IUserOperationClaimService _userOperationClaimService;
-    private readonly IMapper _mapper;
-    private readonly AuthBusinessRules _authBusinessRules; 
-    IEmailService _emailService;
+    private readonly AuthBusinessRules _authBusinessRules;
+    private readonly IEmailService _emailService;
 
     public AuthManager(IUserService userService, ITokenHelper tokenHelper, IUserOperationClaimService userOperationClaimService, IMapper mapper, AuthBusinessRules authBusinessRules, IEmailService emailService)
     {
@@ -47,7 +49,7 @@ public class AuthManager : IAuthService
         userAuth.PasswordHash = passwordHash;
         userAuth.PasswordSalt = passwordSalt;
         var createdUser = await _userService.Add(userAuth);
-    
+
         var resultToken = await CreateAccessToken(createdUser);
         await _authBusinessRules.ThrowExceptionIfCreateAccessTokenIsNull(resultToken);
 
@@ -57,7 +59,6 @@ public class AuthManager : IAuthService
        
 
         return resultToken;
-
     }
 
 
@@ -77,6 +78,7 @@ public class AuthManager : IAuthService
     public async Task<AccessToken> Login(UserForLoginRequest userForLoginRequest)
     {
         var userToCheck = await _authBusinessRules.LoginInformationCheck(userForLoginRequest);
+
 
         var result = await CreateAccessToken(userToCheck);
         await _authBusinessRules.ThrowExceptionIfCreateAccessTokenIsNull(result);

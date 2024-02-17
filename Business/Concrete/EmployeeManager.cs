@@ -3,28 +3,25 @@ using Business.Abstract;
 using Business.DTOs.Employees;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
+using Core.Entities.Concrete;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
-using Entities.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete;
 
 public class EmployeeManager : IEmployeeService
 {
-    IEmployeeDal _employeeDal;
-    IMapper _mapper;
-    public EmployeeManager(IEmployeeDal employeeDal,IMapper mapper)
+    private readonly IEmployeeDal _employeeDal;
+    private readonly IMapper _mapper;
+
+    public EmployeeManager(IEmployeeDal employeeDal,  IMapper mapper)
     {
         _employeeDal = employeeDal;
         _mapper = mapper;
     }
+
     public async Task<CreatedEmployeeResponse> Add(CreateEmployeeRequest createEmployeeRequest)
     {
         Employee employee = _mapper.Map<Employee>(createEmployeeRequest);
@@ -32,7 +29,6 @@ public class EmployeeManager : IEmployeeService
         CreatedEmployeeResponse createdEmployeeResponse = _mapper.Map<CreatedEmployeeResponse>(createdEmployee);
         return createdEmployeeResponse;
     }
-
     public async Task<DeletedEmployeeResponse> Delete(DeleteEmployeeRequest deleteEmployeeRequest)
     {
         Employee employee = await _employeeDal.GetAsync(u => u.Id == deleteEmployeeRequest.Id);
@@ -43,7 +39,7 @@ public class EmployeeManager : IEmployeeService
 
     public async Task<IPaginate<GetListEmployeeResponse>> GetListAsync(PageRequest pageRequest)
     {
-        var data = await _employeeDal.GetListAsync(include: e => e.Include(e => e.Department).Include(d=>d.User),
+        var data = await _employeeDal.GetListAsync(include: e=>e.Include(e=>e.Department),
          index: pageRequest.PageIndex,
          size: pageRequest.PageSize);
 
@@ -58,5 +54,11 @@ public class EmployeeManager : IEmployeeService
         Employee updateEmployee = await _employeeDal.UpdateAsync(employee);
         UpdatedEmployeeResponse updatedEmployeeResponse = _mapper.Map<UpdatedEmployeeResponse>(updateEmployee);
         return updatedEmployeeResponse;
+    }
+    public async Task<UserAuth> GetByMail(string email)
+    {
+        var result = await _employeeDal.GetAsync(u => u.Email == email);
+        UserAuth userAuth = _mapper.Map<UserAuth>(result);
+        return userAuth;
     }
 }

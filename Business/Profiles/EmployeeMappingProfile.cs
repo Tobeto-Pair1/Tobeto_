@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Business.DTOs.Employees;
+using Business.DTOs.Users;
 using Core.DataAccess.Dynamic;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Entities.Concretes;
 using System;
@@ -9,30 +11,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Profiles
+namespace Business.Profiles;
+
+public class EmployeeMappingProfile : Profile
 {
-    public class EmployeeMappingProfile:Profile
+    public EmployeeMappingProfile()
     {
-        public EmployeeMappingProfile()
-        {
-            CreateMap<Employee, CreatedEmployeeResponse>().ReverseMap();
-            CreateMap<CreateEmployeeRequest, Employee>().ReverseMap();
 
-            CreateMap<Employee, DeletedEmployeeResponse>().ReverseMap();
-            CreateMap<DeleteEmployeeRequest, Employee>().ReverseMap();
+                CreateMap<Employee, UserAuth>().ReverseMap();
 
-            CreateMap<Employee, UpdatedEmployeeResponse>().ReverseMap();
-            CreateMap<UpdateEmployeeRequest, Employee>().ReverseMap();
+        CreateMap<Employee, CreatedEmployeeResponse>()
+            .ForMember(e => e.DepartmentName, opt => opt.MapFrom(e => e.Department.Name))
+            .ReverseMap();
+        CreateMap<Employee, CreateEmployeeRequest>()
+            .ForMember(e => e.DepartmentName, opt => opt.MapFrom(e => e.Department.Name))
+            .ReverseMap();
 
-            CreateMap<Paginate<Employee>, Paginate<GetListEmployeeResponse>>().ReverseMap();
-            CreateMap<Employee, GetListEmployeeResponse>()
-           .ForMember(destinationMember: a => a.DepartmentId,
-            memberOptions: opt => opt.MapFrom(a => a.Department.Id))
-           .ForMember(destinationMember: a => a.UserId,
-            memberOptions: opt => opt.MapFrom(a => a.User.Id))
-           .ForMember(destinationMember: a => a.FullName,
-            memberOptions: opt => opt.MapFrom(a => (a.User.FirstName )))
+        CreateMap<Employee, EmployeeForRegisterRequest>()
+            .ForMember(e => e.DepartmentName, opt => opt.MapFrom(e => e.Department.Name))
+            .ReverseMap();
+        CreateMap<CreateEmployeeRequest, EmployeeForRegisterRequest>()
+          
            .ReverseMap();
-        }
+        CreateMap<Employee, EmployeeForLoginRequest>().ReverseMap();
+
+        CreateMap<Employee, DeletedEmployeeResponse>().ReverseMap();
+        CreateMap<Employee, DeleteEmployeeRequest>().ReverseMap();
+
+        CreateMap<Employee, UpdatedEmployeeResponse>().ReverseMap();
+        CreateMap<Employee, UpdateEmployeeRequest>().ReverseMap();
+
+        CreateMap<Paginate<Employee>, Paginate<GetListEmployeeResponse>>().ReverseMap();
+        CreateMap<Employee, GetListEmployeeResponse>()
+            .ForMember(e => e.DepartmentName, opt => opt.MapFrom(e => e.Department.Name))
+            .ReverseMap();
     }
 }

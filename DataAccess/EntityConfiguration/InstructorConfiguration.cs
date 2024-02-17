@@ -10,9 +10,8 @@ public class InstructorConfiguration : IEntityTypeConfiguration<Instructor>
     {
         builder.ToTable("Instructors").HasKey(b => b.Id);
         builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
-        builder.Property(b => b.UserId).HasColumnName("UserId");
+      
 
-        builder.HasOne(b => b.User);
         builder.HasOne(b => b.SynchronLessonInstructor);
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
     }
