@@ -32,39 +32,5 @@ public class AuthController : Controller
         var registerResult = await _authService.Register(userForRegisterRequest, userForRegisterRequest.Password);
 
         return Ok(registerResult);
-
-    }
-    [HttpPost("EmployeeLogin")]
-    public async Task<IActionResult> EmployeeLogin([FromBody] EmployeeForLoginRequest employeeForLoginRequest)
-    {
-        var loginResult = await _authService.EmployeeLogin(employeeForLoginRequest);
-
-        return Ok(loginResult);
-    }
-
-    [HttpPost("EmployeeRegister")]
-    public async Task<IActionResult> EmployeeRegister([FromBody] EmployeeForRegisterRequest employeeForRegisterRequest)
-    {
-        var registerResult = await _authService.EmployeeRegister(employeeForRegisterRequest, employeeForRegisterRequest.Password);
-
-        return Ok(registerResult);
-
-    }
-
-    [HttpPost("InstructorLogin")]
-    public async Task<IActionResult> InstructorLogin([FromBody] InstructorForLoginRequest ınstructorForLoginRequest)
-    {
-        var loginResult = await _authService.InstructorLogin(ınstructorForLoginRequest);
-
-        return Ok(loginResult);
-    }
-
-    [HttpPost("InstructorRegister")]
-    public async Task<IActionResult> InstructorRegister([FromBody] InstructorForRegisterRequest ınstructorForRegisterRequest)
-    {
-        var registerResult = await _authService.InstructorRegister(ınstructorForRegisterRequest, ınstructorForRegisterRequest.Password);
-
-        return Ok(registerResult);
-
     }
 }
