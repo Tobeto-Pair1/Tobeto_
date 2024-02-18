@@ -13,8 +13,10 @@ public static class DataAccessServiceRegistration
 {
     public static IServiceCollection AddDataAccessServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
-      
+        
+       // services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
+        services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoCanli")));
+
         services.AddScoped<IForeignLanguageDal, EfForeignLanguageDal>();
         services.AddScoped<IForeignLanguageLevelDal, EfForeignLanguageLevelDal>();
         services.AddScoped<IUserLanguageDal, EfUserLanguageDal>();
