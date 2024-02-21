@@ -1,9 +1,6 @@
-﻿namespace Business.DTOs.CourseProgram
+﻿namespace Business.DTOs.CourseProgram;
+
+public class DeleteCourseProgramRequest
 {
-    public class DeleteCourseProgramRequest
-    {
-        public Guid Id { get; set; }
-        public Guid ProgramId { get; set; }
-        public Guid CourseId { get; set; }
-    }
+    public Guid Id { get; set; }
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.SynchronLessonDetails
-{
-    public class CreateSynchronLessonDetailRequest
-    {
-        public string Name { get; set; }
+namespace Business.DTOs.SynchronLessonDetails;
 
-    }
+public class CreateSynchronLessonDetailRequest
+{
+    public string Name { get; set; }
+
 }

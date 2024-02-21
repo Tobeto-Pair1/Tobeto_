@@ -72,7 +72,7 @@ public class TobetoDbContext : DbContext
     public DbSet<SynchronLessonDetail> SynchronLessonDetails { get; set; }
     public DbSet<SynchronLessonInstructor> SynchronLessonInstructors { get; set; }
 
-    public DbSet<ContactInformation> ContactInformation { get; set; }
+    public DbSet<ContactInformation> ContactInformations { get; set; }
 
 
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
