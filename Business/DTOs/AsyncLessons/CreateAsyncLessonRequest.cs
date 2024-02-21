@@ -13,5 +13,7 @@ public class CreateAsyncLessonRequest
     public DateTime TimeSpent { get; set; }
     public Guid InstructorId { get; set; }
     public Guid CourseModuleId { get; set; }
+    public string Video { get; set; }
+
 
 }

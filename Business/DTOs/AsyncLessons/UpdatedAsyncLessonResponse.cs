@@ -8,6 +8,7 @@ public class UpdatedAsyncLessonResponse
     public DateTime TimeSpent { get; set; }
     public Guid InstructorId { get; set; }
     public Guid CourseModuleId { get; set; }
+    public string Video { get; set; }
 
     /*public string InstructorName { get; set; }
    public string CourseModuleName { get; set; }*/
