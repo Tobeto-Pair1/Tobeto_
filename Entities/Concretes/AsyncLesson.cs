@@ -10,6 +10,7 @@ public class AsyncLesson : Entity<Guid>
     public DateTime TimeSpent { get; set; }  //geçirilen süre
     public Guid InstructorId { get; set; }
     public Guid CourseModuleId { get; set; }
+    public string Video {  get; set; }
 
 
     public virtual Instructor Instructor {get;set;}
