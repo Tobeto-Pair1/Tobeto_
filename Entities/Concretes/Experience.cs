@@ -16,7 +16,6 @@ public class Experience : Entity<Guid>
     public string CompanyName { get; set; }
     public Guid UserId { get; set; }
     public Guid CityId { get; set; }
-    //eklendiiiiii
     public DateTime JobStart { get; set; }
     public DateTime JobCompletion { get; set; }
     public string Description { get; set; }
@@ -24,12 +23,4 @@ public class Experience : Entity<Guid>
 
     public virtual User User { get; set; }
     public virtual City City { get; set; }
-
-    //public Guid PositionId { get; set;}
-    //public Guid SectorId { get; set;}
-    //public Guid CompanyId { get; set; }
-
-    //public virtual Company Company { get; set; }
-    //public virtual Position Position { get; set; }
-    //public virtual Sector Sector { get; set; }
 }

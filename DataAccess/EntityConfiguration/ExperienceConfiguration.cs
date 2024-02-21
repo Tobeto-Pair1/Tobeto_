@@ -20,14 +20,5 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
         builder.HasOne(b => b.User);
         builder.HasOne(b => b.City);
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
-
-
-        //builder.Property(ul => ul.PositionId).HasColumnName("PositionId").IsRequired();
-        //builder.Property(ul => ul.SectorId).HasColumnName("SectorId").IsRequired();
-        //builder.Property(ul => ul.CompanyId).HasColumnName("CompanyId").IsRequired();
-
-        //builder.HasOne(b => b.Position).WithMany(b => b.Experiences).HasForeignKey(b => b.PositionId);
-        //builder.HasOne(b => b.Sector).WithMany(b => b.Experiences).HasForeignKey(b => b.SectorId);
-        //builder.HasOne(b => b.Company).WithMany(b => b.Experiences).HasForeignKey(b => b.CompanyId);
     }
 }

@@ -8,7 +8,6 @@ namespace Business.DTOs.Experiences;
 
 public class CreateExperienceRequest
 {
-    public Guid Id { get; set; }
     public Guid UserId { get; set; }
     public string CompanyName { get; set; }
     public string PositionName { get; set; }

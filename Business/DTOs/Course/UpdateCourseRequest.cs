@@ -1,9 +1,8 @@
-﻿namespace Business.DTOs.Course
+﻿namespace Business.DTOs.Course;
+
+public class UpdateCourseRequest
 {
-    public class UpdateCourseRequest
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public Guid CourseTypeId { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public Guid CourseTypeId { get; set; }
 }

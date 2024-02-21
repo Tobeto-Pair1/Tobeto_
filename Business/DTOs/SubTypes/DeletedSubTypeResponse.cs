@@ -1,8 +1,6 @@
-﻿namespace Business.DTOs.SubTypes
+﻿namespace Business.DTOs.SubTypes;
+
+public class DeletedSubTypeResponse
 {
-    public class DeletedSubTypeResponse
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-    }
+    public Guid Id { get; set; }
 }

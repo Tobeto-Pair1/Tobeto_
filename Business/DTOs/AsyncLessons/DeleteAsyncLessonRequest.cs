@@ -3,6 +3,4 @@
 public class DeleteAsyncLessonRequest
 {
     public Guid Id { get; set; }
-
-
 }
