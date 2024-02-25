@@ -1,23 +1,17 @@
-﻿using AutoMapper;
-using Business.Abstract;
-using Business.DTOs.Users;
-using Core.DataAccess.Dynamic;
+﻿using Business.Abstract;
 using Core.Entities.Concrete;
 using DataAccess.Abstract;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace Business.Concrete;
 
 public class UserOperationClaimManager : IUserOperationClaimService
 {
-    IUserOperationClaimDal _userOperationClaimDal;
-    IMapper _mapper;
+    private readonly IUserOperationClaimDal _userOperationClaimDal;
 
-    public UserOperationClaimManager(IUserOperationClaimDal userOperationClaimDal, IMapper mapper)
+    public UserOperationClaimManager(IUserOperationClaimDal userOperationClaimDal)
     {
         _userOperationClaimDal = userOperationClaimDal;
-        _mapper = mapper;
     }
 
     public async Task<IList<OperationClaim>> GetClaims(Guid id)

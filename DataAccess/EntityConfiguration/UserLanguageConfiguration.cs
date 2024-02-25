@@ -13,7 +13,7 @@ public class UserLanguageConfiguration : IEntityTypeConfiguration<UserLanguage>
 {
     public void Configure(EntityTypeBuilder<UserLanguage> builder)
     {
-        builder.ToTable("UserLanguages").HasKey(b => new { b.Id, b.UserId, b.ForeignLanguageId, b.ForeignLanguageLevelId });
+        builder.ToTable("UserLanguages").HasKey(b => b.Id);
         builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
         builder.Property(b => b.UserId).HasColumnName("UserId").IsRequired();
         builder.Property(b => b.ForeignLanguageId).HasColumnName("ForeignLanguageId").IsRequired();

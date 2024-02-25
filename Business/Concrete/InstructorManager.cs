@@ -12,8 +12,8 @@ namespace Business.Concrete;
 
 public class InstructorManager : IInstructorService
 {
-    IInstructorDal _ınstructorDal;
-    IMapper _mapper;
+    private readonly IInstructorDal _ınstructorDal;
+    private readonly IMapper _mapper;
 
 
     public InstructorManager(IInstructorDal ınstructorDal, IMapper mapper)

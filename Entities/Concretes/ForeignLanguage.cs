@@ -6,13 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete
-{
-    public class ForeignLanguage: Entity<Guid>
-    {
-        
-        public string Name { get; set; }
+namespace Entities.Concrete;
 
-        public virtual ICollection<UserLanguage> UserLanguages{ get; set; }
-    }
+public class ForeignLanguage: Entity<Guid>
+{
+    public string Name { get; set; }
+
+    public virtual ICollection<UserLanguage> UserLanguages{ get; set; }
 }

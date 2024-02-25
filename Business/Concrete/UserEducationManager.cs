@@ -1,19 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.DTOs.Experiences;
 using Business.DTOs.UserEducations;
-using Business.DTOs.Users;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete;
 
@@ -50,6 +42,14 @@ public class UserEducationManager : IUserEducationService
         var data = await _userEducationDal.GetListAsync(include: a => a.Include(a => a.User),
             index: pageRequest.PageIndex,
             size: pageRequest.PageSize);
+
+        var result = _mapper.Map<Paginate<GetListUserEducationResponse>>(data);
+        return result;
+    }
+
+    public async Task<IPaginate<GetListUserEducationResponse>> GetListByUser(Guid userId)
+    {
+        var data = await _userEducationDal.GetListAsync(predicate: a=>a.UserId == userId);
 
         var result = _mapper.Map<Paginate<GetListUserEducationResponse>>(data);
         return result;

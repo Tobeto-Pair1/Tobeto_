@@ -4,18 +4,13 @@ using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
 using Entities.Concretes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Abstract;
 
 public class SocialMediaManager : ISocialMediaService
 {
-    ISocialMediaDal _socialMediaDal;
-    IMapper _mapper;
+    private readonly ISocialMediaDal _socialMediaDal;
+    private readonly IMapper _mapper;
 
     public SocialMediaManager(ISocialMediaDal socialMediaDal, IMapper mapper)
     {
@@ -34,7 +29,7 @@ public class SocialMediaManager : ISocialMediaService
 
     public async Task<DeletedSocialMediaResponse> Delete(DeleteSocialMediaRequest deleteSocialMediaRequest)
     {
-        SocialMedia socialMedia = _mapper.Map<SocialMedia>(deleteSocialMediaRequest);
+        SocialMedia socialMedia = await _socialMediaDal.GetAsync(u => u.Id == deleteSocialMediaRequest.Id);
         SocialMedia deletedSocialMedia = await _socialMediaDal.DeleteAsync(socialMedia);
         DeletedSocialMediaResponse socialMediaResponse = _mapper.Map<DeletedSocialMediaResponse>(deletedSocialMedia);
         return socialMediaResponse;
@@ -49,11 +44,12 @@ public class SocialMediaManager : ISocialMediaService
         return result;
     }
 
-    public async Task<UpdateSocialMediaResponse> Update(UpdateSocialMediaRequest updateSocialMediaRequest)
+    public async Task<UpdatedSocialMediaResponse> Update(UpdateSocialMediaRequest updateSocialMediaRequest)
     {
-        SocialMedia socialMedia = _mapper.Map<SocialMedia>(updateSocialMediaRequest);
+        SocialMedia socialMedia = await _socialMediaDal.GetAsync(u => u.Id == updateSocialMediaRequest.Id);
+        _mapper.Map(updateSocialMediaRequest, socialMedia);
         SocialMedia updatedSocialMedia = await _socialMediaDal.UpdateAsync(socialMedia);
-        UpdateSocialMediaResponse socialMediaResponse = _mapper.Map<UpdateSocialMediaResponse>(updatedSocialMedia);
+        UpdatedSocialMediaResponse socialMediaResponse = _mapper.Map<UpdatedSocialMediaResponse>(updatedSocialMedia);
         return socialMediaResponse;
     }
 }

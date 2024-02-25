@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Business.Messages;
+﻿namespace Business.Messages;
 
 public class BusinessMessages
 {
@@ -20,4 +14,10 @@ public class BusinessMessages
     public static string BlogNotFound = "Blog bulunamadı.";
 
     public static string AuthorizationDenied = "Yetkiniz yok.";
+
+    public static string LanguageAlreadyExists = "Bu dil zaten mevcut";
+
+    public static string SocialMediaAlreadyExists =  "Bu sosyal medya zaten mevcut";
+
+    public static string ImageError = "Unsupported format";
 }

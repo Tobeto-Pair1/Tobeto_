@@ -8,7 +8,6 @@ namespace Business.DTOs.Requests;
 
 public class CreateUserSkillRequest
 {
+    public Guid Id { get; set; }
     public Guid SkillId { get; set; }
-    public Guid UsersId { get; set; }
-
 }

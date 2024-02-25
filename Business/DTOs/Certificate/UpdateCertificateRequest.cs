@@ -1,10 +1,9 @@
-﻿namespace Business.DTOs.Certificate
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Business.DTOs.Certificate;
+
+public class UpdateCertificateRequest
 {
-    public class UpdateCertificateRequest
-    {
-        public Guid Id { get; set; }
-        public Guid UserId { get; set; }
-        public string FileName { get; set; }
-        public string FileType { get; set; }
-    }
+    public Guid Id { get; set; }
+    public IFormFile? File { get; set; }
 }

@@ -8,16 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface IUserSkillService
 {
-    public interface IUserSkillService
-    {
-        Task<IPaginate<GetListUserSkillResponse>> GetListAsync(PageRequest pageRequest);
+    Task<IPaginate<GetListUserSkillResponse>> GetListAsync(PageRequest pageRequest);
 
-        Task<CreatedUserSkillResponse> Add(CreateUserSkillRequest createUserSkillRequest);
+    Task<CreatedUserSkillResponse> Add(CreateUserSkillRequest createUserSkillRequest);
 
-        Task<UpdatedUserSkillResponse> Update(UpdateUserSkillRequest updateUserSkillRequest);
+    Task<UpdatedUserSkillResponse> Update(UpdateUserSkillRequest updateUserSkillRequest);
 
-        Task<DeletedUserSkillResponse> Delete(DeleteUserSkillRequest deleteUserSkillRequest);
-    }
+    Task<DeletedUserSkillResponse> Delete(DeleteUserSkillRequest deleteUserSkillRequest);
+    Task<IPaginate<GetListUserSkillResponse>> GetListByUser(Guid userId);
 }

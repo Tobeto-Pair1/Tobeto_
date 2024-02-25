@@ -1,19 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.Experiences;
-using Business.DTOs.Users;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
-using Entities.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete;
 
@@ -55,6 +47,15 @@ public class ExperienceManager : IExperienceService
         var result = _mapper.Map<Paginate<GetListExperienceResponse>>(data);
         return result;
     }
+
+    public async Task<IPaginate<GetListExperienceResponse>> GetListByUser(Guid userId)
+    {
+        var data = await _experienceDal.GetListAsync(predicate: a => a.UserId == userId);
+
+        var result = _mapper.Map<Paginate<GetListExperienceResponse>>(data);
+        return result;
+    }
+
     public async Task<UpdatedExperienceResponse> Update(UpdateExperienceRequest updateExperienceRequest)
     {
         Experience experience = await _experienceDal.GetAsync(e => e.Id == updateExperienceRequest.Id);

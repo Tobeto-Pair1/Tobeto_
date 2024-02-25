@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-//Id = UserId
 public class UserLanguage : Entity<Guid>
 {
     public Guid UserId { get; set; }
