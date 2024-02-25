@@ -16,14 +16,14 @@ namespace DataAccess.EntityConfiguration
         {
             builder.ToTable("StudentAnswers").HasKey(b => b.Id);
             builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
-            builder.Property(b => b.StudentId).HasColumnName("StudentId").IsRequired();
+            builder.Property(b => b.UserId).HasColumnName("UserId").IsRequired();
             builder.Property(b => b.QuestionId).HasColumnName("QuestionId").IsRequired();
             builder.Property(b => b.SelectedOption).HasColumnName("SelectedOption").IsRequired();
             builder.Property(b => b.IsCorrect).HasColumnName("IsCorrect").IsRequired();
 
 
 
-            builder.HasOne(b => b.Student);
+            builder.HasOne(b => b.User);
             builder.HasOne(b => b.Question);
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }

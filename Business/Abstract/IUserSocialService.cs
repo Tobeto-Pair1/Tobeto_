@@ -7,16 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface IUserSocialService
 {
-    public interface IUserSocialService
-    {
-        Task<IPaginate<GetListUserSocialResponse>> GetListAsync(PageRequest pageRequest);
+    Task<IPaginate<GetListUserSocialResponse>> GetListAsync(PageRequest pageRequest);
+    Task<IPaginate<GetListUserSocialResponse>> GetListByUser(Guid userId);
+    Task<CreatedUserSocialResponse> Add(CreateUserSocialRequest createUserSocialRequest);
 
-        Task<CreatedUserSocialResponse> Add(CreateUserSocialRequest createUserSocialRequest);
+    Task<UpdatedUserSocialResponse> Update(UpdateUserSocialRequest updateUserSocialRequest);
 
-        Task<UpdatedUserSocialResponse> Update(UpdateUserSocialRequest updateUserSocialRequest);
-
-        Task<DeletedUserSocialResponse> Delete(DeleteUserSocialRequest deleteUserSocialRequest);
-    }
+    Task<DeletedUserSocialResponse> Delete(DeleteUserSocialRequest deleteUserSocialRequest);
 }

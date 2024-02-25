@@ -8,7 +8,7 @@ namespace Business.Concrete;
 
 public class InstructorOperationClaimManager : IInstructorOperationClaimService
 {
-    IInstructorOperationClaimDal _instructorOperationClaimDal;
+    private readonly IInstructorOperationClaimDal _instructorOperationClaimDal;
 
     public InstructorOperationClaimManager(IInstructorOperationClaimDal instructorOperationClaimDal)
     {

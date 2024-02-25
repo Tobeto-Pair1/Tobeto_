@@ -19,7 +19,7 @@ public class ForeignLanguageMappingProfile : Profile
         CreateMap<ForeignLanguage, UpdateForeignLanguageRequest>().ReverseMap();
 
         CreateMap<Paginate<ForeignLanguage>, Paginate<GetListForeignLanguageResponse>>().ReverseMap();
-        CreateMap<Paginate<ForeignLanguage>, GetListForeignLanguageResponse>().ReverseMap();
+        CreateMap<ForeignLanguage, GetListForeignLanguageResponse>().ReverseMap();
     }
 
 }

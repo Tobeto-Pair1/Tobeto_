@@ -8,6 +8,7 @@ namespace Business.Abstract
     public interface ITownService
 	{
         Task<IPaginate<GetListTownResponse>> GetListAsync(PageRequest pageRequest);
+        Task<IPaginate<GetListTownResponse>> GetListByCity(Guid cityId);
         Task<CreatedTownResponse> Add(CreateTownRequest createTownRequest);
 
         Task<UpdatedTownResponse> Update(UpdateTownRequest updateTownRequest);

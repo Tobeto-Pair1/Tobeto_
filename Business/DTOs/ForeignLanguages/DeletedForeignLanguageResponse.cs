@@ -9,5 +9,4 @@ namespace Business.DTOs.ForeignLanguages;
 public class DeletedForeignLanguageResponse
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
 }

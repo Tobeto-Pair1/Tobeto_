@@ -9,6 +9,7 @@ namespace Business.DTOs.UserLanguages
     public class GetListUserLanguageResponse
     {
         public Guid Id { get; set; }
+        public Guid UserId { get; set; }
         public Guid ForeignLanguageId { get; set; }
         public string ForeignLanguageName { get; set; }
         public Guid ForeignLanguageLevelId { get; set; }

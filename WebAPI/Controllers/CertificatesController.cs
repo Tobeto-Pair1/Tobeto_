@@ -18,27 +18,28 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody] CreateCertificateRequest createCertificateRequest)
+        public async Task<IActionResult> Add([FromForm] CreateCertificateRequest createCertificateRequest)
         {
             await _certificateService.Add(createCertificateRequest);
             return Ok();
         }
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteCertificateRequest deleteCertificateRequest)
+        public async Task<IActionResult> Delete([FromForm] DeleteCertificateRequest deleteCertificateRequest)
         {
             await _certificateService.Delete(deleteCertificateRequest);
             return Ok();
-
         }
+
         [HttpGet("getList")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             var result = await _certificateService.GetListAsync(pageRequest);
             return Ok(result);
         }
+
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] UpdateCertificateRequest updateCertificateRequest)
+        public async Task<IActionResult> Update([FromForm] UpdateCertificateRequest updateCertificateRequest)
         {
             await _certificateService.Update(updateCertificateRequest);
             return Ok();

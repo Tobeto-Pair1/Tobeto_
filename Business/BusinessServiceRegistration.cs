@@ -3,13 +3,7 @@ using Business.Abstract;
 using Business.Concrete;
 using System.Reflection;
 using Core.Business;
-
-using Core.Utilities.Security.JWT;
-using Core.Utilities.FileUpload;
 using FluentValidation;
-using FluentValidation.AspNetCore;
-
-using Business.Validations;
 using Core.Utilities.Business.EmailService;
 using Core.Services.Mailing;
 
@@ -23,11 +17,9 @@ public static class BusinessServiceRegistration
         services.AddScoped<IForeignLanguageService, ForeignLanguageManager>();
         services.AddScoped<IForeignLanguageLevelService, ForeignLanguageLevelManager>();
         services.AddScoped<ISocialMediaService, SocialMediaManager>();
-        services.AddScoped<ISectorService, SectorManager>();
         services.AddScoped<IUserSocialService, UserSocialManager>();
         services.AddScoped<IUserSkillService, UserSkillManager>();
         services.AddScoped<ISkillService, SkillManager>();
-        services.AddScoped<ICompanyService, CompanyManager>();
         services.AddScoped<ICertificateService, CertificateManager>();
         services.AddScoped<IUserEducationService, UserEducationManager>();
         services.AddScoped<IExperienceService, ExperienceManager>();
@@ -77,16 +69,9 @@ public static class BusinessServiceRegistration
         services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
         services.AddScoped<IAuthService, AuthManager>();
 
-
-
-        services.AddScoped<IStudentService, StudentManager>();
-
         services.AddScoped<IImageService, ImageManager>();
        
-       
         services.AddScoped<IContactInformationService, ContactInformationManager>();
-
-
 
         services.AddScoped<IEmailService, EmailService>();
 

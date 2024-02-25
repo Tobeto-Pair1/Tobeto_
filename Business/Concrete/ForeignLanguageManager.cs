@@ -6,6 +6,7 @@ using Core.DataAccess.Paging;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete;
+using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -38,7 +39,7 @@ public class ForeignLanguageManager : IForeignLanguageService
 
     public async Task<DeletedForeignLanguageResponse> Delete(DeleteForeignLanguageRequest deleteLanguageRequest)
     {
-        ForeignLanguage foreignLanguage = _mapper.Map<ForeignLanguage>(deleteLanguageRequest);
+        ForeignLanguage foreignLanguage = await _foreignlanguageDal.GetAsync(u => u.Id == deleteLanguageRequest.Id);
         ForeignLanguage deletedLanguage = await _foreignlanguageDal.DeleteAsync(foreignLanguage);
         DeletedForeignLanguageResponse deletedLanguageResponse = _mapper.Map<DeletedForeignLanguageResponse>(deletedLanguage);
         return deletedLanguageResponse;
@@ -54,7 +55,8 @@ public class ForeignLanguageManager : IForeignLanguageService
 
     public async Task<UpdatedForeignLanguageResponse> Update(UpdateForeignLanguageRequest updateLanguageRequest)
     {
-        ForeignLanguage foreignLanguage = _mapper.Map<ForeignLanguage>(updateLanguageRequest);
+        ForeignLanguage foreignLanguage = await _foreignlanguageDal.GetAsync(u => u.Id == updateLanguageRequest.Id);
+        _mapper.Map(updateLanguageRequest, foreignLanguage);
         ForeignLanguage updateLanguage = await _foreignlanguageDal.UpdateAsync(foreignLanguage);
         UpdatedForeignLanguageResponse updateLanguageResponse = _mapper.Map<UpdatedForeignLanguageResponse>(updateLanguage);
         return updateLanguageResponse;

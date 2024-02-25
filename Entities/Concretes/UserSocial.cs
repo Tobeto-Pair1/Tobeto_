@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes;
 
-//user-Social == SocialMediaUrl
 public class UserSocial : Entity<Guid>
 {
     public Guid UserId { get; set; }

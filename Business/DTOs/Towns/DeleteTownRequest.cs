@@ -1,11 +1,7 @@
-﻿using System;
+﻿namespace Business.DTOs.Towns;
 
-namespace Business.DTOs.Towns
+public class DeleteTownRequest
 {
-    public class DeleteTownRequest
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-    }
+    public Guid Id { get; set; }
 }
 

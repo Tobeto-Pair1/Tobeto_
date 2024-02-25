@@ -5,22 +5,16 @@ using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using Core.Entities.Concrete;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete;
 
 public class UserManager : IUserService
 {
-    IUserDal _userDal;
-    IMapper _mapper;
-   
+    private readonly IUserDal _userDal;
+    private readonly IMapper _mapper;
+
 
     public UserManager(IUserDal userDal, IMapper mapper)
     {
@@ -30,14 +24,12 @@ public class UserManager : IUserService
     public async Task<DeletedUserResponse> Delete(Guid id)
     {
         User? user = await _userDal.GetAsync(u => u.Id == id);
-        await _userDal.DeleteAsync(user);    
-        DeletedUserResponse deletedUserResponse = _mapper.Map<DeletedUserResponse>(user);      
+        await _userDal.DeleteAsync(user);
+        DeletedUserResponse deletedUserResponse = _mapper.Map<DeletedUserResponse>(user);
         return deletedUserResponse;
     }
 
-
-    
-public async Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest)
+    public async Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest)
     {
         var data = await _userDal.GetListAsync(include: l => l.
            Include(l => l.Address.City).
@@ -77,11 +69,4 @@ public async Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageR
         UserAuth userAuth = _mapper.Map<UserAuth>(result);
         return userAuth;
     }
-
-
-
-
-
-
-
 }

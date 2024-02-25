@@ -1,11 +1,8 @@
-﻿using System;
+﻿namespace Business.DTOs.Towns;
 
-namespace Business.DTOs.Towns
+public class CreateTownRequest
 {
-    public class CreateTownRequest
-    {
-        public string Name { get; set; }
-        public Guid CityId { get; set; }
-    }
+    public string Name { get; set; }
+    public Guid CityId { get; set; }
 }
 

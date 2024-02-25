@@ -12,7 +12,7 @@ namespace Business.Abstract
     public interface ICityService
     {
         Task<IPaginate<GetListCityResponse>> GetListAsync(PageRequest pageRequest);
-
+        Task<IPaginate<GetListCityResponse>> GetListByCountry(Guid countryId);
         Task<CreatedCityResponse> Add(CreateCityRequest createCityRequest);
 
         Task<UpdatedCityResponse> Update(UpdateCityRequest updateCityRequest);
