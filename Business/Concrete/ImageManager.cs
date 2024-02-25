@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.Image;
+using Business.Rules;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using Core.Utilities.FileUpload;
@@ -14,17 +15,20 @@ public class ImageManager : IImageService
     private readonly IImageDal _imageDal;
     private readonly IMapper _mapper;
     private readonly IFileUploadAdapter _fileUploadAdapter;
+    private readonly ImageBusinessRules _ımageBusinessRules;
 
 
-    public ImageManager(IImageDal imageDal, IMapper mapper, IFileUploadAdapter fileUploadAdapter)
+    public ImageManager(IImageDal imageDal, IMapper mapper, IFileUploadAdapter fileUploadAdapter, ImageBusinessRules ımageBusinessRules)
     {
         _imageDal = imageDal;
         _mapper = mapper;
         _fileUploadAdapter = fileUploadAdapter;
+        _ımageBusinessRules = ımageBusinessRules;
     }
 
     public async Task<CreatedImageResponse> Add(CreateImageRequest createImageRequest)
     {
+        await _ımageBusinessRules.FileMustBeInImageFormat(createImageRequest.File);
         Image image = _mapper.Map<Image>(createImageRequest);
 
         image.FileName = createImageRequest.File.FileName;
@@ -54,7 +58,6 @@ public class ImageManager : IImageService
     public async Task<UpdatedImageResponse> Update(UpdateImageRequest updateImageRequest)
     {
         Image? image = await _imageDal.GetAsync(predicate: f => f.Id == updateImageRequest.Id);
-      //  image = _mapper.Map<Image>(updateImageRequest);
         image = _mapper.Map(updateImageRequest, image);
 
         image.FileUrl = await _fileUploadAdapter.Update(updateImageRequest.File, image.FileUrl);
