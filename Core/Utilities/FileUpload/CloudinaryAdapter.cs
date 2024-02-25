@@ -28,22 +28,6 @@ public class CloudinaryAdapter : IFileUploadAdapter
         }
         return fileUploadResponse.Url.ToString();
     }
-
-    public async Task<string> UploadPdf(IFormFile file)
-    {
-        var fileUploadResponse = new RawUploadResult();
-
-        using (var stream = file.OpenReadStream())
-        {
-            var parameters = new RawUploadParams()
-            {
-                File = new FileDescription(file.FileName, stream),
-               //  RawConvert = ResourceType.Raw
-            };
-            fileUploadResponse = await _cloudinary.UploadAsync(parameters);
-        }
-        return fileUploadResponse.Url.ToString();
-    }
     public async Task Delete(string imageUrl)
     {
         DeletionParams deletionParams = new(GetPublicId(imageUrl));

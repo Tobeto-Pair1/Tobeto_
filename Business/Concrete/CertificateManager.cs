@@ -28,7 +28,7 @@ public class CertificateManager : ICertificateService
         Certificate certificate = _mapper.Map<Certificate>(createCertificateRequest);
 
         certificate.FileName = createCertificateRequest.File.FileName;
-        certificate.FileUrl = await _fileUploadAdapter.UploadPdf(createCertificateRequest.File);
+        certificate.FileUrl = await _fileUploadAdapter.Upload(createCertificateRequest.File);
 
         Certificate createdCertificate = await _certificateDal.AddAsync(certificate);
         CreatedCertificateResponse createdCertificateResponse = _mapper.Map<CreatedCertificateResponse>(createdCertificate);

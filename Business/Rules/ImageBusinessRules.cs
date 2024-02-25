@@ -15,6 +15,5 @@ public class ImageBusinessRules : BaseBusinessRules
         string extension = Path.GetExtension(formFile.FileName).ToLower();
         if (!extensions.Contains(extension))
             throw new BusinessException("Unsupported format");
-        await Task.CompletedTask;
     }
 }
