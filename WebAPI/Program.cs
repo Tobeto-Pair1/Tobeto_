@@ -65,7 +65,7 @@ namespace WebAPI
                 app.UseSwaggerUI();
             }
 
-            app.ConfigureCustomExceptionMiddleware();
+            app.ConfigureCustomExceptionMiddleware();//global exception handler 
 
             app.UseAuthorization();
 
