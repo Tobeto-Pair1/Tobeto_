@@ -5,10 +5,11 @@ using Core.Utilities.IoC;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
 using Core.CrossCuttingConcerns.Logger.Serilog.Loggers;
 using Core.CrossCuttingConcerns.Logger.Serilog;
 using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
-using System.Diagnostics;
+
 
 namespace Core;
 
@@ -21,6 +22,9 @@ public static class CoreServiceRegistration
 
         services.AddScoped<ITokenHelper, JwtHelper>();
         services.AddScoped<IFileUploadAdapter, CloudinaryAdapter>();
+
+
+        services.AddScoped<Stopwatch>();
 
         //services.AddScoped<LoggerServiceBase, FileLogger>();
         //services.AddScoped<LoggerServiceBase, MsSqlLogger>();
