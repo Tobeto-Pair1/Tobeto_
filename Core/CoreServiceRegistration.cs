@@ -5,6 +5,7 @@ using Core.Utilities.IoC;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
 
 namespace Core;
 
@@ -17,6 +18,8 @@ public static class CoreServiceRegistration
 
         services.AddScoped<ITokenHelper, JwtHelper>();
         services.AddScoped<IFileUploadAdapter, CloudinaryAdapter>();
+
+        services.AddScoped<Stopwatch>();
 
         services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
         ServiceTool.Create(services);
