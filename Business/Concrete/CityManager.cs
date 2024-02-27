@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.Cities;
+using Core.Aspects.Autofac.Logging;
+using Core.CrossCuttingConcerns.Logger.Serilog.Loggers;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
@@ -19,6 +22,9 @@ public class CityManager : ICityService
         _cityDal = cityDal;
         _mapper = mapper;
     }
+
+
+    [LogAspect(typeof(FileLogger))]
     public async Task<CreatedCityResponse> Add(CreateCityRequest createCityRequest)
     {
         City city = _mapper.Map<City>(createCityRequest);

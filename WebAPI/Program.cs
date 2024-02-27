@@ -9,6 +9,8 @@ using Core.Utilities.Security.JWT;
 using DataAccess;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Core.Services.Mailing;
+using Core.CrossCuttingConcerns.Logger.Serilog.Loggers;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 
 namespace WebAPI
 {
@@ -19,12 +21,15 @@ namespace WebAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+             
 
             builder.Services.AddControllers();
             builder.Services.AddCoreServices();
             builder.Services.AddBusinessServices();
             builder.Services.AddDataAccessServices(builder.Configuration);
             builder.Services.AddCors(opt => opt.AddDefaultPolicy(p => { p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); }));
+
+            builder.Services.AddTransient<FileLogger>();
 
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
           .ConfigureContainer<ContainerBuilder>(builder =>
@@ -40,6 +45,7 @@ namespace WebAPI
             TokenOptions? tokenOptions = builder.Configuration.GetSection(tokenOptionsConfigurationSection).Get<TokenOptions>();
 
             builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -65,16 +71,16 @@ namespace WebAPI
                 app.UseSwaggerUI();
             }
 
-            app.ConfigureCustomExceptionMiddleware();
+            app.ConfigureCustomExceptionMiddleware();//global exception handler 
 
             app.UseAuthorization();
-
+            app.UseAuthentication();
 
             app.MapControllers();
 
 
             // app.UseCors();
-            app.UseCors(opt => opt.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+            app.UseCors((cors) => { cors.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();});
 
             app.Run();
         }
