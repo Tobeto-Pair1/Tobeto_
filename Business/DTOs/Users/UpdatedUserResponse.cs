@@ -10,5 +10,5 @@ public class UpdatedUserResponse
     public string? Email { get; set; }
     public DateTime BirthDate { get; set; }
     public string? AboutMe { get; set; }
-    public Guid AdrressId { get; set; }
+    public Guid AddressId { get; set; }
 }

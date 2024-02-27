@@ -54,7 +54,6 @@ public class AuthManager : IAuthService
         userAuth.PasswordSalt = passwordSalt;
         var createdUser = await _userService.Add(userAuth);
 
-
         var resultToken = await CreateAccessToken(createdUser);
         await _authBusinessRules.ThrowExceptionIfCreateAccessTokenIsNull(resultToken);
 
