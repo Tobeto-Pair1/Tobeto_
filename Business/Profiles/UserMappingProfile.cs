@@ -40,6 +40,14 @@ namespace Business.Profiles
                 .ReverseMap();
 
             CreateMap<User, GetListUserResponse>()
+                  .ForMember(destinationMember: a => a.TownId,
+           memberOptions: opt => opt.MapFrom(a => a.Address.TownId))
+                .ForMember(destinationMember: a => a.CountryId,
+           memberOptions: opt => opt.MapFrom(a => a.Address.CountryId))
+                .ForMember(destinationMember: a => a.CityId,
+           memberOptions: opt => opt.MapFrom(a => a.Address.CityId))
+                .ForMember(destinationMember: a => a.Description,
+           memberOptions: opt => opt.MapFrom(a => a.Address.Description))
                 .ForMember(destinationMember: a => a.TownName,
            memberOptions: opt => opt.MapFrom(a => a.Address.Town.Name))
                 .ForMember(destinationMember: a => a.CountryName,

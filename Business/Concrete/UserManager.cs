@@ -31,10 +31,11 @@ public class UserManager : IUserService
 
     public async Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest)
     {
-        var data = await _userDal.GetListAsync(include: l => l.
-           Include(l => l.Address.City).
-           Include(l => l.Address.Country).
-           Include(l => l.Address.Town),
+        var data = await _userDal.GetListAsync(include: l => l
+            .Include(l => l.Address)
+            .Include(l => l.Address.City)
+            .Include(l => l.Address.Country)
+            .Include(l => l.Address.Town),
                      index: pageRequest.PageIndex,
                      size: pageRequest.PageSize);
 
