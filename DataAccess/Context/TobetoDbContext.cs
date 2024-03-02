@@ -63,6 +63,7 @@ public class TobetoDbContext : DbContext
 
     public DbSet<SubType> SubTypes { get; set; }
     public DbSet<Program> Programs { get; set; }
+    public DbSet<LessonLanguage> LessonLanguages { get; set; }
     public DbSet<AsyncLesson> AsyncLessons { get; set; }
     public DbSet<SynchronLesson> SynchronLessons { get; set; }
     public DbSet<SynchronLessonDetail> SynchronLessonDetails { get; set; }

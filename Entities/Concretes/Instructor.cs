@@ -19,9 +19,6 @@ public class Instructor : Entity<Guid>
     public string? IdentityNumber { get; set; }
     public DateTime? BirthDate { get; set; }
 
-    //public Guid UserId { get; set; }
-    //public virtual User User { get; set; }
-
     public virtual SynchronLessonInstructor SynchronLessonInstructor { get; set; }
     public virtual ICollection<AsyncLesson> AsyncLessons { get; set; }
 }

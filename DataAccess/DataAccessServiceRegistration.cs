@@ -13,8 +13,8 @@ public static class DataAccessServiceRegistration
 {
     public static IServiceCollection AddDataAccessServices(this IServiceCollection services, IConfiguration configuration)
     {
-        //services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
-        services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoCanli")));
+        services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
+       // services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoCanli")));
 
         services.AddScoped<IForeignLanguageDal, EfForeignLanguageDal>();
         services.AddScoped<IForeignLanguageLevelDal, EfForeignLanguageLevelDal>();
@@ -44,6 +44,7 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ICourseProgramDal, EfCourseProgramDal>();
         services.AddScoped<ICourseStudentDal, EfCourseStudentDal>();
         services.AddScoped<IAsyncLessonDetailDal, EfAsyncLessonDetailDal>();
+        services.AddScoped<ILessonLanguageDal, EfLessonLanguageDal>();
 
 
         services.AddScoped<IAddressDal, EfAddressDal>();

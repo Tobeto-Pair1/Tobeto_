@@ -18,23 +18,6 @@ namespace WebAPI.Controllers
         {
             _ınstructorService = ınstructorService;
         }
-
-        //[HttpPost("login")]
-        //public async Task<IActionResult> Login([FromBody] InstructorForLoginRequest ınstructorForLoginRequest)
-        //{
-        //    var loginResult = await _ınstructorService.Login(ınstructorForLoginRequest);
-
-        //    return Ok(loginResult);
-        //}
-
-        [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody] CreateInstructorRequest createInstructorRequest)
-        {
-
-            var result = await _ınstructorService.Add(createInstructorRequest);
-
-            return Ok(result);
-        }
         [HttpPut("update")]
         public async Task<IActionResult> Update([FromBody] UpdateInstructorRequest updateInstructorRequest)
         {
