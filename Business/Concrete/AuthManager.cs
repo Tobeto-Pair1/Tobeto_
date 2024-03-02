@@ -7,16 +7,9 @@ using Business.DTOs.Users;
 using Business.Rules;
 using Core.Aspects.Autofac.Validation;
 using Business.Validations;
-using System.Net.Mail;
-using MailKit.Security;
-using MimeKit;
-using ServiceStack.Messaging;
-using Core.Utilities.Business.EmailService;
-
-using Entities.Concretes;
-using Core.CrossCuttingConcerns.Logger.Serilog.Loggers;
 using Core.Aspects.Autofac.Logging;
 using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
+using Core.Utilities.EmailSender;
 
 namespace Business.Concrete;
 
@@ -59,8 +52,6 @@ public class AuthManager : IAuthService
 
 
         sendTestEmail(userForRegisterRequest);
-
-       
 
         return resultToken;
     }

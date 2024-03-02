@@ -8,10 +8,8 @@ using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
 using DataAccess;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Core.Services.Mailing;
-using Core.CrossCuttingConcerns.Logger.Serilog.Loggers;
-using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Microsoft.OpenApi.Models;
+using Core.Utilities.EmailSender;
 
 namespace WebAPI
 {
@@ -68,11 +66,11 @@ namespace WebAPI
                 });
             });
 
-            const string tokenOptionsConfigurationSection = "TokenOptions";
-            TokenOptions? tokenOptions = builder.Configuration.GetSection(tokenOptionsConfigurationSection).Get<TokenOptions>();
-
             builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
+
+            const string tokenOptionsConfigurationSection = "TokenOptions";
+            TokenOptions? tokenOptions = builder.Configuration.GetSection(tokenOptionsConfigurationSection).Get<TokenOptions>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

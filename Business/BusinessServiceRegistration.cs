@@ -4,8 +4,6 @@ using Business.Concrete;
 using System.Reflection;
 using Core.Business;
 using FluentValidation;
-using Core.Utilities.Business.EmailService;
-using Core.Services.Mailing;
 
 namespace Business;
 
@@ -74,7 +72,6 @@ public static class BusinessServiceRegistration
        
         services.AddScoped<IContactInformationService, ContactInformationManager>();
 
-        services.AddScoped<IEmailService, EmailService>();
 
         services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
 
