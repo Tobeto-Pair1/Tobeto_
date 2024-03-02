@@ -41,6 +41,7 @@ public static class BusinessServiceRegistration
         services.AddScoped<IAsyncLessonDetailService, AsyncLessonDetailManager>();
         services.AddScoped<ISynchronLessonDetailService, SynchronLessonDetailManager>();
         services.AddScoped<ISynchronLessonInstructorService, SynchronLessonInstructorManager>();
+        services.AddScoped<ILessonLanguageService, LessonLanguageManager>();
         services.AddScoped<ISubTypeService, SubTypeManager>();
         services.AddScoped<IProgramService, ProgramManager>();
 

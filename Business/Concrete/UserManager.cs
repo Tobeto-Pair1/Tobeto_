@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.Users;
+using Business.Rules;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using Core.Entities.Concrete;
@@ -14,12 +15,14 @@ public class UserManager : IUserService
 {
     private readonly IUserDal _userDal;
     private readonly IMapper _mapper;
+    private readonly UserBusinessRules _userBusinessRules;
 
 
-    public UserManager(IUserDal userDal, IMapper mapper)
+    public UserManager(IUserDal userDal, IMapper mapper, UserBusinessRules userBusinessRules)
     {
         _userDal = userDal;
         _mapper = mapper;
+        _userBusinessRules = userBusinessRules;
     }
     public async Task<DeletedUserResponse> Delete(Guid id)
     {
@@ -45,6 +48,7 @@ public class UserManager : IUserService
 
     public async Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest)
     {
+       // await _userBusinessRules.VerifyTCKN(updateUserRequest);
         User? user = await _userDal.GetAsync(u => u.Id == updateUserRequest.Id);
         _mapper.Map(updateUserRequest, user);
 
