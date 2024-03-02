@@ -71,6 +71,7 @@ public class TobetoDbContext : DbContext
     public DbSet<SynchronLesson> SynchronLessons { get; set; }
     public DbSet<SynchronLessonDetail> SynchronLessonDetails { get; set; }
     public DbSet<SynchronLessonInstructor> SynchronLessonInstructors { get; set; }
+    public DbSet<Manufacturer> Manufacturers { get; set; }
 
     public DbSet<ContactInformation> ContactInformation { get; set; }
 
