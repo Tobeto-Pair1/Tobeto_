@@ -9,13 +9,11 @@ namespace Business.Concrete;
 
 public class EmployeeOperationClaimManager : IEmployeeOperationClaimService
 {
-    IEmployeeOperationClaimDal _employeeOperationClaimDal;
-    IMapper _mapper;
+    private readonly IEmployeeOperationClaimDal _employeeOperationClaimDal;
 
-    public EmployeeOperationClaimManager(IEmployeeOperationClaimDal employeeOperationClaimDal, IMapper mapper)
+    public EmployeeOperationClaimManager(IEmployeeOperationClaimDal employeeOperationClaimDal)
     {
         _employeeOperationClaimDal = employeeOperationClaimDal;
-        _mapper = mapper;
     }
 
     public async Task<IList<OperationClaim>> GetClaims(Guid id)

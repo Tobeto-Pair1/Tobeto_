@@ -1,13 +1,9 @@
-﻿using System;
+﻿namespace Business.DTOs.Towns;
 
-namespace Business.DTOs.Towns
+public class UpdateTownRequest
 {
-    public class UpdateTownRequest
-    {
-
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public Guid CityId { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public Guid CityId { get; set; }
 }
 

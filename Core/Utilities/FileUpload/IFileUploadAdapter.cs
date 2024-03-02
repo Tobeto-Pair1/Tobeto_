@@ -4,8 +4,7 @@ namespace Core.Utilities.FileUpload;
 
 public interface IFileUploadAdapter
 {
-    Task<string> UploadImage(IFormFile file);
-
-    Task DeleteImage(string imageUrl);
-    Task<string> UpdateImage(IFormFile formFile, string imageUrl);
+    Task<string> Upload(IFormFile file);
+    Task Delete(string imageUrl);
+    Task<string> Update(IFormFile formFile, string imageUrl);
 }

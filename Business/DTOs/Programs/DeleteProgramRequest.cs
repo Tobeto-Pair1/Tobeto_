@@ -1,8 +1,7 @@
-﻿namespace Business.DTOs.Programs
-{
-    public class DeleteProgramRequest
-    {
-        public string Name { get; set; }
+﻿namespace Business.DTOs.Programs;
 
-    }
+public class DeleteProgramRequest
+{
+    public Guid Id { get; set; }
+
 }

@@ -2,6 +2,7 @@
 using Business.DTOs.SocialMedias;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WepApi.Controllers
@@ -20,21 +21,21 @@ namespace WepApi.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] CreateSocialMediaRequest createSocialMediaRequest)
         {
-            await _socialMediaService.Add(createSocialMediaRequest);
-            return Ok();
+           var result =  await _socialMediaService.Add(createSocialMediaRequest);
+            return Ok(result);
         }
         [HttpPut("update")]
-        public async Task<IActionResult> Delete([FromBody] UpdateSocialMediaRequest updateSocialMediaRequest)
+        public async Task<IActionResult> Update([FromBody] UpdateSocialMediaRequest updateSocialMediaRequest)
         {
-            await _socialMediaService.Update(updateSocialMediaRequest);
-            return Ok();
+            var result = await _socialMediaService.Update(updateSocialMediaRequest);
+            return Ok(result);
         }
 
         [HttpDelete("delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteSocialMediaRequest deleteSocialMediaRequest)
         {
-            await _socialMediaService.Delete(deleteSocialMediaRequest);
-            return Ok();
+            var result = await _socialMediaService.Delete(deleteSocialMediaRequest);
+            return Ok(result);
         }
 
         [HttpGet("getList")]

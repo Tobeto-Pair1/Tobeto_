@@ -1,8 +1,6 @@
-﻿namespace Business.DTOs.Programs
+﻿namespace Business.DTOs.Programs;
+
+public class DeletedProgramResponse
 {
-    public class DeletedProgramResponse
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-    }
+    public Guid Id { get; set; }
 }

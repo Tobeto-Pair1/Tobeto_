@@ -1,8 +1,7 @@
-﻿namespace Business.DTOs.CourseStudent
+﻿namespace Business.DTOs.CourseStudent;
+
+public class CreateCourseStudentRequest
 {
-    public class CreateCourseStudentRequest
-    {
-        public Guid StudentId { get; set; }
-        public Guid CourseId { get; set; }
-    }
+    public Guid StudentId { get; set; }
+    public Guid CourseId { get; set; }
 }

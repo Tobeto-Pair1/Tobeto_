@@ -1,8 +1,7 @@
-﻿namespace Business.DTOs.AsyncLessonDetail
+﻿namespace Business.DTOs.AsyncLessonDetail;
+
+public class DeleteAsyncLessonDetailRequest
 {
-    public class DeleteAsyncLessonDetailRequest
-    {
-        public Guid Id { get; set; }
-      
-    }
+    public Guid Id { get; set; }
+  
 }

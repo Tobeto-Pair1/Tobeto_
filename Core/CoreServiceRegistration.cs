@@ -5,11 +5,10 @@ using Core.Utilities.IoC;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using Core.CrossCuttingConcerns.Logger.Serilog.Loggers;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
+using Core.Utilities.Verification.TCKN;
 
 namespace Core;
 
@@ -22,6 +21,13 @@ public static class CoreServiceRegistration
 
         services.AddScoped<ITokenHelper, JwtHelper>();
         services.AddScoped<IFileUploadAdapter, CloudinaryAdapter>();
+
+        services.AddScoped<Stopwatch>();
+
+        services.AddScoped<IVerificationService, TCKNVerificationService>();
+
+        services.AddTransient<FileLogger>();
+        services.AddTransient<MsSqlLogger>();
 
         services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
         ServiceTool.Create(services);

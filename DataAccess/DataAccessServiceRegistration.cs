@@ -14,7 +14,9 @@ public static class DataAccessServiceRegistration
     public static IServiceCollection AddDataAccessServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
-        //services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoCanli")));
+
+       // services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoCanli")));
+
 
         services.AddScoped<IForeignLanguageDal, EfForeignLanguageDal>();
         services.AddScoped<IForeignLanguageLevelDal, EfForeignLanguageLevelDal>();
@@ -23,13 +25,11 @@ public static class DataAccessServiceRegistration
         services.AddScoped<IUserSocialDal, EfUserSocialDal>();
         services.AddScoped<IUserEducationDal, EfUserEducationDal>();
         services.AddScoped<IUserSkillDal, EfUserSkillDal>();
-        services.AddScoped<ICompanyDal, EfCompanyDal>();
         services.AddScoped<IExperienceDal, EfExperienceDal>();
         services.AddScoped<ICertificateDal, EfCertificateDal>();
 
 
         services.AddScoped<ISkillDal, EfSkillDal>();
-        services.AddScoped<ISectorDal, EfSectorDal>();
 
         services.AddScoped<ICourseTypeDal, EfCourseTypeDal>();
         services.AddScoped<IAboutOfCourseDal, EfAboutOfCourseDal>();
@@ -46,6 +46,7 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ICourseProgramDal, EfCourseProgramDal>();
         services.AddScoped<ICourseStudentDal, EfCourseStudentDal>();
         services.AddScoped<IAsyncLessonDetailDal, EfAsyncLessonDetailDal>();
+        services.AddScoped<ILessonLanguageDal, EfLessonLanguageDal>();
 
 
         services.AddScoped<IAddressDal, EfAddressDal>();
@@ -55,7 +56,6 @@ public static class DataAccessServiceRegistration
 
 
         services.AddScoped<INotificationDal, EfNotificationDal>();
-        services.AddScoped<INotificationTypeDal, EfNotificationTypeDal>();
         services.AddScoped<IBlogDal, EfBlogDal>();
         services.AddScoped<IBlogPressDal, EfBlogPressDal>();
 
@@ -77,8 +77,6 @@ public static class DataAccessServiceRegistration
         services.AddScoped<IUserOperationClaimDal, EfUserOperationClaimDal>();
 
         services.AddScoped<IImageDal, EfImageDal>();
-
-        services.AddScoped<IStudentDal, EfStudentDal>();
       
         services.AddScoped<IContactInformationDal, EfContactInformationDal>();
 

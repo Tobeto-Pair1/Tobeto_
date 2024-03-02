@@ -2,6 +2,7 @@
 
 public class CreatedAsyncLessonResponse
 {
+    public Guid Id { get; set; }
     public string Name { get; set; }
     public DateTime DurationTime { get; set; }
     public DateTime TimeSpent { get; set; }
@@ -9,7 +10,4 @@ public class CreatedAsyncLessonResponse
     public Guid CourseModuleId { get; set; }
     public string Video { get; set; }
 
-
-    /*public string InstructorName { get; set; }
-    public string CourseModuleName { get; set; }*/
 }

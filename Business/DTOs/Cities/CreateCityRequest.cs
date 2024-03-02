@@ -9,6 +9,6 @@ namespace Business.DTOs.Cities;
 public class CreateCityRequest
 {
     public string Name { get; set; }
-    public string CountryName { get; set; }
+    public Guid CountryId { get; set; }
 
 }

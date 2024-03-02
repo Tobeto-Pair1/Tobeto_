@@ -1,8 +1,7 @@
-﻿namespace Business.DTOs.SubTypes
-{
-    public class DeleteSubTypeRequest
-    {
-        public string Name { get; set; }
+﻿namespace Business.DTOs.SubTypes;
 
-    }
+public class DeleteSubTypeRequest
+{
+    public Guid Id { get; set; }
+
 }

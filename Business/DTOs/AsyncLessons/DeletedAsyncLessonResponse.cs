@@ -3,6 +3,4 @@
 public class DeletedAsyncLessonResponse
 {
     public Guid Id { get; set; }
-   
-
 }

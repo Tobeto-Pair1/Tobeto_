@@ -4,22 +4,15 @@ using Business.DTOs.Experiences;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
-using Entities.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete;
 
 public class ExperienceManager : IExperienceService
 {
-    IExperienceDal _experienceDal;
-    IMapper _mapper;
+    private readonly IExperienceDal _experienceDal;
+    private readonly IMapper _mapper;
 
     public ExperienceManager(IExperienceDal experienceDal, IMapper mapper)
     {
@@ -31,17 +24,19 @@ public class ExperienceManager : IExperienceService
     {
         Experience experience = _mapper.Map<Experience>(createExperienceRequest);
         Experience createdExperience = await _experienceDal.AddAsync(experience);
-        CreatedExperienceResponse createdExperienceResponse  = _mapper.Map<CreatedExperienceResponse>(createdExperience);
+        CreatedExperienceResponse createdExperienceResponse = _mapper.Map<CreatedExperienceResponse>(createdExperience);
         return createdExperienceResponse;
     }
 
     public async Task<DeletedExperienceResponse> Delete(DeleteExperienceRequest deleteExperienceRequest)
     {
-        Experience experience = _mapper.Map<Experience>(deleteExperienceRequest);
+        Experience experience = await _experienceDal.GetAsync(e => e.Id == deleteExperienceRequest.Id);
         Experience deletedExperience = await _experienceDal.DeleteAsync(experience);
         DeletedExperienceResponse deletedExperienceResponse = _mapper.Map<DeletedExperienceResponse>(deletedExperience);
         return deletedExperienceResponse;
     }
+
+
     public async Task<IPaginate<GetListExperienceResponse>> GetListAsync(PageRequest pageRequest)
     {
         var data = await _experienceDal.GetListAsync(include: a => a.
@@ -52,9 +47,19 @@ public class ExperienceManager : IExperienceService
         var result = _mapper.Map<Paginate<GetListExperienceResponse>>(data);
         return result;
     }
-        public async Task<UpdatedExperienceResponse> Update(UpdateExperienceRequest updateExperienceRequest)
+
+    public async Task<IPaginate<GetListExperienceResponse>> GetListByUser(Guid userId)
     {
-        Experience experience = _mapper.Map<Experience>(updateExperienceRequest);
+        var data = await _experienceDal.GetListAsync(predicate: a => a.UserId == userId);
+
+        var result = _mapper.Map<Paginate<GetListExperienceResponse>>(data);
+        return result;
+    }
+
+    public async Task<UpdatedExperienceResponse> Update(UpdateExperienceRequest updateExperienceRequest)
+    {
+        Experience experience = await _experienceDal.GetAsync(e => e.Id == updateExperienceRequest.Id);
+        _mapper.Map(updateExperienceRequest, experience);
         Experience updatedExperience = await _experienceDal.UpdateAsync(experience);
         UpdatedExperienceResponse updatedExperienceResponse = _mapper.Map<UpdatedExperienceResponse>(updatedExperience);
         return updatedExperienceResponse;
