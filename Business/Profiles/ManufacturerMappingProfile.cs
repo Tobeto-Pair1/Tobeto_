@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Business.Profiles
 {
-    public class ManufacturerMappingProfile: Profile
+    public class ManufacturerMappingProfile : Profile
     {
         public ManufacturerMappingProfile()
         {
