@@ -42,6 +42,7 @@ public static class BusinessServiceRegistration
         services.AddScoped<ILessonLanguageService, LessonLanguageManager>();
         services.AddScoped<ISubTypeService, SubTypeManager>();
         services.AddScoped<IProgramService, ProgramManager>();
+        services.AddScoped<IManufacturerService, ManufacturerManager>();
 
 
         services.AddScoped<IAddressService, AddressManager>();
