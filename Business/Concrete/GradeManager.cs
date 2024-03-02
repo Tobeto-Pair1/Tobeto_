@@ -44,7 +44,7 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListGradeResponse>> GetListAsync(PageRequest pageRequest)
         {
             var data = await _gradeDal.GetListAsync(include: g => g.Include(g => g.Exam).
-            Include(g => g.Student),
+            Include(g => g.User),
           index: pageRequest.PageIndex,
           size: pageRequest.PageSize);
 

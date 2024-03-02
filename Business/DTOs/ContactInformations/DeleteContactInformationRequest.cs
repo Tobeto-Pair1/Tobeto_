@@ -1,8 +1,6 @@
-﻿namespace Business.DTOs.ContactInformations
+﻿namespace Business.DTOs.ContactInformations;
+
+public class DeleteContactInformationRequest
 {
-    public class DeleteContactInformationRequest
-    {
-        public Guid Id { get; set; }
-     
-    }
+    public Guid Id { get; set; }
 }

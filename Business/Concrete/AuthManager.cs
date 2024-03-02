@@ -14,6 +14,9 @@ using ServiceStack.Messaging;
 using Core.Utilities.Business.EmailService;
 
 using Entities.Concretes;
+using Core.CrossCuttingConcerns.Logger.Serilog.Loggers;
+using Core.Aspects.Autofac.Logging;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 
 namespace Business.Concrete;
 
@@ -38,6 +41,7 @@ public class AuthManager : IAuthService
         _emailService = emailService;
     }
 
+    [LogAspect(typeof(FileLogger))]
     [ValidationAspect(typeof(UserForRegisterRequestValidator))]
     public async Task<AccessToken> Register(UserForRegisterRequest userForRegisterRequest, string password)
     {

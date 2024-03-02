@@ -10,5 +10,5 @@ public class CreateUserLanguageRequest
 {
     public Guid ForeignLanguageId { get; set; }
     public Guid ForeignLanguageLevelId { get; set; }
-    public Guid Id { get; set; }
+    public Guid UserId { get; set; }
 }

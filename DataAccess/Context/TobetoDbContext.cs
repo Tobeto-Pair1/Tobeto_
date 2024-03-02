@@ -21,10 +21,8 @@ public class TobetoDbContext : DbContext
     public DbSet<Instructor> Instructors { get; set; }
     public DbSet<InstructorOperationClaim> InstructorOperationClaims { get; set; }
 
-    public DbSet<Student> Students { get; set; }
 
     public DbSet<Notification> Notifications { get; set; }
-    public DbSet<NotificationType> NotificationTypes { get; set; }
     public DbSet<Blog> Blogs { get; set; }
     public DbSet<BlogPress> BlogsPress { get; set; }
 
@@ -35,7 +33,6 @@ public class TobetoDbContext : DbContext
     public DbSet<Country> Countries { get; set; }
     public DbSet<City> Cities { get; set; }
     public DbSet<Town> Towns { get; set; }
-    public DbSet<Sector> Sectors { get; set; }
     public DbSet<ForeignLanguage> ForeignLanguages { get; set; }
     public DbSet<ForeignLanguageLevel> ForeignLanguageLevels { get; set; }
     public DbSet<UserLanguage> UserLanguages { get; set; }
@@ -44,7 +41,6 @@ public class TobetoDbContext : DbContext
     public DbSet<Certificate> Certificates { get; set; }
     public DbSet<UserSocial> UserSocials { get; set; } 
     public DbSet<Experience> Experiences { get; set; }
-    public DbSet<Company> Companies { get; set; }
 
 
     public DbSet<Exam> Exams { get; set; }
@@ -67,19 +63,20 @@ public class TobetoDbContext : DbContext
 
     public DbSet<SubType> SubTypes { get; set; }
     public DbSet<Program> Programs { get; set; }
+    public DbSet<LessonLanguage> LessonLanguages { get; set; }
     public DbSet<AsyncLesson> AsyncLessons { get; set; }
     public DbSet<SynchronLesson> SynchronLessons { get; set; }
     public DbSet<SynchronLessonDetail> SynchronLessonDetails { get; set; }
     public DbSet<SynchronLessonInstructor> SynchronLessonInstructors { get; set; }
     public DbSet<Manufacturer> Manufacturers { get; set; }
 
-    public DbSet<ContactInformation> ContactInformation { get; set; }
+    public DbSet<ContactInformation> ContactInformations { get; set; }
 
 
     public TobetoDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {
         Configuration = configuration;
-        Database.EnsureCreated();
+      //  Database.EnsureCreated();
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

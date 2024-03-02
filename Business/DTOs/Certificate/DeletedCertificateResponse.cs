@@ -1,9 +1,6 @@
-﻿namespace Business.DTOs.Certificate
+﻿namespace Business.DTOs.Certificate;
+
+public class DeletedCertificateResponse
 {
-    public class DeletedCertificateResponse
-    {
-        public Guid UserId { get; set; }
-        public string FileName { get; set; }
-        public string FileType { get; set; }
-    }
+    public Guid Id { get; set; }
 }

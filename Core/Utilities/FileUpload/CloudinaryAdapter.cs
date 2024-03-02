@@ -1,6 +1,5 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using Core.CrossCuttingConcerns.Exceptions.Types;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
@@ -15,9 +14,8 @@ public class CloudinaryAdapter : IFileUploadAdapter
         _cloudinary = new Cloudinary(account);
     }
 
-    public async Task<string> UploadImage(IFormFile file)
+    public async Task<string> Upload(IFormFile file)
     {
-        await FileMustBeInImageFormat(file);
         var fileUploadResponse = new ImageUploadResult();
 
         using (var stream = file.OpenReadStream())
@@ -28,22 +26,18 @@ public class CloudinaryAdapter : IFileUploadAdapter
             };
             fileUploadResponse = await _cloudinary.UploadAsync(parameters);
         }
-        return fileUploadResponse.SecureUri.AbsoluteUri;
+        return fileUploadResponse.Url.ToString();
     }
-
-
-    public async Task DeleteImage(string imageUrl)
+    public async Task Delete(string imageUrl)
     {
         DeletionParams deletionParams = new(GetPublicId(imageUrl));
         await _cloudinary.DestroyAsync(deletionParams);
     }
 
-    public async Task<string> UpdateImage(IFormFile formFile, string imageUrl)
+    public async Task<string> Update(IFormFile formFile, string imageUrl)
     {
-        await FileMustBeInImageFormat(formFile);
-
-        await DeleteImage(imageUrl);
-        return await UploadImage(formFile);
+        await Delete(imageUrl);
+        return await Upload(formFile);
     }
     private string GetPublicId(string imageUrl)
     {
@@ -53,13 +47,4 @@ public class CloudinaryAdapter : IFileUploadAdapter
         return imageUrl.Substring(startIndex, length);
     }
 
-    protected async Task FileMustBeInImageFormat(IFormFile formFile)
-    {
-        List<string> extensions = new() { ".jpg", ".png", ".jpeg", ".webp" };
-
-        string extension = Path.GetExtension(formFile.FileName).ToLower();
-        if (!extensions.Contains(extension))
-            throw new BusinessException("Unsupported format");
-        await Task.CompletedTask;
-    }
 }

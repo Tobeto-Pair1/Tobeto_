@@ -48,7 +48,7 @@ namespace Business.Concrete
         {
             var data = await _courseStudentDal.GetListAsync(include: l => l.
                   Include(l => l.Course).
-                  Include(l => l.Student),
+                  Include(l => l.User),
                    index: pageRequest.PageIndex,
                    size: pageRequest.PageSize);
 

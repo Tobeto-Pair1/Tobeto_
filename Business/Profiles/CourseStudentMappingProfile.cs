@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Profiles
+namespace Business.Profiles;
+
+public class CourseStudentMappingProfile : Profile
 {
-    public class CourseStudentMappingProfile:Profile
+    public CourseStudentMappingProfile()
     {
-        public CourseStudentMappingProfile()
-         {
 
         CreateMap<CourseStudent, CreateCourseStudentRequest>().ReverseMap();
         CreateMap<CourseStudent, CreatedCourseStudentResponse>().ReverseMap();
@@ -24,13 +24,7 @@ namespace Business.Profiles
         CreateMap<CourseStudent, DeleteCourseStudentRequest>().ReverseMap();
         CreateMap<CourseStudent, DeletedCourseStudentResponse>().ReverseMap();
 
-        CreateMap<CourseStudent, GetListCourseStudentResponse>()
-                .ForMember(destinationMember: a => a.CourseId,
-            memberOptions: opt => opt.MapFrom(a => a.Course.Id))
-                .ForMember(destinationMember: a => a.StudentId,
-            memberOptions: opt => opt.MapFrom(a => a.Student.Id))
-                .ReverseMap();
+        CreateMap<CourseStudent, GetListCourseStudentResponse>().ReverseMap();
         CreateMap<Paginate<CourseStudent>, Paginate<GetListCourseStudentResponse>>().ReverseMap();
     }
-}
 }

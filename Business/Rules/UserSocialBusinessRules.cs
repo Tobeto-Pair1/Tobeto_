@@ -1,37 +1,45 @@
-﻿using Business.Messages;
+﻿using Business.DTOs.UserSocials;
+using Business.Messages;
 using Core.Business;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 
-namespace Business.Rules
+namespace Business.Rules;
+
+public class UserSocialBusinessRules : BaseBusinessRules
 {
-    public class UserSocialBusinessRules : BaseBusinessRules
+    IUserSocialDal _userSocialDal;
+
+    public UserSocialBusinessRules(IUserSocialDal userSocialDal)
     {
-        IUserSocialDal _userSocialDal;
+        _userSocialDal = userSocialDal;
+    }
+    public async Task IfSocialMediaGreaterThanOrEqualToThree(Guid Id)
+    {
 
-        public UserSocialBusinessRules(IUserSocialDal userSocialDal)
+        var socialMediaCheck = await _userSocialDal.GetListAsync(us => us.Id == Id);
+
+        if (socialMediaCheck.Count >= 3)
         {
-            _userSocialDal = userSocialDal;
+            throw new BusinessException(BusinessMessages.SocialMediaLimit);
         }
-        public async Task IfSocialMediaGreaterThanOrEqualToThree(Guid Id)
-        {
-        
-            var  socialMediaCheck = await _userSocialDal.GetListAsync(us => us.Id == Id);
+    }
 
-            if (socialMediaCheck.Count >= 3)
+    public async Task SocialMediaCanNotBeDuplicated(CreateUserSocialRequest createUserSocialRequest)
+    {
+        var result = await _userSocialDal.GetListAsync(l => l.UserId == createUserSocialRequest.UserId);
+        foreach (var item in result.Items)
+        {
+            if (createUserSocialRequest.SocialMediaId == item.SocialMediaId)
             {
-                throw new BusinessException(BusinessMessages.SocialMediaLimit);
+                if (createUserSocialRequest.Link == item.Link)
+                {
+                    throw new BusinessException(BusinessMessages.SocialMediaAlreadyExists);
+
+                }
             }
+
         }
-
-        //public async Task IfSocialMediaIsInstagram(string Name)
-        //{
-        //    var socialMediaCheck = await _userSocialDal.GetAsync(us => us.SocialMedia.Name == Name);
-
-        //    if (socialMediaCheck.SocialMedia.Link.StartsWith!="www.instagram.com")
-        //    {
-        //        throw new BusinessException
-        //    }
-        //}
     }
 }

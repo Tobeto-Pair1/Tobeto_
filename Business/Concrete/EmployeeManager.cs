@@ -4,7 +4,6 @@ using Business.DTOs.Employees;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using Core.Entities.Concrete;
-using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;

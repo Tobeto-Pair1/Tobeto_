@@ -12,6 +12,8 @@ namespace Business.Abstract
     public interface IUserLanguageService
     {
         Task<IPaginate<GetListUserLanguageResponse>> GetListAsync(PageRequest pageRequest);
+        Task<IPaginate<GetListUserLanguageResponse>> GetListByUser(Guid UserId);
+
         Task<CreatedUserLanguageResponse> Add(CreateUserLanguageRequest createUserLanguageRequest);
 
         Task<UpdatedUserLanguageResponse> Update(UpdateUserLanguageRequest updateUserLanguageRequest);

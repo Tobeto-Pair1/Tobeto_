@@ -7,16 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.DTOs.UserEducations;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface IUserEducationService
 {
-    public interface IUserEducationService
-    {
-        Task<IPaginate<GetListUserEducationResponse>> GetListAsync(PageRequest pageRequest);
+    Task<IPaginate<GetListUserEducationResponse>> GetListAsync(PageRequest pageRequest);
 
-        Task<CreatedUserEducationResponse> Add(CreateUserEducationRequest createUserEducationRequest);
+    Task<CreatedUserEducationResponse> Add(CreateUserEducationRequest createUserEducationRequest);
 
-        Task<UpdatedUserEducationResponse> Update(UpdateUserEducationRequest updateUserEducationRequest);
+    Task<UpdatedUserEducationResponse> Update(UpdateUserEducationRequest updateUserEducationRequest);
 
-        Task<DeletedUserEducationResponse> Delete(DeleteUserEducationRequest deleteUserEducationRequest);
-    }
+    Task<DeletedUserEducationResponse> Delete(DeleteUserEducationRequest deleteUserEducationRequest);
+    Task<IPaginate<GetListUserEducationResponse>> GetListByUser(Guid userId);
 }

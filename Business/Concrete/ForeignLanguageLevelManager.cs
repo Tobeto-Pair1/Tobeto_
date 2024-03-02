@@ -1,22 +1,17 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.ForeignLanguageLevels;
-using Business.DTOs.ForeignLanguages;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
-using Entities.Concrete;
 using Entities.Concretes;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 
 namespace Business.Concrete;
 
 public class ForeignLanguageLevelManager : IForeignLanguageLevelService
 {
-    IForeignLanguageLevelDal _foreignlanguageLevelDal;
-    IMapper _mapper;
+    private readonly IForeignLanguageLevelDal _foreignlanguageLevelDal;
+    private readonly IMapper _mapper;
 
     public ForeignLanguageLevelManager(IForeignLanguageLevelDal foreignlanguageLevelDal, IMapper mapper)
     {
@@ -34,7 +29,7 @@ public class ForeignLanguageLevelManager : IForeignLanguageLevelService
  
     public async Task<DeletedForeignLanguageLevelResponse> Delete(DeleteForeignLanguageLevelRequest deleteLanguageLevelRequest)
     {
-        ForeignLanguageLevel foreignLanguageLevel = _mapper.Map<ForeignLanguageLevel>(deleteLanguageLevelRequest);
+        ForeignLanguageLevel foreignLanguageLevel = await _foreignlanguageLevelDal.GetAsync(u => u.Id == deleteLanguageLevelRequest.Id);
         ForeignLanguageLevel deletedLanguageLevel = await _foreignlanguageLevelDal.DeleteAsync(foreignLanguageLevel);
         DeletedForeignLanguageLevelResponse deletedLanguageLevelResponse = _mapper.Map<DeletedForeignLanguageLevelResponse>(deletedLanguageLevel);
         return deletedLanguageLevelResponse;
@@ -50,7 +45,8 @@ public class ForeignLanguageLevelManager : IForeignLanguageLevelService
 
     public async Task<UpdatedForeignLanguageLevelResponse> Update(UpdateForeignLanguageLevelRequest updateLanguageLevelRequest)
     {
-        ForeignLanguageLevel foreignLanguageLevel = _mapper.Map<ForeignLanguageLevel>(updateLanguageLevelRequest);
+        ForeignLanguageLevel foreignLanguageLevel = await _foreignlanguageLevelDal.GetAsync(u => u.Id == updateLanguageLevelRequest.Id);
+        _mapper.Map(updateLanguageLevelRequest, foreignLanguageLevel);
         ForeignLanguageLevel updatedLanguageLevel = await _foreignlanguageLevelDal.UpdateAsync(foreignLanguageLevel);
         UpdatedForeignLanguageLevelResponse updatedLanguageLevelResponse = _mapper.Map<UpdatedForeignLanguageLevelResponse>(updatedLanguageLevel);
         return updatedLanguageLevelResponse;

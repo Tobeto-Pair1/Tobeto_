@@ -8,7 +8,7 @@ public interface IExperienceService
 {
 
     Task<IPaginate<GetListExperienceResponse>> GetListAsync(PageRequest pageRequest);
-
+    Task<IPaginate<GetListExperienceResponse>> GetListByUser(Guid userId);
     Task<CreatedExperienceResponse> Add(CreateExperienceRequest createExperienceRequest);
 
     Task<UpdatedExperienceResponse> Update(UpdateExperienceRequest updateExperienceRequest);
