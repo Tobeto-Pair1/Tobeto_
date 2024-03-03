@@ -2,8 +2,7 @@
 {
     public class DeleteSynchronLessonInstructorRequest
     {
-        public Guid InstructorName { get; set; }
-        public Guid SynchronLessonName { get; set; }
+     public Guid Id { get; set; }
     }
 
 }

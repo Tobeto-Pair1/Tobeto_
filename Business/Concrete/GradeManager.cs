@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.Grades;
+using Business.DTOs.Grades;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -35,10 +37,10 @@ namespace Business.Concrete
 
         public async Task<DeletedGradeResponse> Delete(DeleteGradeRequest deleteGradeRequest)
         {
-            Grade grade = _mapper.Map<Grade>(deleteGradeRequest);
-            Grade deleteGrade = await _gradeDal.DeleteAsync(grade);
-            DeletedGradeResponse deleteGradeResponse = _mapper.Map<DeletedGradeResponse>(deleteGrade);
-            return deleteGradeResponse;
+            Grade? grade = await _gradeDal.GetAsync(u => u.Id == deleteGradeRequest.Id);
+            await _gradeDal.DeleteAsync(grade);
+            DeletedGradeResponse deletedGradeResponse = _mapper.Map<DeletedGradeResponse>(grade);
+            return deletedGradeResponse;
         }
 
         public async Task<IPaginate<GetListGradeResponse>> GetListAsync(PageRequest pageRequest)
@@ -54,10 +56,11 @@ namespace Business.Concrete
 
         public async Task<UpdatedGradeResponse> Update(UpdateGradeRequest updateGradeRequest)
         {
-            Grade grade = _mapper.Map<Grade>(updateGradeRequest);
+            Grade? grade = await _gradeDal.GetAsync(u => u.Id == updateGradeRequest.Id);
+            _mapper.Map(updateGradeRequest, grade);
             Grade updateGrade = await _gradeDal.UpdateAsync(grade);
-            UpdatedGradeResponse updateGradeResponse = _mapper.Map<UpdatedGradeResponse>(updateGrade);
-            return updateGradeResponse;
+            UpdatedGradeResponse updatedGradeResponse = _mapper.Map<UpdatedGradeResponse>(updateGrade);
+            return updatedGradeResponse;
         }
     }
 }

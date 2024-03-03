@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.AboutOfCourses;
+using Business.DTOs.Blogs;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -35,9 +37,9 @@ public class AboutOfCourseManager : IAboutOfCourseService
 
     public async Task<DeletedAboutOfCourseResponse> Delete(DeleteAboutOfCourseRequest deleteAboutOfCourseRequest)
     {
-        AboutOfCourse aboutOfCourse = _mapper.Map<AboutOfCourse>(deleteAboutOfCourseRequest);
-        AboutOfCourse deletedAboutOfCourse = await _aboutOfCourseDal.DeleteAsync(aboutOfCourse);
-        DeletedAboutOfCourseResponse deletedAboutOfCourseResponse = _mapper.Map<DeletedAboutOfCourseResponse>(deletedAboutOfCourse);
+        AboutOfCourse? aboutOfCourse = await _aboutOfCourseDal.GetAsync(u => u.Id == deleteAboutOfCourseRequest.Id);
+        await _aboutOfCourseDal.DeleteAsync(aboutOfCourse);
+        DeletedAboutOfCourseResponse deletedAboutOfCourseResponse = _mapper.Map<DeletedAboutOfCourseResponse>(aboutOfCourse);
         return deletedAboutOfCourseResponse;
     }
 
@@ -55,9 +57,10 @@ public class AboutOfCourseManager : IAboutOfCourseService
 
     public async Task<UpdatedAboutOfCourseResponse> Update(UpdateAboutOfCourseRequest updateAboutOfCourseRequest)
     {
-        AboutOfCourse aboutOfCourse = _mapper.Map<AboutOfCourse>(updateAboutOfCourseRequest);
-        AboutOfCourse updatedAboutOfCourse = await _aboutOfCourseDal.UpdateAsync(aboutOfCourse);
-        UpdatedAboutOfCourseResponse updatedAboutOfCourseResponse = _mapper.Map<UpdatedAboutOfCourseResponse>(updatedAboutOfCourse);
+        AboutOfCourse? aboutOfCourse = await _aboutOfCourseDal.GetAsync(u => u.Id == updateAboutOfCourseRequest.Id);
+        _mapper.Map(updateAboutOfCourseRequest, aboutOfCourse);
+        AboutOfCourse updateAboutOfCourse = await _aboutOfCourseDal.UpdateAsync(aboutOfCourse);
+        UpdatedAboutOfCourseResponse updatedAboutOfCourseResponse = _mapper.Map<UpdatedAboutOfCourseResponse>(updateAboutOfCourse);
         return updatedAboutOfCourseResponse;
     }
 }

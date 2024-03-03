@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.SynchronLessons;
+using Business.DTOs.SynchronLessons;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
@@ -36,9 +37,9 @@ namespace Business.Concrete
 
         public async Task<DeletedSynchronLessonResponse> Delete(DeleteSynchronLessonRequest deleteSynchronLessonRequest)
         {
-            SynchronLesson synchronLesson = _mapper.Map<SynchronLesson>(deleteSynchronLessonRequest);
-            SynchronLesson deletedSynchronLesson = await _synchronLessonDal.DeleteAsync(synchronLesson);
-            DeletedSynchronLessonResponse deletedSynchronLessonResponse = _mapper.Map<DeletedSynchronLessonResponse>(deletedSynchronLesson);
+            SynchronLesson? synchronLesson = await _synchronLessonDal.GetAsync(u => u.Id == deleteSynchronLessonRequest.Id);
+            await _synchronLessonDal.DeleteAsync(synchronLesson);
+            DeletedSynchronLessonResponse deletedSynchronLessonResponse = _mapper.Map<DeletedSynchronLessonResponse>(synchronLesson);
             return deletedSynchronLessonResponse;
         }
 
@@ -52,9 +53,10 @@ namespace Business.Concrete
 
         public async Task<UpdatedSynchronLessonResponse> Update(UpdateSynchronLessonRequest updateSynchronLessonRequest)
         {
-            SynchronLesson synchronLesson = _mapper.Map<SynchronLesson>(updateSynchronLessonRequest);
-            SynchronLesson updatedSynchronLesson = await _synchronLessonDal.UpdateAsync(synchronLesson);
-            UpdatedSynchronLessonResponse updatedSynchronLessonResponse = _mapper.Map<UpdatedSynchronLessonResponse>(updatedSynchronLesson);
+            SynchronLesson? synchronLesson = await _synchronLessonDal.GetAsync(u => u.Id == updateSynchronLessonRequest.Id);
+            _mapper.Map(updateSynchronLessonRequest, synchronLesson);
+            SynchronLesson updateSynchronLesson = await _synchronLessonDal.UpdateAsync(synchronLesson);
+            UpdatedSynchronLessonResponse updatedSynchronLessonResponse = _mapper.Map<UpdatedSynchronLessonResponse>(updateSynchronLesson);
             return updatedSynchronLessonResponse;
         }
     }

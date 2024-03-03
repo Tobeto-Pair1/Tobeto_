@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.Programs;
+using Business.DTOs.Programs;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -34,10 +36,10 @@ namespace Business.Concrete
 
         public async Task<DeletedProgramResponse> Delete(DeleteProgramRequest deleteProgramRequest)
         {
-            Program program = _mapper.Map<Program>(deleteProgramRequest);
-            Program deleteProgram = await _programDal.DeleteAsync(program);
-            DeletedProgramResponse deleteProgramResponse = _mapper.Map<DeletedProgramResponse>(deleteProgram);
-            return deleteProgramResponse;
+            Program? program = await _programDal.GetAsync(u => u.Id == deleteProgramRequest.Id);
+            await _programDal.DeleteAsync(program);
+            DeletedProgramResponse deletedProgramResponse = _mapper.Map<DeletedProgramResponse>(program);
+            return deletedProgramResponse;
         }
 
         public async Task<IPaginate<GetListProgramResponse>> GetListAsync(PageRequest pageRequest)
@@ -52,10 +54,11 @@ namespace Business.Concrete
 
         public async Task<UpdatedProgramResponse> Update(UpdateProgramRequest updateProgramRequest)
         {
-            Program Program = _mapper.Map<Program>(updateProgramRequest);
-            Program updateProgram = await _programDal.UpdateAsync(Program);
-            UpdatedProgramResponse updateProgramResponse = _mapper.Map<UpdatedProgramResponse>(updateProgram);
-            return updateProgramResponse;
+            Program? program = await _programDal.GetAsync(u => u.Id == updateProgramRequest.Id);
+            _mapper.Map(updateProgramRequest, program);
+            Program updateProgram = await _programDal.UpdateAsync(program);
+            UpdatedProgramResponse updatedProgramResponse = _mapper.Map<UpdatedProgramResponse>(updateProgram);
+            return updatedProgramResponse;
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class DeleteStudentAnswerRequest
     {
-        public char SelectedOption { get; set; }
-        public bool IsCorrect { get; set; }
+        public Guid Id { get; set; }
+       
     }
 }

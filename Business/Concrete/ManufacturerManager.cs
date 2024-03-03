@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.Manufacturers;
+using Business.DTOs.Manufacturers;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -34,9 +36,9 @@ namespace Business.Concrete
 
         public async Task<DeletedManufacturerResponse> Delete(DeleteManufacturerRequest deleteManufacturerRequest)
         {
-            Manufacturer manufacturer = _mapper.Map<Manufacturer>(deleteManufacturerRequest);
-            Manufacturer deletedManufacturer = await _manufacturerDal.DeleteAsync(manufacturer);
-            DeletedManufacturerResponse deletedManufacturerResponse = _mapper.Map<DeletedManufacturerResponse>(deletedManufacturer);
+            Manufacturer? manufacturer = await _manufacturerDal.GetAsync(u => u.Id == deleteManufacturerRequest.Id);
+            await _manufacturerDal.DeleteAsync(manufacturer);
+            DeletedManufacturerResponse deletedManufacturerResponse = _mapper.Map<DeletedManufacturerResponse>(manufacturer);
             return deletedManufacturerResponse;
         }
 
@@ -52,9 +54,10 @@ namespace Business.Concrete
 
         public async Task<UpdatedManufacturerResponse> Update(UpdateManufacturerRequest updateManufacturerRequest)
         {
-            Manufacturer manufacturer = _mapper.Map<Manufacturer>(updateManufacturerRequest);
-            Manufacturer updatedManufacturer = await _manufacturerDal.UpdateAsync(manufacturer);
-            UpdatedManufacturerResponse updatedManufacturerResponse = _mapper.Map<UpdatedManufacturerResponse>(updatedManufacturer);
+            Manufacturer? manufacturer = await _manufacturerDal.GetAsync(u => u.Id == updateManufacturerRequest.Id);
+            _mapper.Map(updateManufacturerRequest, manufacturer);
+            Manufacturer updateManufacturer = await _manufacturerDal.UpdateAsync(manufacturer);
+            UpdatedManufacturerResponse updatedManufacturerResponse = _mapper.Map<UpdatedManufacturerResponse>(updateManufacturer);
             return updatedManufacturerResponse;
         }
     }

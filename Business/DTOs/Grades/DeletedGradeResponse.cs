@@ -2,7 +2,6 @@
 {
     public class DeletedGradeResponse
     {
-        public Guid GradeId { get; set; }
-        public double Score { get; set; }
+        public Guid Id { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 {
     public class UpdateQuestionRequest
     {
+        public Guid Id { get; set; }
         public string QuestionText { get; set; }
         public string OptionA { get; set; }
         public string OptionB { get; set; }

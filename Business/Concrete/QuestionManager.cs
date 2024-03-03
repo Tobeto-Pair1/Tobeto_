@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.Questions;
+using Business.DTOs.Questions;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concrete;
 using Entities.Concretes;
 using System;
@@ -35,9 +37,9 @@ namespace Business.Concrete
 
         public async Task<DeletedQuestionResponse> Delete(DeleteQuestionRequest deleteQuestionRequest)
         {
-            Question question = _mapper.Map<Question>(deleteQuestionRequest);
-            Question deletedQuestion = await _questionDal.DeleteAsync(question);
-            DeletedQuestionResponse deletedQuestionResponse = _mapper.Map<DeletedQuestionResponse>(deletedQuestion);
+            Question? question = await _questionDal.GetAsync(u => u.Id == deleteQuestionRequest.Id);
+            await _questionDal.DeleteAsync(question);
+            DeletedQuestionResponse deletedQuestionResponse = _mapper.Map<DeletedQuestionResponse>(question);
             return deletedQuestionResponse;
         }
 
@@ -53,7 +55,8 @@ namespace Business.Concrete
 
         public async Task<UpdatedQuestionResponse> Update(UpdateQuestionRequest updateQuestionRequest)
         {
-            Question question = _mapper.Map<Question>(updateQuestionRequest);
+            Question? question = await _questionDal.GetAsync(u => u.Id == updateQuestionRequest.Id);
+            _mapper.Map(updateQuestionRequest, question);
             Question updateQuestion = await _questionDal.UpdateAsync(question);
             UpdatedQuestionResponse updatedQuestionResponse = _mapper.Map<UpdatedQuestionResponse>(updateQuestion);
             return updatedQuestionResponse;

@@ -2,9 +2,11 @@
 using Business.Abstract;
 using Business.DTOs.AsyncLessonDetail;
 using Business.DTOs.AsyncLessons;
+using Business.DTOs.Blogs;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -36,9 +38,9 @@ namespace Business.Concrete
 
         public async Task<DeletedAsyncLessonDetailResponse> Delete(DeleteAsyncLessonDetailRequest deleteAsyncLessonDetailRequest)
         {
-            AsyncLessonDetail asyncLessonDetail = _mapper.Map<AsyncLessonDetail>(deleteAsyncLessonDetailRequest);
-            AsyncLessonDetail deletedAsyncLessonDetail = await _asyncLessonDetailDal.DeleteAsync(asyncLessonDetail);
-            DeletedAsyncLessonDetailResponse deletedAsyncLessonDetailResponse = _mapper.Map<DeletedAsyncLessonDetailResponse>(deletedAsyncLessonDetail);
+            AsyncLessonDetail? asyncLessonDetail = await _asyncLessonDetailDal.GetAsync(u => u.Id == deleteAsyncLessonDetailRequest.Id);
+            await _asyncLessonDetailDal.DeleteAsync(asyncLessonDetail);
+            DeletedAsyncLessonDetailResponse deletedAsyncLessonDetailResponse = _mapper.Map<DeletedAsyncLessonDetailResponse>(asyncLessonDetail);
             return deletedAsyncLessonDetailResponse;
         }
 
@@ -61,9 +63,10 @@ namespace Business.Concrete
 
         public async Task<UpdatedAsyncLessonDetailResponse> Update(UpdateAsyncLessonDetailRequest updateAsyncLessonDetailRequest)
         {
-            AsyncLessonDetail asyncLessonDetail = _mapper.Map<AsyncLessonDetail>(updateAsyncLessonDetailRequest);
-            AsyncLessonDetail updatedAsyncLessonDetail = await _asyncLessonDetailDal.UpdateAsync(asyncLessonDetail);
-            UpdatedAsyncLessonDetailResponse updatedAsyncLessonDetailResponse = _mapper.Map<UpdatedAsyncLessonDetailResponse>(updatedAsyncLessonDetail);
+            AsyncLessonDetail? asyncLessonDetail = await _asyncLessonDetailDal.GetAsync(u => u.Id == updateAsyncLessonDetailRequest.Id);
+            _mapper.Map(updateAsyncLessonDetailRequest, asyncLessonDetail);
+            AsyncLessonDetail updateAsyncLessonDetail = await _asyncLessonDetailDal.UpdateAsync(asyncLessonDetail);
+            UpdatedAsyncLessonDetailResponse updatedAsyncLessonDetailResponse = _mapper.Map<UpdatedAsyncLessonDetailResponse>(updateAsyncLessonDetail);
             return updatedAsyncLessonDetailResponse;
         }
     }

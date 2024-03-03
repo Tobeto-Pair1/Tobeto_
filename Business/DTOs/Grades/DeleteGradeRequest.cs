@@ -2,6 +2,6 @@
 {
     public class DeleteGradeRequest
     {
-        public double Score { get; set; }
+        public Guid Id { get; set; }
     }
 }

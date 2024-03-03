@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.DTOs.Blogs;
 using Business.DTOs.Cities;
 using Business.DTOs.Exams;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -35,10 +37,10 @@ namespace Business.Concrete
 
         public async Task<DeletedExamResponse> Delete(DeleteExamRequest deleteExamRequest)
         {
-            Exam exam = _mapper.Map<Exam>(deleteExamRequest);
-            Exam deleteExam = await _examDal.DeleteAsync(exam);
-            DeletedExamResponse deleteExamResponse = _mapper.Map<DeletedExamResponse>(deleteExam);
-            return deleteExamResponse;
+            Exam? exam = await _examDal.GetAsync(u => u.Id == deleteExamRequest.Id);
+            await _examDal.DeleteAsync(exam);
+            DeletedExamResponse deletedExamResponse = _mapper.Map<DeletedExamResponse>(exam);
+            return deletedExamResponse;
         }
 
         public async Task<IPaginate<GetListExamResponse>> GetListAsync(PageRequest pageRequest)
@@ -54,10 +56,11 @@ namespace Business.Concrete
 
         public async Task<UpdatedExamResponse> Update(UpdateExamRequest updateExamRequest)
         {
-            Exam exam = _mapper.Map<Exam>(updateExamRequest);
+            Exam? exam = await _examDal.GetAsync(u => u.Id == updateExamRequest.Id);
+            _mapper.Map(updateExamRequest, exam);
             Exam updateExam = await _examDal.UpdateAsync(exam);
-            UpdatedExamResponse updateExamResponse = _mapper.Map<UpdatedExamResponse>(updateExam);
-            return updateExamResponse;
+            UpdatedExamResponse updatedExamResponse = _mapper.Map<UpdatedExamResponse>(updateExam);
+            return updatedExamResponse;
         }
     }
 }

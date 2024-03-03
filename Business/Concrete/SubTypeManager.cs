@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.SubTypes;
+using Business.DTOs.SubTypes;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -34,10 +36,10 @@ namespace Business.Concrete
 
         public async Task<DeletedSubTypeResponse> Delete(DeleteSubTypeRequest deleteSubTypeRequest)
         {
-            SubType subType = _mapper.Map<SubType>(deleteSubTypeRequest);
-            SubType deleteSubType = await _subTypeDal.DeleteAsync(subType);
-            DeletedSubTypeResponse deleteSubTypeResponse = _mapper.Map<DeletedSubTypeResponse>(deleteSubType);
-            return deleteSubTypeResponse;
+            SubType? subType = await _subTypeDal.GetAsync(u => u.Id == deleteSubTypeRequest.Id);
+            await _subTypeDal.DeleteAsync(subType);
+            DeletedSubTypeResponse deletedSubTypeResponse = _mapper.Map<DeletedSubTypeResponse>(subType);
+            return deletedSubTypeResponse;
         }
 
         public async Task<IPaginate<GetListSubTypeResponse>> GetListAsync(PageRequest pageRequest)
@@ -52,10 +54,11 @@ namespace Business.Concrete
 
         public async Task<UpdatedSubTypeResponse> Update(UpdateSubTypeRequest updateSubTypeRequest)
         {
-            SubType subType = _mapper.Map<SubType>(updateSubTypeRequest);
+            SubType? subType = await _subTypeDal.GetAsync(u => u.Id == updateSubTypeRequest.Id);
+            _mapper.Map(updateSubTypeRequest, subType);
             SubType updateSubType = await _subTypeDal.UpdateAsync(subType);
-            UpdatedSubTypeResponse updateSubTypeResponse = _mapper.Map<UpdatedSubTypeResponse>(updateSubType);
-            return updateSubTypeResponse;
+            UpdatedSubTypeResponse updatedSubTypeResponse = _mapper.Map<UpdatedSubTypeResponse>(updateSubType);
+            return updatedSubTypeResponse;
         }
     }
 }

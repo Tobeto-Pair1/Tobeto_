@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.DTOs.Blogs;
 using Business.DTOs.Categories;
 using Business.DTOs.Course;
 using Business.DTOs.Users;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -37,9 +39,9 @@ namespace Business.Concrete
 
         public async Task<DeletedCourseResponse> Delete(DeleteCourseRequest deleteCourseRequest)
         {
-            Course course = _mapper.Map<Course>(deleteCourseRequest);
-            Course deleteCourse = await _courseDal.DeleteAsync(course);
-            DeletedCourseResponse deletedCourseResponse = _mapper.Map<DeletedCourseResponse>(deleteCourse);
+            Course? course = await _courseDal.GetAsync(u => u.Id == deleteCourseRequest.Id);
+            await _courseDal.DeleteAsync(course);
+            DeletedCourseResponse deletedCourseResponse = _mapper.Map<DeletedCourseResponse>(course);
             return deletedCourseResponse;
         }
 
@@ -56,7 +58,8 @@ namespace Business.Concrete
 
             public async Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest)
         {
-            Course course = _mapper.Map<Course>(updateCourseRequest);
+            Course? course = await _courseDal.GetAsync(u => u.Id == updateCourseRequest.Id);
+            _mapper.Map(updateCourseRequest, course);
             Course updateCourse = await _courseDal.UpdateAsync(course);
             UpdatedCourseResponse updatedCourseResponse = _mapper.Map<UpdatedCourseResponse>(updateCourse);
             return updatedCourseResponse;
