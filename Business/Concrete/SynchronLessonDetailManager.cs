@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.SynchronLessonDetails;
+using Business.DTOs.SynchronLessonDetails;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
@@ -36,9 +37,9 @@ namespace Business.Concrete
 
         public async Task<DeletedSynchronLessonDetailResponse> Delete(DeleteSynchronLessonDetailRequest deleteSynchronLessonDetailRequest)
         {
-            SynchronLessonDetail synchronLessonDetail = _mapper.Map<SynchronLessonDetail>(deleteSynchronLessonDetailRequest);
-            SynchronLessonDetail deletedSynchronLessonDetail = await _synchronLessonDetailDal.DeleteAsync(synchronLessonDetail);
-            DeletedSynchronLessonDetailResponse deletedSynchronLessonDetailResponse = _mapper.Map<DeletedSynchronLessonDetailResponse>(deletedSynchronLessonDetail);
+            SynchronLessonDetail? synchronLessonDetail = await _synchronLessonDetailDal.GetAsync(u => u.Id == deleteSynchronLessonDetailRequest.Id);
+            await _synchronLessonDetailDal.DeleteAsync(synchronLessonDetail);
+            DeletedSynchronLessonDetailResponse deletedSynchronLessonDetailResponse = _mapper.Map<DeletedSynchronLessonDetailResponse>(synchronLessonDetail);
             return deletedSynchronLessonDetailResponse;
         }
 
@@ -55,9 +56,10 @@ namespace Business.Concrete
 
         public async Task<UpdatedSynchronLessonDetailResponse> Update(UpdateSynchronLessonDetailRequest updateSynchronLessonDetailRequest)
         {
-            SynchronLessonDetail synchronLessonDetail = _mapper.Map<SynchronLessonDetail>(updateSynchronLessonDetailRequest);
-            SynchronLessonDetail updatedSynchronLessonDetail = await _synchronLessonDetailDal.UpdateAsync(synchronLessonDetail);
-            UpdatedSynchronLessonDetailResponse updatedSynchronLessonDetailResponse = _mapper.Map<UpdatedSynchronLessonDetailResponse>(updatedSynchronLessonDetail);
+            SynchronLessonDetail? synchronLessonDetail = await _synchronLessonDetailDal.GetAsync(u => u.Id == updateSynchronLessonDetailRequest.Id);
+            _mapper.Map(updateSynchronLessonDetailRequest, synchronLessonDetail);
+            SynchronLessonDetail updateSynchronLessonDetail = await _synchronLessonDetailDal.UpdateAsync(synchronLessonDetail);
+            UpdatedSynchronLessonDetailResponse updatedSynchronLessonDetailResponse = _mapper.Map<UpdatedSynchronLessonDetailResponse>(updateSynchronLessonDetail);
             return updatedSynchronLessonDetailResponse;
         }
     }

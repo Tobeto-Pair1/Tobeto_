@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.DTOs.Blogs;
 using Business.DTOs.Certificate;
 using Business.DTOs.CourseProgram;
 using Core.DataAccess.Dynamic;
@@ -37,9 +38,9 @@ namespace Business.Concrete
 
         public async Task<DeletedCourseProgramResponse> Delete(DeleteCourseProgramRequest deleteCourseProgramRequest)
         {
-            CourseProgram courseProgram = _mapper.Map<CourseProgram>(deleteCourseProgramRequest);
-            CourseProgram deletedCourseProgram = await _courseProgramDal.DeleteAsync(courseProgram);
-            DeletedCourseProgramResponse deletedCourseProgramResponse = _mapper.Map<DeletedCourseProgramResponse>(deletedCourseProgram);
+            CourseProgram? courseProgram = await _courseProgramDal.GetAsync(u => u.Id == deleteCourseProgramRequest.Id);
+            await _courseProgramDal.DeleteAsync(courseProgram);
+            DeletedCourseProgramResponse deletedCourseProgramResponse = _mapper.Map<DeletedCourseProgramResponse>(courseProgram);
             return deletedCourseProgramResponse;
         }
 
@@ -57,9 +58,10 @@ namespace Business.Concrete
 
         public async Task<UpdatedCourseProgramResponse> Update(UpdateCourseProgramRequest updateCourseProgramRequest)
         {
-            CourseProgram courseProgram = _mapper.Map<CourseProgram>(updateCourseProgramRequest);
-            CourseProgram updatedCourseProgram = await _courseProgramDal.DeleteAsync(courseProgram);
-            UpdatedCourseProgramResponse updatedCourseProgramResponse = _mapper.Map<UpdatedCourseProgramResponse>(updatedCourseProgram);
+            CourseProgram? courseProgram = await _courseProgramDal.GetAsync(u => u.Id == updateCourseProgramRequest.Id);
+            _mapper.Map(updateCourseProgramRequest, courseProgram);
+            CourseProgram updateCourseProgram = await _courseProgramDal.UpdateAsync(courseProgram);
+            UpdatedCourseProgramResponse updatedCourseProgramResponse = _mapper.Map<UpdatedCourseProgramResponse>(updateCourseProgram);
             return updatedCourseProgramResponse;
         }
     }

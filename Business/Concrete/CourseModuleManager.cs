@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.DTOs.Blogs;
 using Business.DTOs.Course;
 using Business.DTOs.CourseModule;
 using Business.DTOs.Employees;
@@ -38,9 +39,9 @@ namespace Business.Concrete
 
         public async  Task<DeletedCourseModuleResponse> Delete(DeleteCourseModuleRequest deleteCourseModuleRequest)
         {
-            CourseModule courseModule = _mapper.Map<CourseModule>(deleteCourseModuleRequest);
-            CourseModule deletedCourseModule = await _courseModuleDal.DeleteAsync(courseModule);
-            DeletedCourseModuleResponse deletedCourseModuleResponse = _mapper.Map<DeletedCourseModuleResponse>(deletedCourseModule);
+            CourseModule? courseModule = await _courseModuleDal.GetAsync(u => u.Id == deleteCourseModuleRequest.Id);
+            await _courseModuleDal.DeleteAsync(courseModule);
+            DeletedCourseModuleResponse deletedCourseModuleResponse = _mapper.Map<DeletedCourseModuleResponse>(courseModule);
             return deletedCourseModuleResponse;
         }
 
@@ -57,9 +58,10 @@ namespace Business.Concrete
 
         public async Task<UpdatedCourseModuleResponse> Update(UpdateCourseModuleRequest updateCourseModuleRequest)
         {
-            CourseModule courseModule = _mapper.Map<CourseModule>(updateCourseModuleRequest);
-            CourseModule updatedCourseModule = await _courseModuleDal.UpdateAsync(courseModule);
-            UpdatedCourseModuleResponse updatedCourseModuleResponse = _mapper.Map<UpdatedCourseModuleResponse>(updatedCourseModule);
+            CourseModule? courseModule = await _courseModuleDal.GetAsync(u => u.Id == updateCourseModuleRequest.Id);
+            _mapper.Map(updateCourseModuleRequest, courseModule);
+            CourseModule updateCourseModule = await _courseModuleDal.UpdateAsync(courseModule);
+            UpdatedCourseModuleResponse updatedCourseModuleResponse = _mapper.Map<UpdatedCourseModuleResponse>(updateCourseModule);
             return updatedCourseModuleResponse;
         }
     }

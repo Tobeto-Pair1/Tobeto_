@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.DTOs.Blogs;
 using Business.DTOs.Categories;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -35,9 +37,9 @@ public class CategoryManager : ICategoryService
 
     public async Task<DeletedCategoryResponse> Delete(DeleteCategoryRequest deleteCategoryRequest)
     {
-        Category category = _mapper.Map<Category>(deleteCategoryRequest);
-        Category deletedCategory = await _categoryDal.DeleteAsync(category);
-        DeletedCategoryResponse deletedCategoryResponse = _mapper.Map<DeletedCategoryResponse>(deletedCategory);
+        Category? category = await _categoryDal.GetAsync(u => u.Id == deleteCategoryRequest.Id);
+        await _categoryDal.DeleteAsync(category);
+        DeletedCategoryResponse deletedCategoryResponse = _mapper.Map<DeletedCategoryResponse>(category);
         return deletedCategoryResponse;
     }
 
@@ -51,9 +53,10 @@ public class CategoryManager : ICategoryService
 
     public async Task<UpdatedCategoryResponse> Update(UpdateCategoryRequest updateCategoryRequest)
     {
-        Category category = _mapper.Map<Category>(updateCategoryRequest);
-        Category updatedCategory = await _categoryDal.UpdateAsync(category);
-        UpdatedCategoryResponse updatedCategoryResponse = _mapper.Map<UpdatedCategoryResponse>(updatedCategory);
+        Category? category = await _categoryDal.GetAsync(u => u.Id == updateCategoryRequest.Id);
+        _mapper.Map(updateCategoryRequest, category);
+        Category updateCategory = await _categoryDal.UpdateAsync(category);
+        UpdatedCategoryResponse updatedCategoryResponse = _mapper.Map<UpdatedCategoryResponse>(updateCategory);
         return updatedCategoryResponse;
     }
 }

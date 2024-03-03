@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.StudentAnswers;
+using Business.DTOs.StudentAnswers;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,10 +32,10 @@ public class StudentAnswerManager: IStudentAnswerService
 
     public async Task<DeletedStudentAnswerResponse> Delete(DeleteStudentAnswerRequest deleteStudentAnswerRequest)
     {
-        StudentAnswer studentAnswer = _mapper.Map<StudentAnswer>(deleteStudentAnswerRequest);
-        StudentAnswer deleteStudentAnswer = await _studentAnswerDal.DeleteAsync(studentAnswer);
-        DeletedStudentAnswerResponse deleteStudentAnswerResponse = _mapper.Map<DeletedStudentAnswerResponse>(deleteStudentAnswer);
-        return deleteStudentAnswerResponse;
+        StudentAnswer? studentAnswer = await _studentAnswerDal.GetAsync(u => u.Id == deleteStudentAnswerRequest.Id);
+        await _studentAnswerDal.DeleteAsync(studentAnswer);
+        DeletedStudentAnswerResponse deletedStudentAnswerResponse = _mapper.Map<DeletedStudentAnswerResponse>(studentAnswer);
+        return deletedStudentAnswerResponse;
     }
 
     public async Task<IPaginate<GetListStudentAnswerResponse>> GetListAsync(PageRequest pageRequest)
@@ -48,9 +50,10 @@ public class StudentAnswerManager: IStudentAnswerService
 
     public async Task<UpdatedStudentAnswerResponse> Update(UpdateStudentAnswerRequest updateStudentAnswerRequest)
     {
-        StudentAnswer studentAnswer = _mapper.Map<StudentAnswer>(updateStudentAnswerRequest);
+        StudentAnswer? studentAnswer = await _studentAnswerDal.GetAsync(u => u.Id == updateStudentAnswerRequest.Id);
+        _mapper.Map(updateStudentAnswerRequest, studentAnswer);
         StudentAnswer updateStudentAnswer = await _studentAnswerDal.UpdateAsync(studentAnswer);
-        UpdatedStudentAnswerResponse updateStudentAnswerResponse = _mapper.Map<UpdatedStudentAnswerResponse>(updateStudentAnswer);
-        return updateStudentAnswerResponse;
+        UpdatedStudentAnswerResponse updatedStudentAnswerResponse = _mapper.Map<UpdatedStudentAnswerResponse>(updateStudentAnswer);
+        return updatedStudentAnswerResponse;
     }
 }

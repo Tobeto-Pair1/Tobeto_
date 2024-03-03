@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.AsyncLessons;
+using Business.DTOs.Blogs;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
@@ -38,9 +39,9 @@ namespace Business.Concrete
 
         public async Task<DeletedAsyncLessonResponse> Delete(DeleteAsyncLessonRequest deleteAsyncLessonRequest)
         {
-            AsyncLesson asyncLesson = _mapper.Map<AsyncLesson>(deleteAsyncLessonRequest);
-            AsyncLesson deletedAsyncLesson = await _asyncLessonDal.DeleteAsync(asyncLesson);
-            DeletedAsyncLessonResponse deletedAsyncLessonResponse = _mapper.Map<DeletedAsyncLessonResponse>(deletedAsyncLesson);
+            AsyncLesson? asyncLesson = await _asyncLessonDal.GetAsync(u => u.Id == deleteAsyncLessonRequest.Id);
+            await _asyncLessonDal.DeleteAsync(asyncLesson);
+            DeletedAsyncLessonResponse deletedAsyncLessonResponse = _mapper.Map<DeletedAsyncLessonResponse>(asyncLesson);
             return deletedAsyncLessonResponse;
         }
 
@@ -58,9 +59,10 @@ namespace Business.Concrete
 
         public async Task<UpdatedAsyncLessonResponse> Update(UpdateAsyncLessonRequest updateAsyncLessonRequest)
         {
-            AsyncLesson asyncLesson = _mapper.Map<AsyncLesson>(updateAsyncLessonRequest);
-            AsyncLesson updatedAsyncLesson = await _asyncLessonDal.UpdateAsync(asyncLesson);
-            UpdatedAsyncLessonResponse updatedAsyncLessonResponse = _mapper.Map<UpdatedAsyncLessonResponse>(updatedAsyncLesson);
+            AsyncLesson? asyncLesson = await _asyncLessonDal.GetAsync(u => u.Id == updateAsyncLessonRequest.Id);
+            _mapper.Map(updateAsyncLessonRequest, asyncLesson);
+            AsyncLesson updateAsyncLesson = await _asyncLessonDal.UpdateAsync(asyncLesson);
+            UpdatedAsyncLessonResponse updatedAsyncLessonResponse = _mapper.Map<UpdatedAsyncLessonResponse>(updateAsyncLesson);
             return updatedAsyncLessonResponse;
         }
     }

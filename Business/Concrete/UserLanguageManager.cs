@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.UserLanguages;
+using Business.DTOs.UserLanguages;
 using Business.Rules;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,9 +37,9 @@ public class UserLanguageManager : IUserLanguageService
 
     public async Task<DeletedUserLanguageResponse> Delete(DeleteUserLanguageRequest deleteUserLanguageRequest)
     {
-        UserLanguage userLanguage = _mapper.Map<UserLanguage>(deleteUserLanguageRequest);
-        UserLanguage deletedUserLanguage = await _userLanguageDal.DeleteAsync(userLanguage);
-        DeletedUserLanguageResponse deletedUserLanguageResponse = _mapper.Map<DeletedUserLanguageResponse>(deletedUserLanguage);
+        UserLanguage? userLanguage = await _userLanguageDal.GetAsync(u => u.Id == deleteUserLanguageRequest.Id);
+        await _userLanguageDal.DeleteAsync(userLanguage);
+        DeletedUserLanguageResponse deletedUserLanguageResponse = _mapper.Map<DeletedUserLanguageResponse>(userLanguage);
         return deletedUserLanguageResponse;
     }
 
@@ -61,10 +63,10 @@ public class UserLanguageManager : IUserLanguageService
     }
     public async Task<UpdatedUserLanguageResponse> Update(UpdateUserLanguageRequest updateUserLanguageRequest)
     {
-        UserLanguage userLanguage = await _userLanguageDal.GetAsync(u => u.Id == updateUserLanguageRequest.Id);
+        UserLanguage? userLanguage = await _userLanguageDal.GetAsync(u => u.Id == updateUserLanguageRequest.Id);
         _mapper.Map(updateUserLanguageRequest, userLanguage);
         UserLanguage updateUserLanguage = await _userLanguageDal.UpdateAsync(userLanguage);
-        UpdatedUserLanguageResponse updateUserLanguageResponse = _mapper.Map<UpdatedUserLanguageResponse>(updateUserLanguage);
-        return updateUserLanguageResponse;
+        UpdatedUserLanguageResponse updatedUserLanguageResponse = _mapper.Map<UpdatedUserLanguageResponse>(updateUserLanguage);
+        return updatedUserLanguageResponse;
     }
 }

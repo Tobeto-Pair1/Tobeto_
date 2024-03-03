@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.Homeworks;
+using Business.DTOs.Homeworks;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
@@ -37,10 +38,9 @@ namespace Business.Concrete
 
         public async Task<DeletedHomeworkResponse> Delete(DeleteHomeworkRequest deleteHomeworkRequest)
         {
-            Homework homework = _mapper.Map<Homework>(deleteHomeworkRequest);
-            Homework deletedHomework = await _homeworkDal.DeleteAsync(homework);
-            DeletedHomeworkResponse deletedHomeworkResponse = _mapper.Map<DeletedHomeworkResponse>(deletedHomework);
-
+            Homework? homework = await _homeworkDal.GetAsync(u => u.Id == deleteHomeworkRequest.Id);
+            await _homeworkDal.DeleteAsync(homework);
+            DeletedHomeworkResponse deletedHomeworkResponse = _mapper.Map<DeletedHomeworkResponse>(homework);
             return deletedHomeworkResponse;
         }
 
@@ -54,10 +54,10 @@ namespace Business.Concrete
 
         public async Task<UpdatedHomeworkResponse> Update(UpdateHomeworkRequest updateHomeworkRequest)
         {
-            Homework homework = _mapper.Map<Homework>(updateHomeworkRequest);
-            Homework updatedHomework = await _homeworkDal.UpdateAsync(homework);
-            UpdatedHomeworkResponse updatedHomeworkResponse = _mapper.Map<UpdatedHomeworkResponse>(updatedHomework);
-
+            Homework? homework = await _homeworkDal.GetAsync(u => u.Id == updateHomeworkRequest.Id);
+            _mapper.Map(updateHomeworkRequest, homework);
+            Homework updateHomework = await _homeworkDal.UpdateAsync(homework);
+            UpdatedHomeworkResponse updatedHomeworkResponse = _mapper.Map<UpdatedHomeworkResponse>(updateHomework);
             return updatedHomeworkResponse;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.DTOs.Blogs;
 using Business.DTOs.Certificate;
 using Business.DTOs.CourseModule;
 using Business.DTOs.CourseStudent;
@@ -38,9 +39,9 @@ namespace Business.Concrete
 
         public async Task<DeletedCourseStudentResponse> Delete(DeleteCourseStudentRequest deleteCourseStudentRequest)
         {
-            CourseStudent courseStudent = _mapper.Map<CourseStudent>(deleteCourseStudentRequest);
-            CourseStudent deletedCourseStudent = await _courseStudentDal.DeleteAsync(courseStudent);
-            DeletedCourseStudentResponse deletedCourseStudentResponse = _mapper.Map<DeletedCourseStudentResponse>(deletedCourseStudent);
+            CourseStudent? courseStudent = await _courseStudentDal.GetAsync(u => u.Id == deleteCourseStudentRequest.Id);
+            await _courseStudentDal.DeleteAsync(courseStudent);
+            DeletedCourseStudentResponse deletedCourseStudentResponse = _mapper.Map<DeletedCourseStudentResponse>(courseStudent);
             return deletedCourseStudentResponse;
         }
 
@@ -58,9 +59,10 @@ namespace Business.Concrete
 
         public async Task<UpdatedCourseStudentResponse> Update(UpdateCourseStudentRequest updateCourseStudentRequest)
         {
-            CourseStudent courseStudent = _mapper.Map<CourseStudent>(updateCourseStudentRequest);
-            CourseStudent updatedCourseStudent = await _courseStudentDal.UpdateAsync(courseStudent);
-            UpdatedCourseStudentResponse updatedCourseStudentResponse = _mapper.Map<UpdatedCourseStudentResponse>(updatedCourseStudent);
+            CourseStudent? courseStudent = await _courseStudentDal.GetAsync(u => u.Id == updateCourseStudentRequest.Id);
+            _mapper.Map(updateCourseStudentRequest, courseStudent);
+            CourseStudent updateCourseStudent = await _courseStudentDal.UpdateAsync(courseStudent);
+            UpdatedCourseStudentResponse updatedCourseStudentResponse = _mapper.Map<UpdatedCourseStudentResponse>(updateCourseStudent);
             return updatedCourseStudentResponse;
         }
     }

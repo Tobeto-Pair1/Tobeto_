@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.DTOs.Blogs;
 using Business.DTOs.CourseType;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concretes;
 
 namespace Business.Concrete;
@@ -31,10 +33,9 @@ public class CourseTypeManager : ICourseTypeService
 
     public async Task<DeletedCourseTypeResponse> Delete(DeleteCourseTypeRequest deleteCourseTypeRequest)
     {
-        CourseType courseType = _mapper.Map<CourseType>(deleteCourseTypeRequest);
-        CourseType deletedCourseType = await _courseTypeDal.DeleteAsync(courseType);
-        DeletedCourseTypeResponse deletedCourseTypeResponse = _mapper.Map<DeletedCourseTypeResponse>(deletedCourseType);
-       
+        CourseType? courseType = await _courseTypeDal.GetAsync(u => u.Id == deleteCourseTypeRequest.Id);
+        await _courseTypeDal.DeleteAsync(courseType);
+        DeletedCourseTypeResponse deletedCourseTypeResponse = _mapper.Map<DeletedCourseTypeResponse>(courseType);
         return deletedCourseTypeResponse;
     }
 
@@ -48,9 +49,10 @@ public class CourseTypeManager : ICourseTypeService
 
     public async Task<UpdatedCourseTypeResponse> Update(UpdateCourseTypeRequest updateCourseTypeRequest)
     {
-        CourseType courseType = _mapper.Map<CourseType>(updateCourseTypeRequest);
-        CourseType updatedCourseType = await _courseTypeDal.UpdateAsync(courseType);
-        UpdatedCourseTypeResponse updatedCourseTypeResponse = _mapper.Map<UpdatedCourseTypeResponse>(updatedCourseType);
+        CourseType? courseType = await _courseTypeDal.GetAsync(u => u.Id == updateCourseTypeRequest.Id);
+        _mapper.Map(updateCourseTypeRequest, courseType);
+        CourseType updateCourseType = await _courseTypeDal.UpdateAsync(courseType);
+        UpdatedCourseTypeResponse updatedCourseTypeResponse = _mapper.Map<UpdatedCourseTypeResponse>(updateCourseType);
         return updatedCourseTypeResponse;
     }
 }
