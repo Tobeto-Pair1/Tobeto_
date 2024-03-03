@@ -48,7 +48,7 @@ public class UserManager : IUserService
 
     public async Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest)
     {
-       // await _userBusinessRules.VerifyTCKN(updateUserRequest);
+        await _userBusinessRules.VerifyTCKN(updateUserRequest);
         User? user = await _userDal.GetAsync(u => u.Id == updateUserRequest.Id);
         _mapper.Map(updateUserRequest, user);
 

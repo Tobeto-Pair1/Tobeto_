@@ -2,16 +2,9 @@
 using Microsoft.Extensions.Options;
 using MimeKit.Text;
 using MimeKit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MailKit.Net.Smtp;
-using Core.Utilities.Business.EmailService;
-using ServiceStack.Configuration;
 
-namespace Core.Services.Mailing;
+namespace Core.Utilities.EmailSender;
 
 public class EmailService : IEmailService
 {

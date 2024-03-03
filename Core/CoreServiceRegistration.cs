@@ -9,6 +9,7 @@ using System.Diagnostics;
 using Core.CrossCuttingConcerns.Logger.Serilog.Loggers;
 using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Utilities.Verification.TCKN;
+using Core.Utilities.EmailSender;
 
 namespace Core;
 
@@ -25,6 +26,7 @@ public static class CoreServiceRegistration
         services.AddScoped<Stopwatch>();
 
         services.AddScoped<IVerificationService, TCKNVerificationService>();
+        services.AddScoped<IEmailService, EmailService>();
 
         services.AddTransient<FileLogger>();
         services.AddTransient<MsSqlLogger>();
