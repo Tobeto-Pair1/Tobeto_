@@ -24,14 +24,7 @@ public class AddressMappingProfile : Profile
             memberOptions: opt => opt.MapFrom(a => a.Town.Name))
             .ReverseMap();
 
-        CreateMap<Address, CreateAddressRequest>()
-            //.ForMember(destinationMember: a => a.CityId,
-        //    memberOptions: opt => opt.MapFrom(a => a.City.Id)).
-        //    ForMember(destinationMember: a => a.CountryId,
-        //    memberOptions: opt => opt.MapFrom(a => a.Country.Id)).
-        //    ForMember(destinationMember: a => a.TownId,
-        //    memberOptions: opt => opt.MapFrom(a => a.Town.Id))
-            .ReverseMap();
+        CreateMap<Address, CreateAddressRequest>().ReverseMap();
 
         CreateMap<Address, GetListAddressResponse>().
             ForMember(destinationMember: a => a.CityName,
