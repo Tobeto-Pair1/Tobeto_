@@ -4,6 +4,10 @@ using Business.Concrete;
 using System.Reflection;
 using Core.Business;
 using FluentValidation;
+using Castle.DynamicProxy;
+using Core.Utilities.Interceptors;
+using Autofac;
+using Autofac.Extras.DynamicProxy;
 
 namespace Business;
 
@@ -62,7 +66,7 @@ public static class BusinessServiceRegistration
 
         services.AddScoped<IInstructorService, InstructorManager>();
         services.AddScoped<IInstructorOperationClaimService, InstructorOperationClaimManager>();
-        services.AddScoped<IInstructorAuthService, AuthInstructorManager >();
+        services.AddScoped<IInstructorAuthService, AuthInstructorManager>();
 
 
         services.AddScoped<IUserService, UserManager>();
@@ -70,7 +74,7 @@ public static class BusinessServiceRegistration
         services.AddScoped<IAuthService, AuthManager>();
 
         services.AddScoped<IImageService, ImageManager>();
-       
+
         services.AddScoped<IContactInformationService, ContactInformationManager>();
 
 
@@ -92,4 +96,5 @@ public static class BusinessServiceRegistration
                 addWithLifeCycle(services, type);
         return services;
     }
+
 }

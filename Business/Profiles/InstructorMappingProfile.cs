@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Business.DTOs.Employees;
 using Business.DTOs.Instructors;
-using Business.DTOs.Users;
 using Core.DataAccess.Dynamic;
 using Core.Entities.Concrete;
 using Entities.Concretes;
@@ -12,15 +10,7 @@ public class InstructorMappingProfile : Profile
 {
     public InstructorMappingProfile()
     {
-        CreateMap<Instructor, UserAuth>()
-          // .ForMember(destinationMember: u => u.Id, memberOptions: opt => opt.MapFrom(e => e.User.Id))
-          //.ForMember(destinationMember: u => u.FirstName, memberOptions: opt => opt.MapFrom(e => e.User.FirstName))
-          //.ForMember(destinationMember: u => u.LastName, memberOptions: opt => opt.MapFrom(e => e.User.LastName))
-          //.ForMember(destinationMember: u => u.Email, memberOptions: opt => opt.MapFrom(e => e.User.Email))
-          //.ForMember(destinationMember: u => u.PhoneNumber, memberOptions: opt => opt.MapFrom(e => e.User.PhoneNumber))
-          //.ForMember(destinationMember: u => u.PasswordSalt, memberOptions: opt => opt.MapFrom(e => e.User.PasswordSalt))
-          //.ForMember(destinationMember: u => u.PasswordHash, memberOptions: opt => opt.MapFrom(e => e.User.PasswordHash))
-          .ReverseMap();
+        CreateMap<Instructor, UserAuth>().ReverseMap();
 
 
         CreateMap<UserAuth, InstructorForLoginRequest>().ReverseMap();
@@ -44,10 +34,7 @@ public class InstructorMappingProfile : Profile
         CreateMap<Instructor, UpdatedInstructorResponse>().ReverseMap();
 
 
-        CreateMap<Instructor, GetListInstructorResponse>()
-            /*.ForMember(destinationMember: a => a.FullName,
-            memberOptions: opt => opt.MapFrom(a => a.User.FirstName + a.User.Lastname))*/
-            .ReverseMap();
+        CreateMap<Instructor, GetListInstructorResponse>().ReverseMap();
 
         CreateMap<Paginate<Instructor>, Paginate<GetListInstructorResponse>>().ReverseMap();
     }

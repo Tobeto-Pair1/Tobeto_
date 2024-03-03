@@ -1,7 +1,9 @@
 ﻿using Business.DTOs.Users;
+using Business.Messages;
 using Core.Business;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using Core.Utilities.Verification.TCKN;
+using Org.BouncyCastle.Crypto;
 
 namespace Business.Rules;
 
@@ -20,6 +22,6 @@ public class UserBusinessRules : BaseBusinessRules
             updateUserRequest.FirstName, updateUserRequest.LastName, updateUserRequest.BirthDate.Year);
 
         if (!verificationResult)
-            throw new BusinessException("TC Kimlik numarası doğrulanamadı.");
+            throw new BusinessException(BusinessMessages.TCKNCouldNotBeVerified);
     }
 }
