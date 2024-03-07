@@ -8,6 +8,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,7 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListQuestionResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _questionDal.GetListAsync(
+            var data = await _questionDal.GetListAsync(include: a => a.Include(a => a.Exam),
                index: pageRequest.PageIndex,
                size: pageRequest.PageSize);
 

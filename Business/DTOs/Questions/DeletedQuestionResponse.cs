@@ -2,7 +2,7 @@
 {
     public class DeletedQuestionResponse
     {
-        public Guid QuestionId { get; set; }
+        public Guid Id { get; set; }
         
     }
 }
