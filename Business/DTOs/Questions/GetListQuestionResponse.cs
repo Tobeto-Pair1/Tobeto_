@@ -8,7 +8,8 @@ namespace Business.DTOs.Questions
 {
     public class GetListQuestionResponse
     {
-        public Guid QuestionId { get; set; }
+        public Guid Id { get; set; }
+        public Guid ExamId { get; set; }
         public string QuestionText { get; set; }
         public string OptionA { get; set; }
         public string OptionB { get; set; }
