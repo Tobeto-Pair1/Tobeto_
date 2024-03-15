@@ -1,7 +1,6 @@
 ﻿using Business.Abstract;
 using Business.DTOs.AsyncLessons;
 using Core.DataAccess.Paging;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -49,6 +48,13 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             var result = await _asyncLessonService.GetListAsync(pageRequest);
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var result = await _asyncLessonService.GetByIdAsync(id);
             return Ok(result);
         }
     }

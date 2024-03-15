@@ -12,7 +12,7 @@ namespace Business.Abstract;
 public interface IAsyncLessonService
 {
     Task<IPaginate<GetListAsyncLessonResponse>> GetListAsync(PageRequest pageRequest);
-
+    Task<GetAsyncLessonResponse> GetByIdAsync(Guid id);
     Task<CreatedAsyncLessonResponse> Add(CreateAsyncLessonRequest createAsyncLessonRequest);
 
     Task<UpdatedAsyncLessonResponse> Update(UpdateAsyncLessonRequest updateAsyncLessonRequest);
