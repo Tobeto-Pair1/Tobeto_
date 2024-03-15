@@ -22,5 +22,9 @@ public class AsyncLessonMappingProfile : Profile
         CreateMap<AsyncLesson, GetListAsyncLessonResponse>().ReverseMap();
         CreateMap<Paginate<AsyncLesson>, Paginate<GetListAsyncLessonResponse>>().ReverseMap();
 
+        CreateMap<AsyncLesson, GetAsyncLessonResponse>()
+            .ForMember(destinationMember: a=>a.CourseName, memberOptions: opt=>opt.MapFrom(a=>a.CourseModule.Course.Name))
+            .ReverseMap();
+
     }
 }

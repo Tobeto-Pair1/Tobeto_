@@ -17,7 +17,7 @@ public class UserLanguageBusinessRules:BaseBusinessRules
     public async Task LanguageCanNotBeDuplicated(Guid userId, Guid foreignLanguageId)
     {
         var result = (await _userLanguageDal.GetListAsync(l => l.UserId == userId)).Items.Any(l=>l.ForeignLanguageId == foreignLanguageId);
-        if (result != null)
+        if (result)
         {
             throw new BusinessException(BusinessMessages.LanguageAlreadyExists);
         }
