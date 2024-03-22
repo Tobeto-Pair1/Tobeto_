@@ -17,6 +17,10 @@ namespace Business.Profiles
         public UserMappingProfile()
         {
             CreateMap<User, UserAuth>().ReverseMap();
+            CreateMap<User, UpdatePasswordRequest>().ReverseMap();
+            CreateMap<UserAuth, UpdatePasswordRequest>().ReverseMap();
+
+
 
             CreateMap<User, UserForRegisterRequest>().ReverseMap();
             CreateMap<User, UserForLoginRequest>().ReverseMap();

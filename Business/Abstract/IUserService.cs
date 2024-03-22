@@ -1,4 +1,5 @@
-﻿using Business.DTOs.Users;
+﻿using Business.Dtos.RefreshTokens;
+using Business.DTOs.Users;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using Core.Entities.Concrete;
@@ -16,9 +17,10 @@ public interface IUserService
     Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest);
     Task<UserAuth> Add(UserAuth userAuth);
     Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest);
-    //Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest);
+    Task<UserAuth> GetById(Guid id);
     Task<DeletedUserResponse> Delete(Guid id);
 
     Task<UserAuth> GetByMail(string email);
+    Task<RefreshTokenResponse> UpdatePassword(UpdatePasswordRequest updatePasswordRequest, string IpAddress );
 
 }
