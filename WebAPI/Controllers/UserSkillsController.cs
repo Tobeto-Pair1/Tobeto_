@@ -22,16 +22,11 @@ public class UserSkillsController : ControllerBase
 
     public async Task<IActionResult> Add([FromBody] CreateUserSkillRequest createUserSkillRequest)
     {
-        createUserSkillRequest.UserId = getAuthenticatedUserId();
         var result = await _userSkillService.Add(createUserSkillRequest);
 
         return Ok(result);
     }
-    protected Guid getAuthenticatedUserId()
-    {
-        Guid userId = HttpContext.User.GetUserId();
-        return userId;
-    }
+
     [HttpPut("update")]
     public async Task<IActionResult> Update([FromBody] UpdateUserSkillRequest updateUserSkillRequest)
     {

@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
+using Business.DTOs.Requests;
 using Business.DTOs.Users;
 using Core.DataAccess.Paging;
+using Core.Extensions;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,10 +43,16 @@ public class UsersController : ControllerBase
     [HttpPut("forPassword")]
     public async Task<IActionResult> UpdateForPassword([FromBody] UpdatePasswordRequest updatePasswordRequest)
     {
-       string? IpAddress = getIpAddress();
+        updatePasswordRequest.Id = getAuthenticatedUserId();
+        string? IpAddress = getIpAddress();
         var result = await _userService.UpdatePassword(updatePasswordRequest, IpAddress);
         setRefreshTokenToCookie(result.RefreshToken);
         return Ok(result.AccessToken);
+    }
+    protected Guid getAuthenticatedUserId()
+    {
+        Guid userId = HttpContext.User.GetUserId();
+        return userId;
     }
     protected string getIpAddress()
     {
