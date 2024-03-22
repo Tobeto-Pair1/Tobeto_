@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Dtos.RefreshTokens;
 using Business.DTOs.Users;
 using Business.Messages;
 using Core.Business;
@@ -17,18 +18,25 @@ public class AuthBusinessRules : BaseBusinessRules
         _userService = userService;
     }
 
-    public async Task EmailCanNotBeDuplicatedWhenRegistered(string email)
+    public async Task UserWithSameEmailShouldNotExist(string email)
     {
         var userToCheck = await _userService.GetByMail(email);
         if (userToCheck != null) throw new BusinessException(BusinessMessages.UserAlreadyExists);
     }
 
+    public async Task<UserAuth> UserWithSameEmailShouldExist(string email)
+    {
+        var userToCheck = await _userService.GetByMail(email);
+        if (userToCheck == null) throw new BusinessException(BusinessMessages.UserDontExists);
+        return userToCheck;
+
+    }
     public async Task<UserAuth> LoginInformationCheck(UserForLoginRequest userForLoginRequest)
     {
         var userToCheck = await _userService.GetByMail(userForLoginRequest.Email);
         if (userToCheck == null)
         {
-            throw new BusinessException(BusinessMessages.UserNotFound);
+            throw new BusinessException(BusinessMessages.UserDontExists);
         }
         if (!HashingHelper.VerifyPasswordHash(userForLoginRequest.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
         {
@@ -36,11 +44,10 @@ public class AuthBusinessRules : BaseBusinessRules
         }
         return userToCheck;
     }
-   
-    public Task ThrowExceptionIfCreateAccessTokenIsNull(AccessToken accessToken)
+    public async Task ThrowExceptionIfCreateAccessTokenIsNull(RefreshTokenResponse refreshedTokenDto)
     {
-        if (accessToken == null)
+        if (refreshedTokenDto == null)
             throw new BusinessException(BusinessMessages.CreateAccessTokenNot);
-        return Task.CompletedTask;
+
     }
 }

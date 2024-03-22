@@ -32,7 +32,7 @@ public class EmployeeAuthBusinessRules : BaseBusinessRules
         var userToCheck = await _employeeService.GetByMail(employeeForLoginRequest.Email);
         if (userToCheck == null)
         {
-            throw new BusinessException(BusinessMessages.UserNotFound);
+            throw new BusinessException(BusinessMessages.UserDontExists);
         }
         if (!HashingHelper.VerifyPasswordHash(employeeForLoginRequest.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
         {

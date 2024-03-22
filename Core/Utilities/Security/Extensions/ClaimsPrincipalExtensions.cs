@@ -15,9 +15,9 @@ namespace Core.Extensions
             return result;
         }
 
-        public static List<string> ClaimRoles(this ClaimsPrincipal claimsPrincipal)
-        {
-            return claimsPrincipal?.Claims(ClaimTypes.Role);
-        }
+        public static List<string> ClaimRoles(this ClaimsPrincipal claimsPrincipal) => claimsPrincipal?.Claims(ClaimTypes.Role);
+        
+        public static Guid GetUserId(this ClaimsPrincipal claimsPrincipal) =>
+        Guid.Parse(claimsPrincipal?.Claims(ClaimTypes.NameIdentifier)?.FirstOrDefault());
     }
 }
