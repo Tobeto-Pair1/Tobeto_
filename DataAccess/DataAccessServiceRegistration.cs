@@ -76,6 +76,8 @@ public static class DataAccessServiceRegistration
         services.AddScoped<IUserDal, EfUserDal>();
         services.AddScoped<IUserOperationClaimDal, EfUserOperationClaimDal>();
 
+        services.AddScoped<IRefreshTokenDal, EfRefreshTokenDal>();
+
         services.AddScoped<IImageDal, EfImageDal>();
       
         services.AddScoped<IContactInformationDal, EfContactInformationDal>();

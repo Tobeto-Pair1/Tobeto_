@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-
+using System.Security.Cryptography;
 
 namespace Core.Utilities.Security.JWT
 {
@@ -61,6 +61,26 @@ namespace Core.Utilities.Security.JWT
             claims.AddRoles(operationClaims.Select(c => c.Name).ToArray());
 
             return claims;
+        }
+        public RefreshToken CreateRefreshToken(UserAuth userAuth, string ipAddress)
+        {
+            RefreshToken refreshToken =
+                new()
+                {
+                    UserId = userAuth.Id,
+                    Token = RandomRefreshToken(),
+                    Expires = DateTime.UtcNow.AddDays(7),
+                    CreatedByIp = ipAddress
+                };
+
+            return refreshToken;
+        }
+        private string RandomRefreshToken()
+        {
+            byte[] numberByte = new byte[32];
+            using var random = RandomNumberGenerator.Create();
+            random.GetBytes(numberByte);
+            return Convert.ToBase64String(numberByte);
         }
     }
 }

@@ -72,6 +72,8 @@ public static class BusinessServiceRegistration
         services.AddScoped<IUserService, UserManager>();
         services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
         services.AddScoped<IAuthService, AuthManager>();
+        services.AddScoped<IRefreshTokenService, RefreshTokenManager>();
+
 
         services.AddScoped<IImageService, ImageManager>();
 

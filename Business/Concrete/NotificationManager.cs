@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.DTOs.Notifications;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
@@ -34,6 +35,7 @@ public class NotificationManager : INotificationService
         return deletedNotificationResponse;
     }
 
+    //[SecuredOperation("admin")]
     public async Task<IPaginate<GetListNotificationResponse>> GetListAsync(PageRequest pageRequest)
     {
         var data = await _notificationDal.GetListAsync(index: pageRequest.PageIndex, size: pageRequest.PageSize);

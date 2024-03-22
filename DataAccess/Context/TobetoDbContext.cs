@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using Core.Utilities.Security.JWT;
 using Entities.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ public class TobetoDbContext : DbContext
 
     public DbSet<User> Users { get; set; }
     public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
 
     public DbSet<Employee> Employees { get; set; }
     public DbSet<EmployeeOperationClaim> EmployeeOperationClaims { get; set; }

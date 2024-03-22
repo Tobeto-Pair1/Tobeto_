@@ -33,7 +33,7 @@ public class InstructorAuthBusinessRules : BaseBusinessRules
         var userToCheck = await _ınstructorService.GetByMail(ınstructorForLoginRequest.Email);
         if (userToCheck == null)
         {
-            throw new BusinessException(BusinessMessages.UserNotFound);
+            throw new BusinessException(BusinessMessages.UserDontExists);
         }
         if (!HashingHelper.VerifyPasswordHash(ınstructorForLoginRequest.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
         {

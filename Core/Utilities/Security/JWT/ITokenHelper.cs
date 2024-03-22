@@ -1,16 +1,10 @@
-﻿using Core.DataAccess.Dynamic;
-using Core.Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.Entities.Concrete;
 
-namespace Core.Utilities.Security.JWT
+namespace Core.Utilities.Security.JWT;
+
+public interface ITokenHelper
 {
-    public interface ITokenHelper
-    {
-        //ilgili kullanıcı için claim varsa token oluşturur
-        Task<AccessToken> CreateToken(UserAuth user, IList<OperationClaim> operationClaims);
-    }
+    //ilgili kullanıcı için claim varsa token oluşturur
+    Task<AccessToken> CreateToken(UserAuth user, IList<OperationClaim> operationClaims);
+    RefreshToken CreateRefreshToken(UserAuth userAuth, string ipAddress);
 }
