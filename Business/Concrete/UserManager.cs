@@ -120,4 +120,15 @@ public class UserManager : IUserService
         UserAuth userAuth = _mapper.Map<UserAuth>(user);
         return userAuth;
     }
+    public async Task<GetListUserResponse> GetListById(Guid id)
+    {
+        User? user = await _userDal.GetAsync(include: l => l
+            .Include(l=>l.Address)
+            .ThenInclude(l=>l.Town)
+            .ThenInclude(l=>l.City)
+            .ThenInclude(l=>l.Country),
+            predicate: i => i.Id == id);
+        GetListUserResponse getListUserResponse = _mapper.Map<GetListUserResponse>(user);
+        return getListUserResponse;
+    }
 }

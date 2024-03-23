@@ -15,6 +15,7 @@ namespace Business.Abstract;
 public interface IUserService
 {
     Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest);
+    Task<GetListUserResponse> GetListById(Guid id);
     Task<UserAuth> Add(UserAuth userAuth);
     Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest);
     Task<UserAuth> GetById(Guid id);

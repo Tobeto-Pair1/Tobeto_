@@ -1,19 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.SynchronLessonDetails;
-using Business.DTOs.SynchronLessonDetails;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Business.Concrete
 {
     public class SynchronLessonDetailManager : ISynchronLessonDetailService
@@ -45,8 +37,11 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListSynchronLessonDetailResponse>> GetListAsync(PageRequest pageRequest)
         {
-            var data = await _synchronLessonDetailDal.GetListAsync(include: s => s.Include(s => s.Category).
-       Include(s => s.Course).Include(s=>s.SubType).Include(s=>s.LessonLanguage),
+            var data = await _synchronLessonDetailDal.GetListAsync(include: s => s
+            .Include(s => s.Category)
+            .Include(s => s.CourseModule)
+            .Include(s => s.SubType)
+            .Include(s => s.LessonLanguage),
           index: pageRequest.PageIndex,
           size: pageRequest.PageSize);
 
@@ -61,6 +56,17 @@ namespace Business.Concrete
             SynchronLessonDetail updateSynchronLessonDetail = await _synchronLessonDetailDal.UpdateAsync(synchronLessonDetail);
             UpdatedSynchronLessonDetailResponse updatedSynchronLessonDetailResponse = _mapper.Map<UpdatedSynchronLessonDetailResponse>(updateSynchronLessonDetail);
             return updatedSynchronLessonDetailResponse;
+        }
+        public async Task<IPaginate<GetListSynchronLessonDetailResponse>> GetListByCourseModule(Guid courseModuleId)
+        {
+            var data = await _synchronLessonDetailDal.GetListAsync(include: l => l
+            .Include(l => l.CourseModule)
+            .Include(s => s.Category)
+            .Include(s => s.SubType)
+            .Include(s => s.LessonLanguage), predicate: a => a.CourseModuleId == courseModuleId);
+
+            var result = _mapper.Map<Paginate<GetListSynchronLessonDetailResponse>>(data);
+            return result;
         }
     }
 }

@@ -15,14 +15,14 @@ namespace DataAccess.EntityConfiguration
         {
             builder.ToTable("SynchronLessons").HasKey(b => b.Id);
             builder.Property(b => b.Id).HasColumnName("Id");
-            builder.Property(b => b.SynchronLessonDetailId).HasColumnName("SynchronLessonDetailId");
+            builder.Property(b => b.CourseModuleId).HasColumnName("CourseModuleId");
             builder.Property(b => b.SessionName).HasColumnName("SessionName");
             builder.Property(b => b.TimeSpent).HasColumnName("TimeSpent");
             builder.Property(b => b.StartTime).HasColumnName("StartTime");
             builder.Property(b => b.EndTime).HasColumnName("EndTime");
 
             builder.HasMany(b => b.SynchronLessonInstructor);
-            builder.HasOne(b => b.SynchronLessonDetail);
+            builder.HasOne(b => b.CourseModule);
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
     }

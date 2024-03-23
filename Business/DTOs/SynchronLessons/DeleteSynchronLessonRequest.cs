@@ -1,8 +1,6 @@
-﻿namespace Business.DTOs.SynchronLessons
+﻿namespace Business.DTOs.SynchronLessons;
+
+public class DeleteSynchronLessonRequest
 {
-    public class DeleteSynchronLessonRequest
-    {
-        public Guid Id { get; set; }
-     
-    }
+    public Guid Id { get; set; }
 }

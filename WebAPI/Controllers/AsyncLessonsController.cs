@@ -57,5 +57,13 @@ namespace WebAPI.Controllers
             var result = await _asyncLessonService.GetByIdAsync(id);
             return Ok(result);
         }
+        [HttpGet("getListByCourseModule")]
+        public async Task<IActionResult> GetListByCourseModule(Guid id)
+        {
+
+            var result = await _asyncLessonService.GetListByCourseModule(id);
+
+            return Ok(result);
+        }
     }
 }
