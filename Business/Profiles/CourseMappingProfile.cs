@@ -22,10 +22,7 @@ public class CourseMappingProfile:Profile
         CreateMap<Course, DeletedCourseResponse>().ReverseMap();
 
 
-        CreateMap<Course, GetListCourseResponse>()
-            .ForMember(destinationMember: a => a.CourseTypeId,
-        memberOptions: opt => opt.MapFrom(a => a.CourseType.Id))
-            .ReverseMap();
+        CreateMap<Course, GetListCourseResponse>().ReverseMap();
         CreateMap<Paginate<Course>, Paginate<GetListCourseResponse>>().ReverseMap();
     }
 }

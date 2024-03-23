@@ -1,15 +1,13 @@
-﻿using System;
-using Core.Entities;
+﻿using Core.Entities;
 
-namespace Entities.Concretes
+namespace Entities.Concretes;
+
+public class Manufacturer:Entity<Guid>
 {
-	public class Manufacturer:Entity<Guid>
-	{
-		public string Name { get; set; }
+    public string Name { get; set; }
 
-		public virtual ICollection<Course> Courses { get;}
-        public virtual ICollection<AsyncLessonDetail> AsyncLessonDetail { get; set; }
-        public virtual ICollection<SynchronLessonDetail> SynchronLessonDetails { get; set; }
-    }
+    public virtual ICollection<AboutOfCourse> AboutOfCourses { get; set; }
+    public virtual ICollection<AsyncLessonDetail> AsyncLessonDetail { get; set; }
+    public virtual ICollection<SynchronLessonDetail> SynchronLessonDetails { get; set; }
 }
 

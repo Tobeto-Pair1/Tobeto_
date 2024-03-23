@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Business.DTOs.SynchronLessonDetails;
 
-namespace Business.DTOs.SynchronLessonDetails
+public class GetListSynchronLessonDetailResponse
 {
-    public class GetListSynchronLessonDetailResponse
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public Guid CourseId { get; set; }
-        public Guid CategoryId { get; set; }
-        public Guid LessonLanguageId { get; set; }
-        public Guid SubTypeId { get; set; }
-    }
+    public Guid Id { get; set; }
+    public Guid CourseModuleId { get; set; }
+    public Guid CategoryId { get; set; }
+    public Guid LessonLanguageId { get; set; }
+    public Guid SubTypeId { get; set; }
+    public string CourseModuleName { get; set; }
+    public string CategoryName { get; set; }
+    public string LessonLanguageName { get; set; }
+    public string SubTypeName { get; set; }
 }

@@ -21,7 +21,8 @@ public class CourseModuleMappingProfile:Profile
         CreateMap<CourseModule, DeletedCourseModuleResponse>().ReverseMap();
 
 
-        CreateMap<CourseModule, GetListCourseModuleResponse>().ReverseMap();
+        CreateMap<CourseModule, GetListCourseModuleResponse>()
+            .ForMember(a=>a.CourseName, opt=>opt.MapFrom(a=>a.Course.Name)).ReverseMap();
         CreateMap<Paginate<CourseModule>, Paginate<GetListCourseModuleResponse>>().ReverseMap();
     }
 }

@@ -40,6 +40,12 @@ public class UsersController : ControllerBase
         var result = await _userService.GetListAsync(pageRequest);
         return Ok(result);
     }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var result = await _userService.GetListById(id);
+        return Ok(result);
+    }
     [HttpPut("forPassword")]
     public async Task<IActionResult> UpdateForPassword([FromBody] UpdatePasswordRequest updatePasswordRequest)
     {

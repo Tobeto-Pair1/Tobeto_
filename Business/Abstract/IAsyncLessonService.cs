@@ -12,10 +12,12 @@ namespace Business.Abstract;
 public interface IAsyncLessonService
 {
     Task<IPaginate<GetListAsyncLessonResponse>> GetListAsync(PageRequest pageRequest);
-    Task<GetAsyncLessonResponse> GetByIdAsync(Guid id);
+
     Task<CreatedAsyncLessonResponse> Add(CreateAsyncLessonRequest createAsyncLessonRequest);
 
     Task<UpdatedAsyncLessonResponse> Update(UpdateAsyncLessonRequest updateAsyncLessonRequest);
 
     Task<DeletedAsyncLessonResponse> Delete(DeleteAsyncLessonRequest deleteAsyncLessonRequest);
+    Task<IPaginate<GetListByCourseResponse>> GetListByCourseModule(Guid courseModuleId);
+    Task<GetAsyncLessonResponse> GetByIdAsync(Guid id);
 }

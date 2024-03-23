@@ -13,5 +13,5 @@ public interface IAboutOfCourseService
     Task<UpdatedAboutOfCourseResponse> Update(UpdateAboutOfCourseRequest updateAboutOfCourseRequest);
 
     Task<DeletedAboutOfCourseResponse> Delete(DeleteAboutOfCourseRequest deleteAboutOfCourseRequest);
-
+    Task<IPaginate<GetListAboutOfCourseResponse>> GetListByCourse(Guid courseId);
 }

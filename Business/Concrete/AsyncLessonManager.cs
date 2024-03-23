@@ -61,4 +61,12 @@ public class AsyncLessonManager : IAsyncLessonService
         GetAsyncLessonResponse getAsyncLessonResponse = _mapper.Map<GetAsyncLessonResponse>(asyncLesson);
         return getAsyncLessonResponse;
     }
+    public async Task<IPaginate<GetListByCourseResponse>> GetListByCourseModule(Guid courseModuleId)
+    {
+        var data = await _asyncLessonDal.GetListAsync(include: l => l.
+               Include(l => l.CourseModule), predicate: a => a.CourseModuleId == courseModuleId);
+
+        var result = _mapper.Map<Paginate<GetListByCourseResponse>>(data);
+        return result;
+    }
 }

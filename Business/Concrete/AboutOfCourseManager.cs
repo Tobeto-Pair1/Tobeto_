@@ -1,19 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Business.DTOs.AboutOfCourses;
-using Business.DTOs.Blogs;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Business.Concrete;
 
 public class AboutOfCourseManager : IAboutOfCourseService
@@ -62,5 +54,13 @@ public class AboutOfCourseManager : IAboutOfCourseService
         AboutOfCourse updateAboutOfCourse = await _aboutOfCourseDal.UpdateAsync(aboutOfCourse);
         UpdatedAboutOfCourseResponse updatedAboutOfCourseResponse = _mapper.Map<UpdatedAboutOfCourseResponse>(updateAboutOfCourse);
         return updatedAboutOfCourseResponse;
+    }
+    public async Task<IPaginate<GetListAboutOfCourseResponse>> GetListByCourse(Guid courseId)
+    {
+        var data = await _aboutOfCourseDal.GetListAsync(include: l => l.
+               Include(l => l.Course), predicate: a => a.CourseId == courseId);
+
+        var result = _mapper.Map<Paginate<GetListAboutOfCourseResponse>>(data);
+        return result;
     }
 }

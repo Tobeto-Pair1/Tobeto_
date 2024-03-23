@@ -1,20 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.DTOs.Blogs;
-using Business.DTOs.Course;
 using Business.DTOs.CourseModule;
-using Business.DTOs.Employees;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -63,6 +54,14 @@ namespace Business.Concrete
             CourseModule updateCourseModule = await _courseModuleDal.UpdateAsync(courseModule);
             UpdatedCourseModuleResponse updatedCourseModuleResponse = _mapper.Map<UpdatedCourseModuleResponse>(updateCourseModule);
             return updatedCourseModuleResponse;
+        }
+        public async Task<IPaginate<GetListCourseModuleResponse>> GetListByCourse(Guid courseId)
+        {
+            var data = await _courseModuleDal.GetListAsync(include: l => l.
+                   Include(l => l.Course), predicate: a => a.CourseId == courseId);
+
+            var result = _mapper.Map<Paginate<GetListCourseModuleResponse>>(data);
+            return result;
         }
     }
 }

@@ -1,18 +1,12 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.DTOs.SynchronLessons;
+using Business.DTOs.AsyncLessons;
 using Business.DTOs.SynchronLessons;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -58,6 +52,14 @@ namespace Business.Concrete
             SynchronLesson updateSynchronLesson = await _synchronLessonDal.UpdateAsync(synchronLesson);
             UpdatedSynchronLessonResponse updatedSynchronLessonResponse = _mapper.Map<UpdatedSynchronLessonResponse>(updateSynchronLesson);
             return updatedSynchronLessonResponse;
+        }
+        public async Task<IPaginate<GetListSynchronLessonResponse>> GetListByCourseModule(Guid courseModuleId)
+        {
+            var data = await _synchronLessonDal.GetListAsync(include: l => l.
+                   Include(l => l.CourseModule), predicate: a => a.CourseModuleId == courseModuleId);
+
+            var result = _mapper.Map<Paginate<GetListSynchronLessonResponse>>(data);
+            return result;
         }
     }
 }

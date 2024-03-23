@@ -1,22 +1,17 @@
 ﻿using Business.DTOs.SynchronLessonDetails;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface ISynchronLessonDetailService
 {
-    public interface ISynchronLessonDetailService
-    {
-        Task<IPaginate<GetListSynchronLessonDetailResponse>> GetListAsync(PageRequest pageRequest);
+    Task<IPaginate<GetListSynchronLessonDetailResponse>> GetListAsync(PageRequest pageRequest);
 
-        Task<CreatedSynchronLessonDetailResponse> Add(CreateSynchronLessonDetailRequest createSynchronLessonDetailRequest);
+    Task<CreatedSynchronLessonDetailResponse> Add(CreateSynchronLessonDetailRequest createSynchronLessonDetailRequest);
 
-        Task<UpdatedSynchronLessonDetailResponse> Update(UpdateSynchronLessonDetailRequest updateSynchronLessonDetailRequest);
+    Task<UpdatedSynchronLessonDetailResponse> Update(UpdateSynchronLessonDetailRequest updateSynchronLessonDetailRequest);
 
-        Task<DeletedSynchronLessonDetailResponse> Delete(DeleteSynchronLessonDetailRequest deleteSynchronLessonDetailRequest);
-    }
+    Task<DeletedSynchronLessonDetailResponse> Delete(DeleteSynchronLessonDetailRequest deleteSynchronLessonDetailRequest);
+    Task<IPaginate<GetListSynchronLessonDetailResponse>> GetListByCourseModule(Guid courseModuleId);
 }
