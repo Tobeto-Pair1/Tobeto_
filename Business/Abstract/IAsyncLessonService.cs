@@ -18,6 +18,6 @@ public interface IAsyncLessonService
     Task<UpdatedAsyncLessonResponse> Update(UpdateAsyncLessonRequest updateAsyncLessonRequest);
 
     Task<DeletedAsyncLessonResponse> Delete(DeleteAsyncLessonRequest deleteAsyncLessonRequest);
-    Task<IPaginate<GetListByCourseResponse>> GetListByCourseModule(Guid courseModuleId);
+    Task<IPaginate<GetListAsyncLessonResponse>> GetListByCourseModule(Guid courseModuleId);
     Task<GetAsyncLessonResponse> GetByIdAsync(Guid id);
 }

@@ -24,5 +24,7 @@ public class CourseMappingProfile:Profile
 
         CreateMap<Course, GetListCourseResponse>().ReverseMap();
         CreateMap<Paginate<Course>, Paginate<GetListCourseResponse>>().ReverseMap();
+
+        CreateMap<Paginate<Course>, GetListCourseByDynamicResponse>().ReverseMap();
     }
 }
