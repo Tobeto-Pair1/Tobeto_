@@ -8,16 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface ICourseService
 {
-    public interface ICourseService
-    {
-        Task<IPaginate<GetListCourseResponse>> GetListAsync(PageRequest pageRequest);
+    Task<IPaginate<GetListCourseResponse>> GetListAsync(PageRequest pageRequest);
 
-        Task<CreatedCourseResponse> Add(CreateCourseRequest createCourseRequest);
+    Task<CreatedCourseResponse> Add(CreateCourseRequest createCourseRequest);
 
-        Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest);
+    Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest);
 
-        Task<DeletedCourseResponse> Delete(DeleteCourseRequest deleteCourseRequest);
-    }
+    Task<DeletedCourseResponse> Delete(DeleteCourseRequest deleteCourseRequest);
+    Task<GetListCourseByDynamicResponse> GetListModelByDynamicQuery(PageRequest pageRequest, DynamicQuery dynamic);
 }
