@@ -1,4 +1,4 @@
-﻿namespace Business.DTOs.Users;
+﻿namespace Business.DTOs.Auths;
 
 public class UserForLoginRequest
 {

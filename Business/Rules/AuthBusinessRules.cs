@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Dtos.RefreshTokens;
-using Business.DTOs.Users;
+using Business.DTOs.Auths;
 using Business.Messages;
 using Core.Business;
 using Core.CrossCuttingConcerns.Exceptions.Types;
@@ -23,7 +23,11 @@ public class AuthBusinessRules : BaseBusinessRules
         var userToCheck = await _userService.GetByMail(email);
         if (userToCheck != null) throw new BusinessException(BusinessMessages.UserAlreadyExists);
     }
-
+    public async Task UserWithSameIdShouldExist(Guid ıd)
+    {
+        var userToCheck = await _userService.GetById(ıd);
+        if (userToCheck == null) throw new BusinessException(BusinessMessages.UserDontExists);
+    }
     public async Task<UserAuth> UserWithSameEmailShouldExist(string email)
     {
         var userToCheck = await _userService.GetByMail(email);
@@ -33,11 +37,7 @@ public class AuthBusinessRules : BaseBusinessRules
     }
     public async Task<UserAuth> LoginInformationCheck(UserForLoginRequest userForLoginRequest)
     {
-        var userToCheck = await _userService.GetByMail(userForLoginRequest.Email);
-        if (userToCheck == null)
-        {
-            throw new BusinessException(BusinessMessages.UserDontExists);
-        }
+        var userToCheck = await UserWithSameEmailShouldExist(userForLoginRequest.Email);
         if (!HashingHelper.VerifyPasswordHash(userForLoginRequest.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
         {
             throw new BusinessException(BusinessMessages.PasswordError);

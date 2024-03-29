@@ -1,11 +1,10 @@
-﻿using Business.DTOs.Users;
+﻿using Business.DTOs.Auths;
 using FluentValidation;
 
 namespace Business.Validations;
 
 public class UserForRegisterRequestValidator : AbstractValidator<UserForRegisterRequest>
 {
-
     public UserForRegisterRequestValidator()
     {
         RuleFor(u => u.Email).NotEmpty();
@@ -13,6 +12,5 @@ public class UserForRegisterRequestValidator : AbstractValidator<UserForRegister
         RuleFor(u => u.Password).NotEmpty();
         RuleFor(u => u.Password).MinimumLength(6);
         RuleFor(u => u.PhoneNumber).Length(11);
-
     }
 }

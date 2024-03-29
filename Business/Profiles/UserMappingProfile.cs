@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.DTOs.Auths;
 using Business.DTOs.Users;
 using Core.DataAccess.Dynamic;
 using Core.Entities.Concrete;
@@ -17,10 +18,10 @@ namespace Business.Profiles
         public UserMappingProfile()
         {
             CreateMap<User, UserAuth>().ReverseMap();
+
             CreateMap<User, UpdatePasswordRequest>().ReverseMap();
-            CreateMap<UserAuth, UpdatePasswordRequest>().ReverseMap();
 
-
+            CreateMap<User, UpdateResetPasswordRequest>().ReverseMap();
 
             CreateMap<User, UserForRegisterRequest>().ReverseMap();
             CreateMap<User, UserForLoginRequest>().ReverseMap();

@@ -25,11 +25,9 @@ public static class BusinessServiceRegistration
         services.AddScoped<ICertificateService, CertificateManager>();
         services.AddScoped<IUserEducationService, UserEducationManager>();
         services.AddScoped<IExperienceService, ExperienceManager>();
-
         services.AddScoped<INotificationService, NotificationManager>();
         services.AddScoped<IBlogService, BlogManager>();
         services.AddScoped<IBlogPressService, BlogPressManager>();
-
         services.AddScoped<ICourseService, CourseManager>();
         services.AddScoped<ICourseModuleService, CourseModuleManager>();
         services.AddScoped<ICourseProgramService, CourseProgramManager>();
@@ -47,36 +45,26 @@ public static class BusinessServiceRegistration
         services.AddScoped<ISubTypeService, SubTypeManager>();
         services.AddScoped<IProgramService, ProgramManager>();
         services.AddScoped<IManufacturerService, ManufacturerManager>();
-
-
         services.AddScoped<IAddressService, AddressManager>();
         services.AddScoped<ICountryService, CountryManager>();
         services.AddScoped<ICityService, CityManager>();
         services.AddScoped<ITownService, TownManager>();
-
         services.AddScoped<IExamService, ExamManager>();
         services.AddScoped<IGradeService, GradeManager>();
         services.AddScoped<IQuestionService, QuestionManager>();
         services.AddScoped<IStudentAnswerService, StudentAnswerManager>();
-
-
         services.AddScoped<IEmployeeService, EmployeeManager>();
         services.AddScoped<IEmployeeOperationClaimService, EmployeeOperationClaimManager>();
         services.AddScoped<IEmployeeAuthService, AuthEmployeeManager>();
-
         services.AddScoped<IInstructorService, InstructorManager>();
         services.AddScoped<IInstructorOperationClaimService, InstructorOperationClaimManager>();
         services.AddScoped<IInstructorAuthService, AuthInstructorManager>();
-
-
         services.AddScoped<IUserService, UserManager>();
         services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
         services.AddScoped<IAuthService, AuthManager>();
         services.AddScoped<IRefreshTokenService, RefreshTokenManager>();
-
-
+        services.AddScoped<IResetTokenService, ResetTokenManager>();
         services.AddScoped<IImageService, ImageManager>();
-
         services.AddScoped<IContactInformationService, ContactInformationManager>();
 
 

@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Business.DTOs.Users;
+using Business.DTOs.Auths;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -10,7 +10,7 @@ namespace WepAPI.Controllers;
 [ApiController]
 public class AuthController : Controller
 {
-    private IAuthService _authService;
+    private readonly IAuthService _authService;
     private readonly IRefreshTokenService _refreshTokenService;
     public AuthController(IAuthService authService, IRefreshTokenService refreshTokenService)
     {
@@ -66,5 +66,17 @@ public class AuthController : Controller
     {
         CookieOptions cookieOptions = new() { HttpOnly = true, Expires = DateTime.Now.AddMinutes(7) };
         Response.Cookies.Append("refreshToken", refreshToken.Token, cookieOptions);
+    }
+    [HttpPost("password-reset")]
+    public async Task<IActionResult> PasswordReset([FromBody] PasswordResetRequest passwordResetRequest)
+    {
+        await _authService.PasswordReset(passwordResetRequest);
+        return Ok();
+    }
+    [HttpPost("verify-reset-token")]
+    public async Task<IActionResult> VerifyResetToken([FromBody] VerifyResetTokenRequest verifyResetTokenRequest)
+    {
+        var result = await _authService.VerifyResetTokenAsync(verifyResetTokenRequest);
+        return Ok(result);
     }
 }

@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.Rules;
 using Core.Entities.Concrete;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
 
 
 namespace Business.Services.Tokens;
@@ -16,10 +14,11 @@ public class TokenManager : ITokenService
     private readonly IUserOperationClaimService _userOperationClaimService;
     private readonly ITokenHelper _tokenHelper;
     private readonly IRefreshTokenDal _refreshTokenDal;
+    private readonly IResetTokenDal _resetTokenDal;
     private readonly TokenOptions _tokenOptions;
 
 
-    public TokenManager(IRefreshTokenDal refreshTokenDal, ITokenHelper tokenHelper, IConfiguration configuration, IUserOperationClaimService userOperationClaimService)
+    public TokenManager(IRefreshTokenDal refreshTokenDal, ITokenHelper tokenHelper, IConfiguration configuration, IUserOperationClaimService userOperationClaimService, IResetTokenDal resetTokenDal)
     {
         _refreshTokenDal = refreshTokenDal;
         _tokenHelper = tokenHelper;
@@ -29,6 +28,7 @@ public class TokenManager : ITokenService
         _tokenOptions =
             configuration.GetSection(tokenOptionsConfigurationSection).Get<TokenOptions>()
             ?? throw new NullReferenceException($"\"{tokenOptionsConfigurationSection}\" section cannot found in configuration");
+        _resetTokenDal = resetTokenDal;
     }
     public async Task<RefreshToken> CreateRefreshToken(UserAuth userAuth, string ipAddress)
     {
@@ -63,33 +63,21 @@ public class TokenManager : ITokenService
 
         await _refreshTokenDal.DeleteRangeAsync(refreshTokens);
     }
-    public async Task<RefreshToken?> GetRefreshTokenByToken(string token)
+    public async Task<ResetToken> AddResetToken(ResetToken resetToken)
     {
-        RefreshToken? refreshToken = await _refreshTokenDal.GetAsync(predicate: r => r.Token == token);
-        return refreshToken;
-    }
-    public async Task RevokeDescendantRefreshTokens(RefreshToken refreshToken, string ipAddress, string reason)
-    {
-        RefreshToken? childToken = await _refreshTokenDal.GetAsync(predicate: r => r.Token == refreshToken.ReplacedByToken);
 
-        if (childToken?.Revoked != null && childToken.Expires <= DateTime.UtcNow)
-            await RevokeRefreshToken(childToken, ipAddress, reason);
-        else
-            await RevokeDescendantRefreshTokens(refreshToken: childToken!, ipAddress, reason);
+        ResetToken addedResetToken = await _resetTokenDal.AddAsync(resetToken);
+        return addedResetToken;
     }
-    public async Task RevokeRefreshToken(RefreshToken refreshToken, string ipAddress, string? reason = null, string? replacedByToken = null)
-    {
-        refreshToken.Revoked = DateTime.UtcNow;
-        refreshToken.RevokedByIp = ipAddress;
-        refreshToken.ReasonRevoked = reason;
-        refreshToken.ReplacedByToken = replacedByToken;
-        await _refreshTokenDal.UpdateAsync(refreshToken);
 
-    }
-    public async Task<RefreshToken> RotateRefreshToken(UserAuth user, RefreshToken refreshToken, string ipAddress)
+    public async Task<ResetToken> CreateResetToken(UserAuth userAuth)
     {
-        RefreshToken newRefreshToken = await CreateRefreshToken(user, ipAddress);
-        await RevokeRefreshToken(refreshToken, ipAddress, reason: "Replaced by new token", newRefreshToken.Token);
-        return newRefreshToken;
+        ResetToken resetToken = _tokenHelper.CreateResetToken(userAuth);
+        return await Task.FromResult(resetToken);
+    }
+    public async Task<ResetToken?> GetResetTokenByToken(string token)
+    {
+        ResetToken? resetToken = await _resetTokenDal.GetAsync(predicate: r => r.Token == token);
+        return resetToken;
     }
 }

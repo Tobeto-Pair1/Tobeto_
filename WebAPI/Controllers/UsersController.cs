@@ -19,7 +19,6 @@ public class UsersController : ControllerBase
         _userService = userService;
     }
 
-
     [HttpDelete("delete")]
     public async Task<IActionResult> Delete(Guid id)
     {
@@ -55,6 +54,14 @@ public class UsersController : ControllerBase
         setRefreshTokenToCookie(result.RefreshToken);
         return Ok(result.AccessToken);
     }
+
+    [HttpPost("update-password")]
+    public async Task<IActionResult> UpdatePassword([FromBody] UpdateResetPasswordRequest updateResetPasswordCommandRequest)
+    {
+        await _userService.UpdateResetPassword(updateResetPasswordCommandRequest);
+        return Ok();
+    }
+
     protected Guid getAuthenticatedUserId()
     {
         Guid userId = HttpContext.User.GetUserId();
@@ -73,5 +80,6 @@ public class UsersController : ControllerBase
         CookieOptions cookieOptions = new() { HttpOnly = true, Expires = DateTime.Now.AddMinutes(2) };
         Response.Cookies.Append("refreshToken", refreshToken.Token, cookieOptions);
     }
+
 
 }

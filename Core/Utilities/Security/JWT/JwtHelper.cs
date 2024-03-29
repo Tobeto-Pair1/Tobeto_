@@ -1,5 +1,4 @@
-﻿using Core.DataAccess.Dynamic;
-using Core.Entities.Concrete;
+﻿using Core.Entities.Concrete;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -74,6 +73,18 @@ public class JwtHelper : ITokenHelper
             };
 
         return refreshToken;
+    }
+    public ResetToken CreateResetToken(UserAuth userAuth)
+    {
+        ResetToken resetToken =
+            new()
+            {
+                UserId = userAuth.Id,
+                Token = RandomRefreshToken(),
+                Expires = DateTime.UtcNow.AddMinutes(7),
+            };
+
+        return resetToken;
     }
     private string RandomRefreshToken()
     {

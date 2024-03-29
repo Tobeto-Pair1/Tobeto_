@@ -6,7 +6,6 @@ using DataAccess.Abstract;
 using DataAccess.Concrete;
 
 
-
 namespace DataAccess;
 
 public static class DataAccessServiceRegistration
@@ -14,9 +13,6 @@ public static class DataAccessServiceRegistration
     public static IServiceCollection AddDataAccessServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoDB")));
-
-       // services.AddDbContext<TobetoDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("TobetoCanli")));
-
 
         services.AddScoped<IForeignLanguageDal, EfForeignLanguageDal>();
         services.AddScoped<IForeignLanguageLevelDal, EfForeignLanguageLevelDal>();
@@ -27,10 +23,7 @@ public static class DataAccessServiceRegistration
         services.AddScoped<IUserSkillDal, EfUserSkillDal>();
         services.AddScoped<IExperienceDal, EfExperienceDal>();
         services.AddScoped<ICertificateDal, EfCertificateDal>();
-
-
         services.AddScoped<ISkillDal, EfSkillDal>();
-
         services.AddScoped<ICourseTypeDal, EfCourseTypeDal>();
         services.AddScoped<IAboutOfCourseDal, EfAboutOfCourseDal>();
         services.AddScoped<ICategoryDal, EfCategoryDal>();
@@ -47,43 +40,27 @@ public static class DataAccessServiceRegistration
         services.AddScoped<ICourseStudentDal, EfCourseStudentDal>();
         services.AddScoped<IAsyncLessonDetailDal, EfAsyncLessonDetailDal>();
         services.AddScoped<ILessonLanguageDal, EfLessonLanguageDal>();
-
-
         services.AddScoped<IAddressDal, EfAddressDal>();
         services.AddScoped<ICountryDal, EfCountryDal>();
         services.AddScoped<ICityDal, EfCityDal>();
         services.AddScoped<ITownDal, EfTownDal>();
-
-
         services.AddScoped<INotificationDal, EfNotificationDal>();
         services.AddScoped<IBlogDal, EfBlogDal>();
         services.AddScoped<IBlogPressDal, EfBlogPressDal>();
-
-
         services.AddScoped<IExamDal, EfExamDal>();
         services.AddScoped<IGradeDal, EfGradeDal>();
         services.AddScoped<IQuestionDal, EfQuestionDal>();
         services.AddScoped<IStudentAnswerDal, EfStudentAnswerDal>();
-
-
         services.AddScoped<IEmployeeDal, EfEmployeeDal>();
         services.AddScoped<IEmployeeOperationClaimDal, EfEmployeeOperationClaimDal>();
-
         services.AddScoped<IInstructorDal, EfInstructorDal>();
         services.AddScoped<IInstructorOperationClaimDal, EfInstructorOperationClaimDal>();
-  
-
         services.AddScoped<IUserDal, EfUserDal>();
         services.AddScoped<IUserOperationClaimDal, EfUserOperationClaimDal>();
-
         services.AddScoped<IRefreshTokenDal, EfRefreshTokenDal>();
-
-        services.AddScoped<IImageDal, EfImageDal>();
-      
+        services.AddScoped<IResetTokenDal, EfResetTokenDal>();
+        services.AddScoped<IImageDal, EfImageDal>();     
         services.AddScoped<IContactInformationDal, EfContactInformationDal>();
-
-
-
 
         return services;
     }
