@@ -64,7 +64,7 @@ public class AuthManager : IAuthService
         //await _authBusinessRules.ThrowExceptionIfCreateAccessTokenIsNull(registeredDto);
 
 
-        sendTestEmail(userForRegisterRequest);  
+        sendRegisterEmail(userForRegisterRequest);  
 
         return registeredDto;
     }
@@ -83,12 +83,13 @@ public class AuthManager : IAuthService
         return registeredDto;
     }
 
-    public void sendTestEmail(UserForRegisterRequest userForRegisterRequest)
+
+    public void sendRegisterEmail(UserForRegisterRequest userForRegisterRequest)
     {
-        string message = $@"<p>Test Mail Sent";
-        _emailService.Send(to: userForRegisterRequest.Email, subject: "Deneme",
-            html: $@"<h4> Verify Email</h4>
-                        <p>Thanks for testing</p> {message}");
+        string message = $@"<p>Tobeto'ya Hoşgeldin!</p>";
+        string htmlBody = $@"<h4>E-posta Adresinizi Doğrulayın</h4> {message}";
+        _emailService.Send(to: userForRegisterRequest.Email, subject: "Kaydınızı Onaylayın",
+            html: htmlBody);
     }
 
     public async Task<RefreshTokenResponse> Login(UserForLoginRequest userForLoginRequest, string IpAddress)
