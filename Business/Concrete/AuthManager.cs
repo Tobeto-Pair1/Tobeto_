@@ -82,6 +82,7 @@ public class AuthManager : IAuthService
         return registeredDto;
     }
 
+
     public async Task PasswordReset(PasswordResetRequest passwordResetRequest)
     {
         var user = await _authBusinessRules.UserWithSameEmailShouldExist(passwordResetRequest.Email);

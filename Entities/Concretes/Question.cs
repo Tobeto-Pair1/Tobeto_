@@ -15,6 +15,10 @@ namespace Entities.Concretes
         public string OptionC { get; set; }
         public string OptionD { get; set; }
         public char CorrectAnswer { get; set; }
+        public Guid ExamId { get; set; }
+
+
+        public Exam Exam { get; set; }
         public ICollection<StudentAnswer> Answers { get; set; }
     }
 

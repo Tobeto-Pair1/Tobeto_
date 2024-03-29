@@ -8,7 +8,7 @@ namespace Business.DTOs.Exams
 {
     public class GetListExamResponse
     {
-        public Guid ExamId { get; set; }
+        public Guid Id { get; set; }
         public string ExamName { get; set; }
         public DateTime ExamDate { get; set; }
     }

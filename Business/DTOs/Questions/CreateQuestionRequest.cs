@@ -8,5 +8,7 @@
         public string OptionC { get; set; }
         public string OptionD { get; set; }
         public char CorrectAnswer { get; set; }
+        public Guid ExamId { get; set; }
+
     }
 }
