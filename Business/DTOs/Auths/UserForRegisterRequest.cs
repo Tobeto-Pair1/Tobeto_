@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DTOs.Users;
+namespace Business.DTOs.Auths;
 
 public class UserForRegisterRequest
 {

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using MimeKit.Text;
 using MimeKit;
 using MailKit.Net.Smtp;
+using System;
 
 namespace Core.Utilities.EmailSender;
 

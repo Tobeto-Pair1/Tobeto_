@@ -3,17 +3,16 @@ using Business.Abstract;
 using Core.Entities.Concrete;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
-using Business.DTOs.Users;
 using Business.Rules;
 using Core.Aspects.Autofac.Validation;
 using Business.Validations;
 using Core.Aspects.Autofac.Logging;
 using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
-using Core.Utilities.EmailSender;
 using Business.Dtos.RefreshTokens;
-using Microsoft.Extensions.Configuration;
-using System.Text;
 using Business.Services.Tokens;
+using Core.Utilities.Security.Encryption;
+using Business.DTOs.Auths;
+using Business.Messages;
 
 namespace Business.Concrete;
 
@@ -24,17 +23,17 @@ public class AuthManager : IAuthService
     private readonly IMapper _mapper;
     private readonly ITokenService _tokenService;
     private readonly AuthBusinessRules _authBusinessRules;
-    private readonly IEmailService _emailService;
-    private readonly IConfiguration _configuration;
+    private readonly ResetTokenBusinessRules _resetTokenBusinessRules;
+    private readonly IMailMessages _mailMessages;
 
-    public AuthManager(IUserService userService, IMapper mapper, AuthBusinessRules authBusinessRules, IEmailService emailService, IConfiguration configuration, ITokenService tokenService)
+    public AuthManager(IUserService userService, IMapper mapper, AuthBusinessRules authBusinessRules, ITokenService tokenService, IMailMessages mailMessages, ResetTokenBusinessRules resetTokenBusinessRules)
     {
         _userService = userService;
         _mapper = mapper;
         _authBusinessRules = authBusinessRules;
-        _emailService = emailService;
-        _configuration = configuration;
         _tokenService = tokenService;
+        _mailMessages = mailMessages;
+        _resetTokenBusinessRules = resetTokenBusinessRules;
     }
 
     [LogAspect(typeof(FileLogger))]
@@ -50,21 +49,21 @@ public class AuthManager : IAuthService
         userAuth.PasswordSalt = passwordSalt;
         var createdUser = await _userService.Add(userAuth);
 
+
         RefreshTokenResponse registeredDto = await TokenAdded(createdUser, IpAddress);
 
-        //var createdAccessToken = await _refreshTokenService.CreateAccessToken(createdUser);
-        //RefreshToken createdRefreshToken = await _refreshTokenService.CreateRefreshToken(createdUser, IpAddress);
-        //RefreshToken addedRefreshToken = await _refreshTokenService.AddRefreshToken(createdRefreshToken);
+        _mailMessages.sendRegisterEmail(userForRegisterRequest);
 
-        //RefreshTokenResponse registeredDto = new()
-        //{
-        //    RefreshToken = addedRefreshToken,
-        //    AccessToken = createdAccessToken,
-        //};
-        //await _authBusinessRules.ThrowExceptionIfCreateAccessTokenIsNull(registeredDto);
+        return registeredDto;
+    }
 
+    public async Task<RefreshTokenResponse> Login(UserForLoginRequest userForLoginRequest, string IpAddress)
+    {
+        var userToCheck = await _authBusinessRules.LoginInformationCheck(userForLoginRequest);
 
-        sendRegisterEmail(userForRegisterRequest);  
+        RefreshTokenResponse registeredDto = await TokenAdded(userToCheck, IpAddress);
+
+        await _tokenService.DeleteOldRefreshTokens(userToCheck.Id);
 
         return registeredDto;
     }
@@ -84,67 +83,29 @@ public class AuthManager : IAuthService
     }
 
 
-    public void sendRegisterEmail(UserForRegisterRequest userForRegisterRequest)
+    public async Task PasswordReset(PasswordResetRequest passwordResetRequest)
     {
-        string message = $@"<p>Tobeto'ya Hoşgeldin!</p>";
-        string htmlBody = $@"<h4>E-posta Adresinizi Doğrulayın</h4> {message}";
-        _emailService.Send(to: userForRegisterRequest.Email, subject: "Kaydınızı Onaylayın",
-            html: htmlBody);
+        var user = await _authBusinessRules.UserWithSameEmailShouldExist(passwordResetRequest.Email);
+        ResetToken resetToken = await _tokenService.CreateResetToken(user);
+        await _tokenService.AddResetToken(resetToken);
+
+        resetToken.Token = CustomEncoders.UrlEncode(resetToken.Token);
+
+        _mailMessages.SendPasswordResetMailAsync(passwordResetRequest.Email, user.Id.ToString(), resetToken.Token);
     }
-
-    public async Task<RefreshTokenResponse> Login(UserForLoginRequest userForLoginRequest, string IpAddress)
+    public async Task<bool> VerifyResetTokenAsync(VerifyResetTokenRequest verifyResetTokenRequest)
     {
-        var userToCheck = await _authBusinessRules.LoginInformationCheck(userForLoginRequest);
+        await _authBusinessRules.UserWithSameIdShouldExist(verifyResetTokenRequest.UserId);
 
-        var createdAccessToken = await _tokenService.CreateAccessToken(userToCheck);
-        RefreshToken createdRefreshToken = await _tokenService.CreateRefreshToken(userToCheck, IpAddress);
-        await _tokenService.AddRefreshToken(createdRefreshToken);
-        await _tokenService.DeleteOldRefreshTokens(userToCheck.Id);
-
-        RefreshTokenResponse registeredDto = new()
+        verifyResetTokenRequest.ResetToken = CustomEncoders.UrlDecode(verifyResetTokenRequest.ResetToken);
+        var token = await _tokenService.GetResetTokenByToken(verifyResetTokenRequest.ResetToken);
+        await _resetTokenBusinessRules.ResetTokenShouldBeExists(token);
+        await _resetTokenBusinessRules.ResetTokenShouldBeActive(token!);
+        if (token.UserId == verifyResetTokenRequest.UserId)
         {
-            RefreshToken = createdRefreshToken,
-            AccessToken = createdAccessToken,
-        };
-        await _authBusinessRules.ThrowExceptionIfCreateAccessTokenIsNull(registeredDto);
-        return registeredDto;
+            return true;
+        }
+
+        return false;
     }
-
-
-    //public async Task PasswordReset(string email)
-    //{
-    //    var user = await _authBusinessRules.UserWithSameEmailShouldExist(email);
-    //    ResetToken createdResetToken = await _tokenService.CreateResetToken(user);
-    //    await _tokenService.AddResetToken(createdResetToken);
-
-
-    //    SendPasswordResetMailAsync(email, createdResetToken.Token);
-    //}
-    //public async Task<bool> VerifyResetTokenAsync(string resetToken, string userId)
-    //{
-        
-    //    if (user != null)
-    //    {
-    //        //byte[] tokenBytes = WebEncoders.Base64UrlDecode(resetToken);
-    //        //resetToken = Encoding.UTF8.GetString(tokenBytes);
-    //        resetToken = resetToken.UrlDecode();
-
-    //        return await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", resetToken);
-    //    }
-    //    return false;
-    //}
-    public void SendPasswordResetMailAsync(string email, string resetToken)
-    {
-        StringBuilder mail = new();
-        mail.AppendLine("Merhaba<br>Eğer yeni şifre talebinde bulunduysanız aşağıdaki linkten şifrenizi yenileyebilirsiniz.<br><strong><a target=\"_blank\" href=\"");
-        mail.AppendLine(_configuration["AngularClientUrl"]);
-        mail.AppendLine("/update-password/");
-        mail.AppendLine("/");
-        mail.AppendLine(resetToken);
-        mail.AppendLine("\">Yeni şifre talebi için tıklayınız...</a></strong><br><br><span style=\"font-size:12px;\">" +
-            "NOT : Eğer ki bu talep tarafınızca gerçekleştirilmemişse lütfen bu maili ciddiye almayınız.</span><br>Saygılarımızla...<br><br><br>NG - Mini|E-Ticaret");
-        
-       // string message = $@"<p>Test Mail Sent";
-        _emailService.Send(to: email, subject: "Şifre Yenileme Talebi", html: mail.ToString());
-    }  
 }

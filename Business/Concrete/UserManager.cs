@@ -7,6 +7,7 @@ using Business.Services.Tokens;
 using Core.DataAccess.Dynamic;
 using Core.DataAccess.Paging;
 using Core.Entities.Concrete;
+using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
@@ -21,15 +22,17 @@ public class UserManager : IUserService
     private readonly IUserDal _userDal;
     private readonly ITokenService _tokenService;
     private readonly IMapper _mapper;
+    private readonly IResetTokenService _resetTokenService;
     private readonly UserBusinessRules _userBusinessRules;
 
 
-    public UserManager(IUserDal userDal, IMapper mapper, UserBusinessRules userBusinessRules, ITokenService tokenService)
+    public UserManager(IUserDal userDal, IMapper mapper, UserBusinessRules userBusinessRules, ITokenService tokenService, IResetTokenService resetTokenService)
     {
         _userDal = userDal;
         _mapper = mapper;
         _userBusinessRules = userBusinessRules;
         _tokenService = tokenService;
+        _resetTokenService = resetTokenService;
     }
     public async Task<DeletedUserResponse> Delete(Guid id)
     {
@@ -99,7 +102,27 @@ public class UserManager : IUserService
 
 
     }
+    public async Task UpdateResetPassword(UpdateResetPasswordRequest updateResetPasswordRequest)
+    {
+        User? user = await _userDal.GetAsync(predicate: u => u.Id == updateResetPasswordRequest.Id);
+        await _userBusinessRules.UserShouldBeExistsWhenSelected(user);
+        await _userBusinessRules.UserPasswordAndCheckPassword(updateResetPasswordRequest.NewPassword, updateResetPasswordRequest.CheckNewPassword);
 
+        user = _mapper.Map(updateResetPasswordRequest, user);
+
+        HashingHelper.CreatePasswordHash(
+            updateResetPasswordRequest.NewPassword,
+            passwordHash: out byte[] passwordHash,
+            passwordSalt: out byte[] passwordSalt
+        );
+        user!.PasswordHash = passwordHash;
+        user!.PasswordSalt = passwordSalt;
+
+        User updatedUser = await _userDal.UpdateAsync(user!);
+
+        updateResetPasswordRequest.ResetToken = CustomEncoders.UrlDecode(updateResetPasswordRequest.ResetToken);
+        await _resetTokenService.RevokedToken(updateResetPasswordRequest.ResetToken);
+    }
     public async Task<UserAuth> Add(UserAuth userAuth)
     {
         User user = _mapper.Map<User>(userAuth);
@@ -123,10 +146,10 @@ public class UserManager : IUserService
     public async Task<GetListUserResponse> GetListById(Guid id)
     {
         User? user = await _userDal.GetAsync(include: l => l
-            .Include(l=>l.Address)
-            .ThenInclude(l=>l.Town)
-            .ThenInclude(l=>l.City)
-            .ThenInclude(l=>l.Country),
+            .Include(l => l.Address)
+            .ThenInclude(l => l.Town)
+            .ThenInclude(l => l.City)
+            .ThenInclude(l => l.Country),
             predicate: i => i.Id == id);
         GetListUserResponse getListUserResponse = _mapper.Map<GetListUserResponse>(user);
         return getListUserResponse;

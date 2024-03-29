@@ -23,5 +23,6 @@ public interface IUserService
 
     Task<UserAuth> GetByMail(string email);
     Task<RefreshTokenResponse> UpdatePassword(UpdatePasswordRequest updatePasswordRequest, string IpAddress );
+    Task UpdateResetPassword(UpdateResetPasswordRequest updateResetPasswordRequest);
 
 }

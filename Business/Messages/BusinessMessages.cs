@@ -23,6 +23,8 @@ public class BusinessMessages
     public static string CreateAccessTokenNot = "Token Oluşturulamadı.";
     public const string RefreshDontExists = "Böyle bir token bulunamadı.";
     public const string InvalidRefreshToken = "Geçersiz refresh token.";
+    public const string InvalidResetToken = "Geçersiz reset token.";
+
 
     public const string? PasswordHaveToEqualToCheckPassword = "Yeni şifre ile ikinci şifre eşleşmiyor";
     public const string NewPasswordShouldBeDifferent = "Şifreniz son şifreyle anyı olamaz.";
